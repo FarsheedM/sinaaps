@@ -1,0 +1,56 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/synapseLogo.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        
+        <div id="wrapper">
+        	<div id="header">
+        		<div id="navigation">
+        			<div id="logo"><a href="#" rel="Sinaaps">SINAAPSLogo</a></div><!-- logo -->
+        			<div id="menu">
+        				<ul>
+        					<li><a href="#">Blog</a></li>
+        					<li><a href="#">Books</a></li>
+        					<li><a href="#">Services</a></li>
+        					<li><a href="#">I don't Read</a></li>
+        					<li><a href="#">About</a></li>
+        				</ul>
+        			</div><!-- menu -->
+        		</div><!-- navigation -->
+        		<div id="clear"></div>
+        		
+        		<div id="headContent">
+        			<div id="headContentLeft">Headlines</div>
+        			<div id="headContentRight">
+        				<h4>New to Sinaaps? Create an acount:</h4>
+        				<input type="text" placeholder="Name" />
+        				<input type="email" placeholder="Email" />
+        				<input type="password" placeholder="Password" />
+        				<br/>
+        				<button type="submit">Sign Up</button>
+        			</div><!-- headcontentRight (Signup) -->
+        		</div><!-- headContent -->
+        		<div id="clear"></div>
+        	</div><!-- header -->
+        	
+        	<div id="content">
+        		<div id="contentleftPanel">@content</div><!-- leftPanel -->
+        		<div id="contentRightPanel">rightPanel</div><!-- rightPanel -->
+        	</div><!-- content -->
+        	
+        	<div id="clear"></div>
+        	
+        	<div id="footer">&copy; 2014 Sinaaps Inc</div><!-- footer -->
+        	
+        </div><!-- wrapper -->
+        
+    </body>
+</html>
