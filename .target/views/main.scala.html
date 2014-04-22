@@ -1,10 +1,11 @@
-@(title: String)(content: Html)
+@(message :String,form : Form[Application.Login])(content: Html)
+
 
 <!DOCTYPE html>
 
 <html>
     <head>
-        <title>@title</title>
+        <title>@message</title>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/synapseLogo.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
@@ -14,7 +15,7 @@
         <div id="wrapper">
         	<div id="header">
         		<div id="navigation">
-        			<div id="logo"><a href="#" rel="Sinaaps">SINAAPSLogo</a></div><!-- logo -->
+        			<div id="logo"><a href="#" rel="FarsiReads">FarsiReadsLogo</a></div><!-- logo -->
         			<div id="menu">
         				<ul>
         					<li><a href="#">Blog</a></li>
@@ -30,12 +31,17 @@
         		<div id="headContent">
         			<div id="headContentLeft">Headlines</div>
         			<div id="headContentRight">
-        				<h4>New to Sinaaps? Create an acount:</h4>
-        				<input type="text" placeholder="Name" />
-        				<input type="email" placeholder="Email" />
-        				<input type="password" placeholder="Password" />
-        				<br/>
-        				<button type="submit">Sign Up</button>
+        				@helper.form(routes.Application.authenticate){
+	        				<h4>New to FarsiReads? Create an account:</h4>
+	        				<input type="text" name="lName" placeholder="Name" />
+	        				<input type="email" name="email" placeholder="Email" />
+	        				<input type="password" name="password" placeholder="Password" />
+	        				<br/>
+	        				<button type="submit">Sign Up</button>
+	        				@if(form.hasGlobalErrors){
+	        					<p class="error"> @form.globalError.message </p>
+	        				}
+        				}
         			</div><!-- headcontentRight (Signup) -->
         		</div><!-- headContent -->
         		<div id="clear"></div>
@@ -48,7 +54,7 @@
         	
         	<div id="clear"></div>
         	
-        	<div id="footer">&copy; 2014 Sinaaps Inc</div><!-- footer -->
+        	<div id="footer">&copy; 2014 FarsiReads Inc</div><!-- footer -->
         	
         </div><!-- wrapper -->
         

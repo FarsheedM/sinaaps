@@ -28,10 +28,12 @@
 
 //-------------------------------------
 
-body{
-	 background: @mainBackground;
-     color: @mainColor;
-     font: @defaultFont;
+body {
+    background: @mainBackground;
+    color: @mainColor;
+    font: @defaultFont;
+    -webkit-font-smoothing: antialised;
+    -webkit-user-select: none;
 }
 
 #wrapper{
@@ -42,7 +44,7 @@ body{
 
 /*----------------------header-------------------------*/
 #header{
-	height: 360px;
+	height: 105px;
 	width: 960px;
 	margin-top: -8px;
 }
@@ -79,8 +81,8 @@ body{
 	font-weight: bold;
 }
 #headContent{
-	height: 295px;
-	background-color:  aqua;
+	height: 40px;
+	background-color:  grey;
 	padding-top:65px;	
 }
 #headContentLeft{
@@ -89,10 +91,10 @@ body{
 #headContentRight{
 	float:right;
 	width: 280px;
-	height: 180px;
-	background-color: blue;
-	border-style: solid;
-	margin-right:20px;
+	height: 30px;
+	background-color: grey;
+	/*border-style: solid;
+	margin-right:20px;*/
 	padding-left: 10px;
 }
 
@@ -105,13 +107,13 @@ body{
 	width: 625px;
 	height: 1000px;
 	float: left;
-	background-color: maroon;
+	background-color: white;
 }
 #contentRightPanel{
 	width: 300px;
 	height: 800px;
 	float: right;
-	background-color: navy;
+	background-color: silver;
 }
 
 /*----------------------footer-------------------------*/
@@ -123,4 +125,64 @@ body{
 
 #clear{
 	both: clear;
+}
+
+
+
+//-------------------------------------------------------
+
+
+
+a {
+    color: @links;
+    text-decoration: none;
+    &:hover {
+        color: @linksHover;
+    }
+        p.error {
+        color: #c00;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px rgba(0,0,0,.1);
+    }
+    
+}
+
+
+.button() {
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: 1px solid @headerDark - #111;
+    background-color: @headerDark;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3),
+                inset 0 1px 0 rgba(255,255,255,.2),
+                inset 0 -1px 0 rgba(0,0,0,.2);
+    text-shadow: -1px -1px 0 rgba(0,0,0,.3);
+    color: @buttonColor;
+    cursor: pointer;
+    &:hover {
+        background-color: @headerDark;
+        color: @buttonHover;
+    }
+}
+
+//--------------logged in user CSS---------------------
+#user {
+	float : right;
+	padding-right:10px;
+    > * {
+        display: inline-block;
+    }
+    dt {
+        color: #fff;
+        span {
+            opacity: .5;
+            font-size: 11px;
+        }
+    }
+    dd {
+        a , button {
+            .button();
+        }
+    }
+    
 }

@@ -1,6 +1,38 @@
+// ---------------------------- COLORS
+@mainBackground:        #c7d1d8;
+@mainColor:             #2a3a48;
+@drawerBackground:      #e1e7ec;
+@folderColor:           #6f8193;
+@projectColor:          @mainColor;
+@layoutBorderColor:     #606d78;
 
+@links:                 #4794c4;
+@linksHover:            #2a5e88;
 
-body{}
+@headerLight:           #445868;
+@headerDark:            @mainColor;
+@titleColor:            #556b7b;
+@buttonColor:           @mainBackground;
+@buttonHover:           #fff;
+@activeColor:           #5daad5;
+
+// Folders
+@folderBorder:          #9ba5ad;
+@folderBackground:      #dbe1e5;
+@folderHeaderLight:     #f2f5f8;
+@folderHeaderDark:      #dfe2e6;
+@folderTitle:           #7a8a99;
+
+// ----------------------------- FONTS
+@defaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+
+//-------------------------------------
+
+body{
+	 background: @mainBackground;
+     color: @mainColor;
+     font: @defaultFont;
+}
 
 #wrapper{
 	height: auto;
@@ -28,6 +60,7 @@ body{}
 }
 #menu{
 	float:right;
+	padding-top: 10px;
 }
 #menu ul {
 	list-style-type:none;
