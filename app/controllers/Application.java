@@ -10,7 +10,7 @@ public class Application extends Controller {
 
 	
     public static Result index() {
-        return ok(index.render("Guest!",Form.form(Login.class)));
+        return ok(index.render("FarsiReads",Form.form(Login.class)));
     }
 	
     @Security.Authenticated(Secured.class)
