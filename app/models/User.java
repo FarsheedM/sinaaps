@@ -2,7 +2,7 @@ package models;
 
 import java.util.Calendar;
 import java.util.Date;
-
+import play.data.format.*;
 import javax.persistence.*;
 
 import play.db.ebean.Model;
@@ -16,6 +16,7 @@ public class User extends Model{
 	public String fName;
 	public String lName;
 	public String password;
+	@Formats.DateTime(pattern = "yyyy-mm-dd")
 	public Date birthdate;
 	public String address;
 	

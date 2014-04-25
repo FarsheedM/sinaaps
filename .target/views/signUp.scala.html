@@ -1,0 +1,31 @@
+@(form : Form[Signup.Register])
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Registeration</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/signup.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/logoMini.png")">
+    <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="registerForm">
+		@helper.form(routes.Signup.authenticate){
+			<h4>Welcome to the Registration Form:</h4>
+			<input type="text" name="lName" placeholder="Name" />
+			<br/>
+			<input type="email" name="email" placeholder="Email" />
+			<br/>
+			<input type="password" name="password" placeholder="Password" />
+			<br/>
+			<button type="submit">Sign Up</button>
+			
+			@if(form.hasGlobalErrors){
+			<p id="error">Error: @form.globalError.message </p>
+			}
+        }
+	</div>
+</div>
+</body>
+</html>

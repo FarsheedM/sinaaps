@@ -20,6 +20,13 @@
 							<img alt="FarsiReadsLogo" src="@routes.Assets.at("images/logoFarsiReads.png")">
 						</a>
 					</div><!-- logo -->
+					<div id="languages">
+							<dl id="languageBar">
+								<dt>languages:</dt>
+								<dd>فارسی</dd>
+								<dd>English</dd>
+							</dl>
+					 </div> 
         			<div id="menu">
         				<ul>
         					<li><a href="#">Blog</a></li>
@@ -36,17 +43,17 @@
         			<div id="headContentLeft">Headlines</div>
         			<div id="headContentRight">
         				@helper.form(routes.Application.authenticate){
-	        				<h4>New to FarsiReads? Create an account:</h4>
 	        				<input type="text" name="lName" placeholder="Name" />
 	        				<input type="email" name="email" placeholder="Email" />
 	        				<input type="password" name="password" placeholder="Password" />
 	        				<br/>
-	        				<button type="submit">Sign Up</button>
+	        				<button type="submit">Sign In</button>
+	        				<h4>New to FarsiReads? Sign Up <a href="/signUp" id="signUpLink">Here</a></h4>
 	        				@if(form.hasGlobalErrors){
-	        					<p class="error"> @form.globalError.message </p>
+	        					<p id="error">Error: @form.globalError.message </p>
 	        				}
         				}
-        			</div><!-- headcontentRight (Signup) -->
+        			</div><!-- headcontentRight (SignIn) -->
         		</div><!-- headContent -->
         		<div id="clear"></div>
         	</div><!-- header -->
