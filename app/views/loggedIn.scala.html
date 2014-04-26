@@ -1,39 +1,17 @@
 @(user : User)
 
-<html>
-<head>
-     <title>loggedIn</title>
-     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
-     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/logoMini.png")">
-     <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-</head>
-<body>
-	<div id="wrapper">
-		
-			<div id="header">
-        		<div id="navigation">
-        			<div id="logo">
-	        			<a href="#" rel="FarsiReads">
-	        				<img alt="FarsiReadsLogo" src="@routes.Assets.at("images/logoFarsiReads.png")">
-	        			</a>
-        			</div><!-- logo -->
-        			<div id="menu">
-        				<ul>
-        					<li><a href="#">Blog</a></li>
-        					<li><a href="#">Books</a></li>
-        					<li><a href="#">Services</a></li>
-        					<li><a href="#">I don't Read</a></li>
-        					<li><a href="#">About</a></li>
-        				</ul>
-        			</div><!-- menu -->
+@main("Welcome to FarsiReads"){
 
-        		</div><!-- navigation -->
+<head>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+</head>
+
         		<div id="clear"></div>
         		
-        		<div id="headContent">
-        			<div id="headContentLeft">Headlines</div>
-        			<div id="headContentRight">
-						<header>
+        		<div id="socialBar">
+        			<div id="socialBarLeft">socialNetworking Features</div>
+        			<div id="socialBarRight">
+						<header id="socializingMenu">
 							<dl id="user">
 								<dt>@user.fName <span>@user.email</span></dt>
 								<dd>logout</dd>
@@ -42,17 +20,9 @@
         			</div><!-- headcontentRight (loggedIn) -->
         		</div><!-- headContent -->
         		<div id="clear"></div>
-        	</div><!-- header -->
-        	
-        	<div id="content">
-        		<div id="contentleftPanel">content comes here</div><!-- leftPanel -->
-        		<div id="contentRightPanel">rightPanel</div><!-- rightPanel -->
-        	</div><!-- content -->
-        	
-        	<div id="clear"></div>
-        	
-        	<div id="footer">&copy; 2014 FarsiReads Inc</div><!-- footer -->
 
-	</div><!-- wrapper -->
-</body>
-</html>
+}{
+	<p>left content for LOGGEDIN</p>
+}{
+	<p>right content for LOGGEDIN</p>
+}

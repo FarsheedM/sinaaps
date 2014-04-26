@@ -15,17 +15,20 @@
 	<div id="registerForm">
 		@helper.form(routes.Signup.authenticate){
 		<fieldset>
-			<legend>Welcome to the Registration Form:</legend>
-			@inputText(registerform("fName"), '_label -> "first Name")
+			<legend>FarsiReads Registration Form:</legend>
+			@inputText(registerform("fName"), '_label -> "First Name")
 			@inputText(registerform("lName"), '_label -> "Last Name")
-			@inputText(registerform("email"), '_label -> "Email", '_help -> "PLZ enter your active email account")
+			@inputText(registerform("email"), '_label -> "Email", '_help -> "Please enter your active email account")
 			@inputText(registerform("repeatEmail"), '_label -> "Re-enter email", '_error -> registerform.globalError)
-			@inputText(registerform("password"), '_label -> "Password")
+			@inputPassword(registerform("password"), '_label -> "Password")
 			@inputText(registerform("birthdate"), '_label -> "Birthday")
 			@inputText(registerform("address"), '_label -> "Address")
 			
 			<input type="submit" value="Sign Up" >
 			
+        }
+        @if(registerform.hasGlobalErrors){
+        	<p id="error"> @registerform.globalError.message </p>
         }
         </fieldset>
 	</div>

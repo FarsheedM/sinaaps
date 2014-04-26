@@ -1,8 +1,33 @@
 @(message : String, form : Form[Application.Login])
 
 
-@main(message,form) {
+@main(message) {
 
-    Main Content comes here!
-
-}
+		<head>
+			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/index.css")">
+		</head>
+		
+    	<div id="headContent">  
+        		<div id="headContentLeft">Headlines</div>
+        		<div id="headContentRight">
+        				@helper.form(routes.Application.authenticate){
+	        				<input type="text" name="lName" placeholder="Name" />
+	        				<input type="email" name="email" placeholder="Email" />
+	        				<input type="password" name="password" placeholder="Password" />
+	        				<br/>
+	        				<button type="submit">Sign In</button>
+	        				<h4>New to FarsiReads? Sign Up <a href="/signUp" id="signUpLink">Here</a></h4>
+	        				@if(form.hasGlobalErrors){
+	        					<p id="error">Error: @form.globalError.message </p>
+	        				}
+        				}
+        		</div><!--headcontentRight (SignIn)-->
+        </div><!--headContent-->
+        
+        
+		
+}{
+	<p>Content Left comes here</p>
+	}{
+	<p>Content Right comes here</p>
+	}

@@ -1,11 +1,10 @@
-@(message :String,form : Form[Application.Login])(content: Html)
-
+@(title :String)(headerContent: Html)(contentLeft : Html)(contentRight : Html)
 
 <!DOCTYPE html>
 
 <html>
     <head>
-        <title>@message</title>
+        <title>@title</title>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/logoMini.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
@@ -33,34 +32,21 @@
         					<li><a href="#">Books</a></li>
         					<li><a href="#">Services</a></li>
         					<li><a href="#">I don't Read</a></li>
-        					<li><a href="#">About</a></li>
+        					<li><a href="@routes.About.display">About</a></li>
         				</ul>
         			</div><!-- menu -->
         		</div><!-- navigation -->
         		<div id="clear"></div>
         		
-        		<div id="headContent">
-        			<div id="headContentLeft">Headlines</div>
-        			<div id="headContentRight">
-        				@helper.form(routes.Application.authenticate){
-	        				<input type="text" name="lName" placeholder="Name" />
-	        				<input type="email" name="email" placeholder="Email" />
-	        				<input type="password" name="password" placeholder="Password" />
-	        				<br/>
-	        				<button type="submit">Sign In</button>
-	        				<h4>New to FarsiReads? Sign Up <a href="/signUp" id="signUpLink">Here</a></h4>
-	        				@if(form.hasGlobalErrors){
-	        					<p id="error">Error: @form.globalError.message </p>
-	        				}
-        				}
-        			</div><!-- headcontentRight (SignIn) -->
-        		</div><!-- headContent -->
+        		<!-- the content includes the headerContent which has the img and signUp sections -->
+        		@headerContent
+
         		<div id="clear"></div>
         	</div><!-- header -->
         	
         	<div id="content">
-        		<div id="contentleftPanel">@content</div><!-- leftPanel -->
-        		<div id="contentRightPanel">rightPanel</div><!-- rightPanel -->
+        		<div id="contentleftPanel">@contentLeft</div><!-- leftPanel -->
+        		<div id="contentRightPanel">@contentRight</div><!-- rightPanel -->
         	</div><!-- content -->
         	
         	<div id="clear"></div>

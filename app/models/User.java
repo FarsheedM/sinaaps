@@ -2,7 +2,10 @@ package models;
 
 import java.util.Calendar;
 import java.util.Date;
+
 import play.data.format.*;
+import play.data.validation.Constraints.Email;
+
 import javax.persistence.*;
 
 import play.db.ebean.Model;

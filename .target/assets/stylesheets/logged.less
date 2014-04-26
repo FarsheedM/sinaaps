@@ -1,10 +1,6 @@
 // ---------------------------- COLORS
 @mainBackground:        #c7d1d8;
 @mainColor:             #2a3a48;
-@drawerBackground:      #e1e7ec;
-@folderColor:           #6f8193;
-@projectColor:          @mainColor;
-@layoutBorderColor:     #606d78;
 
 @links:                 #4794c4;
 @linksHover:            #2a5e88;
@@ -26,119 +22,7 @@
 // ----------------------------- FONTS
 @defaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
 
-//-------------------------------------
-
-body {
-    background: @mainBackground;
-    color: @mainColor;
-    font: @defaultFont;
-    -webkit-font-smoothing: antialised;
-    -webkit-user-select: none;
-}
-
-#wrapper{
-	height: auto;
-	width: 960px;
-	margin: 0 auto;
-}
-
-/*----------------------header-------------------------*/
-#header{
-	height: 105px;
-	width: 960px;
-	margin-top: -8px;
-}
-#navigation{
-	height: 65px;
-	width: 960px;
-	background-color: silver;
-	position: fixed;
-}
-#logo{
-	float:left;
-}
-#logo img{
-	height: 30px;
-	width: 128px;
-	padding-left: 10px;
-	padding-top: 15px;
-}
-
-#logo a {
-	text-decoration: none;
-}
-#menu{
-	float:right;
-	padding-top: 10px;
-}
-#menu ul {
-	list-style-type:none;
-}
-#menu ul li {
-	display: inline;
-	margin-right: 25px;
-}
-#menu ul a{
-	text-decoration: none;
-}
-#menu ul a:hover{
-	color:red;
-}
-#menu ul a:active{
-	font-weight: bold;
-}
-#headContent{
-	height: 40px;
-	background-color:  grey;
-	padding-top:65px;	
-}
-#headContentLeft{
-	float:left;
-}
-#headContentRight{
-	float:right;
-	width: 280px;
-	height: 30px;
-	background-color: grey;
-	/*border-style: solid;
-	margin-right:20px;*/
-	padding-left: 10px;
-}
-
-/*----------------------content------------------------*/
-#content{
-	height: 1000px;
-	width: 960px;
-}
-#contentleftPanel{
-	width: 625px;
-	height: 1000px;
-	float: left;
-	background-color: white;
-}
-#contentRightPanel{
-	width: 300px;
-	height: 800px;
-	float: right;
-	background-color: silver;
-}
-
-/*----------------------footer-------------------------*/
-#footer{
-	width: 960px;
-	height: 100px;
-	background-color: silver; 
-}
-
-#clear{
-	both: clear;
-}
-
-
-
-//-------------------------------------------------------
-
-
+//------------------------------------------------------------------------
 
 a {
     color: @links;
@@ -180,7 +64,7 @@ a {
         display: inline-block;
     }
     dt {
-        color: #fff;
+        color: #603c69;   /*This is the logged in Users name&email color*/
         span {
             opacity: .5;
             font-size: 11px;
@@ -191,5 +75,35 @@ a {
             .button();
         }
     }
-    
+}
+
+#header{
+	height: auto;
+	width: 960px;
+	margin-top: -8px;
+}
+
+#socialBar{
+	height: 40px;
+	background-color:  #e4c4c4;
+	padding-top:65px;	
+	
+}
+#socialBarLeft{
+	float:left;
+}
+#socialBarRight{
+	float:right;
+	height : 30px;
+	width : 200px;
+	margin-top : 0px;
+}
+#socializingMenu{
+	margin-bottom : 5px;
+	height : 30px;
+	width : 190px;
+	
+}
+#error{
+	color : red;
 }
