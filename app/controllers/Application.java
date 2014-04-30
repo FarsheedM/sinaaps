@@ -8,6 +8,7 @@ import play.data.validation.Constraints.Required;
 import play.mvc.*;
 import play.mvc.Http.Context;
 import views.html.*;
+import views.html.farsiEdition.*;
 
 public class Application extends Controller {
 
@@ -56,10 +57,8 @@ public class Application extends Controller {
     	}
     }
  
-    //---------------FA edition --------------------------------------
-    public static Result FaIndex(){
-    	return ok(FaIndex.render("فارسی‌ ریدز",Form.form(Login.class)));
-    }
+
+
     
     
 }
