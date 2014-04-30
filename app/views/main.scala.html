@@ -15,22 +15,22 @@
         	<div id="header">
         		<div id="navigation">
         			<div id="logo">
-        				<a href="#" rel="FarsiReads">
+        				<a href="@routes.Application.loggedIn" rel="FarsiReads">
 							<img alt="FarsiReadsLogo" src="@routes.Assets.at("images/logoFarsiReads.png")">
 						</a>
 					</div><!-- logo -->
 					<div id="languages">
 							<dl id="languageBar">
 								<dt>languages:</dt>
-								<dd>فارسی</dd>
+								<dd><a href="@routes.Application.FaIndex">فارسی</a></dd>
 								<dd>English</dd>
 							</dl>
 					 </div> 
         			<div id="menu">
         				<ul>
-        					<li><a href="#">Blog</a></li>
-        					<li><a href="#">Books</a></li>
-        					<li><a href="#">Services</a></li>
+        					<li><a href="@routes.Blog.display">Blog</a></li>
+        					<li><a href="@routes.Books.display">Books</a></li>
+        					<li><a href="@routes.Services.display">Services</a></li>
         					<li><a href="#">I don't Read</a></li>
         					<li><a href="@routes.About.display">About</a></li>
         				</ul>

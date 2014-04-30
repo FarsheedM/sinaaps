@@ -12,8 +12,14 @@
         			<div id="socialBarRight">
 						<header id="socializingMenu">
 							<dl id="user">
-								<dt>@user.fName <span>@user.email</span></dt>
-								<dd>logout</dd>
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">logout</a></dd>
+								} else {
+									<dt>logged in as :  <span>@user.fName</span></dt>
+									<dd><a href="@routes.Application.index">Log In</a></dd>
+								}
 							</dl>
 						</header>
         			</div><!-- headcontentRight (loggedIn) -->

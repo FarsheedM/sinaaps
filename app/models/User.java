@@ -5,6 +5,7 @@ import java.util.Date;
 
 import play.data.format.*;
 import play.data.validation.Constraints.Email;
+import play.data.validation.Constraints.Required;
 
 import javax.persistence.*;
 
@@ -15,6 +16,7 @@ import play.db.ebean.Model.Finder;
 public class User extends Model{
 	
 	@Id
+	@Required
 	public String email;
 	public String fName;
 	public String lName;

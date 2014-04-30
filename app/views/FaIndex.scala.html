@@ -1,0 +1,32 @@
+@(message : String, form : Form[Application.Login])
+
+@FaMain("به 'فارسی‌ ریدز' خوش آمدید"){
+
+		<head>
+			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/index.css")">
+		</head>
+		
+    	<div id="headContent">  
+        		<div id="headContentLeft">Headlines</div>
+        		<div id="headContentRight">
+        				@helper.form(routes.Application.authenticate){
+	        				<input type="text" name="lName" placeholder="نام" />
+	        				<input type="email" name="email" placeholder="ایمیل " />
+	        				<input type="password" name="password" placeholder="پسورد" />
+	        				<br/>
+	        				<button type="submit">ورود</button>
+	        				<h4>هنوز عضو فارسی ریدز نیستید؟ <a href="/signUp" id="signUpLink">اینجا</a> ثبت نام کنید</h4>
+	        				@if(form.hasGlobalErrors){
+	        					<p id="error">Error: @form.globalError.message </p>
+	        				}
+        				}
+        		</div><!--headcontentRight (SignIn)-->
+        </div><!--headContent-->
+	
+}{
+	<p>left content for index محتوا اینجا</p>
+}{
+	<p>Right content for index محتوا اینجا</p>
+}
+
+	

@@ -2,24 +2,37 @@ package controllers;
 
 import models.User;
 import play.*;
+import play.api.mvc.Session;
 import play.data.Form;
+import play.data.validation.Constraints.Required;
 import play.mvc.*;
+import play.mvc.Http.Context;
 import views.html.*;
 
 public class Application extends Controller {
 
 	
     public static Result index() {
-        return ok(index.render("FarsiReads",Form.form(Login.class)));
+    	
+    		return ok(index.render("FarsiReads",Form.form(Login.class)));
     }
 	
     @Security.Authenticated(Secured.class)
 	public static Result loggedIn(){
 		return ok(loggedIn.render(User.find.byId(request().username())));
 	}
+    
+    public static Result logout(){
+    	
+    	session().clear();
+    	Context.current().flash().clear();
+    	return redirect(routes.Application.index());
+    }
 
     public static class Login{
+    	@Required
     	public String password;
+    	@Required
     	public String email;
     	
     	public String validate(){
@@ -43,5 +56,10 @@ public class Application extends Controller {
     	}
     }
  
+    //---------------FA edition --------------------------------------
+    public static Result FaIndex(){
+    	return ok(FaIndex.render("فارسی‌ ریدز",Form.form(Login.class)));
+    }
+    
     
 }
