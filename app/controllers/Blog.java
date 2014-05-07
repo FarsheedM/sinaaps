@@ -14,8 +14,6 @@ public class Blog extends Controller{
 			return ok(blog.render(User.find.byId(session().get("email")),BlogPost.find.all()));
 		else{
 			User guest = new User("Guest","dummyEmail","dummyPassword");
-			
-			
 			return ok(blog.render(guest,BlogPost.find.all()));
 			
 		}

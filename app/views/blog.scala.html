@@ -28,27 +28,25 @@
 
 }{
 	<!--  left content for Blog -->
-	<div id="featuredBox"></div>
-	<div id="blogPosts">
-		<section id="postList">
-			<article id="posts">
-					@posts.map{ post => 
-							<div id="postBox">
-								<h4>@post.title</h4>
-								<p>@post.image</p>
-								<div id="postContent">
-									<p>@if(post.author != null){@post.author.fName} else { the post.author is null}</p>
-									<p>@post.content</p>
-									<p>@post.published</p>
-								</div>
-							</div>
-					}
-				
-
-			</article>
-
-		</section>
+	<div id="featuredBox">
+		<a href="#blogpost">
+			<img src="http://www.dehistoriske.com/img.aspx?th=litebilde&width=670&docrop=true&height=339&img=vertshusetroros-fasade.jpg" 
+						style="display:Block;" width="600px" height="310">
+		</a>
+		<hgroup>
+			<h2>Our Last Child Leaves Home</h2>
+			<h4>By John Piper</h4>
+		</hgroup>
 	</div>
+	
+	<section id="postList">
+			
+					@posts.map{ post => 
+							@views.html.blogPost(post);
+					}
+			
+	</section>
+	
 }{
 	
 	<!--  Content Right comes here -->

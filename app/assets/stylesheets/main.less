@@ -32,6 +32,7 @@ body{
 	 background: @mainBackground;
      color: @mainColor;
      font: @defaultFont;
+     height : auto;
 }
 
 #wrapper{
@@ -116,12 +117,14 @@ body{
 
 /*----------------------content------------------------*/
 #content{
-	height: 1000px;
+	clear : both;
+	height: 100%;
 	width: 960px;
 }
 #contentleftPanel{
-	width: 625px;
-	height: 1000px;
+	clear : both;
+	width: 650px;
+	height: 100%;
 	float: left;
 	background-color: gray;
 }
@@ -134,14 +137,15 @@ body{
 
 /*----------------------footer-------------------------*/
 #footer{
+	clear: both;
 	width: 960px;
 	height: 50px;
-	background-color: silver; 
-
+	background-color: silver;
 }
 #footerBox{
 	padding-top : 13px;
 	padding-left : 20px;
+
 }
 
 #clear{
