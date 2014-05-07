@@ -1,4 +1,4 @@
-@(user : User)
+@(user : User, posts : List[models.BlogPost])
 @main("Blog"){
 
 <head>
@@ -27,7 +27,36 @@
         		<div id="clear"></div>
 
 }{
-	<p>left content for Blog</p>
+	<!--  left content for Blog -->
+	<div id="featuredBox"></div>
+	<div id="blogPosts">
+		<section id="postList">
+			<article id="posts">
+					@posts.map{ post => 
+							<div id="postBox">
+								<h4>@post.title</h4>
+								<p>@post.image</p>
+								<div id="postContent">
+									<p>@if(post.author != null){@post.author.fName} else { the post.author is null}</p>
+									<p>@post.content</p>
+									<p>@post.published</p>
+								</div>
+							</div>
+					}
+				
+
+			</article>
+
+		</section>
+	</div>
 }{
-	<p>right content for Blog</p>
+	
+	<!--  Content Right comes here -->
+	<div id="onlineUsersBox">
+		<p>There are -- online Users.</p>
+	</div>
+	<div id="adBox">
+		The advertisement of the Books and services as well as other websites come here
+		<br>
+	</div>
 }
