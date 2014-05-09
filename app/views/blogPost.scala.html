@@ -2,11 +2,26 @@
 @(post : BlogPost)
 <!-- this is the helper template (used like functions) to handle each individual post
 	--The structure of each post can be designed here -->
-
-
+	
+	<script>
+		/*This function is used to trunce the blogContent to the specified size, e.g. 3,10 lines
+		**It uses the clamp.js library. NOTE: (useNativeClamp : true) should be set to get the same 
+		**result in the Chrome as well as FireFox. in postContent DIV, each post should have its ID distinguished
+		**in order to get the Clamp work not onl on the first post but on all the posts.
+		**The trick is to use the "@post.postID" in getElementById as well as in DIV id itself. */
+		
+		var clamping = function(){
+			var header  = document.getElementById("@post.postID");
+			//header.style.backgroundColor ="RED";
+			$clamp(header,{clamp : 5, useNativeClamp : true});
+		}	
+	</script>
+			
+			
+			
 	<article id="postBox">
 		<h4>@post.title</h4>
-		<p>@post.image</p>
+		<a>@post.image</a>
 		<div id="resourceMeta">
 			<ul>
 				<li>By @post.author.fName @post.author.lName</li>
@@ -15,9 +30,15 @@
 			<time id="time">@post.published.format("dd-MM-yyyy")</time>
 		</div>
 		<div id="clear"></div>
-		<div id="postContent">
-				
-			<p>@post.content</p>
-				
+		<script src="@routes.Assets.at("javascripts/clamp.js")" type="text/javascript"></script>
+
+		<div id="blurb">
+			<!-- in Blurb only the first 5 lines of the post displayed using Clamp.js lib -->
+			
+			<div id="@post.postID" class = "postContent">@post.content</div>
+			
+			<!-- This clamping func should be invoked after the declared tages in it!!!! -->
+			<script>clamping();</script>
+			<a href="#artcl"><p>Read More ...</p></a>
 		</div>
 	</article>
