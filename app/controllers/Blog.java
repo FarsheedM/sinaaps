@@ -15,8 +15,8 @@ public class Blog extends Controller{
 		else{
 			User guest = new User("Guest","dummyEmail","dummyPassword");
 			return ok(blog.render(guest,BlogPost.find.all()));
-			
 		}
 	}
+
 
 }

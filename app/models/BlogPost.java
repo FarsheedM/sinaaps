@@ -25,7 +25,6 @@ public class BlogPost extends Model{
 	public String image;
 	
 	@OneToOne
-	//@ElementJoinColumn(name="author_id",target="post_id")
 	@JoinColumn(name="author_id", referencedColumnName="author_id")
 	public Author author;
 	public String topic;
