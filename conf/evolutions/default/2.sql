@@ -35,9 +35,18 @@ Pastor John & Pastor Tom","http://image.com",1,"Faith","English");
 
 update blog_post set published="12.01.2012" where post_id=0;
 
+insert into book values(1,"9781563205453",1256, "06.09.2013" ,"http://biblia.com/bibleimg","8.8*5.5*1.3",0.77);
+
+insert into book_translation values(1,1,"english","Persian Bible(Tafsiri)","This is the holy Word of God, translated into Farsi and wrapped in a contemporary, green hardcover. If you are in the advanced stages of learning Farsi, one who speaks it yourself, or a missionary to a region where Farsi is the primary language, this Bible is perfect for you.",1,"biblica","Hard Cover");
+
+insert into book_author values(1,1);
+
 # --- !Downs
 
 delete from user;
 delete from author;
 delete from blog_post;
 delete from author_translation;
+delete from book;
+delete from book_translation;
+delete from book_author;
