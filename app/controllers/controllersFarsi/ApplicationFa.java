@@ -11,7 +11,7 @@ import models.*;
 
 public class ApplicationFa extends Controller{
 
-    public static Result FaIndex(){
-    	return ok(FaIndex.render("فارسی‌ ریدز",Form.form(Login.class)));
+    public static Result index(){
+    	return ok(views.html.farsiEdition.index.render("فارسی‌ ریدز",Form.form(Login.class)));
     }
 }

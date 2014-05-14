@@ -1,0 +1,39 @@
+body{
+	background-color : #ebedfd;
+}
+
+#wrapper{
+	margin: 0 auto;
+	height: 400px;
+	width: 400px;
+}
+
+#registerForm{
+	margin-top : 50px;
+}	
+
+// the inputText will be translated to the "dl dt dd" tages after compilation
+dl {
+	text-align : left;
+	padding-left: 20px;
+    > * {
+        display: inline-block;
+    }
+    
+    dt {
+        color: #ffff;
+        span {
+            opacity: .5;
+            font-size: 11px;
+        }
+        
+    }
+    dd {
+        color: grey;
+        font-size: 12px;
+    }
+
+ }
+ 
+ /*ERROR:This tag does'n work to make the errors red!*/
+ dd error{color:red;}

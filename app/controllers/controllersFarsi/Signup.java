@@ -1,18 +1,19 @@
-package controllers;
+/*--------------------Farsi Edition ------------------*/
+package controllers.controllersFarsi;
 
-import java.util.Date;
-
-import play.mvc.*;
+import models.User;
+import controllers.routes;
 import play.data.Form;
-import views.html.*;
-import views.html.helper.form;
-import models.*;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.signUp;
 
-public class Signup extends Controller {
+public class Signup extends Controller{
+	
 	
 	public static Result register(){
 		
-		return ok(views.html.signUp.render(Form.form(User.class)));
+		return ok(views.html.farsiEdition.signUp.render(Form.form(User.class)));
 	}
 	
 	//authenticate() method should be implemented 
@@ -26,7 +27,7 @@ public class Signup extends Controller {
 		}
 		
 		if(registerForm.hasErrors()){
-			return badRequest(signUp.render(registerForm));
+			return badRequest(views.html.farsiEdition.signUp.render(registerForm));
 		}
 		else{
 			/*CODE HERE: add the new User in DB*/
@@ -35,8 +36,9 @@ public class Signup extends Controller {
 			registerForm.get().save();
 			//flash is simply the cookie facility in Play! the flash content can be check in the redirected page
 			flash("success","Dear "+ registerForm.get().fName +"Welcome to FarsiReads!");
-			return redirect(routes.Application.index());
+			return redirect(controllers.controllersFarsi.routes.ApplicationFa.index());
+			
 		}
 	}
-	
+
 }

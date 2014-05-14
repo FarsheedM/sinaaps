@@ -15,7 +15,7 @@ public class Application extends Controller {
 	
     public static Result index() {
     	
-    		return ok(index.render("FarsiReads",Form.form(Login.class)));
+    		return ok(views.html.index.render("FarsiReads",Form.form(Login.class)));
     }
 	
     @Security.Authenticated(Secured.class)
@@ -48,7 +48,7 @@ public class Application extends Controller {
     	
     	Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
     	if(loginForm.hasErrors())
-    		return badRequest(index.render("Unauthorized",loginForm));
+    		return badRequest(views.html.index.render("Unauthorized",loginForm));
     	else{
     		//if the form has no error, it redirects to the index while "a session" is created
     		session().clear();

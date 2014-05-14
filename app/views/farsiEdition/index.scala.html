@@ -1,0 +1,52 @@
+@(message : String, form : Form[Application.Login])
+
+@FaMain("به 'فارسی‌ ریدز' خوش آمدید"){
+
+		<head>
+			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/FarsiIndex.css")">
+		</head>
+		
+    	<div id="headContent">  
+        		<div id="headContentLeft">Headlines</div>
+        		<div id="headContentRight">
+        				@helper.form(routes.Application.authenticate){
+	        				<input type="text" name="lName" placeholder="نام" />
+	        				<input type="email" name="email" placeholder="ایمیل " />
+	        				<input type="password" name="password" placeholder="پسورد" />
+	        				<br/>
+	        				<button type="submit">ورود</button>
+	        				<h4>هنوز عضو فارسی ریدز نیستید؟ <a href="/fa/signUp" id="signUpLink">اینجا</a> ثبت نام کنید</h4>
+	        				@if(form.hasGlobalErrors){
+	        					<p id="error">Error: @form.globalError.message </p>
+	        				}
+        				}
+        		</div><!--headcontentRight (SignIn)-->
+        </div><!--headContent-->
+	
+}{
+
+	
+	<!--  Content Left comes here  محتوا اینجا -->
+	<div id="infoBox">
+		<div id="infoBoxLeft">
+			<p class="rightAlign"> این وب سایت، شبکه‌ای اجتماعی و اینتر اکتیو است با هدف فراهم کردن بانک اطلاعاتی‌ از تمامی کتاب‌ها و کارهای فارسی مسیحی‌(ترجمه و تالیف) از یک سو و اشتراک گذاری چکیده کتاب و نظرات شما از سویی دیگر است.</p>
+			
+		</div>
+		
+		<div id="infoBoxRight">
+			<p class="rightAlign">به <span><em>فارسی ریدز</em></span> خوش آمدید. فارسی ریدز پلت فرمی فارسی است که برای فراهم نمودن مطالب خوب و دست‌چین شده (از جمله کتاب، مقاله، بلاگ پست، شعر) در دسترس شما است. </p>
+		</div>
+	</div><!-- infoBox -->
+	<div id="clear"></div>
+	
+	<div id="bookBox">bookBox</div><!-- bookBox -->
+	<div id="blogBox">blog posts come here</div><!-- blogBox -->
+	<div id="activityBox">activities should be here</div> <!-- activityBox -->
+	<div id="qoutationBox"> Qouts from the DB come here</div> <!-- qoutationBox -->
+	<div id="clear"></div>
+	
+}{
+	<p>Right content for index محتوا اینجا</p>
+}
+
+	
