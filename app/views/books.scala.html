@@ -8,7 +8,16 @@
         		<div id="clear"></div>
         		
         		<div id="socialBar">
-        			<div id="socialBarLeft">socialNetworking Features</div>
+        			<div id="socialBarLeft">
+						<ul>
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
         			<div id="socialBarRight">
 						<header id="socializingMenu">
 							<dl id="user">
@@ -27,7 +36,70 @@
         		<div id="clear"></div>
 
 }{
-	<p>left content for Books</p>
+	<!--  ---------------left content for book------------------- -->
+	
+	<div id="searchBox">
+		<fieldset>
+			<legend>Search and Browse Books</legend>
+			<input type="search" value="Title/ISBN" name="search">
+			<input type="submit" value="go!" >
+			
+			<div id="categoryBox">
+				<h3 style="margin-left : 20px;"></h3>
+				<div class="left">
+					<a href="#">Biography</a><br>
+					<a href="#">Classics</a><br>
+					<a href="#">Bible</a><br>
+				</div>
+				<div class="left">
+					<a href="#">Evangelism</a><br>
+					<a href="#">Roman</a><br>
+					<a href="#">Discipleship</a><br>
+				</div>
+				<div class="left">
+					<a href="#">Marriage</a><br>
+					<a href="#">Children</a><br>
+					<a href="#">Faith</a><br>
+				</div>
+				<div id="clear"></div>
+			</div> <!-- categoryBox -->
+			
+	
+        </fieldset>
+	</div> <!-- searchBox -->
+	
+		
+	
+	
+	<div id="clear"></div>
+	<div id="recommendationBox">
+			<h3 style="margin-left : 20px;"> Book Recommendation</h3>
+			<div id="firstRow">
+				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">the Title of the Book1</span></div>
+				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">the Title of the Book2</span></div>
+				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">the Title of the Book3</span></div>
+			</div>
+			<div id="clear"></div>
+			<div id="secondRow">
+				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">the Title of the Book1</span></div>
+				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">the Title of the Book2</span></div>
+				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">the Title of the Book3</span></div>			
+			</div>
+	</div> <!-- recommendationBox -->
+
+	
+	<div id="recommendedByFriendsBox">
+	
+		<!-- this section is to be come in the next Phase -->
+	
+	</div> <!-- recommendedByFriendsBox -->
+	
+	
 }{
-	<p>right content for Books</p>
+
+	<!--  ---------------right content for book------------------- -->
+	<div id="suggestBookAdd">
+		<p> Suggest a Farsi Book which is not in the DataBase yet:</p>
+		<a href=#"@routes.Application.index">Contact Us</a>
+	</div> <!-- suggestBookAdd -->
 }
