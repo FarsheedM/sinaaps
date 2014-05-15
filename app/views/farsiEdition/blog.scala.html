@@ -1,0 +1,74 @@
+
+
+@(user : User, posts : List[models.BlogPost])
+@FaMain("بلاگ"){
+
+<!-- -------------------farsi Edition----------------------- -->
+<head>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+</head>
+
+        		<div id="clear"></div>
+        		
+        		<div id="socialBar">
+        			<div id="socialBarLeft">
+						<ul>
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarRight">
+						<header id="socializingMenu">
+							<dl id="user">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">logout</a></dd>
+								} else {
+									<dt>logged in as :  <span>@user.fName</span></dt>
+									<dd><a href="@routes.Application.index">Log In</a></dd>
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+        		<div id="clear"></div>
+
+}{
+	<!--  left content for Blog -->
+	<div id="featuredBox">
+		<a href="#blogpost">
+			<img src="http://www.dehistoriske.com/img.aspx?th=litebilde&width=670&docrop=true&height=339&img=vertshusetroros-fasade.jpg" 
+						style="display:Block;" width="600px" height="310">
+		</a>
+		<hgroup>
+			<h2>بچه آخر ما خانه را ترک می‌کند</h2>
+			<h4>نوشته جان پایپر</h4>
+		</hgroup>
+	</div>
+	
+	<section id="postList">
+			
+					@posts.map{ post => 
+							@views.html.farsiEdition.blogPost(post)
+					}
+			
+	</section>
+	
+}{
+	
+	<!--  Content Right comes here -->
+	<div id="onlineUsersBox">
+		<p>There are -- online Users.</p>
+	</div>
+	<div id="adBox">
+		The advertisement of the Books and services as well as other websites come here
+		<br>
+	</div>
+}

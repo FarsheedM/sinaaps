@@ -10,7 +10,7 @@ GET     /signUp                     controllers.Signup.register()
 POST    /signUp                     controllers.Signup.authenticate()
 GET     /about                      controllers.About.display()
 GET     /loggedout                  controllers.Application.logout()
-GET     /blog                       controllers.Blog.display()
+GET     /blog/:lang                       controllers.Blog.display(lang : String)
 GET     /services                   controllers.Services.display()
 GET     /books                      controllers.Books.display()
 #
