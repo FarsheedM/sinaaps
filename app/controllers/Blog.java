@@ -19,7 +19,7 @@ public class Blog extends Controller{
 	//specified language.
 	public static Result display(String lang){
 		
-		if(lang.matches("english")){
+		if(lang.equals("english")){
 			if(session().containsKey("email"))
 				return ok(views.html.blog.render(User.find.byId(session().get("email")),getBlogPostByLang(lang)));
 			else{
@@ -27,7 +27,7 @@ public class Blog extends Controller{
 				return ok(views.html.blog.render(guest,getBlogPostByLang(lang)));
 			}
 		}
-		else if(lang.matches("farsi")){
+		else if(lang.equals("farsi")){
 			if(session().containsKey("email"))
 				return ok(views.html.farsiEdition.blog.render(User.find.byId(session().get("email")),getBlogPostByLang(lang)));
 			else{
@@ -47,8 +47,19 @@ public class Blog extends Controller{
 		return BlogPost.find.where().eq("language", lang).findList();
 	}
 
-	public static String showBlogPostFullContent(int PostID){
-		return "";
+	public static Result showBlogPostFullContent(String language,int postId){
+		BlogPost post = BlogPost.find.where().eq("postID", postId).findUnique();
+		String content = post.content;
+		if(language.equals("english")){
+			return ok(views.html.postContent.render(post));
+		}
+		else if(language.equals("farsi")){
+			//return ok(views.html.farsiEdition.///blog.render(new User("Guest","dummyEmail","dummyPassword"),getBlogPostByLang(language)));
+			return ok(views.html.farsiEdition.postContent.render(post));
+		}
+		else{
+			return badRequest("Content ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
 	}
 	
 }

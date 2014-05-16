@@ -22,9 +22,9 @@
 	<!-- this line just assign the desired author in the variable '@author' to be used in the resourceMeta -->
 	@author = @{AuthorTranslation.getAuthor(post.author.authorID,"farsi")}
 			
-	<article id="postBox">
-		<h4>@post.title</h4>
-		<a>@post.image</a>
+	<article id="postBox" >
+		<h4 style="text-align: right; padding-right: 20px;">@post.title</h4>
+		<a >@post.image</a>
 		<div id="resourceMeta">
 			<ul> 
 				<li>نوشته  @author.fName @author.lName</li>
@@ -43,6 +43,6 @@
 			
 			<!-- This clamping func should be invoked after the declared tages in it!!!! -->
 			<script>clamping();</script>
-			<a href="#artcl"><p>ادامه مطلب ...</p></a>
+			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)"><p  style="text-align: right; padding-right: 20px;">ادامه مطلب ...</p></a>
 		</div>
 	</article>
