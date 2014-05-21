@@ -12,6 +12,7 @@ GET     /about                      controllers.About.display()
 GET     /loggedout                  controllers.Application.logout()
 GET     /blog/:lang                 controllers.Blog.display(lang : String)
 GET     /blog/:lang/postid=:postId         controllers.Blog.showBlogPostFullContent(lang : String,postId : Integer)
+POST    /blog/:lang/postid=:postId         controllers.Blog.postComment(lang : String,postId : Integer)
 GET     /services                   controllers.Services.display()
 GET     /books                      controllers.Books.display()
 #

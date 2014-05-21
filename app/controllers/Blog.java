@@ -48,18 +48,36 @@ public class Blog extends Controller{
 	}
 
 	public static Result showBlogPostFullContent(String language,int postId){
-		BlogPost post = BlogPost.find.where().eq("postID", postId).findUnique();
-		String content = post.content;
-		if(language.equals("english")){
-			return ok(views.html.postContent.render(post));
+		BlogPost post = BlogPost.find.where().eq("postID", postId).eq("language",language).findUnique();
+		//String content = post.content;
+		User user;
+		if(session().containsKey("email")){
+			user = User.find.byId(session().get("email"));
+		}else {
+			user = new User("Guest","dummyEmail","dummyPassword");
 		}
-		else if(language.equals("farsi")){
-			//return ok(views.html.farsiEdition.///blog.render(new User("Guest","dummyEmail","dummyPassword"),getBlogPostByLang(language)));
-			return ok(views.html.farsiEdition.postContent.render(post));
+		
+		if(post != null){
+			if(language.equals("english")){
+				return ok(views.html.postContent.render(post,user));
+			}
+			else if(language.equals("farsi")){
+				//return ok(views.html.farsiEdition.///blog.render(new User("Guest","dummyEmail","dummyPassword"),getBlogPostByLang(language)));
+				return ok(views.html.farsiEdition.postContent.render(post,user));
+			}
+			else{
+				return badRequest("Content ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+			}
 		}
-		else{
-			return badRequest("Content ERROR : The entered Language is not supported! PLease choose either Farsi or English");
-		}
+		else{ 
+			//if there is no post with the specified 'PostId' and 'language'
+			return badRequest("Post Obj error : language and postId does't match!!");
+			}
+	}
+	
+	
+	public static Result postComment(String language,int postId){
+		return ok();
 	}
 	
 }
