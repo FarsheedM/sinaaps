@@ -1,11 +1,11 @@
 ﻿# --- !Ups
  
 insert into user values("info@1.com","far","far","1234",null,null);
-insert into author values(1,null,null);
+insert into author values(1,null);
 
 insert into author_translation values(1,1,"english","John","Piper","John Piper is the founder of DesiringGod.org and the senior pastor of Bethlehem Baptist Church for 33 years. He is author of more than 50 books.","Minnesota","Male");
 
-insert into author_translation values(2,1,"farsi","جان"," پایپر","John Piper is the founder of DesiringGod.org and the senior pastor of Bethlehem Baptist Church for 33 years. He is author of more than 50 books.","مینسوتا","مرد");
+
 
 insert into blog_post values(0,"neccesity of Assurence in Faith","1) In order to be saved and spend eternity enjoying God’s presence a person must persevere in faith to the end (1 Corinthians 15:2; Colossians 1:22,23; Luke 8:11-15; Matthew 10:22; Mark 13:13; Matthew 24:13; Hebrews 3:14; Romans 11:20-22; 2 Timothy 2:11,12; Revelation 2:7,10,11,17,25,26; 3:5,11,12,21).
 
@@ -39,14 +39,14 @@ insert into book values(1,"9781563205453",1256, "06.09.2013" ,"http://biblia.com
 
 insert into book_translation values(1,1,"english","Persian Bible(Tafsiri)","This is the holy Word of God, translated into Farsi and wrapped in a contemporary, green hardcover. If you are in the advanced stages of learning Farsi, one who speaks it yourself, or a missionary to a region where Farsi is the primary language, this Bible is perfect for you.",1,"biblica","Hard Cover");
 
-insert into book_author values(1,1);
+insert into book_author values(0,1,1);
 
 # --- !Downs
 
 delete from user;
+delete from author_translation;
 delete from author;
 delete from blog_post;
-delete from author_translation;
 delete from book;
 delete from book_translation;
 delete from book_author;

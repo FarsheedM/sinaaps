@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 
+
 //import org.apache.openjpa.persistence.jdbc.*;
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 import play.data.format.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class BlogPost extends Model{
 	

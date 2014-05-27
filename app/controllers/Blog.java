@@ -1,18 +1,22 @@
 package controllers;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.joda.time.DateTime;
 
 import models.*;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
-
+import play.db.jpa.*;
 //This controller handle the requests both for Farsi and English parts.
 //The reason is that we use only one BlogPost DB for both languages, 
 //and we query the DB to fetch language-specified posts.
 public class Blog extends Controller{
-	
+
 	//this function gets the language name as a argument and accordingly
 	//shows the view. it calls the getBlogPostByLang(lang : String) which
 	//queries the BlogPost model(DB) to select only the posts in the 
@@ -59,11 +63,11 @@ public class Blog extends Controller{
 		
 		if(post != null){
 			if(language.equals("english")){
-				return ok(views.html.postContent.render(post,user));
+				return ok(views.html.postContent.render(post,user,Form.form(BlogComment.class),BlogComment.find.all()));
 			}
 			else if(language.equals("farsi")){
 				//return ok(views.html.farsiEdition.///blog.render(new User("Guest","dummyEmail","dummyPassword"),getBlogPostByLang(language)));
-				return ok(views.html.farsiEdition.postContent.render(post,user));
+				return ok(views.html.farsiEdition.postContent.render(post,user,Form.form(BlogComment.class),BlogComment.find.all()));
 			}
 			else{
 				return badRequest("Content ERROR : The entered Language is not supported! PLease choose either Farsi or English");
@@ -75,9 +79,32 @@ public class Blog extends Controller{
 			}
 	}
 	
-	
+	//this method is called when the user post the new comment(in postContent view)
+	//It adds the comment to the BlogComment model/Table
 	public static Result postComment(String language,int postId){
-		return ok();
+		
+		Form<BlogComment> commentForm = Form.form(BlogComment.class).bindFromRequest();
+		//JPA.em().find(BlogComment.class, postId);
+
+		/*//commentForm.get().commentID = 5L;*/
+
+		if(commentForm.hasErrors()){
+			return badRequest("error in commentForm !!");
+		}
+		
+		commentForm.get().post= BlogPost.find.byId(postId);
+		commentForm.get().user= User.find.byId(session().get("email"));
+		commentForm.get().published = DateTime.now().toDate();
+		commentForm.get().likes = 0 ;
+		
+
+
+		//reload the page just for now.
+		// the AJAX call should be used here to add the new comment
+		commentForm.get().save();
+		return redirect(routes.Blog.showBlogPostFullContent(language, postId));
+		
 	}
-	
+
+		
 }

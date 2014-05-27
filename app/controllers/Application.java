@@ -1,6 +1,6 @@
 package controllers;
 
-import models.User;
+import models.*;
 import play.*;
 import play.api.mvc.Session;
 import play.data.Form;
@@ -10,9 +10,9 @@ import play.mvc.Http.Context;
 import views.html.*;
 import views.html.farsiEdition.*;
 
+import javax.persistence.*;
 public class Application extends Controller {
 
-	
     public static Result index() {
     	
     		return ok(views.html.index.render("FarsiReads",Form.form(Login.class)));
@@ -56,9 +56,19 @@ public class Application extends Controller {
     		return redirect(routes.Application.loggedIn());
     	}
     }
- 
-
-
+    
+    /*--------------------------Debugging section----------------*/
+    
+    //this main helper function was used to catch an error in 
+    //hibernate configuration process. the CLASS LocationAwareLogger
+    //was loaded wrongly from wrong place. by using the function below
+    //i could find out from where this class is loaded. i removed the 
+    //package from which the class was wrongly trying to load, restart the
+    // hibernate and it found the right package 
+    public static void main(String[] args){
+    ClassLoader loader = javax.persistence.JoinColumn.class.getClassLoader();
+    System.out.println(loader.getResource("javax/persistence/JoinColumn.class"));
+    }
     
     
 }

@@ -1,10 +1,11 @@
-@(post : BlogPost,user : User)
+@(post : BlogPost,user : User, commentForm : Form[models.BlogComment], comments : List[models.BlogComment])
 @import helper._
 
 @main(post.title){
 	
 	<head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/comment.css")">
      <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
 	</head>
 
@@ -62,14 +63,26 @@
 		<br>
 		<div id="pc" > @post.content </div>
 		
-		<section id="commentContent"></section>
+		
+		<!-- ----------------------COMMENTING SECTION--------------------- -->
+		
+		<section id="commentContent">
+			<!-- to load the previous comments -->
+			<ul id="commentList">
+				@comments.map{ comment =>
+									 <li>@views.html.comment(comment)</li>
+				}
+			</ul>
+		</section>
 		<br>
 		<section id="commentComments">
+		
 			@helper.form(routes.Blog.postComment(post.language,post.postID)){
-				<input type="text" name="comment" placeholder="comment" />
-	        	<button type="submit" name="email">post</button>
+				<textarea name="comment" style="width:400px;" placeholder="add comment ..." ></textarea>
+	        	<button type="submit" value="post" formmethod="post">post</button>
 			}
 		</section>
+		
 		
 	</div><!-- end of post -->
 }{
