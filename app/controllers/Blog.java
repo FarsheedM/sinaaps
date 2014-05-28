@@ -1,17 +1,17 @@
 package controllers;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.joda.time.DateTime;
 
 import models.*;
 import play.data.Form;
-import play.mvc.Controller;
-import play.mvc.Result;
+import play.mvc.*;
 import views.html.*;
 import play.db.jpa.*;
+
+
+
 //This controller handle the requests both for Farsi and English parts.
 //The reason is that we use only one BlogPost DB for both languages, 
 //and we query the DB to fetch language-specified posts.
@@ -51,23 +51,25 @@ public class Blog extends Controller{
 		return BlogPost.find.where().eq("language", lang).findList();
 	}
 
-	public static Result showBlogPostFullContent(String language,int postId){
+	public static Result showBlogPostFullContent(String language,Integer postId){
 		BlogPost post = BlogPost.find.where().eq("postID", postId).eq("language",language).findUnique();
-		//String content = post.content;
+
 		User user;
 		if(session().containsKey("email")){
 			user = User.find.byId(session().get("email"));
 		}else {
 			user = new User("Guest","dummyEmail","dummyPassword");
 		}
+		//comments is a list of all the comments related to the post, where they should appear
+		List<BlogComment> comments = BlogComment.find.where().eq("post.postID", postId).findList();
 		
 		if(post != null){
 			if(language.equals("english")){
-				return ok(views.html.postContent.render(post,user,Form.form(BlogComment.class),BlogComment.find.all()));
+				return ok(views.html.postContent.render(post,user,Form.form(BlogComment.class),comments));
 			}
 			else if(language.equals("farsi")){
 				//return ok(views.html.farsiEdition.///blog.render(new User("Guest","dummyEmail","dummyPassword"),getBlogPostByLang(language)));
-				return ok(views.html.farsiEdition.postContent.render(post,user,Form.form(BlogComment.class),BlogComment.find.all()));
+				return ok(views.html.farsiEdition.postContent.render(post,user,Form.form(BlogComment.class),comments));
 			}
 			else{
 				return badRequest("Content ERROR : The entered Language is not supported! PLease choose either Farsi or English");

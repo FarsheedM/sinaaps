@@ -6,7 +6,7 @@ f_name varchar(255),
  l_name varchar(255),
 password varchar(255),
 birthdate datetime,
-address varchar(255),
+address varchar(255),photo varchar(200),
 primary key (email))
 ;
 

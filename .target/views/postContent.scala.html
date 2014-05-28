@@ -7,6 +7,9 @@
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/comment.css")">
      <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+     
+
+     
 	</head>
 
         		<div id="clear"></div>
@@ -62,34 +65,58 @@
 		<div id="pi" ><img alt="@post.title" src="#http://"></div>
 		<br>
 		<div id="pc" > @post.content </div>
-		
-		
-		<!-- ----------------------COMMENTING SECTION--------------------- -->
-		
-		<section id="commentContent">
-			<!-- to load the previous comments -->
-			<ul id="commentList">
-				@comments.map{ comment =>
-									 <li>@views.html.comment(comment)</li>
-				}
-			</ul>
-		</section>
 		<br>
-		<section id="commentComments">
-		
-			@helper.form(routes.Blog.postComment(post.language,post.postID)){
-				<textarea name="comment" style="width:400px;" placeholder="add comment ..." ></textarea>
-	        	<button type="submit" value="post" formmethod="post">post</button>
+		<br>
+		<!-- ----------------------COMMENTING SECTION--------------------- -->
+		<fieldset>
+			<legend><h3>Comment Section</h3></legend>
+			<section id="commentContent">
+				
+				<!-- to load the previous comments -->
+				<ul id="commentList">
+					@comments.map{ comment =>
+										 <li>@views.html.comment(comment)</li>
+					}
+				</ul>
+			</section>
+			<br>
+			@if(user.fName == "Guest"){
+				<script type="text/javascript">
+					/*This script is used to disable the commentComment DIV to  
+						 disable the GUEST users to comment
+					*/
+					var crp = document.getElementById("commentComments");
+					crp.style.display = "none";
+				</script>
+				<p>In order to post a comment, you should log in to the FarsiReads</p>
+				<a href="@routes.Application.index"><h3>Please Click here to log in</h3></a>
+				<br>
+				<br>
+			}else{
+			<section id="commentComments">
+			
+				@helper.form(routes.Blog.postComment(post.language,post.postID)){
+					<textarea id="textArea" name="comment" style="width:400px;" placeholder="add comment ..." ></textarea>
+		        	<button id="btm" type="submit" value="post" formmethod="post">post</button>
+				}
+				        
+		        @if(commentForm.hasGlobalErrors){
+		        	<p id="error"> @commentForm.globalError.message </p>
+		        }else{
+					<script type="text/javascript">
+							document.getElementById('commentComments').scrollIntoView();
+					</script>
+		        }
+			</section>
 			}
-		</section>
-		
+		</fieldset>
 		
 	</div><!-- end of post -->
 }{
 
 <script type="text/javascript">
 	/*This script is used to disable the rightPanel to make 
-		  more room for the actual blig content
+		  more room for the actual blog content
 	*/
 	var crp = document.getElementById("contentRightPanel");
 	crp.style.display = "none";

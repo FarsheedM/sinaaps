@@ -1,6 +1,6 @@
 ﻿# --- !Ups
  
-insert into user values("info@1.com","far","far","1234",null,null);
+insert into user values("info@1.com","far","far","1234",null,null,null);
 insert into author values(1,null);
 
 insert into author_translation values(1,1,"english","John","Piper","John Piper is the founder of DesiringGod.org and the senior pastor of Bethlehem Baptist Church for 33 years. He is author of more than 50 books.","Minnesota","Male");

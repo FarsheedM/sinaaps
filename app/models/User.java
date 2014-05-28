@@ -24,15 +24,17 @@ public class User extends Model{
 	@Formats.DateTime(pattern = "yyyy-mm-dd")
 	public Date birthdate;
 	public String address;
+	public String photo;
 	
 	public User(String fName,String lName,String email,
-			String password,Date birthdate,String address){
+			String password,Date birthdate,String address,String photo){
 		this.fName= fName;
 		this.lName= lName;
 		this.email= email;
 		this.password= password;
 		this.birthdate= birthdate;
 		this.address= address;
+		this.photo = photo;
 	}
 	//NOTE:this constructor set the address and lastname "unknown" and 
 	//birthdate set to the current date of the machine.
@@ -43,6 +45,7 @@ public class User extends Model{
 		this.password= password;
 		this.birthdate=Calendar.getInstance().getTime(); 
 		this.address= "unknown";
+		this.photo = "noPhoto";
 	}
 	
 	public static Finder<String,User> find = new Finder<String,User>(

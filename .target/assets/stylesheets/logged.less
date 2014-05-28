@@ -96,14 +96,14 @@ a {
 #socialBarRight{
 	float:right;
 	height : 30px;
-	width : 210px;
+	width : 270px;
 	margin-top : 0px;
 
 }
 #socializingMenu{
 	margin-bottom : 5px;
 	height : 30px;
-	width : 205px;
+	width : 260px;
 }
 
 #socialBarLeft ul {
@@ -252,5 +252,45 @@ a {
 	background-color: silver;
 }
 #clear{
-	both : clear;
+	clear : both;
+}
+//----------------------------------farsi specific-----------------
+#socialBarLeftFarsi{
+	float:left;
+}
+#socialBarRightFarsi{
+	float:right;
+	height : 30px;
+	width : 270px;
+	margin-top : 0px;
+}
+#socialBarRightFarsi ul {
+	list-style-type:none;
+}
+#socialBarRightFarsi ul li {
+	display: inline;
+	margin-right: 15px;
+}
+#socialBarRightFarsi ul a{
+	text-decoration: none;
+}
+#userFarsi{
+	float : left;
+	padding-left:15px;
+    > * {
+        display: inline-block;
+    }
+    dt {
+        color: #603c69;   /*This is the logged in Users name&email color*/
+        span {
+            opacity: .5;
+            font-size: 11px;
+        }
+    }
+    dd {
+    	margin-right : 5px;
+        a , button {
+            .button();
+        }
+    }
 }

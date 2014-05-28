@@ -1,4 +1,5 @@
 @(post : BlogPost, user : User, commentForm : Form[BlogComment],comments : List[BlogComment])
+
 <!-- ----------------Farsi Edition ------------------------ -->
 
 
@@ -7,12 +8,13 @@
 	<head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
      <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/commentFarsi.css")">
 	</head>
 
         		<div id="clear"></div>
         		
         		<div id="socialBar">
-        			<div id="socialBarLeft">
+        			<div id="socialBarRightFarsi">
 						<ul style="margin-left : 15px;">
 							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
 							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
@@ -23,16 +25,16 @@
 						</ul>
 					</div><!-- socialBarLeft -->
 					
-        			<div id="socialBarRight">
+        			<div id="socialBarLeftFarsi">
 						<header id="socializingMenu">
-							<dl id="user">
+							<dl id="userFarsi">
 								
 								@if(user.fName != "Guest"){
 									<dt> @user.fName <span>@user.email</span></dt>
-									<dd><a href="@routes.Application.logout">logout</a></dd>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
 								} else {
-									<dt>logged in as :  <span>@user.fName</span></dt>
-									<dd><a href="@routes.Application.index">Log In</a></dd>
+									<dt>وضعیت کاربر : <span>میهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
 								}
 							</dl>
 						</header>
@@ -51,11 +53,12 @@
 		<div id="pt" ><h2>@post.title</h2></div>
 				<div id="resourceMeta">
 					<ul> 
+						<li id="topic">موضوع: @post.topic</li>
 						<li> نوشته: 
 							@{AuthorTranslation.getAuthor(post.author.authorID,"farsi").fName}
 							@{AuthorTranslation.getAuthor(post.author.authorID,"farsi").lName}
 						</li>
-						<li id="topic">موضوع: @post.topic</li>
+						
 					</ul>
 					<time id="time">@post.published.format("dd-MM-yyyy")</time>
 		</div>
@@ -63,7 +66,54 @@
 		<div id="pi" ><img alt="@post.title" src="#http://"></div>
 		<br>
 		<div id="pc" > @post.content </div>
-	</div>
+		<br>
+		<br>
+		<!-- ----------------------COMMENTING SECTION--------------------- -->
+		<fieldset>
+			<legend><h3> بخش نظرات </h3></legend>
+			<section id="commentContent">
+				
+				<!-- to load the previous comments -->
+				<ul id="commentList">
+					@comments.map{ comment =>
+										 <li>@views.html.comment(comment)</li>
+					}
+				</ul>
+			</section>
+			<br>
+			@if(user.fName == "Guest"){
+				<script type="text/javascript">
+					/*This script is used to disable the commentComment DIV to  
+						 disable the GUEST users to comment
+					*/
+					var crp = document.getElementById("commentComments");
+					crp.style.display = "none";
+				</script>
+				<p>برای ارسال نظرات خود میبایست به "فارسی‌ ریدز" وارد شوید</p>
+				<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3>برای ورود، لطفا اینجا را کلیک کنید</h3></a>
+				<br>
+				<br>
+			}else{
+			<section id="commentComments">
+			
+				@helper.form(routes.Blog.postComment(post.language,post.postID)){
+					<textarea id="textArea" name="comment" style="width:400px;" placeholder="نظر خود را بنویسید" ></textarea>
+		        	<button id="btm" type="submit" value="post" formmethod="post">پست</button>
+				}
+				        
+		        @if(commentForm.hasGlobalErrors){
+		        	<p id="error"> @commentForm.globalError.message </p>
+		        }else{
+					<script type="text/javascript">
+							document.getElementById('commentComments').scrollIntoView();
+					</script>
+		        }
+			</section>
+			}
+		</fieldset>
+		<!-- --------------------------end of Comenting-------------------- -->
+		
+	</div><!-- end of post -->
 }{
 
 <script type="text/javascript">
