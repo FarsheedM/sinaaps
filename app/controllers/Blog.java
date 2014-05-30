@@ -108,5 +108,10 @@ public class Blog extends Controller{
 		
 	}
 
+	public static Result deletePost(Long commentId,String language,Integer postId){
 		
+		BlogComment.find.ref(commentId).delete();
+		return redirect(routes.Blog.showBlogPostFullContent(language, postId));
+	}
+	
 }

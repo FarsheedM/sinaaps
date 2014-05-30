@@ -76,7 +76,7 @@
 				<!-- to load the previous comments -->
 				<ul id="commentList">
 					@comments.map{ comment =>
-										 <li>@views.html.comment(comment)</li>
+										 <li>@views.html.comment(comment,user)</li>
 					}
 				</ul>
 			</section>

@@ -1,4 +1,4 @@
-@(comment : BlogComment)
+@(comment : BlogComment, user  : User)
 
 <div id="comment"> 
 	
@@ -7,17 +7,29 @@
 			<img class="usrPhoto" title="@comment.user.fName" src="@comment.user.photo?">
 		</div>
 		<div id="commentRightBlock">
+			<div id="usr_name">
+				<b>@comment.user.fName @comment.user.fName</b>
+			</div>	
+
+			<!-- show the delete button if the comment belongs to the already logged user  -->
+			@if(comment.user.email == user.email){
+				@helper.form(routes.Blog.deletePost(comment.commentID,comment.post.language,comment.post.postID)){
+					<input id="deleteBtm" type="submit" value="&times;" title="delete your post?">
+				}
+			}
+						
 			<div id="post_published">
 				@comment.post.published.format("dd-mm-yyyy 'at' hh:mm")
 			</div>
-			<div id="usr_name">
-				@comment.user.fName @comment.user.fName
-			</div>
+			
 			<div id="clear"></div>
+			<br>
 			<div id="usr_comment">
 				@comment.comment
 			</div>
+
 		</div><!-- commentRightBlock -->
+
 		<div id="clear"></div>
 	} else {
 		<p>No comment Yet! Be the first to comment.</p>
