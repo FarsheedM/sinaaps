@@ -71,7 +71,9 @@
 		<fieldset>
 			<legend><h3>Comment Section</h3></legend>
 			<section id="commentContent">
-				
+				@if(comments.isEmpty){
+					<p>No one has posted a comment. Be the first.
+				}
 				<!-- to load the previous comments -->
 				<ul id="commentList">
 					@comments.map{ comment =>

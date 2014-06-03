@@ -12,6 +12,9 @@ import models.*;
 public class ApplicationFa extends Controller{
 
     public static Result index(){
-    	return ok(views.html.farsiEdition.index.render("فارسی‌ ریدز",Form.form(Login.class)));
+    	
+    	//this gets the latest blogpost ordered by "published" date.
+    	BlogPost post = BlogPost.find.where().eq("language", "farsi").order().desc("published").findList().get(0);
+    	return ok(views.html.farsiEdition.index.render("فارسی‌ ریدز",Form.form(Login.class),post));
     }
 }

@@ -72,7 +72,9 @@
 		<fieldset>
 			<legend><h3> بخش نظرات </h3></legend>
 			<section id="commentContent">
-				
+				@if(comments.isEmpty){
+					<p>taakonun kasi nazar nadade ast. nokhostin bashid</p>
+				}
 				<!-- to load the previous comments -->
 				<ul id="commentList">
 					@comments.map{ comment =>

@@ -1,9 +1,18 @@
-@(message : String, form : Form[Application.Login])
+@(message : String, form : Form[Application.Login], post : BlogPost)
 
 @FaMain("به 'فارسی‌ ریدز' خوش آمدید"){
 
 		<head>
 			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/FarsiIndex.css")">
+			<script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+			<script>
+				var clamping = function(){
+					var header  = document.getElementById("@post.postID");
+					//header.style.backgroundColor ="RED";
+					//clamp integer specifies the number of lines of text
+					$clamp(header,{clamp : 11, useNativeClamp : true});
+				}	
+			</script>
 		</head>
 		
     	<div id="headContent">  
@@ -29,7 +38,7 @@
 	<!--  Content Left comes here  محتوا اینجا -->
 	<div id="infoBox">
 		<div id="infoBoxLeft">
-			<p class="rightAlign"> این وب سایت، شبکه‌ای اجتماعی و اینتر اکتیو است با هدف فراهم کردن بانک اطلاعاتی‌ از تمامی کتاب‌ها و کارهای فارسی مسیحی‌(ترجمه و تالیف) از یک سو و اشتراک گذاری چکیده کتاب و نظرات شما از سویی دیگر است.</p>
+			<p class="rightAlign"> این وب سایت، شبکه‌ای اجتماعی و اینتر اکتیو است با هدف فراهم کردن بانک اطلاعاتی‌ از تمامی کتاب‌ها و کارهای فارسی مسیحی‌(ترجمه و تالیف) از یک سو و اشتراک گذاری چکیده کتاب و نظرات شما از سویی دیگر .</p>
 			
 		</div>
 		
@@ -39,10 +48,86 @@
 	</div><!-- infoBox -->
 	<div id="clear"></div>
 	
-	<div id="bookBox">bookBox</div><!-- bookBox -->
-	<div id="blogBox">blog posts come here</div><!-- blogBox -->
+	<div id="bookBox">
+		<p>در بخش کتاب ها، بانک اطلاعاتی‌ شامل کتابهای فارسی مسیحی‌(تالیف و ترجمه) آماده شده است. شما میتوانید عنوان کتاب مورد نظر را جستجو کنید و در صورت وجود، چکیده‌ای از کتاب به همراه اطلاعات جانبی(از جمله اطلاعاتی‌ مربوط به مولف، هدف نگارش، تاریخ نگارش و نحوه تهیه) در اختیار شما خواهد بود. همچنین شما قادر خواهید بود با استفاده از "فهرست موضوعی"، به مرور و گردش در کتاب‌ها بپردازید.
+				
+		در این قسمت، ماهیانه کتابهای انتخاب، تحلیل و برای مطالعه پیشنهاد میشود. علاوه بر این شما میتوانید از ترجمه و انتشار عنوان‌های جدید کتاب نیز خبردار شوید.
+		قبلیت دیگر این بخش، راه اندازی کتابخانه الکترونیکی‌ و مدیریت مطالعه شخصیتان است.
+		هدف اصلی‌ این قسمت، گردآوری تمامی کتابهای مسیحی‌ فارسی - از انتشارات مختلف، قدیمی‌ و جدید و بدون توجه به فرقه مربوطه - در بانک اطلاعاتی‌ و امکان جستجو در آن می‌باشد.
+		</p>
+		
+		<div id="categoryBox">
+			<h3 style="margin-right : 10px;">فهرست موضوعی</h3>
+				<div class="right">
+					<a href="#">الهیات</a><br>
+					<a href="#">باستان شناسی‌</a><br>
+					<a href="#">بشارت</a><br>
+					<a href="#">بیوگرافی</a><br>
+					<a href="#">تاریخ کلیسا</a><br>
+				</div>
+				<div class="right">
+					<a href="#">تفسیری</a><br>
+					<a href="#">خانواده</a><br>
+					<a href="#">خدمت</a><br>
+					<a href="#">داستانی</a><br>
+					<a href="#">دفاعیات</a><br>
+				</div>
+				<div class="right">
+					<a href="#">رازگاهان</a><br>
+					<a href="#">زندگی‌ مسیحی‌</a><br>
+					<a href="#">شاگردسازی</a><br>
+					<a href="#">فرقه ها</a><br>
+					<a href="#">کتاب مقدس</a><br>
+				</div>
+				<div class="right">
+					<a href="#">کلاسیک</a><br>
+					<a href="#">کودکان</a><br>
+				</div>
+				<br>
+		</div> <!-- categoryBox -->
+	</div><!-- bookBox -->
+	
+	<div id="blogBox">
+		<div id="latestPost">آخرین مطلب منتشر شده در بلاگ</div>
+		<br>
+		<div id="latestPostImg"><img src="@post.image" alt="@post.title" title="@post.title"></div>
+		<div id="latestPostSum">
+			<h4>@post.title</h4>
+			<p id="@post.postID">@post.content</p>
+			<script>clamping();</script>
+			<a href="@routes.Blog.display(post.language)"><p>ادامه مقاله ...</p></a>
+		</div>
+		<div id="clear"></div>
+		<div id="latestPostLinks"><h4><a href="@routes.Blog.display(post.language)">مشاهده تمامی مطالب بلاگ<em> فارسی ریدز</em></a></h4></div>
+	</div><!-- blogBox -->
+	
+	
+	
 	<div id="activityBox">activities should be here</div> <!-- activityBox -->
-	<div id="qoutationBox"> Qouts from the DB come here</div> <!-- qoutationBox -->
+	
+	<div id="qoutationBox">static Quotes come here
+		<div style="display : none;"> Quote 1</div>
+		<div style="display : none;"> Quote 2</div>
+		<div style="display : none;"> Quote 3</div>
+		<div style="display : none;"> Quote 4</div>
+		<script type="text/javascript">
+			var containerDiv = document.getElementById("qoutationBox");
+			var innerDivs= containerDiv.getElementsByTagName("DIV");
+			var i=0;
+			while(1){
+				innerDivs[i].style.display = 'inline';
+				if(i == innerDivs.length){ i=0;
+				} else {
+					
+					//setTimeout(function(){},1000);
+						
+				}
+				
+				innerDivs[i].style.display ='none';
+				i++;
+			}
+		</script>
+	</div> <!-- qoutationBox -->
 	<div id="clear"></div>
 	
 }{

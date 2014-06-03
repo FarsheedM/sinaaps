@@ -30,7 +30,7 @@
 								
 								@if(user.fName != "Guest"){
 									<dt> @user.fName <span>@user.email</span></dt>
-									<dd><a href="@routes.Application.logout">logout</a></dd>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
 								} else {
 									<dt>وضعیت کاربر : <span>میهمان</span></dt>
 									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
