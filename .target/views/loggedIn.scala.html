@@ -1,6 +1,16 @@
+@************************************
+** This is the loggedIn v.1      **
+** it just welcomes the user and **
+** suggest him to to to the blog **
+** and leave comments. It should **
+** eventually display the recent **
+** activities of all the users as**
+** community review.
+************************************@
+
 @(user : User)
 
-@main("Welcome to FarsiReads"){
+@farsiEdition.FaMain("به فارسی ریدز خوش آمدید"){
 
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
@@ -9,8 +19,8 @@
         		<div id="clear"></div>
         		
         		<div id="socialBar">
-        			<div id="socialBarLeft">
-						<ul>
+        			<div id="socialBarRightFarsi">
+						<ul style="padding-left : 15px;">
 							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
 							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
 							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
@@ -19,11 +29,11 @@
 							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
 						</ul>
 					</div><!-- socialBarLeft -->
-        			<div id="socialBarRight">
+        			<div id="socialBarLeftFarsi">
 						<header id="socializingMenu">
-							<dl id="user">
+							<dl id="userFarsi">
 								<dt>@user.fName <span>@user.email</span></dt>
-								<dd><a href="@routes.Application.logout">logout</a></dd>
+								<dd><a href="@routes.Application.logout">خروج</a></dd>
 							</dl>
 						</header>
         			</div><!-- headcontentRight (loggedIn) -->
@@ -31,7 +41,35 @@
         		<div id="clear"></div>
 
 }{
-	<p>left content for LOGGEDIN</p>
+	<!--  left content for LOGGEDIN -->
+	<br>
+	<div id="welcome">
+		<p>دوست عزیز،</p>
+		<span>@user.fName   @user.lName</span>
+		<h3>از ورود شما به سایت فارسی ریدز خرسندیم</h3>
+		<p>فارسی ریدز پلت فرمی فارسی است که برای فراهم نمودن مطالب خوب و دست‌چین شده (از جمله کتاب، مقاله، بلاگ پست، شعر) در دسترس شما است</p>
+	</div><!-- welcome -->
+	<br>
+	<div id="introTour">
+		<h3>با روش استفاده و امکانات "فارسی ریدز" آشنا شوید</h3>
+		<p>ویدئو یا مراحل استفاده اینجا</p>
+	</div><!-- introTour -->
+	<br>
+	
+	<div id="phase">
+		<h4>توسعه خدمات و امکانات</h4>
+		<ul>
+			فاز اول "فارسی ریدز" کامل شده است
+			<li>
+				<p>شما میتوانید از  <a href="@routes.Blog.display("farsi")">بلاگ فارسی ریدز </a>دیدن فرمائید. همچنین میتوانید به مطالب نمره دهید و نظر خود رو به اشتراک بگذارید.</p>
+			</li>
+			<li>
+				<p>شما میتوانید در سایت ثبت‌نام کنید و  <a href="#aboutUs"> با ما </a>و  <a href="#services"> خدمات </a>فارسی ریدز آشنا شوید </p>
+			</li>
+		</ul>
+
+	</div><!-- redirect -->
+	<br>
 }{
 	<p>right content for LOGGEDIN</p>
 }

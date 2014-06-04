@@ -1,3 +1,8 @@
+// ----------------------------- FONTS
+@defaultFont:           13px "Tahoma","Arial","Helvetica Neue", "sans-serif";
+
+//-------------------------------------
+
 #header{
 	height: 360px;
 	width: 960px;
@@ -55,11 +60,15 @@
 	border-style : solid;
 	background-color: silver;
 	height : auto;
-
+}
+#bookBox p{
+	padding : 2px 15px 2px 10px;
+	font :  16px "Arial","Helvetica Neue", "sans-serif";
+	line-height : 1.5;
 }
 #categoryBox{
 	margin : 5px 10px 10px 10px;
-	padding-right : 20px;
+	padding-right : 10px;
 	width : 90%;
 	height : 140px;
 	background-color : #F7FBFF;
@@ -67,13 +76,15 @@
 }
 .right{
 	float : right;
-	padding-right : 5px;
+	padding-right : 8px;
 	padding-top : 5px;
-	width : 24%;
+	width : 23%;
 	padding-bottom : 15px;
 }
 .right a{
 	padding-top : 5px;
+	text-decoration : none;
+	line-height : 1.5;
 }
 /*----------------------BLOG WINDOW--------------------*/
 #blogBox{
@@ -123,16 +134,55 @@
 #activityBox{
 	border-style : solid;
 	float : right;
-	width : 70%;
+	width : 62%;
+	padding-right : 5px;
+	padding-bottom : 5px;
 }
-
+#activityList{
+	list-style-type : none;
+	padding-right : 3px;
+	padding-left : 10px;
+	margin-bottom : 0px;
+}
+#service{
+	height : 44px;
+	width : 100%;
+}
+#service img{
+	width : 40px;
+	height : 40px;
+	float : right;
+}
+#service p{
+	float : right;
+	margin-right : 5px;
+}
 /*--------------------QOUTATION WINDOW--------------------*/
 #qoutationBox{
 	border-style : solid;
 	background-color: silver;
 	float : left;
-	width : 27%;
+	width : 34%;
+	padding-right : 3px;
 }
+#qoutationBox img{
+	width : 50px;
+	height : 66px;
+	float : right;
+	margin-left : 8px;
+}
+#qoutationBox a{
+	text-decoration : none;
+	color : gray;
+}
+#quoteText{
+	word-wrap : break-word;
+	font : @defaultFont;
+	padding-bottom : 5px;
+}
+
+
+
 #clear{
 	both: clear;
 }

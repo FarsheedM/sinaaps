@@ -49,6 +49,7 @@
 	<div id="clear"></div>
 	
 	<div id="bookBox">
+		<h3 style="padding-right:10px;">کتابها</h3>
 		<p>در بخش کتاب ها، بانک اطلاعاتی‌ شامل کتابهای فارسی مسیحی‌(تالیف و ترجمه) آماده شده است. شما میتوانید عنوان کتاب مورد نظر را جستجو کنید و در صورت وجود، چکیده‌ای از کتاب به همراه اطلاعات جانبی(از جمله اطلاعاتی‌ مربوط به مولف، هدف نگارش، تاریخ نگارش و نحوه تهیه) در اختیار شما خواهد بود. همچنین شما قادر خواهید بود با استفاده از "فهرست موضوعی"، به مرور و گردش در کتاب‌ها بپردازید.
 				
 		در این قسمت، ماهیانه کتابهای انتخاب، تحلیل و برای مطالعه پیشنهاد میشود. علاوه بر این شما میتوانید از ترجمه و انتشار عنوان‌های جدید کتاب نیز خبردار شوید.
@@ -57,7 +58,7 @@
 		</p>
 		
 		<div id="categoryBox">
-			<h3 style="margin-right : 10px;">فهرست موضوعی</h3>
+			<h4>فهرست موضوعی</h4>
 				<div class="right">
 					<a href="#">الهیات</a><br>
 					<a href="#">باستان شناسی‌</a><br>
@@ -88,10 +89,10 @@
 	</div><!-- bookBox -->
 	
 	<div id="blogBox">
-		<div id="latestPost">آخرین مطلب منتشر شده در بلاگ</div>
-		<br>
+		<div id="latestPost"><h3>بلاگ</h3></div>
 		<div id="latestPostImg"><img src="@post.image" alt="@post.title" title="@post.title"></div>
 		<div id="latestPostSum">
+			آخرین مطلب منتشر شده:
 			<h4>@post.title</h4>
 			<p id="@post.postID">@post.content</p>
 			<script>clamping();</script>
@@ -103,30 +104,37 @@
 	
 	
 	
-	<div id="activityBox">activities should be here</div> <!-- activityBox -->
+	<div id="activityBox">
+		<h3>فعالیت ها</h3>
+		<ul id="activityList">
+			<li><div id="service"><img src="" alt="srvc"><p>ترجمه کتابها و مقالات ارزشمند</p></div></li>
+			<div id="clear"></div>
+			<li><div id="service"><img src="" alt="srvc"><p>برگزاری سمینار و ورکشاپ‌های کتابخوانی</p></div></li>
+			<div id="clear"></div>
+			<li><div id="service"><img src="" alt="srvc"><p>کمک به تاسیس کتابخانه در کلیسای شما</p></div></li>
+			<div id="clear"></div>
+		</ul>
+		<div id="clear"></div>
+		<br>
+		<a href="#ToService">مشاهده جزئیات فعالیت‌ها و خدمات</a>
+	</div> <!-- activityBox -->
 	
-	<div id="qoutationBox">static Quotes come here
-		<div style="display : none;"> Quote 1</div>
-		<div style="display : none;"> Quote 2</div>
+	
+	<div id="qoutationBox">
+		<h3>بیان شیرین</h3>
+		<div style="display : inline;">
+			<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
+			<div id="quoteText">
+				"به مسیحیت ایمان دارم همانگونه که ایمان دارم آفتاب طلوع کرده؛ نه فقط به خاطر اینکه آن را میبینم، بلکه توسط آن قادرم همه چیز‌های دیگر را ببینم."
+				<br> -
+				<a href="#author's">سی‌.اس‌ لوئیس</a>
+			</div>
+		</div>
+		
+<!-- 		<div style="display : none;"> Quote 2</div>
 		<div style="display : none;"> Quote 3</div>
-		<div style="display : none;"> Quote 4</div>
-		<script type="text/javascript">
-			var containerDiv = document.getElementById("qoutationBox");
-			var innerDivs= containerDiv.getElementsByTagName("DIV");
-			var i=0;
-			while(1){
-				innerDivs[i].style.display = 'inline';
-				if(i == innerDivs.length){ i=0;
-				} else {
-					
-					//setTimeout(function(){},1000);
-						
-				}
-				
-				innerDivs[i].style.display ='none';
-				i++;
-			}
-		</script>
+		<div style="display : none;"> Quote 4</div> -->
+		
 	</div> <!-- qoutationBox -->
 	<div id="clear"></div>
 	
