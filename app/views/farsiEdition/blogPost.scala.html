@@ -29,7 +29,7 @@
 			<ul> 
 				<li>نوشته  @author.fName @author.lName</li>
 				
-				<li id="topic">موضوع : @post.topic</li>
+				<li id="topicFarsi">موضوع : @post.topic</li>
 			</ul>
 			<time id="time">@post.published.format("dd-MM-yyyy")</time>
 		</div>
@@ -39,10 +39,11 @@
 		<div id="blurb">
 			<!-- in Blurb only the first 5 lines of the post displayed using Clamp.js lib -->
 			
-			<div id="@post.postID" class = "postContent">@post.content</div>
+			<div id="@post.postID" class = "postContentFarsi">@post.content</div>
 			
 			<!-- This clamping func should be invoked after the declared tages in it!!!! -->
 			<script>clamping();</script>
 			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)"><p  style="text-align: right; padding-right: 20px;">ادامه مطلب ...</p></a>
 		</div>
 	</article>
+	<div id="horizonLine"></div>

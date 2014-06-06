@@ -1,5 +1,4 @@
 // ---------------------------- COLORS
-@mainBackground:        #ebedfd;
 @mainColor:             #2a3a48;
 @drawerBackground:      #e1e7ec;
 @folderColor:           #6f8193;
@@ -15,7 +14,15 @@
 @buttonColor:           @mainBackground;
 @buttonHover:           #fff;
 @activeColor:           #5daad5;
-
+//------------------------------------------------------------------------------
+@skyBlue:               #87ceeb;
+@skyBlueLight:          #dbf0f9;
+@skyBlueLighter:        #cae9f6;
+@royalPurple:           #8751a9;
+@royalPurpleLight:      #e8c1f1;
+@scarlet:               #da000f;
+@mainBackground:        #ececec;
+//------------------------------------------------------------------------------
 // Folders
 @folderBorder:          #9ba5ad;
 @folderBackground:      #dbe1e5;
@@ -52,7 +59,7 @@ body{
 #navigation{
 	height: 65px;
 	width: 960px;
-	background-color: silver;
+	background-color: @skyBlueLight;
 	position: fixed;
 }
 #logo{
@@ -120,13 +127,15 @@ body{
 	clear : both;
 	height: 100%;
 	width: 960px;
+	margin-top: 7px;
 }
 #contentLeftPanel{
 	clear : both;
 	width: 650px;
 	height: 100%;
 	float: left;
-	background-color: #EBFFD6;
+	background-color: white;
+	border-right : solid @scarlet;
 }
 #contentRightPanel{
 	width: 300px;
@@ -140,7 +149,8 @@ body{
 	clear: both;
 	width: 960px;
 	height: 50px;
-	background-color: silver;
+	background-color: @skyBlueLight;
+	margin-top : 8px;
 }
 #footerBox{
 	padding-top : 13px;

@@ -4,9 +4,34 @@
 */
 
 
-#commentContent{}
+//------------------------------------------------------------------------------
+@skyBlue:               #87ceeb;
+@skyBlueLight:          #dbf0f9;
+@skyBlueLighter:        #cae9f6;
+@royalPurple:           #8751a9;
+@royalPurpleLight:      #e8c1f1;
+@royalPurpleDark:       #65448e;
+@scarlet:               #da000f;
+@blueLight:				#c4c4ff;
+@blueLightest:          #d8d8ff;
+@blueDark:				#00009d;
+//------------------------------------------------------------------------------
+
+
+#commentContent{
+	margin-top:-5px;
+}
+fieldset{
+	background-color: @blueLightest;
+	width : 85%;
+	border-color : @blueLight;
+}
+fieldset h3{
+	color : @blueDark;
+}
 #commentList{
 	list-style-type:none;
+	margin-right : -20px;
 }
 #commentList li{
 	display: inline;
@@ -16,10 +41,9 @@
 	width : 600px; 
 	height : auto; 
 	background-color : white;
-	padding-right : 15px;
 	padding-top : 1px;
 	padding-bottom : 1px;
-	padding-right : 0px;
+
 }
 
 #usr_photo{
@@ -48,7 +72,7 @@
 	opacity : 0.8;
 
 }
-#deleteBtm{
+#deleteBtn{
 	border : none;
 	float : left;
 	width : 15px;
@@ -59,16 +83,23 @@
 	margin-left : -8px;
 	margin-right : 5px;
 }
-#deleteBtm:hover{
+#deleteBtn:hover{
 	cursor : pointer;
 	background-color : #FF6666;
 }
 #usr_comment{
 	clear : both;
-
+	margin-top : -5px;
+	padding-bottom : 5px;
 }
 #textArea{
-	margin-right : 38px;
+	margin-right : 20px;
+	float : right;
+	//margin-top : 
+}
+#btn{
+	//post button
+	float : right;
 }
 #clear {
 	clear : both;

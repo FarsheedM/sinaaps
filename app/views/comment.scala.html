@@ -8,18 +8,18 @@
 		</div>
 		<div id="commentRightBlock">
 			<div id="usr_name">
-				<b>@comment.user.fName @comment.user.fName</b>
+				<b>@comment.user.fName @comment.user.lName</b>
 			</div>	
 
 			<!-- show the delete button if the comment belongs to the already logged user  -->
 			@if(comment.user.email == user.email){
 				@helper.form(routes.Blog.deletePost(comment.commentID,comment.post.language,comment.post.postID)){
-					<input id="deleteBtm" type="submit" value="&times;" title="delete your post?">
+					<input id="deleteBtn" type="submit" value="&times;" title="delete your post?">
 				}
 			}
 						
 			<div id="post_published">
-				@comment.published.format("dd-mm-yyyy (hh:mm)")
+				@comment.published.format("dd-MM-yyyy (hh:mm)") 
 			</div>
 			
 			<div id="clear"></div>

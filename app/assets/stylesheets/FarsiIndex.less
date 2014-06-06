@@ -1,7 +1,19 @@
 // ----------------------------- FONTS
 @defaultFont:           13px "Tahoma","Arial","Helvetica Neue", "sans-serif";
 
-//-------------------------------------
+//-------------------------------COLORS
+//------------------------------------------------------------------------------
+@skyBlue:               #87ceeb;
+@skyBlueLight:          #dbf0f9;
+@skyBlueLighter:        #cae9f6;
+@royalPurple:           #8751a9;
+@royalPurpleLight:      #e8c1f1;
+@royalPurpleDark:       #65448e;
+@scarlet:               #da000f;
+@blueLight:				#c4c4ff;
+@blueLightest:          #d8d8ff;
+@blueDark:				#00009d;
+//------------------------------------------------------------------------------
 
 #header{
 	height: 360px;
@@ -11,7 +23,8 @@
 
 #headContent{
 	height: 295px;
-	background-color:  white;
+	//background-color:  silver;
+	border-bottom : solid @scarlet;
 	padding-top:65px;	
 }
 #headContentLeft{
@@ -21,11 +34,16 @@
 	float:right;
 	width: 280px;
 	height: 180px;
-	background-color: silver;
-	border-style: solid;
+	background-color: @blueLight;
+	border: 1px solid @blueDark;
 	margin-right:20px;
 	padding-right: 10px;
 	padding-top: 10px;
+	color : @blueDark;
+	font : 15px "Times New Roman";
+}
+#headContentRight a{
+	color : gray;
 }
 #error{
 	color : red;
@@ -55,11 +73,21 @@
 	font : 12px/23px Tahoma,Arial,Helvetica,sans-serif;
 	lang : fa;
 }
+.rightAlign span{
+	font : 14px arial;
+	color : black;
+	font-weight : bolder;
+}
+
 /*----------------------BOOK WINDOW--------------------*/
 #bookBox{
-	border-style : solid;
-	background-color: silver;
+	border-top : solid @scarlet;
+	border-bottom : solid @scarlet;
+	background-color: white;
 	height : auto;
+	width : 96%;
+	margin-right : 8px;
+	padding-bottom : 10px;
 }
 #bookBox p{
 	padding : 2px 15px 2px 10px;
@@ -70,25 +98,30 @@
 	margin : 5px 10px 10px 10px;
 	padding-right : 10px;
 	width : 90%;
-	height : 140px;
-	background-color : #F7FBFF;
-	
+	height : 148px;
+	background-color : @blueLightest;
+	border : 2px solid @blueDark;
+}
+#categoryBox h4{
+	height : 7px;
+	margin-top : 5px;
+	color : @blueDark;
 }
 .right{
 	float : right;
 	padding-right : 8px;
-	padding-top : 5px;
+	padding-top : 0px;
 	width : 23%;
 	padding-bottom : 15px;
 }
 .right a{
-	padding-top : 5px;
 	text-decoration : none;
 	line-height : 1.5;
+	color : @blueDark;
+	font : 15px "tahoma";
 }
 /*----------------------BLOG WINDOW--------------------*/
 #blogBox{
-	border-style : solid;
 	clear : both;
 }
 #latestPost{
@@ -98,17 +131,18 @@
 	width : 420px;
 	height : 300px;
 	float : left;
-	background-color: gray;
+
 }
 #latestPostImg img{
-	width : 420px;
+	width : 405px;
 	height : 300px;
+	border-style : solid;
 }
 #latestPostSum{
 	float : right;
 	width : 220px;
 	height : auto;
-	background-color: silver;
+	//background-color: silver;
 	padding-right : 3px;
 }
 #latestPostSum p{
@@ -124,15 +158,16 @@
 }
 #latestPostLinks a{
 	text-decoration : none;
-	border-style : solid;
-	border-width : 1px;
+	/*border-style : solid;
+	border-width : 1px;*/
+	color : @blueDark;
 }
-#latestPostLinks em{
-	color : gray;
+#latestPostLinks b{
+	color : black;
 }
 /*--------------------ACTIVITY WINDOW--------------------*/
 #activityBox{
-	border-style : solid;
+	//border-style : solid;
 	float : right;
 	width : 62%;
 	padding-right : 5px;
@@ -159,11 +194,12 @@
 }
 /*--------------------QOUTATION WINDOW--------------------*/
 #qoutationBox{
-	border-style : solid;
-	background-color: silver;
+	border : 1px solid @blueDark;
+	background-color: @blueLight;
 	float : left;
 	width : 34%;
 	padding-right : 3px;
+	margin-left : 8px;
 }
 #qoutationBox img{
 	width : 50px;
@@ -175,12 +211,20 @@
 	text-decoration : none;
 	color : gray;
 }
+#qoutationBox h3{
+	color : @blueDark;
+}
 #quoteText{
 	word-wrap : break-word;
 	font : @defaultFont;
 	padding-bottom : 5px;
 }
-
+//-----------------------------------------------
+h3{
+	font : 16px arial;
+	color : @scarlet;
+	font-weight : bolder;
+}
 
 
 #clear{
@@ -195,3 +239,9 @@
 	height : 170px;
 	background-color: silver;
 }
+#horizonLine{
+	border-top:solid @scarlet;
+	width : 94%;
+	margin-right:10px;
+	margin-bottom:4px;
+ }

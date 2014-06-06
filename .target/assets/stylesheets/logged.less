@@ -1,4 +1,17 @@
 // ---------------------------- COLORS
+//------------------------------------------------------------------------------
+@skyBlue:               #87ceeb;
+@skyBlueLight:          #dbf0f9;
+@skyBlueLighter:        #cae9f6;
+@royalPurple:           #8751a9;
+@royalPurpleLight:      #e8c1f1;
+@royalPurpleDark:       #65448e;
+@scarlet:               #da000f;
+@blueLight:				#c4c4ff;
+@blueLightest:          #d8d8ff;
+@blueDark:				#00009d;
+//------------------------------------------------------------------------------
+
 @mainBackground:        #c7d1d8;
 @mainColor:             #2a3a48;
 
@@ -66,7 +79,7 @@ a {
     dt {
         color: #603c69;   /*This is the logged in Users name&email color*/
         span {
-            opacity: .5;
+        	@royalPurple;
             font-size: 11px;
         }
     }
@@ -86,7 +99,7 @@ a {
 
 #socialBar{
 	height: 40px;
-	background-color:  #e4c4c4;
+	background-color:  @blueLight;
 	padding-top:65px;	
 	
 }
@@ -123,11 +136,16 @@ a {
 
 //--------------------Blog CSS------------------------------------
 #featuredBox{
+	width : 98%;
+	margin : 10px auto;
 	text-align : center;
-	padding-left : 10px;
-	margin-top : 10px;
-	border-bottom : 2px solid @mainBackground;
 }
+#featuredBox img{
+	display : Block;
+	width : 98%;
+	margin : 0 auto;
+}
+
 #postList{
 
 }
@@ -136,12 +154,13 @@ a {
 	padding-left : 40px;
 	padding-right : 30px;
 	margin-top : 30px;
-	border-bottom : 1px solid @mainBackground;
+	//border-bottom : 1px solid @mainBackground;
 }
 #resourceMeta{
 	border-top : 1px solid @mainBackground;
 	border-bottom : 1px solid @mainBackground;
 	height : 30px;
+	color : @scarlet;
 }
 #resourceMeta ul{
 	float : right;
@@ -169,12 +188,20 @@ a {
 }
 .postContent{
 	
-	width : 600px;
+	width : 580px;
 	overflow : hidden;
-	border-style: solid;
-	/*height : 300px;width : 580px;*/
+	/*border-style: solid;*/
 }
-
+#pi{
+	width : 80%;
+	margin : 0 auto;
+}
+#pi img{
+	width : 600px;
+	height :360px;
+}
+#pc{
+}
 
 //-------------------- Book CSS -----------------------------------
 #searchBox{
@@ -283,7 +310,7 @@ a {
     dt {
         color: #603c69;   /*This is the logged in Users name&email color*/
         span {
-            opacity: .5;
+            color : @royalPurple;
             font-size: 11px;
         }
     }
@@ -293,6 +320,33 @@ a {
             .button();
         }
     }
+}
+
+#featuredBoxFarsi{
+	/*padding-right : 20px;
+	margin-top : 10px;*/
+	width : 98%;
+	margin : 10px auto;
+	text-align : center;
+}
+#featuredBoxFarsi a{
+
+}
+#featuredBoxFarsi img{
+	display : Block;
+	width : 98%;
+	margin : 0 auto;
+}
+
+.postContentFarsi{
+	width : 580px;
+	overflow : hidden;
+	text-align: right;
+}
+#topicFarsi{
+	border-right : 1px solid @mainBackground;
+	margin-right : 10px;
+	padding-right : 20px;
 }
 /*-----------------------------loggedIn------------------------------*/
 #welcome{
@@ -313,3 +367,10 @@ a {
 	margin-right : 10px;
 	margin-left : 10px;
 }
+
+#horizonLine{
+	border-top:solid @scarlet;
+	width : 94%;
+	margin : 0 auto;
+	margin-bottom : -5px;
+ }

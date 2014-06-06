@@ -43,6 +43,7 @@
         		</div><!-- headContent -->
         		<div id="clear"></div>	
 
+				<div id="horizonLine"></div>
 }{
 	<script type="text/javascript">
 		var clp = document.getElementById("contentLeftPanel");
@@ -81,7 +82,7 @@
 					}
 				</ul>
 			</section>
-			<br>
+			
 			@if(user.fName == "Guest"){
 				<script type="text/javascript">
 					/*This script is used to disable the commentComment DIV to  
@@ -92,8 +93,7 @@
 				</script>
 				<p>In order to post a comment, you should log in to the FarsiReads</p>
 				<a href="@routes.Application.index"><h3>Please Click here to log in</h3></a>
-				<br>
-				<br>
+
 			}else{
 			<section id="commentComments">
 			

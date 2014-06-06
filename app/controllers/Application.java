@@ -27,7 +27,7 @@ public class Application extends Controller {
     	
     	session().clear();
     	Context.current().flash().clear();
-    	return redirect(routes.Application.index());
+    	return redirect(controllers.controllersFarsi.routes.ApplicationFa.index());
     }
 
     public static class Login{

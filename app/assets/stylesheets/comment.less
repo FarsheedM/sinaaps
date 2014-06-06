@@ -1,6 +1,26 @@
-#commentContent{}
+//------------------------------------------------------------------------------
+@skyBlue:               #87ceeb;
+@skyBlueLight:          #dbf0f9;
+@skyBlueLighter:        #cae9f6;
+@royalPurple:           #8751a9;
+@royalPurpleLight:      #e8c1f1;
+@royalPurpleDark:       #65448e;
+@scarlet:               #da000f;
+@blueLight:				#c4c4ff;
+@blueLightest:          #d8d8ff;
+@blueDark:				#00009d;
+//------------------------------------------------------------------------------
+
+#commentContent{
+	margin-top:-5px;
+}
+fieldset{
+	background-color: @blueLightest;
+	width : 86%;
+}
 #commentList{
 	list-style-type:none;
+	margin-left : -18px;
 }
 #commentList li{
 	display: inline;
@@ -41,7 +61,7 @@
 	float : right;
 	opacity : 0.8;
 }
-#deleteBtm{
+#deleteBtn{
 	border : none;
 	float : right;
 	width : 15px;
@@ -52,16 +72,22 @@
 	margin-right : -8px;
 	margin-left : 5px;
 }
-#deleteBtm:hover{
+#deleteBtn:hover{
 	cursor : pointer;
 	background-color : #FF6666;
 }
 #usr_comment{
 	clear : both;
-
+	margin-top : -5px;
+	padding-bottom : 5px;
 }
 #textArea{
-	margin-left : 38px;
+	margin-left : 20px;
+	float: left;
+}
+#btn{
+	//post button
+	float : left;
 }
 #clear {
 	clear : both;

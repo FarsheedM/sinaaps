@@ -42,6 +42,7 @@
         		</div><!-- headContent -->
         		<div id="clear"></div>	
 
+				<div id="horizonLine"></div>
 }{
 	<script type="text/javascript">
 		var clp = document.getElementById("contentLeftPanel");
@@ -63,7 +64,7 @@
 					<time id="time">@post.published.format("dd-MM-yyyy")</time>
 		</div>
 		<br>
-		<div id="pi" ><img alt="@post.title" src="#http://"></div>
+		<div id="pi" ><img alt="@post.title" src="@post.image"></div>
 		<br>
 		<div id="pc" > @post.content </div>
 		<br>
@@ -73,7 +74,7 @@
 			<legend><h3> بخش نظرات </h3></legend>
 			<section id="commentContent">
 				@if(comments.isEmpty){
-					<p>taakonun kasi nazar nadade ast. nokhostin bashid</p>
+					<p>تاکنون کسی‌ نظر نداده است. نخستین باشید.</p>
 				}
 				<!-- to load the previous comments -->
 				<ul id="commentList">
@@ -82,7 +83,7 @@
 					}
 				</ul>
 			</section>
-			<br>
+			
 			@if(user.fName == "Guest"){
 				<script type="text/javascript">
 					/*This script is used to disable the commentComment DIV to  
@@ -93,14 +94,13 @@
 				</script>
 				<p>برای ارسال نظرات خود میبایست به "فارسی‌ ریدز" وارد شوید</p>
 				<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3>برای ورود، لطفا اینجا را کلیک کنید</h3></a>
-				<br>
-				<br>
+
 			}else{
 			<section id="commentComments">
 			
 				@helper.form(routes.Blog.postComment(post.language,post.postID)){
 					<textarea id="textArea" name="comment" style="width:400px;" placeholder="نظر خود را بنویسید" ></textarea>
-		        	<button id="btm" type="submit" value="post" formmethod="post">پست</button>
+		        	<button id="btn" type="submit" value="post" formmethod="post">پست</button>
 				}
 				        
 		        @if(commentForm.hasGlobalErrors){
