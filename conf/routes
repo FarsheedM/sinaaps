@@ -3,8 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-POST    /                           controllers.Application.authenticate()
+GET     /en                         controllers.Application.index()
+POST    /en                         controllers.Application.authenticate()
+POST    /farsi                      controllers.controllersFarsi.ApplicationFa.authenticate()
 GET     /loggedIn                   controllers.Application.loggedIn()
 GET     /signUp                     controllers.Signup.register()
 POST    /signUp                     controllers.Signup.authenticate()

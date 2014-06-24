@@ -39,7 +39,7 @@ public class Application extends Controller {
     	public String validate(){
     	
     		if(User.authenticate(email, password) == null)
-    			return "invalid email or password!!";
+    			return " * ایمیل یا پسورد خود را اشتباه وارد کردید";
     		
     		return null;
     	}
@@ -57,7 +57,7 @@ public class Application extends Controller {
     	}
     }
     
-    /*--------------------------Debugging section----------------*/
+    /*--------------------------Debugging section---------------------*/
     
     //this main helper function was used to catch an error in 
     //hibernate configuration process. the CLASS LocationAwareLogger

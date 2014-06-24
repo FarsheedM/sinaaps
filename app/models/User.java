@@ -18,11 +18,17 @@ public class User extends Model{
 	@Id
 	@Required
 	public String email;
+	@Required
 	public String fName;
 	public String lName;
+	@Required
 	public String password;
-	@Formats.DateTime(pattern = "yyyy-mm-dd")
-	public Date birthdate;
+	//@Formats.DateTime(pattern = "yyyy-mm-dd")
+	//public Date birthdate;
+	public int day;
+	public int month;
+	public int year;
+	
 	public String address;
 	public String photo;
 	
@@ -32,7 +38,10 @@ public class User extends Model{
 		this.lName= lName;
 		this.email= email;
 		this.password= password;
-		this.birthdate= birthdate;
+		//this.birthdate= birthdate;
+		this.day=day;
+		this.month=month;
+		this.year=year;
 		this.address= address;
 		this.photo = photo;
 	}
@@ -43,7 +52,10 @@ public class User extends Model{
 		this.lName= "unknown";
 		this.email= email;
 		this.password= password;
-		this.birthdate=Calendar.getInstance().getTime(); 
+		//this.birthdate=Calendar.getInstance().getTime();
+		this.day=day;
+		this.month=month;
+		this.year=year;
 		this.address= "unknown";
 		this.photo = "noPhoto";
 	}
