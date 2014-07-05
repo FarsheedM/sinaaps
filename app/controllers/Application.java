@@ -13,6 +13,7 @@ import views.html.farsiEdition.*;
 import javax.persistence.*;
 public class Application extends Controller {
 
+	
     public static Result index() {
     	
     		return ok(views.html.index.render("FarsiReads",Form.form(Login.class)));

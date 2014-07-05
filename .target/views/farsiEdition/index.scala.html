@@ -1,4 +1,4 @@
-@(message : String, form : Form[Application.Login], post : BlogPost)
+@(message : String, form : Form[Application.Login], post : BlogPost , ga : List[String])
 
 @FaMain("به 'فارسی‌ ریدز' خوش آمدید"){
 
@@ -141,7 +141,23 @@
 	<div id="clear"></div>
 	
 }{
-	<p>Right content for index محتوا اینجا</p>
+	<!--  <p>Right content for index محتوا اینجا</p> -->
+	
+	<div id="visitorCount">
+		@ga(0);
+	</div><!-- visitorCount -->
+	
+	<!-- -----------------------twitter---------------------- -->
+	<a class="twitter-timeline" href="https://twitter.com/FarsiReads" data-tweet-limit="1"
+		width="300px" data-chrome="nofooter"
+		data-widget-id="485401626165780481">Tweets by @@FarsiReads
+	</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+		if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
+
+	
 }
 
 	
