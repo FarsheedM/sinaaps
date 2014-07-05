@@ -144,7 +144,10 @@
 	<!--  <p>Right content for index محتوا اینجا</p> -->
 	
 	<div id="visitorCount">
-		@ga(0);
+		@for(g <- ga){ 
+			<p style="padding:5px;;"> تعداد کاربران "فارسی ریدز" :  <span style="font-size:1.3em;">@g</span> </p>}
+		
+		
 	</div><!-- visitorCount -->
 	
 	<!-- -----------------------twitter---------------------- -->

@@ -144,7 +144,9 @@
 	<!--  <p>Right content for index محتوا اینجا</p> -->
 	
 	<div id="visitorCount">
-		@ga(0);
+		@*for(g <- ga){ g.toString }*@
+		@ga
+		
 	</div><!-- visitorCount -->
 	
 	<!-- -----------------------twitter---------------------- -->
