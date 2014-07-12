@@ -1,0 +1,96 @@
+@(user : User)
+@FaMain("About Us"){
+
+<!-- -------------------farsi Edition----------------------- -->
+<head>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiAbout.css")">
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+</head>
+
+        		<div id="clear"></div>
+        		
+        		<div id="socialBar">
+        			<div id="socialBarRightFarsi">
+						<ul style="padding-left : 15px;">
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>میهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+									
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+        		<div id="clear"></div>
+        		
+        		<div id="horizonLine"></div>
+
+}{
+	<!--  left content for About Us -->
+
+	<div id="aboutBox">
+		<h2>درباره ما </h2>
+		<div class="questions">
+			<p class="qTitle">ما چه کسانی‌ هستیم؟</p>
+			<div class="qExpand">ما تیمی از مسیحیان جوان هستیم که عیسی مسیح را خیلی‌ دوست داریم. همچنین دوست داریم از هدایای روحانی‌ و انرژی خود در جهت جلال دادن به خدا استفاده کنیم.</div>
+		</div>
+		<div class="questions">
+			<p class="qTitle">ما چه اعتقادی داریم؟</p>
+			<div class="qExpand">ما به کتاب مقدس بعنوان یگانه مرجع وحی شده از طرف خدای زنده اعتقاد داریم. اعتقاد داریم برای لذت بردن از خداوند آفریده شده ایم تا شکوه و عظمت او را در زندگیمان منعکس کنیم. عیسی مسیح خداوند بود که حدود ۲۰۰۰ سال پیش لباس جسم پوشید، به شباهت آدمیان در آمد و بر زمین پا گذاشت. برای پرداخت گناهان ما بود که بر صلیب تن‌ به مرگ داد تا از این طریق، بخشش گناهان را داشته باشیم و با او آشتی‌ کرده و مشارکت داشته باشیم. عیسی مسیح در روز سوم از مردگان رستاخیز یافت و بر قدرت گناه و مرگ چیره شد. او اکنون در جسم در ملکوت بر تخت سلطنت نشسته است. عیسی مسیح در زمان‌های آخر با جلال و شکوه همراه با فرشتگان دوباره باز خواهد گشت. ولی‌ این‌بار نه با فروتنی و برای بخشش گناهان، بلکه برای داوری خواهد آمد. در این بین روح القدس - مدافع ایمانداران به مسیح - در ایمانداران زندگی‌ کرده، آنها را در شناخت عیسی مسیح و رشد روحانی بنا می‌کند. پس ساخته دست خداییم تا کارهای نیکو انجام دهیم.</div>
+		</div>
+		<div class="questions">
+			<p class="qTitle">رویای ما چیست؟</p>
+			<div class="qExpand">رویای ما تشویق همزبانان خود، به مطالعه -به ویژه کتاب‌های نیکو - است. اینکه با شروع مطالعه در هر سنی‌ که هستیم، این حقیقت را دریابیم که میشود کتابخوان شد، حتی اگر هیچگاه کسی‌ در خانواده این را به ما نیاموخته باشد. همچنین بتوانیم به کمک کتاب، قدرت تخیل و حافظه و تجزیه تحلیل را در خود بپرورانیم، و در نهایت تنها مصرف کننده نتایج دیگران نباشیم بلکه خود مسایل را بسنجیم، برای مشکلات راه حل پیدا کنیم و روح‌ها را بیازماییم.</div>
+		</div>
+		<div class="questions">
+			<p class="qTitle">چگونه در جهت تحقق‌ این رویا پیش می‌رویم؟</p>
+			<div class="qExpand">ما پروژه آماده سازی پلتفرم فارسی ریدز را به ۵ فاز جداگانه تقسیم کرده ایم. ۱-سایت در حالت استاتیک خود؛ بخش وبلاگ و اطلاعات کلی‌ در مورد موجودیت فارسی ریدز، همچنین معرفی‌ رویا و اهداف پلتفرم. ۲-افزودن دیتابیس کتابهای فارسی به صورت تدریجی‌ و آماده سازی پروفایل هر کتاب بطور مجزا. ۳-افزودن قابلیت‌های شبکه‌های اجتماعی(از جمله قابلیت امتیاز دادن به مطالب و کتاب و نظر دهی‌ و به اشتراک گذاری) + پیاده سازی کتابخانه مجازی برای هر کاربر. ۴-آماده سازی و تهیه پکیج‌های تشویقی برای شروع و یا ادامه کتاب خوانی ۵-اجرای بخش بوک شاپ(از جمله آدرس دهی‌ به دیگر کتابفروشی ها) و نشر کتاب.
+			</div>
+		</div>
+	</div><!-- about box-->
+	
+	<div id="contactBox">
+		<h2>تماس با ما</h2>
+		<p>شما میتوانید از فرم زیر استفاده نمایید و نظرات خود را با ما در میان بگذارید</p>
+		<div id="contactForm">
+			Name
+			email 
+			Subject
+			Message
+			Send
+		</div>
+	</div><!-- contact box-->
+
+
+	
+}{
+	
+	<!--  Content Right comes here -->
+	<div id="addressBox">
+		<h4>آدرس پستی ما:</h4>
+		<p>Ludwigstrasse.42</p>
+		<p>Giessen 35390 </p>
+		<p>Germany</p>
+	</div>
+	<div id="donationBox">
+		<p>شما میتوانید با کمکهای مالی خود در پیشبرد پروژه کتابخوانی سهمی داشته باشید</p>
+		<div id="payPal"><a href="#paypal">PayPal</a></div>
+	</div>
+}

@@ -144,8 +144,9 @@
 	<!--  <p>Right content for index محتوا اینجا</p> -->
 	
 	<div id="visitorCount">
-		@*for(g <- ga){ g.toString }*@
-		@ga
+		@for(g <- ga){ 
+			<p style="padding:5px;;"> تعداد کاربران "فارسی ریدز" :  <span style="font-size:1.3em;">@g</span> </p>}
+		
 		
 	</div><!-- visitorCount -->
 	
