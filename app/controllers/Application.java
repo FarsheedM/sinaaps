@@ -1,5 +1,8 @@
 package controllers;
 
+import com.typesafe.plugin.*;
+
+
 import models.*;
 import play.*;
 import play.api.mvc.Session;
@@ -14,9 +17,9 @@ import javax.persistence.*;
 public class Application extends Controller {
 
 	
-    public static Result index() {
+	public static Result index() {
     	
-    		return ok(views.html.index.render("FarsiReads",Form.form(Login.class)));
+    	return ok(views.html.index.render("FarsiReads",Form.form(Login.class)));
     }
 	
     @Security.Authenticated(Secured.class)

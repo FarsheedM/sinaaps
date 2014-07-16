@@ -14,7 +14,8 @@ libraryDependencies ++= Seq(
   "com.google.http-client" % "google-http-client-jackson2" % "1.17.0-rc",
   "com.google.oauth-client" % "google-oauth-client-jetty" % "1.17.0-rc",
   "com.google.api-client" % "google-api-client" % "1.18.0-rc",
-  "com.google.http-client" % "google-http-client" % "1.17.0-rc"
+  "com.google.http-client" % "google-http-client" % "1.17.0-rc",
+  "com.typesafe" %% "play-plugins-mailer" % "2.1.0"
 )     
 
 play.Project.playJavaSettings

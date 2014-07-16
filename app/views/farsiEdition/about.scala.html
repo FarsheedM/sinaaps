@@ -1,5 +1,5 @@
-@(user : User)
-@FaMain("About Us"){
+@(user : User, form : Form[About.FeedBack])
+@FaMain("درباره ما"){
 
 <!-- -------------------farsi Edition----------------------- -->
 <head>
@@ -70,11 +70,23 @@
 		<h2>تماس با ما</h2>
 		<p>شما میتوانید از فرم زیر استفاده نمایید و نظرات خود را با ما در میان بگذارید</p>
 		<div id="contactForm">
-			Name
-			email 
-			Subject
-			Message
-			Send
+			@helper.form(controllers.routes.About.sendFeedBack("farsi")){
+				<input type="text" name="name" placeholder="نام"><br>
+				<input type="email" name="email" placeholder="ایمیل"><br>
+				<select name="subject">
+					<option>موضوع</option>
+					<option>شهادت یا تشویق</option>
+					<option>وب سایت</option>
+					<option>گزارش توهین</option>
+					<option>اعلام همکاری</option>
+					<option>مشکل در حساب کاربری</option>
+				</select><br>
+				<textarea name="message" rows="5" cols="60"></textarea><br>
+				<input type="submit" value="پست">
+
+			}
+			<br>
+
 		</div>
 	</div><!-- contact box-->
 

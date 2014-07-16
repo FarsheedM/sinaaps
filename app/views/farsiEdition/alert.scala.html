@@ -1,16 +1,17 @@
-@(user : User, form : Form[About.FeedBack])
-
-@main("About"){
-
+@(user : User, message : String)
+@FaMain("گزارشات"){
+<!-- -------------------farsi Edition----------------------- -->
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiAbout.css")">
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
 </head>
 
         		<div id="clear"></div>
         		
         		<div id="socialBar">
-        			<div id="socialBarLeft">
-						<ul>
+        			<div id="socialBarRightFarsi">
+						<ul style="padding-left : 15px;">
 							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
 							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
 							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
@@ -19,25 +20,42 @@
 							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
 						</ul>
 					</div><!-- socialBarLeft -->
-        			<div id="socialBarRight">
+					
+        			<div id="socialBarLeftFarsi">
 						<header id="socializingMenu">
-							<dl id="user">
+							<dl id="userFarsi">
 								
 								@if(user.fName != "Guest"){
 									<dt> @user.fName <span>@user.email</span></dt>
-									<dd><a href="@routes.Application.logout">logout</a></dd>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
 								} else {
-									<dt>logged in as :  <span>@user.fName</span></dt>
-									<dd><a href="@routes.Application.index">Log In</a></dd>
+									<dt>وضعیت کاربر : <span>میهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+									
 								}
 							</dl>
 						</header>
         			</div><!-- headcontentRight (loggedIn) -->
         		</div><!-- headContent -->
         		<div id="clear"></div>
+        		
+        		<div id="horizonLine"></div>
+
 
 }{
-	<p>left content for About</p>
+	<!--  Content Left comes here -->
+	@message
 }{
-	<p>right content for About</p>
+
+	<!--  Content Right comes here -->
+	<div id="addressBox">
+		<h4>آدرس پستی ما:</h4>
+		<p>Ludwigstrasse.42</p>
+		<p>Giessen 35390 </p>
+		<p>Germany</p>
+	</div>
+	<div id="donationBox">
+		<p>شما میتوانید با کمکهای مالی خود در پیشبرد پروژه کتابخوانی سهمی داشته باشید</p>
+		<div id="payPal"><a href="#paypal">PayPal</a></div>
+	</div>
 }
