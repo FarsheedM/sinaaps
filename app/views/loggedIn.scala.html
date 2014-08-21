@@ -64,12 +64,28 @@
 				<p>شما میتوانید از  <a href="@routes.Blog.display("farsi")">بلاگ فارسی ریدز </a>دیدن فرمائید. همچنین میتوانید به مطالب نمره دهید و نظر خود رو به اشتراک بگذارید.</p>
 			</li>
 			<li>
-				<p>شما میتوانید در سایت ثبت‌نام کنید و  <a href="#aboutUs"> با ما </a>و  <a href="#services"> خدمات </a>فارسی ریدز آشنا شوید </p>
+				<p>شما میتوانید در سایت ثبت‌نام کنید و  <a href="@routes.About.display("farsi")"> با ما </a>و  <a href="#services"> خدمات </a>فارسی ریدز آشنا شوید </p>
 			</li>
 		</ul>
 
 	</div><!-- redirect -->
 	<br>
 }{
-	<p>right content for LOGGEDIN</p>
+	<!--  right content for LOGGEDIN -->
+	
+	<div id="adBox">
+		در صورتی که در ورود به سیستم دچار مشکل شده اید، به ما اطلاع دهید
+		<br>
+		<a href="@routes.About.display("farsi")">تماس با ما</a>
+	</div>
+	
+	<!-- -----------------------twitter---------------------- -->
+	<a class="twitter-timeline" href="https://twitter.com/FarsiReads" data-tweet-limit="1"
+		width="300px" data-chrome="nofooter"
+		data-widget-id="485401626165780481">Tweets by @@FarsiReads
+	</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+		if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
 }

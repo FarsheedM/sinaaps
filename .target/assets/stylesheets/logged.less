@@ -1,4 +1,4 @@
-// ---------------------------- COLORS
+// --------------------- COLORS ------------------------------------------------
 //------------------------------------------------------------------------------
 @skyBlue:               #87ceeb;
 @skyBlueLight:          #dbf0f9;
@@ -32,8 +32,16 @@
 @folderHeaderDark:      #dfe2e6;
 @folderTitle:           #7a8a99;
 
-// ----------------------------- FONTS
-@defaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+// ----------------------------- FONTS -----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   18px "NasimBreeze","Tahoma","Arial";
+
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+@OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
 
 //------------------------------------------------------------------------
 
@@ -156,6 +164,13 @@ a {
 	margin-top : 30px;
 	//border-bottom : 1px solid @mainBackground;
 }
+#photoBanner{
+	width : 550px;
+	height : 100px;
+	border-style : solid;
+	//background-image : url('dropbox.com/s/hgobekqdne1uxcx/post1_550_100.jpg');
+}
+
 #resourceMeta{
 	border-top : 1px solid @mainBackground;
 	border-bottom : 1px solid @mainBackground;
@@ -275,8 +290,10 @@ a {
 	height : 150px;
 }
 #adBox{
-	height : 170px;
-	background-color: silver;
+	height : 0 auto;
+	background-color: white;
+	padding : 6px;
+	margin-bottom : 5px;
 }
 #clear{
 	clear : both;
@@ -328,6 +345,7 @@ a {
 	width : 98%;
 	margin : 10px auto;
 	text-align : center;
+	
 }
 #featuredBoxFarsi a{
 
@@ -342,7 +360,12 @@ a {
 	width : 580px;
 	overflow : hidden;
 	text-align: right;
+	font : @defaultFont;
 }
+#pcFarsi{
+	font : @defaultFont;
+}
+
 #topicFarsi{
 	border-right : 1px solid @mainBackground;
 	margin-right : 10px;

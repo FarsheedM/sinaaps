@@ -1,8 +1,23 @@
-#aboutBox{
+//--------------------------FONTS-----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   18px "NasimBreeze";
 
+//-------------------------------------------------------------------
+#aboutBox{
+	padding-right : 20px;
+	padding-left : 20px;
+	margin-bottom : 10px;
+	padding-bottom : 20px;
+	border-bottom : 1px solid #dddddd;
+	font : @defaultFont;
 }
 #contactBox{
-
+	padding-right : 20px;
+	padding-left : 20px;
+	font : @defaultFont;
 }
 .questions{}
 .qTitle{}
@@ -16,10 +31,16 @@
     line-height: 1.75em;
     text-align: center;
     text-transform: uppercase;
+    padding-top : 1px;
+    padding-bottom : 1px;
 }
 #donationBox{
 	background-color : white;
 	height : 0 auto;
+	padding-top : 2px;
+	padding-bottom : 2px;
+	padding-right : 10px;
+	padding-left : 5px;
 }
 #payPal{
 

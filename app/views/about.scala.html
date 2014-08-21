@@ -37,7 +37,69 @@
         		<div id="clear"></div>
 
 }{
-	<p>left content for About</p>
+	<!--  left content for About -->
+
+	<div id="aboutBox">
+		<h2>About Us</h2>
+		<div class="questions">
+			<p class="qTitle">Who we are?</p>
+			<div class="qExpand">We are a small group of Christian youth who love Jesus a lot. We'd like to use our spiritual gifts and passions for the God's glory.</div>
+		</div>
+		<div class="questions">
+			<p class="qTitle">What we believe?</p>
+			<div class="qExpand">We believe in the Bible as the only breathed reference from the living God. We believe that we are created by God to enjoy from Him so that we could magnify His glory. Jesus Christ was God in flesh who entered the World around 2000 years ago; born in likeness of man. It was to pay for our sins that he chose the humble death on the cross so that we could have the forgiveness of our sins and being reconciliated, we could now have relationship with Him. On the third day, Jesus Christ was resurrected conquering the power of sin and death. He is now in his glorified body at the right hand of the Father in heaven. We believe that Jesus will come back again in his glory accompanying by thousands of angles; this time not like his first humble coming and not to forgive sins but for judge the world. In the meanwhile we - believers of Jesus Christ- have an advocate who is Holy Spirit living in us. He helps the Christians in their knowledge of God and in their spiritual growth to gradually become similar to their master, Jesus Christ.</div>
+		</div>
+		<div class="questions">
+			<p class="qTitle">What is our Vision?</p>
+			<div class="qExpand">Our vision is to encourage farsi-speaking people to read, specially read good solid Christian books. We try to help them know the fact that they could start reading regardless of their age and family background. The fasireads tries to pave the way to remove the reading illiteracy among farsi readers and by that, helping them to be able to use their God-given intellectual capabilities to analyse a matter or teaching by themselves. By reading books they could be equipped to think and digest the matters themselves and not always be the consumers of the other's thoughts and conclusions. Most of all our aim is to let our farsi-speaking people realize their own responsibilities in their spiritual growth and persuade them to face the problems and find the solutions and be a blessing for themselves as well as others.</div>
+		</div>
+		<div class="questions">
+			<p class="qTitle">How to reach our Vision?</p>
+			<div class="qExpand">We have divided the farsireads project into 5 separate phases.
+1-Static Website which includes an ongoing blog and introduction to the platform and our vision.
+2-The Books Database and adding and profiling them Incrementally
+3-Social networking features(commenting/liking the posts and books and summaries) plus establishing a virtual library for each Users.
+4-Preparing encouraging packages to start reading or persevere in reading
+5-Bookshop as well as linking to the existing ones  </div>
+		</div>
+	</div><!-- about box-->
+  
+	<div id="contactBox">
+		<h2>Contact Us</h2>
+		<p>Please use the contact form below by selecting the subject of the message:</p>
+		<div id="contactForm">
+			@helper.form(controllers.routes.About.sendFeedBack("english")){
+				<input type="text" name="name" placeholder="name"><br><br>
+				<input type="email" name="email" placeholder="email"><br><br>
+				<select name="subject">
+					<option>subject</option>
+					<option>Testemonial/Encouragment</option>
+					<option>website</option>
+					<option>abuse report</option>
+					<option>cooperation</option>
+					<option>problem in your account</option>
+				</select><br><br>
+				<textarea name="message" rows="5" cols="60"></textarea><br>
+				<input type="submit" value="post">
+
+			}
+			<br>
+
+		</div>
+	</div><!-- contact box-->
+
+
 }{
-	<p>right content for About</p>
+	<!-- right content for About -->
+
+	<div id="addressBox">
+		<h4>Postal Address:</h4>
+		<p>Ludwigstrasse.42</p>
+		<p>Giessen 35390 </p>
+		<p>Germany</p>
+	</div>
+	<div id="donationBox">
+		<p>You can partner with us in FarsiReads project financially </p>
+		<div id="payPal"><a href="#paypal">PayPal</a></div>
+	</div>
 }

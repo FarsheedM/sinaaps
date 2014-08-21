@@ -1,6 +1,6 @@
 ﻿# --- !Ups
  
-insert into user values("info@1.com","far","far","1234",null,null,null);
+insert into user values("info@1.com","far","far","1234",null,null,null,0);
 insert into author values(1,null);
 
 insert into author_translation values(1,1,"english","John","Piper","John Piper is the founder of DesiringGod.org and the senior pastor of Bethlehem Baptist Church for 33 years. He is author of more than 50 books.","Minnesota","Male");
@@ -31,9 +31,9 @@ The writer of Hebrews gives similar warnings: Hebrews 2:1-3; 3:12-14; 4:1,11; 6:
 
 The way in which we persevere in faith and thereby maintain assurance of salvation is by taking seriously the glorious promises and the terrible threats found in Scripture (cf. Hebrews 10:19-31; also Deuteronomy 28).
 
-Pastor John & Pastor Tom","http://image.com",1,"Faith","English");
+Pastor John & Pastor Tom","http://image.com",1,"Faith","English","12.01.2012",null,null);
 
-update blog_post set published="12.01.2012" where post_id=0;
+
 
 insert into book values(1,"9781563205453",1256, "06.09.2013" ,"http://biblia.com/bibleimg","8.8*5.5*1.3",0.77);
 

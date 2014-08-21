@@ -43,7 +43,7 @@ public class ApplicationFa extends Controller{
     	//this gets the latest blogpost ordered by "published" date.
     	BlogPost post = BlogPost.find.where().eq("language", "farsi").order().desc("published").findList().get(0);   
     	List<String> ga = new ArrayList<String>();
-    	ga.add("test");
+    	ga.add("...");
     	if(!getVisitorsCountGA().isEmpty())
     		ga =getVisitorsCountGA();
      	return ok(views.html.farsiEdition.index.render("فارسی‌ ریدز",Form.form(Login.class),post,ga));
@@ -100,7 +100,7 @@ public class ApplicationFa extends Controller{
          * create new ClientID ->service account and save the privateKey.p12 somewhere
          */
         
-        File analyticsPrivateKeyFile = new File("C:\\Users\\Farian\\Downloads\\key.p12.p12");
+        File analyticsPrivateKeyFile = new File("./public/key.p12.p12");
         
         GoogleCredential credential = new GoogleCredential.Builder()
         .setTransport(HTTP_TRANSPORT)
@@ -117,7 +117,7 @@ public class ApplicationFa extends Controller{
     private static GaData executeDataQuery(Analytics analyticsService, String tableId) throws IOException {
         
         String startDate = "2014-01-03";
-        String endDate = "2014-07-04";
+        String endDate = "2014-08-21";
         String mertrics = "ga:users";
 
         // Use the analytics object build a query

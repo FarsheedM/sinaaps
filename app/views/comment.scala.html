@@ -4,7 +4,11 @@
 	
 	@if(comment != null){
 		<div id="usr_photo">
-			<img class="usrPhoto" title="@comment.user.fName" src="@comment.user.photo?">
+			@if(comment.user.genre){
+				<img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/woman.png")">
+				}else {
+				<img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/man.png")">
+				}
 		</div>
 		<div id="commentRightBlock">
 			<div id="usr_name">

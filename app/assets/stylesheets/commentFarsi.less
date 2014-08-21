@@ -50,12 +50,12 @@ fieldset h3{
 	float : right;
 	width : 50px;
 	height : 50px;
-	//background-image : url("/assets/images/CSlewis.jpg");
+	
 }
 .usrPhoto{
 	width : 50px;
 	height : 50px;
-	
+	background-image : url("/assets/images/man.png");
 }
 #commentRightBlock{
 	width : 530px;
@@ -106,6 +106,56 @@ fieldset h3{
 #clear {
 	clear : both;
 }
+//-------------------------star Rating-------------------------
+.starRating{
+  display        : inline-block;
+  position       : relative;
+  height         : 24px;
+  background     : url("/assets/images/stars.png") repeat-x 0 0;
+  vertical-align : bottom;
+}
+
+.starRating div{
+  float    : left;
+  position : relative;
+  height   : 24px;
+}
+
+.starRating input{
+  position : relative;
+  z-index  : 1;
+  width    : 24px;
+  height   : 24px;
+  margin   : 0;
+  padding  : 0;
+  opacity  : 0;
+}
+
+.starRating label{
+  position : absolute;
+  top      : 0;
+  left     : 0;
+  width    : 100%;
+  height   : 24px;
+}
+
+.starRating span{
+  display : none;
+}
+
+.starRating       input:checked       + label,
+.starRating:hover input:checked:hover + label{
+  background : url("/assets/images/stars.png") repeat-x 0 -24px;
+}
+
+.starRating:hover input:checked + label{
+  background : transparent;
+}
+
+.starRating:hover input:hover + label{
+  background : url("/assets/images/stars.png") repeat-x 0 -48px;
+}
+
 //------------------sharing box------------------
 .shareBox{
 	width : 90%;
@@ -125,3 +175,11 @@ fieldset h3{
 .g-plus{
 	float:right;
 }
+//-----------------------------------------------------
+
+#horizonLine{
+	border-top:1px solid #333333;
+	width : 94%;
+	margin-right:10px;
+	margin-bottom:4px;
+ }

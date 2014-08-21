@@ -1,0 +1,61 @@
+@(user : User, message : String)
+@main("Reports"){
+
+<head>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/about.css")">
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+</head>
+
+        		<div id="clear"></div>
+        		
+        		<div id="socialBar">
+        			<div id="socialBarLeft">
+						<ul style="padding-left : 15px;">
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarRight">
+						<header id="socializingMenu">
+							<dl id="user">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">Logout</a></dd>
+								} else {
+									<dt>logged in as : <span>Guest</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> Log In </a></dd>
+									
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+        		<div id="clear"></div>
+        		
+        		<div id="horizonLine"></div>
+
+
+}{
+	<!--  Content Left comes here -->
+	@message
+}{
+
+	<!--  Content Right comes here -->
+	<div id="addressBox">
+		<h4>Postal Address:</h4>
+		<p>Ludwigstrasse.42</p>
+		<p>Giessen 35390 </p>
+		<p>Germany</p>
+	</div>
+	<div id="donationBox">
+		<p>You can partner with us in FarsiReads project financially </p>
+		<div id="payPal"><a href="#paypal">PayPal</a></div>
+	</div>
+}

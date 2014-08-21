@@ -66,13 +66,14 @@
 		</div>
 	</div><!-- about box-->
 	
+	
 	<div id="contactBox">
 		<h2>تماس با ما</h2>
 		<p>شما میتوانید از فرم زیر استفاده نمایید و نظرات خود را با ما در میان بگذارید</p>
 		<div id="contactForm">
 			@helper.form(controllers.routes.About.sendFeedBack("farsi")){
-				<input type="text" name="name" placeholder="نام"><br>
-				<input type="email" name="email" placeholder="ایمیل"><br>
+				<input type="text" name="name" placeholder="نام"><br><br>
+				<input type="email" name="email" placeholder="ایمیل"><br><br>
 				<select name="subject">
 					<option>موضوع</option>
 					<option>شهادت یا تشویق</option>
@@ -80,7 +81,7 @@
 					<option>گزارش توهین</option>
 					<option>اعلام همکاری</option>
 					<option>مشکل در حساب کاربری</option>
-				</select><br>
+				</select><br><br>
 				<textarea name="message" rows="5" cols="60"></textarea><br>
 				<input type="submit" value="پست">
 

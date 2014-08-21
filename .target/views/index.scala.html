@@ -1,4 +1,4 @@
-@(message : String, form : Form[Application.Login])
+@(message : String, form : Form[Application.Login], post : BlogPost , ga : List[String])
 
 
 @main(message) {
@@ -42,20 +42,45 @@
 	</div><!-- infoBox -->
 	<div id="clear"></div>
 	
-	<div id="bookBox">bookBox</div><!-- bookBox -->
+	<div id="bookBox">
+		<p>In this section a collection of farsi Christian books and booklets including the original farsi works as well as translated ones are gathered in a database. You can search to see whether a specific topic is available in farsi and see a short summary of the book. You could also browse the books using the book categories which are sorted by topics.
+ In this section we choose and analyse and recommend a book monthly; you could also be informed about the new titles which are translated or published.
+Using this section enables you to establish and organize your own virtual library to keep track of your already read and current reading books.
+The main purpose is to organize the complete collection of all farsi Christian works regardless of their confessions.
+
+		</p>
+	</div><!-- bookBox -->
 	<div id="blogBox">blog posts come here</div><!-- blogBox -->
-	<div id="activityBox">activities should be here</div> <!-- activityBox -->
-	<div id="qoutationBox"> Qouts from the DB come here</div> <!-- qoutationBox -->
+	<div id="activityBox">
+		activities should be here
+		-Translating useful books and articles
+-Holding Seminars and Workshops to promote reading
+-Helping to establish a farsi library in the local church
+	</div> <!-- activityBox -->
+	<div id="qoutationBox"> 
+		Quotation
+		"I believe in Christianity as I believe in sun; not only because I see it but through it I see everything." -C.S.Lewis	
+	</div> <!-- qoutationBox -->
 	<div id="clear"></div>
 	}{
 	
 	<!--  Content Right comes here -->
-	<div id="onlineUsersBox">
-		<p>There are -- online Users.</p>
-	</div>
-	<div id="adBox">
-		The advertisement of the Books and services as well as other websites come here
-		<br>
-	</div>
+
+		<div id="visitorCount">
+		@for(g <- ga){ 
+			<p> FarsiReads Online Visitors :  <span>@g</span> </p>}
+		
+		
+	</div><!-- visitorCount -->
+	
+	<!-- -----------------------twitter---------------------- -->
+	<a class="twitter-timeline" href="https://twitter.com/FarsiReads" data-tweet-limit="1"
+		width="300px" data-chrome="nofooter"
+		data-widget-id="485401626165780481">Tweets by @@FarsiReads
+	</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+		if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
 	
 	}

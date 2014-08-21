@@ -35,6 +35,11 @@
 
 // ----------------------------- FONTS
 @defaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@farsiFont: 		   18px "NasimBreeze";
 
 //-------------------------------------
 
@@ -105,6 +110,7 @@ body{
 	float:right;
 	padding-top: 10px;
 }
+
 #menu ul {
 	list-style-type:none;
 }
@@ -121,9 +127,29 @@ body{
 #menu ul a:active{
 	font-weight: bold;
 }
+//---------------------------farsi menu-----------------------------
+#menuFarsi{
+	float:right;
+	padding-top: 10px;
+}
 
-
-
+#menuFarsi ul {
+	list-style-type:none;
+}
+#menuFarsi ul li{
+	font: @farsiFont;
+	display: inline;
+	margin-right: 25px;
+}
+#menuFarsi ul a{
+	text-decoration: none;
+}
+#menuFarsi ul a:hover{
+	color:red;
+}
+#menuFarsi ul a:active{
+	font-weight: bold;
+}
 
 /*----------------------content------------------------*/
 #content{

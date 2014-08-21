@@ -66,9 +66,60 @@
 		<br>
 		<div id="pi" ><img alt="@post.title" src="@post.image"></div>
 		<br>
-		<div id="pc" > @post.content </div>
+		<div id="pcFarsi" > @post.content </div>
 		<br>
 		<br>
+		<!-- -------------------------rating section to be implemented--------------------- -->
+		<!-- <div id="horizonLine"></div>
+		<br>
+		@if(user.fName == "Guest"){
+			<script type="text/javascript">
+				/*This script is used to disable the commentComment DIV to  
+					disable the GUEST users to comment
+				*/
+				var crp = document.getElementsByClassName('starRating');
+				crp.style.display = "none";
+			</script>
+		}else{
+			لطفا به این مطلب امتیاز دهید:
+			<br>
+			<div class="starRating">
+				  <div>
+				    <div>
+				      <div>
+				        <div>
+				          <input id="rating1" type="radio" name="rating" value="1">
+				          <label for="rating1"><span>1</span></label>
+				        </div>
+				        <input id="rating2" type="radio" name="rating" value="2">
+				        <label for="rating2"><span>2</span></label>
+				      </div>
+				      <input id="rating3" type="radio" name="rating" value="3">
+				      <label for="rating3"><span>3</span></label>
+				    </div>
+				    <input id="rating4" type="radio" name="rating" value="4">
+				    <label for="rating4"><span>4</span></label>
+				  </div>
+				  <input id="rating5" type="radio" name="rating" value="5">
+				  <label for="rating5"><span>5</span></label>
+			</div>
+		}
+		<script type="text/javascript">
+			function rateIt(){
+				var rates = document.getElementsByName('rating');
+				var rate_value;
+				for(var i = 0; i < rates.length; i++){
+				    if(rates[i].checked){
+				        rate_value = rates[i].value;
+				    }
+				}
+				return rate_value;
+			}
+		</script> -->
+		<!-- ------------------------------end of rating --------------------- -->
+		<div id="clear"></div>	
+		<br>
+		
 		<div class="shareBox">
 			<p>این مطلب را با دوستانتان در شبکه‌های زیر به اشتراک بگذارید:</p>
 			<!-- -----------------------FB------------------- -->

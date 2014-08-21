@@ -1,8 +1,16 @@
-// ----------------------------- FONTS
-@defaultFont:           13px "Tahoma","Arial","Helvetica Neue", "sans-serif";
+// ----------------------------- FONTS ---------------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   18px "NasimBreeze","Tahoma","Arial";
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
 
-//-------------------------------COLORS
-//------------------------------------------------------------------------------
+@OldDefaultFont:           14px "Lucida Grande","Helvetica Neue", sans-serif;
+
+//-------------------------------COLORS-----------------------------------------
+
 @skyBlue:               #87ceeb;
 @skyBlueLight:          #dbf0f9;
 @skyBlueLighter:        #cae9f6;
@@ -40,7 +48,7 @@
 	padding-right: 10px;
 	padding-top: 10px;
 	color : @blueDark;
-	font : 15px "Times New Roman";
+	font : @alternativeFont;
 }
 #headContentRight a{
 	color : gray;
@@ -54,6 +62,8 @@
 	width : 620px;
 	height : 150px;
 	margin-bottom : 2px;
+	padding-bottom : 6px;
+	font : @defaultFont;
 }
 #infoBoxLeft{
 	float : left;
@@ -71,13 +81,11 @@
 }
 .rightAlign{
 	text-align : right;
-	font : 12px/23px Tahoma,Arial,Helvetica,sans-serif;
 	lang : fa;
 }
 .rightAlign span{
-	font : 14px arial;
-	color : black;
-	font-weight : bolder;
+	font : @defaultFont;
+	color : gray;
 }
 
 /*----------------------BOOK WINDOW--------------------*/
@@ -89,41 +97,44 @@
 	width : 96%;
 	margin-right : 8px;
 	padding-bottom : 10px;
+	font : @defaultFont;
 }
 #bookBox p{
 	padding : 2px 15px 2px 10px;
-	font :  16px "Arial","Helvetica Neue", "sans-serif";
 	line-height : 1.5;
 }
 #categoryBox{
 	margin : 5px 10px 10px 10px;
-	padding-right : 10px;
+	padding-right : 25px;
 	width : 90%;
-	height : 148px;
-	//background-color : @blueLightest;
+	height : 170px;
 	border : 2px solid #dddddd;
 }
 #categoryBox h4{
 	height : 7px;
+	width : 200px;
 	margin-top : 5px;
+	margin-right : -5px;
 	color : @blueDark;
 }
 .right{
 	float : right;
-	padding-right : 8px;
+	padding-right : 10px;
 	padding-top : 0px;
-	width : 23%;
+	width : 23.1%;
 	padding-bottom : 15px;
+	font-size : 0.9em;
 }
 .right a{
 	text-decoration : none;
 	line-height : 1.5;
 	color : @blueDark;
-	font : 15px "tahoma";
+	font : @alternativeFont;
 }
 /*----------------------BLOG WINDOW--------------------*/
 #blogBox{
 	clear : both;
+	font : @defaultFont;
 }
 #latestPost{
 	padding-right : 10px;
@@ -147,35 +158,43 @@
 	padding-right : 3px;
 }
 #latestPostSum p{
-	font-size : 1.1em;
+	font : @alternativeFont;
+	line-height : 20px;
 	margin : 7px;
 }
 #latestPostSum h4{
 		padding-right : 7px;
+		padding-left : 5px;
+		font : @headerFont;
 }
 #latestPostLinks{
 	clear : both;
 	padding : 1px 10px 3px 0px;
 }
 #latestPostLinks a{
-	text-decoration : none;
-	/*border-style : solid;
+	/*text-decoration : none;
+	border-style : solid;
 	border-width : 1px;*/
 	color : @blueDark;
+	font : @defaultFont;
 }
 #latestPostLinks b{
-	color : black;
+	//color : black;
 }
 /*--------------------ACTIVITY WINDOW--------------------*/
 #activityBox{
 	//border-style : solid;
 	float : right;
 	width : 62%;
+	height : 100%;
 	padding-right : 5px;
 	padding-bottom : 5px;
+	font : @defaultFont;
 }
 #activityList{
 	list-style-type : none;
+	height : 100%;
+	width : 100%;
 	padding-right : 3px;
 	padding-left : 10px;
 	margin-bottom : 0px;
@@ -183,6 +202,7 @@
 #service{
 	height : 44px;
 	width : 100%;
+	//background-image : url('/assets/fonts/CSlewis.jpg');
 }
 #service img{
 	width : 40px;
@@ -191,16 +211,19 @@
 }
 #service p{
 	float : right;
+	width : 80%;
 	margin-right : 5px;
+	font : @defaultFont; 
 }
 /*--------------------QOUTATION WINDOW--------------------*/
 #qoutationBox{
 	border : 2px solid #dddddd;
-	//background-color: @blueLight;
+	font : @defaultFont;
 	float : left;
 	width : 34%;
 	padding-right : 3px;
 	margin-left : 8px;
+	margin-top : 15px;
 }
 #qoutationBox img{
 	width : 50px;
@@ -217,14 +240,14 @@
 }
 #quoteText{
 	word-wrap : break-word;
-	font : @defaultFont;
+	font-size : 14px;
 	padding-bottom : 5px;
 }
 //-----------------------------------------------
 h3{
-	font : 16px arial;
+	font : @headerFont;
 	color : @blueDark;
-	font-weight : bolder;
+	font-weight : bold;
 }
 #clear{
 	both: clear;
@@ -240,9 +263,15 @@ h3{
 #visitorCount{
 	background-color : white;
 	height : 0 auto;
-	margin-bottom : 10px;
+	margin-top : 3px;
+	padding : 3px;
+	padding-right : 10px;
+	font : @alternativeFont;
 }
-#adBox{
-	height : 170px;
-	background-color: silver;
+#visitorCount span{
+	font-size : 1.3em;
 }
+.twitter-timeline{
+	margin-top : 5px;
+}
+#adBox{}

@@ -1,10 +1,19 @@
-@(message : String, form : Form[Application.Login])
+@(message : String, form : Form[Application.Login], post : BlogPost , ga : List[String])
 
 
 @main(message) {
 
 		<head>
 			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/index.css")">
+			<script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+			<script>
+				var clamping = function(){
+					var header  = document.getElementById("@post.postID");
+					//header.style.backgroundColor ="RED";
+					//clamp integer specifies the number of lines of text
+					$clamp(header,{clamp : 8, useNativeClamp : true});
+				}	
+			</script>
 		</head>
 		
     	<div id="headContent">  
@@ -42,20 +51,110 @@
 	</div><!-- infoBox -->
 	<div id="clear"></div>
 	
-	<div id="bookBox">bookBox</div><!-- bookBox -->
-	<div id="blogBox">blog posts come here</div><!-- blogBox -->
-	<div id="activityBox">activities should be here</div> <!-- activityBox -->
-	<div id="qoutationBox"> Qouts from the DB come here</div> <!-- qoutationBox -->
+	<div id="bookBox">
+		<h3 style="padding-right:10px;">Books</h3>
+		<p>In this section a collection of farsi Christian books and booklets including the original farsi works as well as translated ones are gathered in a database. You can search to see whether a specific topic is available in farsi and see a short summary of the book. You could also browse the books using the book categories which are sorted by topics.
+ In this section we choose and analyse and recommend a book monthly; you could also be informed about the new titles which are translated or published.
+Using this section enables you to establish and organize your own virtual library to keep track of your already read and current reading books.
+The main purpose is to organize the complete collection of all farsi Christian works regardless of their confessions.
+		</p>
+		<div id="categoryBox">
+			<h4>Topics</h4>
+				<div class="right">
+					<a href="#">Theology</a><br>
+					<a href="#">Archaeology</a><br>
+					<a href="#">Evangelism</a><br>
+					<a href="#">Biography</a><br>
+					<a href="#">Church History</a><br>
+				</div>
+				<div class="right">
+					<a href="#">Commentary</a><br>
+					<a href="#">Family</a><br>
+					<a href="#">Service</a><br>
+					<a href="#">Story</a><br>
+					<a href="#">Apologetics</a><br>
+				</div>
+				<div class="right">
+					<a href="#">Devotions</a><br>
+					<a href="#">Christian Living</a><br>
+					<a href="#">Discipleship</a><br>
+					<a href="#">Sects</a><br>
+					<a href="#">Bible</a><br>
+				</div>
+				<div class="right">
+					<a href="#">Classics</a><br>
+					<a href="#">Children</a><br>
+				</div>
+				<br>
+		</div> <!-- categoryBox -->
+		
+	</div><!-- bookBox -->
+	<div id="blogBox">
+		<div id="latestPost"><h3>Blog</h3></div>
+		<div id="latestPostImg"><img src="@post.image" alt="@post.title" title="@post.title"></div>
+		<div id="latestPostSum">
+			Latest published post:
+			<h4>@post.title</h4>
+			<p id="@post.postID">@post.content</p>
+			<script>clamping();</script>
+			<a href="@routes.Blog.display(post.language)"><p>Read more ...</p></a>
+		</div>
+		<div id="clear"></div>
+		<div id="latestPostLinks"><h4><a href="@routes.Blog.display(post.language)">Go to the <b>FarsiReads</b> Blog</a></h4></div>
+	
+	</div><!-- blogBox -->
+	
+	<div id="horizonLine"></div>
+	
+	<div id="activityBox">
+		<h3>Activities</h3>
+		<ul id="activityList">
+			<li><div id="service"><img src="" alt="srvc"><p>Translating useful books and articles</p></div></li>
+			<li><div id="service"><img src="" alt="srvc"><p>Holding Seminars and Workshops to promote reading</p></div></li>
+			<li><div id="service"><img src="" alt="srvc"><p>Helping to establish a farsi library in the local church</p></div></li>
+		</ul>
+		<div id="clear"></div>
+		<br>
+		<a href="#ToService">Go to the Activity section</a>
+	</div> <!-- activityBox -->
+
+	<div id="quotationBox">
+		<h3 style="margin-top:4px;">Quotation</h3>
+		<div style="display : inline;">
+			<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
+			<div id="quoteText">
+				"I believe in Christianity as I believe in sun; not only because I see it but through it I see everything."
+				<br> -
+				<a href="#author's">C.S.Lewis</a>
+			</div>
+		</div>
+		
+<!-- 		<div style="display : none;"> Quote 2</div>
+		<div style="display : none;"> Quote 3</div>
+		<div style="display : none;"> Quote 4</div> -->
+		
+	</div> <!-- quotationBox -->
 	<div id="clear"></div>
+	
 	}{
 	
 	<!--  Content Right comes here -->
-	<div id="onlineUsersBox">
-		<p>There are -- online Users.</p>
-	</div>
-	<div id="adBox">
-		The advertisement of the Books and services as well as other websites come here
-		<br>
-	</div>
+
+		<div id="visitorCount">
+		@for(g <- ga){ 
+			<p> FarsiReads Online Visitors :  <span>@g</span> </p>}
+		
+		
+	</div><!-- visitorCount -->
+	
+	<!-- -----------------------twitter---------------------- -->
+	<a class="twitter-timeline" href="https://twitter.com/FarsiReads" data-tweet-limit="1"
+		width="300px" data-chrome="nofooter"
+		data-widget-id="485401626165780481">Tweets by @@FarsiReads
+	</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+		if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
 	
 	}

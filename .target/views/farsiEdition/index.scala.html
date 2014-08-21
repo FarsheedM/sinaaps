@@ -10,7 +10,7 @@
 					var header  = document.getElementById("@post.postID");
 					//header.style.backgroundColor ="RED";
 					//clamp integer specifies the number of lines of text
-					$clamp(header,{clamp : 11, useNativeClamp : true});
+					$clamp(header,{clamp : 8, useNativeClamp : true});
 				}	
 			</script>
 		</head>
@@ -24,7 +24,7 @@
 	        				<input type="password" name="password" placeholder="پسورد" />
 	        				<br/>
 	        				<button type="submit">ورود</button>
-	        				<h4>هنوز عضو فارسی ریدز نیستید؟ <a href="/farsi/signUp" id="signUpLink">اینجا</a> ثبت نام کنید</h4>
+	        				<p>هنوز عضو فارسی ریدز نیستید؟ <a href="/farsi/signUp" id="signUpLink">اینجا</a> ثبت نام کنید</p>
 	        				@if(form.hasGlobalErrors){
 	        					<p id="error">@form.globalError.message </p>
 	        				}
@@ -123,7 +123,7 @@
 	
 	
 	<div id="qoutationBox">
-		<h3>بیان شیرین</h3>
+		<h3 style="margin-top:4px;">بیان شیرین</h3>
 		<div style="display : inline;">
 			<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
 			<div id="quoteText">
@@ -145,7 +145,7 @@
 	
 	<div id="visitorCount">
 		@for(g <- ga){ 
-			<p style="padding:5px;;"> تعداد کاربران "فارسی ریدز" :  <span style="font-size:1.3em;">@g</span> </p>}
+			<p> تعداد کاربران "فارسی ریدز" :  <span>@g</span> </p>}
 		
 		
 	</div><!-- visitorCount -->

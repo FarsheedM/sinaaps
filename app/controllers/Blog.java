@@ -97,7 +97,7 @@ public class Blog extends Controller{
 		commentForm.get().post= BlogPost.find.byId(postId);
 		commentForm.get().user= User.find.byId(session().get("email"));
 		commentForm.get().published = DateTime.now().toDate();
-		commentForm.get().likes = 0 ;
+		//commentForm.get().likes = 0 ;
 		
 
 

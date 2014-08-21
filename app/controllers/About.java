@@ -47,12 +47,23 @@ public class About extends Controller{
 	//the english version of alert view!
 	public static Result sendFeedBack(String lang){
 		
+		User usr;
 		User guest = new User("Guest","dummyEmail","dummyPassword");
+		if(session().containsKey("email"))
+			usr = User.find.byId(session().get("email"));
+		else
+			usr = guest;
+		
 		try{
 			Form<FeedBack> feedBackForm = Form.form(FeedBack.class).bindFromRequest();
+			
 	    	if(feedBackForm.hasErrors()){
-	    		return badRequest(views.html.farsiEdition.alert.render(guest,"پیام شما ارسال نشد! لطفا دوباره پیام خود را بفرستید."));
+	    		if(lang.equals("farsi"))
+	    			return badRequest(views.html.farsiEdition.alert.render(usr,"پیام شما ارسال نشد! لطفا دوباره پیام خود را بفرستید."));
+	    		else
+	    			return badRequest(views.html.alert.render(usr,"Your message has not been sent! Please Try again!"));
 			} else {
+				
 			    MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
 			    mail.setSubject(feedBackForm.get().subject);
 			    mail.addRecipient("farsireads@gmail.com");
@@ -67,8 +78,10 @@ public class About extends Controller{
 		catch(Exception ex){
 			System.err.println(ex.getMessage());
 		}
-		
-		return ok(views.html.farsiEdition.alert.render(guest,"سپاس، پیام شما با موفقیت فرستاده شد. بزودی پیگیری خواهد شد."));
+		if(lang.equals("farsi"))
+			return ok(views.html.farsiEdition.alert.render(usr,"سپاس، پیام شما با موفقیت فرستاده شد. بزودی پیگیری خواهد شد."));
+		else
+			return ok(views.html.alert.render(usr,"Thanks!  Your message sent successfully. We will reply soon."));
 	}
 	
 	public static class FeedBack{
