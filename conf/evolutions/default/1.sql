@@ -5,7 +5,7 @@ email varchar(255),
 f_name varchar(255),
  l_name varchar(255),
 password varchar(255),day int,month int,year int,
-address varchar(255),photo varchar(300),genre bool,
+address varchar(255),photo varchar(300),gender bool,
 primary key (email))
 ;
 

@@ -32,10 +32,10 @@ public class User extends Model{
 	public String photo;
 	@Required
 	//false is male , and true female
-	public boolean genre;
+	public boolean gender;
 	
 	public User(String fName,String lName,String email,
-			String password,Date birthdate,String address,String photo,boolean genre){
+			String password,Date birthdate,String address,String photo,boolean gender){
 		this.fName= fName;
 		this.lName= lName;
 		this.email= email;
@@ -46,7 +46,7 @@ public class User extends Model{
 		this.year=year;
 		this.address= address;
 		this.photo = photo;
-		this.genre=genre;
+		this.gender=gender;
 	}
 	//NOTE:this constructor set the address and lastname "unknown" and 
 	//birthdate set to the current date of the machine.
@@ -61,7 +61,7 @@ public class User extends Model{
 		this.year=year;
 		this.address= "unknown";
 		this.photo = "noPhoto";
-		this.genre=false; 
+		this.gender=false; 
 	}
 	
 	public static Finder<String,User> find = new Finder<String,User>(

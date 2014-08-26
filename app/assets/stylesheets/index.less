@@ -1,7 +1,7 @@
 // ----------------------------- FONTS ---------------------------------------
-@defaultFont: 			   16px "Tahoma","Arial";
-@headerFont:               18px "Tahoma","Arial";
-@alternativeFont:          14px "tahoma","arial";
+@defaultFont: 			   16px "times new roman","Tahoma","Arial";
+@headerFont:               18px "times new roman","Tahoma","Arial";
+@alternativeFont:          14px "times new roman","tahoma","arial";
 
 //-------------------------------COLORS-----------------------------------------
 
@@ -25,7 +25,8 @@
 
 #headContent{
 	height: 295px;
-	background-color:  white;
+	//background-color:  white;
+	border-bottom : solid #333333;
 	padding-top:65px;	
 }
 #headContentLeft{
@@ -35,11 +36,13 @@
 	float:right;
 	width: 280px;
 	height: 180px;
-	background-color: silver;
-	border-style: solid;
+	background-color: @blueLight;
+	border: 1px solid @blueDark;
 	margin-right:20px;
 	padding-left: 10px;
 	padding-top: 10px;
+	color : @blueDark;
+	font : @alternativeFont;
 }
 #error{
 	color : red;
@@ -47,23 +50,31 @@
 
 #infoBox{
 	width : 620px;
-	height : 150px;
+	height : 180px;
 	margin-bottom : 2px;
+	padding-bottom : 6px;
+	font : @defaultFont;
 }
 #infoBoxLeft{
 	float : left;
-	height : 130px;
-	width : 305px;
+	height : 100%;
+	width : 290px;
+	margin-left : 10px;
 
 }
 #infoBoxRight{
 	float : right;
-	height : 130px;
-	width : 305px;
+	height : 100%;
+	width : 290px;
+	margin-left : 10px;
 
 }
 .rightAlign{
 	text-align : right;
+}
+.rightAlign span{
+	font : @defaultFont;
+	color : gray;
 }
 
 /*----------------------BOOK WINDOW--------------------*/
@@ -177,12 +188,12 @@
 	margin-bottom : 0px;
 }
 #activityList li{
-	height : 60px;
+	height : 70px; 
 }
 #service{
-	height : 44px;
+	height : 100%;
 	width : 100%;
-	//background-image : url('/assets/fonts/CSlewis.jpg');
+	//background-image : url('/assets/fonts/CSlewis.jpg');44px
 }
 #service img{
 	width : 40px;
