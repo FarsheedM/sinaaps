@@ -20,8 +20,12 @@
 	@author = @{AuthorTranslation.getAuthor(post.author.authorID,"english")}
 			
 	<article id="postBox">
-		<h4>@post.title</h4>
-		<a>@post.image</a>
+		<h4 style="text-align: left; padding-left: 20px;">@post.title</h4>
+		<div id="photoBanner">
+			<img src="https://photos-2.dropbox.com/t/0/AABGEoxMkViJBFptQTgrdvXH1A8paABHRXWke0704D6Lwg/12/253617202/jpeg/1024x768/3/1405962000/0/2/post1_550_100.jpg/WFrscRgWJuVsbh_AxLAigFnft5XmU-nI0mEBuFapfsI" alt="photo">
+			<!-- <a>@post.image</a> -->
+		</div><!-- end of "photoBanner" -->
+		<br>
 		<div id="resourceMeta">
 			<ul> 
 				<li>By @author.fName @author.lName</li>

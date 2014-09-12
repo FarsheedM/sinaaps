@@ -51,8 +51,8 @@
         			<div id="menu">
         				<ul>
         					<li><a href="@routes.Blog.display("english")">Blog</a></li>
-        					<li><a href="@routes.Books.display">Books</a></li>
-        					<li><a href="@routes.Services.display">Services</a></li>
+        					<li><a href="@routes.Books.display("english")">Books</a></li>
+        					<li><a href="@routes.Services.display("english")">Services</a></li>
         					<li><a href="#">I don't Read</a></li>
         					<li><a href="@routes.About.display("english")">About</a></li>
         				</ul>
@@ -77,7 +77,19 @@
         	<div id="clear"></div>
         	
         	<div id="footer">
-        		<div id="footerBox">&copy; 2014 FarsiReads Inc  |  Imprint  |  About  |  Contact us  |  Donate</div>
+        		
+        			<div id="footerMenu">
+        				<ul>
+        					<li>&copy; 2014 All the rights are reserved for FarsiReads.</li>
+        					<li><a href="@routes.Blog.display("english")">Blog</a></li>
+        					<li><a href="@routes.Books.display("english")">Books</a></li>
+        					<li><a href="@routes.Services.display("english")">Services</a></li>
+        					<li><a href="#">I don't Read</a></li>
+        					<li><a href="@routes.About.display("english")">About</a></li>	
+        				</ul>
+        			</div><!-- menu -->
+        			
+        		
         	</div><!-- footer -->
         	
         </div><!-- wrapper -->

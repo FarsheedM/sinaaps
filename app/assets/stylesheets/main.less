@@ -25,13 +25,6 @@
 @blueLightest:          #d8d8ff;
 @blueDark:				#00009d;
 @mainBackground:        #ececec;
-//------------------------------------------------------------------------------
-// Folders
-@folderBorder:          #9ba5ad;
-@folderBackground:      #dbe1e5;
-@folderHeaderLight:     #f2f5f8;
-@folderHeaderDark:      #dfe2e6;
-@folderTitle:           #7a8a99;
 
 // ----------------------------- FONTS
 @defaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
@@ -40,7 +33,7 @@
 	src : url('/assets/fonts/NasimBreeze.ttf');
 }
 @farsiFont: 		   18px "NasimBreeze";
-
+@headerFont:           1em/24px arial ,"Lucida Grande","Helvetica Neue", sans-serif;
 //-------------------------------------
 
 body{
@@ -109,6 +102,8 @@ body{
 #menu{
 	float:right;
 	padding-top: 10px;
+	font : @headerFont;
+	font-weight : bold;
 }
 
 #menu ul {
