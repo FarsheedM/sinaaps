@@ -66,7 +66,8 @@
 		<br>
 		<div id="pi" ><img alt="@post.title" src="@post.image"></div>
 		<br>
-		<div id="pcFarsi" > @post.content </div>
+		<!-- @@Html(): if we do not want to escape the content parts(e.g. ignoring HTML tags),wrap it in template content type -->
+		<div id="pcFarsi" > @Html(post.content) </div>
 		<br>
 		<br>
 		<!-- -------------------------rating section to be implemented--------------------- -->
