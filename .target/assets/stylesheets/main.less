@@ -24,7 +24,7 @@
 @blueLight:				#c4c4ff;
 @blueLightest:          #d8d8ff;
 @blueDark:				#00009d;
-@mainBackground:        #ececec;
+@mainBackground:        #f4efe9;	//#ececec;
 
 // ----------------------------- FONTS
 @defaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
@@ -60,7 +60,7 @@ body{
 #navigation{
 	height: 65px;
 	width: 960px;
-	background-color: @blueLightest;
+	background-color: #ddeda3;	//@blueLightest;
 	position: fixed;
 }
 #logo{
@@ -68,8 +68,8 @@ body{
 
 }
 #logo img{
-	height: 30px;
-	width: 128px;
+	height: 54px;   //30px;
+	width: 80px;    //128px;
 	padding-left: 10px;
 	padding-top: 15px;
 }
@@ -114,7 +114,7 @@ body{
 	margin-right: 25px;
 }
 #menu ul a{
-	text-decoration: none;
+	text-decoration: none;  
 }
 #menu ul a:hover{
 	color:red;
@@ -138,6 +138,7 @@ body{
 }
 #menuFarsi ul a{
 	text-decoration: none;
+	color: #575756;
 }
 #menuFarsi ul a:hover{
 	color:red;
@@ -159,7 +160,7 @@ body{
 	height: 100%;
 	float: left;
 	background-color: white;
-	border-right : solid #333333;
+	border-right : solid #75bfb8;
 }
 #contentRightPanel{
 	width: 300px;
@@ -173,13 +174,13 @@ body{
 	clear: both;
 	width: 960px;
 	height: 50px;
-	background-color: @blueLightest;
+	background-color: #ddeda3;			//@blueLightest;
 	margin-top : 8px;
 }
 
 #footerMenu{
 	float:right;
-	padding-top: 5px;
+	//padding-top: 3px;
 }
 #footerMenu ul {
 	list-style-type:none;
@@ -189,10 +190,12 @@ body{
 	padding-right: 10px;
 	padding-left : 5px;
 	border-right : 1px solid black;
+	color : #575756;		//black;
+	font : @farsiFont;
 }
 #footerMenu ul a{
 	text-decoration: none;
-	color : black;
+	color : #575756;		//black;
 }
 #clear{
 	both: clear;

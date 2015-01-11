@@ -9,8 +9,18 @@
 @blueLight:				#c4c4ff;
 @blueLightest:          #d8d8ff;
 @blueDark:				#00009d;
-@mainBackground:        #ececec;
+@mainBackground:        #f4efe9;	//#ececec;
 //------------------------------------------------------------------------------
+// ----------------------------- FONTS -----------------------------------------
+@defaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@farsiFont: 		   14px "tahoma","arial"; //18px "NasimBreeze";
+@headerFont:           1em/24px arial ,"Lucida Grande","Helvetica Neue", sans-serif;
+//-----------------------------------------------------------------------------
+
 
 body{
 	background-color : @mainBackground;
@@ -20,6 +30,7 @@ body{
 	margin: 0 auto;
 	height: 400px;
 	width: 410px;
+	font : @farsiFont;
 }
 
 #registerForm{
@@ -44,7 +55,7 @@ dl {
     }
     dd {
         color: grey;
-        font-size: 12px;
+        font-size: 12px;            
     }
 
  }
@@ -54,18 +65,23 @@ dl {
  
 #fName{
  	text-align : right;
+ 	width : 153px;
  }
 #lName{
  	text-align : right;
+ 	width : 153px;
  }
  #email{
  	text-align : right;
+ 	width : 153px;
  }
  #repeatEmail{
  	text-align : right;
+ 	width : 153px;
  }
  #password{
  	text-align : right;
+ 	width : 153px;
  }
 
 #day_field{
@@ -88,18 +104,19 @@ dl {
  }
  #day{
  	text-align : right;
- 	width : 50px;
+ 	width : 40px;
  }
  #month{
  	text-align : right;
- 	width : 110px;
+ 	width : 100px;
  }
  #year{
  	text-align : right;
- 	width : 70px;
+ 	width : 60px;
  }
  #address{
  	text-align : right;
+ 	width : 153px;
  	clear : both;
  }
  label{
@@ -111,11 +128,7 @@ dl {
  #submitBtn{
  	margin-right : 295px;
  }
- #footer{
- 	padding-right : 15px;
- 	font-size : 0.8em;
- 	color : gray;
- }
+
  a{
  	font-size : 0.7em;
  	color : gray;
@@ -129,3 +142,14 @@ dl {
   #gender_1{
   	margin-right : 25px;
   }
+  #footerImage{
+  	margin: 0 auto;
+  }
+   #footerImage img{
+   	padding-right : 50px;
+   }
+ #footer{
+ 	padding-right : 100px;
+ 	font-size : 0.8em;
+ 	color : gray;
+ }  

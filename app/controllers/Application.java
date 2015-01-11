@@ -154,7 +154,7 @@ public class Application extends Controller {
          * create new ClientID ->service account and save the privateKey.p12 somewhere
          */
         
-        File analyticsPrivateKeyFile = new File("./public/key.p12.p12");
+        File analyticsPrivateKeyFile = new File("/public/key.p12.p12");
         
         GoogleCredential credential = new GoogleCredential.Builder()
         .setTransport(HTTP_TRANSPORT)

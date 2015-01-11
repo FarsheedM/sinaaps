@@ -6,11 +6,23 @@
 			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/FarsiIndex.css")">
 			<script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
 			<script>
+				//to remove all the HTML tags from the text and return the simplified text
+				function strip(html)
+				{
+				 	 var tmp = document.createElement("DIV");
+				  		tmp.innerHTML = html;
+				 	return tmp.textContent||tmp.innerText;
+				}
+				
+				//to clamp the text to the specified number of lines
 				var clamping = function(){
+					
 					var header  = document.getElementById("@post.postID");
 					//header.style.backgroundColor ="RED";
 					//clamp integer specifies the number of lines of text
+					header.innerHTML = strip(document.getElementById("@post.postID").textContent);
 					$clamp(header,{clamp : 8, useNativeClamp : true});
+					
 				}	
 			</script>
 		</head>
@@ -94,8 +106,10 @@
 		<div id="latestPostSum">
 			آخرین مطلب منتشر شده:
 			<h4>@post.title</h4>
+			<!-- strip(document.getElementById("@post.postID").textContent) -->
 			<p id="@post.postID">@post.content</p>
 			<script>clamping();</script>
+			
 			<a href="@routes.Blog.display(post.language)"><p>ادامه مقاله ...</p></a>
 		</div>
 		<div id="clear"></div>
@@ -109,9 +123,9 @@
 	<div id="activityBox">
 		<h3>فعالیت ها</h3>
 		<ul id="activityList">
-			<li><div id="service"><img src="" alt="srvc"><p>ترجمه کتابها و مقالات ارزشمند</p></div></li>
-			<li><div id="service"><img src="" alt="srvc"><p>برگزاری سمینار و ورکشاپ‌های کتابخوانی</p></div></li>		
-			<li><div id="service"><img src="" alt="srvc"><p>کمک به تاسیس کتابخانه در کلیسای شما</p></div></li>
+			<li><div id="service"><img src="@routes.Assets.at("images/icons/Translate.gif")" alt="srvc"><p>ترجمه کتابها و مقالات ارزشمند</p></div></li>
+			<li><div id="service"><img src="@routes.Assets.at("images/icons/Seminar.gif")" alt="srvc"><p>برگزاری سمینار و ورکشاپ‌های کتابخوانی</p></div></li>		
+			<li><div id="service"><img src="@routes.Assets.at("images/icons/Help.gif")" alt="srvc"><p>کمک به تاسیس کتابخانه در کلیسای شما</p></div></li>
 		</ul>
 		<div id="clear"></div>
 		<br>
