@@ -1,6 +1,12 @@
 
 
 @(user : User, posts : List[models.BlogPost])
+
+@*The following declares a local variable "author" and by calling a static function
+  from AuthorTranslation class, it assigns the author of latest post in it.*@
+@author =  @{AuthorTranslation.getAuthor(posts.head.author.authorID,"farsi")}
+
+
 @FaMain("بلاگ"){
 
 <!-- -------------------farsi Edition----------------------- -->
@@ -46,21 +52,30 @@
 
 }{
 	<!--  left content for Blog -->
+	
+	<!-- The featured box is not going to include only the latest but the "most needed" post -->
 	<div id="featuredBoxFarsi">
-		<a href="#blogpost">
-			<img src="http://www.dehistoriske.com/img.aspx?th=litebilde&width=670&docrop=true&height=339&img=vertshusetroros-fasade.jpg">
+	
+		
+		<!-- for now, the first version, featured Box displays the latest post,
+			 but a function in the Blog.java should be written like setFeaturedPost(title)
+			 in order to be called from a CMS, which in turn also should be written soon.-->
+		<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">   
+		
+			<img src="@(posts.head).image" rel="@(posts.head).title">
 		</a>
 		<hgroup>
-			<h2>بچه آخر ما خانه را ترک می‌کند</h2>
-			<h4>نوشته جان پایپر</h4>
+			<h2>@posts.head.title</h2>
+			
+			<h4>@author.fName @author.lName</h4>
 		</hgroup>
 	</div>
 	
 	<div id="horizonLine"></div>
 	
 	<section id="postList">
-			
-					@posts.map{ post => 
+			<!-- The scala tail func returns all elements of the list posts, except the first one(head) -->
+					@posts.tail.map{ post => 
 							@views.html.farsiEdition.blogPost(post)
 					}
 			

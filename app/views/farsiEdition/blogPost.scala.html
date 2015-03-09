@@ -12,10 +12,18 @@
 		**result in the Chrome as well as FireFox. in postContent DIV, each post should have its ID distinguished
 		**in order to get the Clamp work not onl on the first post but on all the posts.
 		**The trick is to use the "@post.postID" in getElementById as well as in DIV id itself. */
+		//to remove all the HTML tags from the text and return the simplified text
+		function strip(html)
+		{
+		 	 var tmp = document.createElement("DIV");
+		  		tmp.innerHTML = html;
+		 	return tmp.textContent||tmp.innerText;
+		}
 		
 		var clamping = function(){
 			var header  = document.getElementById("@post.postID");
 			//header.style.backgroundColor ="RED";
+			header.innerHTML = strip(document.getElementById("@post.postID").textContent);
 			$clamp(header,{clamp : 5, useNativeClamp : true});
 		}	
 	</script>

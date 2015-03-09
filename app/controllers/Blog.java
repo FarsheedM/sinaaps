@@ -48,7 +48,7 @@ public class Blog extends Controller{
 	
 	//this method gets the list of all BlogPost in specified language 
 	public static List<BlogPost> getBlogPostByLang(String lang){
-		return BlogPost.find.where().eq("language", lang).findList();
+		return BlogPost.find.where().eq("language", lang).order().desc("published").findList();
 	}
 
 	public static Result showBlogPostFullContent(String language,Integer postId){
