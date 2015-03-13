@@ -39,4 +39,10 @@ public class BookTranslation extends Model{
 		this.publication = publication;
 		this.format = format;
 	}
+	
+
+	public static BookTranslation getBookDetails(Integer bookId, String lang){
+		
+		return BookTranslation.find.where().eq("book_id", bookId).eq("language", lang).findUnique();
+	}
 }

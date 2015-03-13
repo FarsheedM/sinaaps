@@ -1,4 +1,4 @@
-@(user : User)
+@(user : User, books : List[models.Book])
 @FaMain("کتابها"){
 
 <!-- -------------------farsi Edition----------------------- -->
@@ -37,7 +37,6 @@
         		</div><!-- socialBar -->
         		<div id="clear"></div>
 
-				<div id="horizonLine"></div>
 				
 }{
 	<!--  ---------------left content for book------------------- -->
@@ -51,11 +50,8 @@
 			<div id="categoryBox">
 				<h3 style="margin-right : 10px;"></h3>
 				<div class="left">
-					<a href="#">الهیات</a><br>
-					<a href="#">باستان شناسی‌</a><br>
-					<a href="#">بشارت</a><br>
-					<a href="#">بیوگرافی</a><br>
-					<a href="#">تاریخ کلیسا</a><br>
+					<a href="#">کلاسیک</a><br>
+					<a href="#">کودکان</a><br>
 				</div>
 				<div class="left">
 					<a href="#">تفسیری</a><br>
@@ -72,8 +68,11 @@
 					<a href="#">کتاب مقدس</a><br>
 				</div>
 				<div class="left">
-					<a href="#">کلاسیک</a><br>
-					<a href="#">کودکان</a><br>
+					<a href="#">الهیات</a><br>
+					<a href="#">باستان شناسی‌</a><br>
+					<a href="#">بشارت</a><br>
+					<a href="#">بیوگرافی</a><br>
+					<a href="#">تاریخ کلیسا</a><br>
 				</div>	
 				<div id="clear"></div>
 			</div> <!-- categoryBox -->
@@ -87,17 +86,28 @@
 	
 	<div id="clear"></div>
 	<div id="recommendationBox">
-			<h3 style="margin-left : 20px;">کتاب پیشنهادی</h3>
+			<h3>کتاب پیشنهادی</h3>
 			<div id="firstRow">
-				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">عنوان کتاب 1</span></div>
-				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">عنوان کتاب 2</span></div>
-				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">عنوان کتاب 3</span></div>
+			
+					<!-- we take the 6 latest books with the help of scala list function  -->
+					@books.take(3).map{ book =>
+					<div id="bookBox">
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
+							<img class="bookImg" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
+						</a>
+					</div>
+					}			
 			</div>
 			<div id="clear"></div>
 			<div id="secondRow">
-				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">عنوان کتاب 1</span></div>
-				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">عنوان کتاب 2</span></div>
-				<div id="bookBox"><img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">عنوان کتاب 3</span></div>			
+				<!--  takeRight(n), Selects last n elements. -->
+				@books.takeRight(3).map{ book =>
+				<div id="bookBox">
+					<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
+						<img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">@book.isbn</span>
+					</a>
+				</div>
+				}
 			</div>
 	</div> <!-- recommendationBox -->
 

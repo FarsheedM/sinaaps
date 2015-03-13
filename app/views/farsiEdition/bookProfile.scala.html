@@ -1,0 +1,99 @@
+		
+@(user : User, book : Book)
+<!-- --------------------Farsi Edition---------------------- -->
+		@bookTranslation = @{BookTranslation.getBookDetails(book.bookID,"farsi")}
+		@author = @{AuthorTranslation.getAuthor(bookTranslation.author.authorID,"farsi")}
+
+@FaMain("پروفایل کتاب"){
+	
+	<head>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiBookProfile.css")">
+	</head>
+
+        		<div id="clear"></div>
+        		
+        		<div id="socialBar">
+        			<div id="socialBarRightFarsi">
+						<ul style="margin-left : 15px;">
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>میهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+        		<div id="clear"></div>	
+
+				<!--  <div id="horizonLine"></div>   -->
+}{
+
+		<article id="bookProfile">
+		
+			<div id="bookCover">
+				<a href="#">
+					<img id="coverImage" src="@book.photo" alt="">
+				</a>
+			</div>
+			<div id="leftBlock">
+				<div id="bookTitleAuthor">
+					<ul> 
+						<li><h1>@bookTranslation.title</h1></li>
+						<li class="metaInfo">
+							<span>نوشته: @author.fName @author.lName</span> 
+							<span></span>
+						</li>
+						<li class="metaInfo"><time >تاریخ انتشار: @book.published.format("dd.MM.yyyy")</time> توسط @bookTranslation.publication </li>
+						<li class="metaInfo">ریتینگ:</li>
+					</ul>
+				</div>
+				
+				<div id="summary">
+					<p>انضباط روحانی این کتاب ترجمه‌ای است از اثر کلاسیکِ ریچارد فاستر. نویسنده، تمرین‌های روحانیِ محوریِ ایمان مسیحی را بررسی می‌کند و راه‌کاری برای رشد روحانی ارائه می‌دهد. کتاب، دوازده "انضباط سنتی" را معرفی می‌کند که به سه گروه یا حوزۀ روحانی تقسیم می‌شوند: درونی، بیرونی و جمعی. فاستر نمونه‌های ارائه می‌دهد از اینکه چگونه این انضباط‌ها می‌توانند بخشی از زندگی روزمرۀ ما بشوند و ما را به خدا نزدیکتر سازند.</p>
+				</div>
+				<div id="bookdetails">
+					<ul class="metaInfo">
+						<li>تعداد صفحات:</li>
+						<li>وزن:</li>
+						<li>ابعاد:</li>
+					</ul>
+				</div>
+				<div class="shareBox">
+					<p>اطلاعات این کتاب را با دوستانتان در شبکه‌های زیر به اشتراک بگذارید:</p>
+					<!-- -----------------------FB------------------- -->
+					<div class="fb-share-button" data-href="http://www.farsireads.com/farsi/book/bookid=@book.bookID" 
+						data-type="button_count" >
+					</div>
+					<!-- -----------------------FB------------------- -->
+		
+					<!-- -----------------------g+------------------- -->
+					<div class="g-plus" data-action="share" data-annotation="bubble" 
+						data-href="http://www.farsireads.com/farsi/book/bookid=@book.bookID">
+					</div>
+					<!-- -----------------------g+------------------- -->
+					<div id="clear"></div>
+				</div><!-- end of shareBox -->
+				<div id="reviewBox"></div>
+			</div><!-- leftBlock -->
+		</article>
+}{
+
+}

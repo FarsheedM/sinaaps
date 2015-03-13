@@ -51,6 +51,8 @@ public class Blog extends Controller{
 		return BlogPost.find.where().eq("language", lang).order().desc("published").findList();
 	}
 
+	
+	
 	public static Result showBlogPostFullContent(String language,Integer postId){
 		BlogPost post = BlogPost.find.where().eq("postID", postId).eq("language",language).findUnique();
 

@@ -1,0 +1,90 @@
+// ----------------------------- FONTS -----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   17px "NasimBreeze","Tahoma","Arial";
+
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+@OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+
+//------------------------------------------------------------------------
+
+#bookProfile{}
+#bookCover{
+	float : right;
+	height: 100%;
+    width: 150px;
+    padding-top : 5px;
+    margin-right : 10px;
+}
+#coverImage{
+	width: 150px;
+	//height : ?;
+}
+#leftBlock{
+	width : 445px;
+	float : right;
+	margin-right : 15px;
+	padding-top : 5px;
+}
+#bookTitleAuthor{
+	padding-bottom : 20px;
+}
+
+
+#bookTitleAuthor ul{
+	list-style-type : none;
+	margin-top : 5px;
+	margin-right : -35px;
+}
+#bookTitleAuthor ul li h1{
+	font : @headerFont;
+	font-weight : bold;
+}	
+.metaInfo{
+	font : @alternativeFont;
+	//color : red;
+}
+#summary{
+	line-height: 1.4;
+	font : @defaultFont;
+}
+#bookdetails{
+	
+}
+#bookdetails ul{
+	list-style-type : none;
+	margin-top : 5px;
+	margin-right : -35px;
+}
+#bookdetails li{
+	
+}
+//------------------sharing box------------------
+.shareBox{
+	width : 90%;
+	height : 0 auto;
+	border-top : 1px solid #dddddd;
+	border-bottom : 1px solid #dddddd;
+	padding-bottom : 5px;
+}
+.shareBox p{
+	font-size : 0.9em;
+	color : black;
+}
+.fb-share-button{
+	float:right;
+	margin-left : 20px;
+}
+.g-plus{
+	float:right;
+}
+//-----------------------------------------------------
+#reviewBox{
+	
+}
+#clean{
+	clear : both;
+}

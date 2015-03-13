@@ -24,5 +24,8 @@ GET     /farsi/signUp               controllers.controllersFarsi.Signup.register
 POST    /farsi/signUp               controllers.controllersFarsi.Signup.authenticate()
 GET     /:lang/aboutUs              controllers.About.display(lang : String)
 POST    /:lang/aboutUs              controllers.About.sendFeedBack(lang : String)
+#
+GET     /:lang/book/bookid=:bookId            controllers.Books.showBookProfile(lang : String, bookId : Integer)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -37,5 +37,5 @@ public class Book extends Model{
 		this.weight = weight;
 		
 	}
-
+	
 }
