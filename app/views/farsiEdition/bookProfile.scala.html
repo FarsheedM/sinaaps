@@ -1,5 +1,5 @@
 		
-@(user : User, book : Book)
+@(user : User, book : Book, reviewForm : Form[BookReview], reviews : List[BookReview])
 <!-- --------------------Farsi Edition---------------------- -->
 		@bookTranslation = @{BookTranslation.getBookDetails(book.bookID,"farsi")}
 		@author = @{AuthorTranslation.getAuthor(bookTranslation.author.authorID,"farsi")}
@@ -10,6 +10,7 @@
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
      <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiBookProfile.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/reviewFarsi.css")">
 	</head>
 
         		<div id="clear"></div>
@@ -67,15 +68,18 @@
 				</div>
 				
 				<div id="summary">
-					<p>انضباط روحانی این کتاب ترجمه‌ای است از اثر کلاسیکِ ریچارد فاستر. نویسنده، تمرین‌های روحانیِ محوریِ ایمان مسیحی را بررسی می‌کند و راه‌کاری برای رشد روحانی ارائه می‌دهد. کتاب، دوازده "انضباط سنتی" را معرفی می‌کند که به سه گروه یا حوزۀ روحانی تقسیم می‌شوند: درونی، بیرونی و جمعی. فاستر نمونه‌های ارائه می‌دهد از اینکه چگونه این انضباط‌ها می‌توانند بخشی از زندگی روزمرۀ ما بشوند و ما را به خدا نزدیکتر سازند.</p>
+					<p>@bookTranslation.summary</p>
 				</div>
 				<div id="bookdetails">
 					<ul class="metaInfo">
+						<li>شابک:</li>
 						<li>تعداد صفحات:</li>
 						<li>وزن:</li>
 						<li>ابعاد:</li>
 					</ul>
 				</div>
+			</div><!-- leftBlock -->
+			<div id="clear"></div>
 				<div class="shareBox">
 					<p>اطلاعات این کتاب را با دوستانتان در شبکه‌های زیر به اشتراک بگذارید:</p>
 					<!-- -----------------------FB------------------- -->
@@ -92,8 +96,53 @@
 					<div id="clear"></div>
 				</div><!-- end of shareBox -->
 				
-				<div id="reviewBox"></div>
-			</div><!-- leftBlock -->
+					<!-- ----------------------REVIEWING SECTION--------------------- -->
+					<fieldset id="reviewBox">
+						<legend><h3>بررسی‌ کتاب</h3></legend>
+						<section id="reviewContent">
+							@if(reviews.isEmpty){
+								<p>تاکنون کسی‌ نظر نداده است. نخستین باشید.</p>
+							}
+							<!-- to load the previous comments -->
+							<ul id="reviewList">
+								@reviews.map{ review =>
+													 <li>@views.html.review(review,user)</li>
+								}
+							</ul>
+						</section>
+						
+						@if(user.fName == "Guest"){
+							<script type="text/javascript">
+								/*This script is used to disable the commentComment DIV to  
+									 disable the GUEST users to comment
+								*/
+								var crp = document.getElementById("reviewList");
+								crp.style.display = "none";
+							</script>
+							<p>برای ارسال نظرات خود میبایست به "فارسی‌ ریدز" وارد شوید</p>
+							<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3>برای ورود، لطفا اینجا را کلیک کنید</h3></a>
+			
+						}else{
+						<section id="reviewForm">
+						
+							@helper.form(routes.Books.postReview("farsi",book.bookID)){
+								<textarea id="textArea" name="comment" style="width:400px;" placeholder="نظر خود را بنویسید" ></textarea>
+					        	<button id="btn" type="submit" value="post" formmethod="post">پست</button>
+							}
+							        
+					        @if(reviewForm.hasGlobalErrors){
+					        	<p id="error"> @reviewForm.globalError.message </p>
+					        }else{
+								<script type="text/javascript">
+										document.getElementById('reviewForm').scrollIntoView();
+								</script>
+					        }
+						</section>
+						}
+					</fieldset>
+				<!-- --------------------------end of review-------------------- -->
+				
+			
 		</article>
 }{
 
@@ -101,7 +150,7 @@
 		<div id="virtualshelf">
 		<h3 class="rightBoxHeader">کتابخانه مجازی من</h3>
 		<ul>
-			<li style="border-bottom:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
+			<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
 			<li><a href="#">همه</a></li>
 			<li><a href="#">خوانده شده</a></li>
 			<li><a href="#">در حال مطالعه</a></li>
@@ -112,10 +161,7 @@
 			<h3 class="rightBoxHeader">درباره‌ نویسنده</h3>
 			<a href="#"><img class="authorPhoto" src="https://d.gr-assets.com/authors/1262129906p2/13326.jpg"></a>
 			<div class="readable">
-				<span>لوئیس در ۲۹ نوامبر سال ۱۸۹۸ میلادی در بلفاست، مرکز ایرلند شمالی به دنیا آمد. تا قبل از ۹ سالگی پدر و مادر و برادرش را از دست داد. او در جنگ جهانی اول زخمی شد و پس از اتمام جنگ جهانی اول، دانشگاهش را به پایان رساند و به تدریس در دانشگاه‌ها پرداخت.
-				 در سال ۱۹۲۹ در عقایدش دچار تحول شد و وجود خدا را پذیرفت و دو سال بعد در حین مباحثه با تالکین مسیحی شد. نخستین اثرش را به نام دیمر در سال ۱۹۲۶ منتشر کرد که داستانی است منظوم، آرمان‌گرا و سرشار از طنز.
-					کلایو استیپلز لوئیس، در ۲۲ نوامبر در سال ۱۹۶۳ در آکسفورد انگلستان درگذشت	.	
-				</span>
+				<span>@author.description</span>
 			</div>
 		</div>
 		<div id="authorsOtherWorks">
@@ -144,6 +190,6 @@
 				<a href="#">
 					<img src="https://d.gr-assets.com/books/1387664323m/721486.jpg" alt="Whatever Happened to Worship?: A Call to True Worship">
 				</a>
-			<div><!-- otherBooksContainer -->
+			</div><!-- relatedWorksContainer -->
 		</div>
 }

@@ -1,14 +1,6 @@
 # --- !Ups
 use sinaaps;
-create table user (
-email varchar(255),
-f_name varchar(255),
- l_name varchar(255),
-password varchar(255),day int,month int,year int,
-address varchar(255),photo varchar(300),gender bool,
-primary key (email))
-;
-
+create table user (email varchar(255),f_name varchar(255),l_name varchar(255),password varchar(255),day int,month int,year int,address varchar(255),photo varchar(300),gender bool,primary key (email));
 
 
 
@@ -30,6 +22,18 @@ create table book_author(id int,book_id int,author_id int, primary key (id) ,for
 
 create table blog_comment(comment_id bigint, post_id int, user_email varchar(255), published timestamp, comment nvarchar(2000),likes int, primary key (comment_id),foreign key (post_id) references  blog_post (post_id) ,foreign key (user_email) references user (email));
 
+create table book_review(
+review_id bigint, 
+book_id int, 
+user_email varchar(255), 
+published timestamp, 
+review nvarchar(2000),
+rating int, 
+primary key (review_id),
+foreign key (book_id) references  book (book_id),
+foreign key (user_email) references  user (email)
+);
+
 # --- !Downs
 
 #--- !SET FOREIGN_KEY_CHECKS=0;
@@ -45,6 +49,7 @@ drop table if exists book;
 drop table if exists book_translation;
 drop table if exists book_author;
 drop table if exists blog_comment;
+drop table if exists book_review;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 
 

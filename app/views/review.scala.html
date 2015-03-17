@@ -1,0 +1,42 @@
+@(review : BookReview, user : User)
+
+<div id="review"> 
+	
+	@if(review != null){
+		<div id="usr_photo">
+			@if(review.user.gender){
+				<img class="usrPhoto" title="@review.user.fName" src="@routes.Assets.at("/images/woman.png")">
+				}else {
+				<img class="usrPhoto" title="@review.user.fName" src="@routes.Assets.at("/images/man.png")">
+				}
+		</div>
+		<div id="reviewRightBlock">
+			<div id="usr_name">
+				<b>@review.user.fName @review.user.lName</b>
+			</div>	
+
+			<!-- show the delete button if the review belongs to the already logged user  -->
+			@if(review.user.email == user.email){
+				@helper.form(routes.Books.deleteReview(review.reviewID,"farsi",review.book.bookID)){
+					<input id="deleteBtn" type="submit" value="&times;" title="delete your post?">
+				}
+			}
+						
+			<div id="review_published">
+				@review.published.format("dd-MM-yyyy (hh:mm)") 
+			</div>
+			
+			<div id="clear"></div>
+			<br>
+			<div id="usr_review">
+				@review.review
+			</div>
+
+		</div><!-- reviewRightBlock -->
+
+		<div id="clear"></div>
+	} else {
+		<p>No comment Yet! Be the first to comment.</p>
+	}
+	
+</div>
