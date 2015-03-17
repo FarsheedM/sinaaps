@@ -1,6 +1,93 @@
-#review{}
-#usr_photo{}
-#reviewRightBlock{}
-#usr_name{}
-#review_published{}
-#usr_review{}
+/*
+--------------------------- reviewFarsi CSS -------------------------
+
+*/
+
+// ----------------------------- FONTS -----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   17px "NasimBreeze","Tahoma","Arial";
+
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+@OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+
+//------------------------------------------------------------------------
+
+#review{
+	width : 540px; 
+	height : auto; 
+	background-color : white;
+	padding-top : 1px;
+	padding-bottom : 1px;
+	border-bottom : 1px solid #ebe8d5;
+}
+#reviewList{
+	list-style-type:none;
+	margin-right : -20px;
+}
+#reviewList li{
+	display: inline;
+	margin : 5px;
+}
+#usr_photo{
+	float : right;
+	width : 50px;
+	height : 50px;
+	
+}
+#reviewRightBlock{
+	width : 470px;
+	float : right;
+	height : auto;
+	margin-right : 10px;
+}
+#usr_name{
+	width : 200px;
+	float : right;
+	color : #666600;
+}
+#review_published{
+	width : 140px;
+	float : left;
+	color : #bbb;
+	//opacity : 0.8;
+}
+#usr_review{
+	clear : both;
+	margin-top : -5px;
+	padding-bottom : 5px;
+	font : @alternativeFont;
+}
+#reviewForm textarea{
+	font : @alternativeFont;
+	margin-right : 20px;
+	float : right;
+	//margin-top : 
+}
+#deleteBtn{
+	border : none;
+	float : left;
+	width : 15px;
+	height : 15px;
+	padding-left : 3px;
+	padding : 0px;
+	//margin-bottom : 6px;
+	top : -3px;
+	margin-left : -8px;
+	margin-right : 5px;
+}
+#deleteBtn:hover{
+	cursor : pointer;
+	background-color : #FF6666;
+}
+#btn{
+	font : @alternativeFont;
+	//post button
+	float : right;
+}
+#clear {
+	clear : both;
+}

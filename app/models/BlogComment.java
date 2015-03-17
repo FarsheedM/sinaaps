@@ -15,7 +15,7 @@ public class BlogComment extends Model{
 	@Id
 	//@SequenceGenerator(name="seq", sequenceName="seq")     
 	//(strategy=GenerationType.SEQUENCE, generator="seq")
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long commentID;
 	@OneToOne
 	@JoinColumn(name="post_id", referencedColumnName="post_id")

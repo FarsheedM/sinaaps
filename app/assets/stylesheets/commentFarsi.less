@@ -2,8 +2,18 @@
 --------------------- commentFarsi CSS -------------------------
 
 */
+// ----------------------------- FONTS -----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   17px "NasimBreeze","Tahoma","Arial";
 
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+@OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
 
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 @skyBlue:               #87ceeb;
 @skyBlueLight:          #dbf0f9;
@@ -20,6 +30,7 @@
 
 #commentContent{
 	margin-top:-5px;
+	font : @alternativeFont;
 }
 fieldset{
 	background-color: #ededed;					//@blueLightest;
@@ -43,7 +54,7 @@ fieldset h3{
 	background-color : white;
 	padding-top : 1px;
 	padding-bottom : 1px;
-
+	border-bottom : 1px solid #ebe8d5;
 }
 
 #usr_photo{
@@ -66,13 +77,12 @@ fieldset h3{
 #usr_name{
 	width : 200px;
 	float : right;
-
+	color : #666600;
 }
 #post_published{
-	width : 120px;
+	width : 140px;
 	float : left;
 	opacity : 0.8;
-
 }
 #deleteBtn{
 	border : none;
@@ -93,15 +103,18 @@ fieldset h3{
 	clear : both;
 	margin-top : -5px;
 	padding-bottom : 5px;
+	font : @alternativeFont;
 }
 #textArea{
 	margin-right : 20px;
 	float : right;
+	font : @alternativeFont;
 	//margin-top : 
 }
 #btn{
 	//post button
 	float : right;
+	font : @alternativeFont;
 }
 #clear {
 	clear : both;

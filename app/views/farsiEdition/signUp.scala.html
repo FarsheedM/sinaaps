@@ -14,7 +14,7 @@
 <body>
 <div id="wrapper">
 	<div id="registerForm">
-		@helper.form(controllers.controllersFarsi.routes.Signup.authenticate){
+		@helper.form(action = controllers.controllersFarsi.routes.Signup.authenticate, 'enctype -> "multipart/form-data"){
 		<fieldset>
 			<legend>فرم نام نویسی در "فارسی ریدز"</legend>
 			@inputText(registerform("fName"), '_label -> "نام*",'_help -> "ترجیحا با حروف فارسی بنویسید" )

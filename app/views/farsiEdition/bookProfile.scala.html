@@ -73,6 +73,7 @@
 				<div id="bookdetails">
 					<ul class="metaInfo">
 						<li>شابک:</li>
+						<li>عنوان اصلی‌ کتاب:</li>
 						<li>تعداد صفحات:</li>
 						<li>وزن:</li>
 						<li>ابعاد:</li>
@@ -116,7 +117,7 @@
 								/*This script is used to disable the commentComment DIV to  
 									 disable the GUEST users to comment
 								*/
-								var crp = document.getElementById("reviewList");
+								var crp = document.getElementById("reviewForm");
 								crp.style.display = "none";
 							</script>
 							<p>برای ارسال نظرات خود میبایست به "فارسی‌ ریدز" وارد شوید</p>
@@ -125,8 +126,8 @@
 						}else{
 						<section id="reviewForm">
 						
-							@helper.form(routes.Books.postReview("farsi",book.bookID)){
-								<textarea id="textArea" name="comment" style="width:400px;" placeholder="نظر خود را بنویسید" ></textarea>
+							@helper.form(action = routes.Books.postReview("farsi",book.bookID), 'enctype -> "multipart/form-data"){
+								<textarea id="textArea" name="review" style="width:400px;" placeholder="نظر خود را راجع به این کتاب بنویسید" ></textarea>
 					        	<button id="btn" type="submit" value="post" formmethod="post">پست</button>
 							}
 							        

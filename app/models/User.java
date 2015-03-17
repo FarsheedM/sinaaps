@@ -35,15 +35,15 @@ public class User extends Model{
 	public boolean gender;
 	
 	public User(String fName,String lName,String email,
-			String password,Date birthdate,String address,String photo,boolean gender){
+			String password,int d,int m,int y,String address,String photo,boolean gender){
 		this.fName= fName;
 		this.lName= lName;
 		this.email= email;
 		this.password= password;
 		//this.birthdate= birthdate;
-		this.day=day;
-		this.month=month;
-		this.year=year;
+		this.day=d;
+		this.month=m;
+		this.year=y;
 		this.address= address;
 		this.photo = photo;
 		this.gender=gender;
@@ -56,9 +56,9 @@ public class User extends Model{
 		this.email= email;
 		this.password= password;
 		//this.birthdate=Calendar.getInstance().getTime();
-		this.day=day;
-		this.month=month;
-		this.year=year;
+		this.day=1;
+		this.month=1;
+		this.year=1900;
 		this.address= "unknown";
 		this.photo = "noPhoto";
 		this.gender=false; 
