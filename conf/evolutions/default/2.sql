@@ -35,11 +35,15 @@ Pastor John & Pastor Tom","http://image.com",1,"Faith","English","12.01.2012",nu
 
 
 
-insert into book values(1,"9781563205453",1256, "06.09.2013" ,"http://biblia.com/bibleimg","8.8*5.5*1.3",0.77);
+insert into book values(1,"9781563205453",1256, "06.09.2013" ,"http://biblia.com/bibleimg","8.8*5.5*1.3",0.77,3,1);
 
 insert into book_translation values(1,1,"english","Persian Bible(Tafsiri)","This is the holy Word of God, translated into Farsi and wrapped in a contemporary, green hardcover. If you are in the advanced stages of learning Farsi, one who speaks it yourself, or a missionary to a region where Farsi is the primary language, this Bible is perfect for you.",1,"biblica","Hard Cover");
 
 insert into book_author values(0,1,1);
+
+insert into topic values(0,"Theology","الهیات","Man is the Reasoning Animal. Such is the claim. I think it is open to dispute. Indeed, my experiments have proven to me that he is the Unreasoning Animal... In truth, man is incurably foolish. Simple things which other animals easily learn, he is incapable of learning. Among my experiments was this. In an hour I taught a cat and a dog to be friends. I put them in a cage. In another hour I taught them to be friends with a rabbit. In the course of two days I was able to add a fox, a goose, a squirrel and some doves. Finally a monkey. They lived together in peace; even affectionately.",
+							"الاهیات طی قرون متمادی ملکۀ علوم نامیده می‌شد و الاهیات نظام‌مند به‌منزله تاج آن ملکه محسوب می‌گردد. الاهیات عبارت است از علم خدا و اعمال وی و الاهیات نظام‌مند عبارت است از تنظیم نتایج حاصله از آن علم‌. عد‌ه‌ای الاهیات را علم نمی‌دانند و معتقدند که در این رشته نمی‌توان به اطلاعاتی دست یافت که قطعی و نهایی باشد. الاهی‌دانان جدید، که تحت تأثیر مکتب اصالت عمل در عصر حاضر قرار دارند، کار خود را بر این اساس شروع می‌کنند که در الاهیات‌، مانند سایر رشته‌های تحقیقات بشری‌، ایمان نباید از مرحلۀ فرضیه‌های معقول فراتر رود و هیچ‌گاه نباید قطعی و نهایی شمرده شود. الاهی‌دانان آزاداندیش که مصون از خطا بودن کتاب‌مقدس به‌عنوان کلام خدا را نمی‌پذیرند و هیچ چیز را ثابت نمی‌دانند، می‌گویند که ابراز نظرات قطعی در مورد خدا و حقایق علم الاهی کار صحیحی نیست‌. ولی الاهی‌دانان انجیلی معتقدند که در جهان امور ثابت و قطعی وجود دارد و برای اثبات این اعتقاد خود به‌وجود نظم و انتظام در کرات آسمانی و قوانین طبیعت و علوم ریاضی استناد می‌نمایند. در علوم حتی می‌توان نظام‌مند بودن قوانین طبیعت را مورد سؤال قرار داد ولی ایماندار با تجربه‌، در همین بی‌نظمی‌های ظاهری‌، مداخلۀ الاهی و ظهور معجزه‌آسای قدرت او را مشاهده می‌کند. شخص مؤمن معتقد است که با وجودی که درک مکاشفۀ الاهی تدریجی است معهذا خود مکاشفه مانند عدالت و حقیقت الاهی ثابت می‌باشد.");
+insert into topic_book values(0,1,0);
 
 # --- !Downs
 
@@ -50,3 +54,5 @@ delete from blog_post;
 delete from book;
 delete from book_translation;
 delete from book_author;
+delete from topic;
+delete from topic_book;

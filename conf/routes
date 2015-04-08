@@ -28,6 +28,6 @@ POST    /:lang/aboutUs              controllers.About.sendFeedBack(lang : String
 GET     /:lang/book/bookid=:bookId            controllers.Books.showBookProfile(lang : String, bookId : Integer)
 POST    /:lang/book/bookid=:bookId            controllers.Books.postReview(lang : String,bookId : Integer)
 POST 	/:lang/book/bookid=:bookId/delete	  controllers.Books.deleteReview(reviewId:Long,lang:String,bookId:Integer)
-
+GET     /:lang/book/topicid=:topicId          controllers.Books.showByTopic(lang : String, topicId : Integer)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

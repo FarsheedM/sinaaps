@@ -101,4 +101,50 @@ public class Books extends Controller{
 		return redirect(routes.Books.showBookProfile(lang,bookId));
 	}
 
+	
+	public static Result showByTopic(String lang, Integer topicId){
+		
+		Topic topic = Topic.find.byId(topicId);
+		
+		List<Book> newBooks = Book.find.where().order().desc("published").findList();
+		newBooks = newBooks.subList(0, 6);
+		//books which are recommended by farsiReads
+		List<Book> recommendedBooks = Book.find.order().desc("farsireadsRating").findList();
+		recommendedBooks = recommendedBooks.subList(0, 6);
+		//books recommended by users
+		List<Book> popularBooks = Book.find.order().desc("userRating").findList();
+		popularBooks = popularBooks.subList(0, 6);
+		
+		
+		//here is to changed with the English version!!
+		if(lang.equals("english")){
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				return ok(views.html.farsiEdition.topic.render(usr,topic,newBooks,
+																recommendedBooks,popularBooks));}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.topic.render(guest,topic,newBooks,
+						recommendedBooks,popularBooks));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				return ok(views.html.farsiEdition.topic.render(usr,topic,newBooks,
+						recommendedBooks,popularBooks));}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.topic.render(guest,topic,newBooks,
+						recommendedBooks,popularBooks));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+		
+		
+		
+		
+	}
 }

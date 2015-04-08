@@ -14,7 +14,7 @@ create table blog_post(post_id int,title varchar(100), content  LongText,image  
 
 
 
-create table book(book_id int, isbn varchar(15),page int, published timestamp, photo varchar(300),dimensions varchar(20),weight float, primary key (book_id));
+create table book(book_id int, isbn varchar(15),page int, published timestamp, photo varchar(300),dimensions varchar(20),weight float, user_rating int, farsireads_rating int, primary key (book_id));
 
 create table book_translation(id int, book_id int, language varchar(50), title nvarchar(200),summary mediumtext, author_id int, publication nvarchar(200),format nvarchar(30),primary key (id),foreign key (book_id) references book (book_id));
 
@@ -34,6 +34,8 @@ foreign key (book_id) references  book (book_id),
 foreign key (user_email) references  user (email)
 );
 
+create table topic(topic_id int,  en_name varchar(50), fa_name varchar(50), en_description LongText, fa_description LongText,primary key (topic_id) );
+create table topic_book(id int,book_id int,topic_id int, primary key (id) ,foreign key (book_id) references book (book_id), foreign key (topic_id) references topic (topic_id));
 # --- !Downs
 
 #--- !SET FOREIGN_KEY_CHECKS=0;
@@ -50,6 +52,8 @@ drop table if exists book_translation;
 drop table if exists book_author;
 drop table if exists blog_comment;
 drop table if exists book_review;
+drop table if exists topic;
+drop table if exists topic_book;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 
 
