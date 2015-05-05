@@ -1,10 +1,11 @@
-@(user : User)
+@(user : User, form : Form[Services.FeedBack], newBooks : List[Book])  
 @FaMain("خدمات"){
 
 <!-- -------------------farsi Edition----------------------- -->
 
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/servicesFarsi.css")">
 </head>
 
         		<div id="clear"></div>
@@ -40,8 +41,116 @@
 
 
 }{
-	<!-- left content for Services -->
-	بخش خدمات به زودی آماده خواهد شد.
+	<!-- پانل سمت چپ قسمت خدمات -->
+	
+	<div id="desc">
+در حال حاضر خدمات ارائه شده توسط فارسی ریدز به سه دسته بندی کلی‌ تقسیم میشود. شایان ذکر است که تمام خدمات به صورت مستقیم  و یا غیر مستقیم به کتابخوانی مرتبط می‌‌شود.   
+	</div>
+	<div id="catalog">
+		<div class="title">کاتالوگ کتاب</div>
+		<div class="icon"><img alt="catalog" src="@routes.Assets.at("images/icons/Translate.gif")"></div>
+		<div class="description">یکی‌ از مرکزیترین خدمات فارسی ریدز، تهیه بانک اطلاعاتی‌ از تمام کتاب‌ها و نشریات مسیحی‌ چاپ شده به زبان فارسی است. این قسمت به شما امکان می‌‌دهد که کتاب‌ها را بر حسب اسم، مولف و یا شماره شابک جستجو کنید. جستجوی عنوان کتاب‌های ترجمه شده به زبان اصلی‌، به شما این امکان را میدهد که بتوانید از موجود بودن ترجمه کتاب مورد نظر شما به فارسی اطمینان حاصل کنید.</div>
+		<a class="forward"></a>
+	</div><!-- catalog -->	
+	
+	<div id="translation">
+	
+		<div class="title">ترجمه کتابها و مقالات ارزشمند</div>
+		<div class="icon"><img alt="catalog" src="@routes.Assets.at("images/icons/Translate.gif")"></div>
+		<div class="description">با توجه به عناوین اندک موجود به زبان فارسی، فارسی ریدز به ترجمه کتابهای میپردازد که به ویژه مورد نیاز کلیسای امروز ایران و همچنین جامعه جوان و کتاب گریز امروزی است. کتابها به روش "print on demand" در اختیار مطالعه کنندگان قرار میگیرند.
+
+در زیر میتوانید به جدیدترین عنوانهای ترجمه شده توسط فارسی ریدز نگاهی‌ بیندازید:</div>
+		<div id="newBookList">
+			<div class="row">
+					<!-- we take the 6 latest books with the help of scala list function  -->
+					@newBooks.take(3).map{ book =>
+					<div id="bookBox">
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
+							<img class="bookImg" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
+						</a>
+					</div>
+					}			
+			</div>
+			<div id="clear"></div>
+			<div id="statistics">
+				<p>آمار تهیه کتاب و مقالات در فارسی ریدز:</p>
+				<img alt="statistics" src="@routes.Assets.at("images/bookArticleProductionStat.png")">
+			</div>
+		</div><!-- newBookList -->
+		<a class="forward"></a>
+		
+	</div><!-- translation -->
+	
+	<div id="workshop">
+		<div class="title">برگزاری سمینار و ورکشاپ در زمینه کتابخوانی</div>
+		<div class="icon"><img alt="catalog" src="@routes.Assets.at("images/icons/Seminar.gif")"></div>
+		<div class="description">
+			در صدد هستیم که رویای فارسی ریدز را در مجامع ‌ایرانی محقق ببینیم؛ اینکه نحوه صحیح کتابخوانی، به ویژه مطالعه کتاب مقدس را آموزش داده، این نوید را به افراد بدهیم که با هر سن، تحصیلات و پیشه‌ای قادرند از مطالعه کتاب‌های خوب لذت برده، با تامل در کتاب مقدس، کامیاب شوند.
+تا آنجا که به رشد روحانی در مسیحیت مربوط میشود، مطالعه صحیح و پیوسته کتاب مقدس و کتب دست چین شده مسیحی‌، در رشد روحانی افراد ایماندار و یا نو ایمان از یک سو‌، و محافظت از آنان در برابر بدعت‌ها و تعالیم نادرست از سوی دیگر نقشی‌ حیاتی‌ دارد.
+با فراهم نمودن ورکشاپ و یا سمینار کتابخوانی، شما میتوانید پروسه شاگردسازی را در جمع خود- کلیسا، گروه مطالعه کتاب مقدس- تسریع بخشید.
+		</div>
+ 		<div id="event">
+ 			<p>برای برگزاری این رویداد با ما مشورت کنید:</p>
+ 			<div id="eventForm">
+			@helper.form(controllers.routes.Services.sendFeedBack("farsi")){
+				<input type="text" name="name" placeholder="نام">
+				<br><br>
+				<input type="email" name="email" placeholder="ایمیل">
+				<br><br>
+				<select name="subject">
+					<option>موضوع</option>
+					<option>مشورت</option>
+					<option>درخواست ورکشاپ</option>
+					<option>درخواست سمینار</option>
+					<option>راه اندازی کتابخانه</option>
+					<option>غیره</option>
+				</select>
+				<br><br>
+				<textarea name="message" rows="5" cols="60"></textarea><br>
+				<input type="submit" value="پست">
+
+			}
+			</div><!-- eventForm -->
+ 		</div> <!-- event -->
+		<a class="forward"></a>
+	</div><!-- workshop -->
+	
+	<div id="buildLib">
+		<div class="title">کمک به تاسیس کتابخانه در کلیسا و یا گروه شما</div>
+		<div class="icon"><img alt="catalog" src="@routes.Assets.at("images/icons/Help.gif")"></div>
+		<div class="description">
+			پس از تشویق فرد به کتابخوانی و توضیح اهمیت آن در رشد فردی و روحانی، نیاز به تهیه و فراهم کردن منابعی از کتب مناسب و منتخب جهت در اختیار گذاشتن به افراد متقاضی می‌‌باشد. فارسی ریدز می‌‌تواند شما را در این امر یاری رساند. ما با بررسی‌ گروه و نیاز‌های شما، لیستی از کتاب‌های جالب مسیحی‌ را در قالب یک کتابخانه کوچک در کلیسا و یا محل برگزاری جلسات شما، برایتان فراهم می‌کنیم همچنین سیستمی‌ جهت امانت گیری کتاب و پیگیری اقلام دریافت شده به شما ارایه می‌‌شود.
+		<p>پروسه ساخت کتابخانه در کلیسای شما:</p>
+			<ol>
+				<li>ارسال اطلاعات کلی‌ درباره بزرگی‌ گروه شما و موضوعات مورد علاقه و یا مورد نیاز گروه شما.
+از مسئول گروه و یا شبان کلیسا به فارسی ریدز</li>
+				<li>ارسال لیست پیشنهادی ما به شما</li>
+				<li>انتقال کتابخانه به محل شما</li>
+				<li>آموزش ساده کتابداری به فرد متصدی در نصف روز</li>
+			</ol>
+		</div>
+		<div id="testimonials">
+			<p>تصدیق نامه‌های ارسال شده:</p>
+			<article>
+				<span class="title">کلیسای اونجلیکال آزاد </span>
+				<span>گیسن، آلمان</span>
+				<div>در تاریخ دهم می‌، عزیزان فارسی ریدز اقدام به راه اندازی کتابخانه‌ای کوچک در کلیسای ما نمودند.
+
+ما خیلی‌ خرسندیم که اکنون می‌‌توانیم بیش از ۲۵۰ عنوان از کتاب‌های خوب مسیحی‌ برای اعضای خود در اختیار داشته باشیم. از خداوند سپاسگزاریم که فراهم کننده است و باشد که ما با مطالعه این کتاب‌ها در شناخت سرورمان عیسی مسیح ریشه بدوانیم.
+
+از تیم فارسی ریدز هم خیلی‌ متشکریم که این امکان کمنظیر را برای ما فراهم کردند.
+
+خدا شما را برکت دهد.</div>
+				<div id="testimonyImgs">
+					<img alt="1" src="@routes.Assets.at("images/feGLibrary.jpg")">
+					<img alt="2" src="@routes.Assets.at("images/persianBiblestudy.jpg")">
+					<img alt="3" src="@routes.Assets.at("images/feGLibrary.jpg")">
+				</div>
+			</article>
+		</div>
+	</div><!-- buildLib -->
+
+
 }{
 	<!-- right content for Services -->
 	
