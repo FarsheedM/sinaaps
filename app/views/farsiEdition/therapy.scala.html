@@ -1,0 +1,115 @@
+@(user : User)
+@FaMain("تشخیص و درمان"){
+
+
+<!-- -------------------farsi Edition----------------------- -->
+
+<head>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiTherapy.css")">
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+</head>
+
+        		<div id="clear"></div>
+        		
+        		<div id="socialBar">
+        			<div id="socialBarRightFarsi">
+						<ul style="padding-left : 15px;">
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>میهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+									
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+        		<div id="clear"></div>
+
+}{
+	<!----------------- پانل سمت چپ ------------------->
+	
+	<div id="discription">
+		<p>dar zir listi az dalaayeli avardeh shodeh ke mane' motale'e kardan ma mishavand.</p>
+		<p>chera man motaale'e nemi konam</p>
+	</div>
+	<div id="dignoseList">
+		<ul>
+			<li><a href="#">aslan baraaye motaale'e vaght nadaaram.</a></li>
+			<li><a href="#">hich mogheh ta be haal emtahaan nakardam.</a></li>
+			<li><a href="#">motaale'e kardan ra dust nadaaram; kheili hoseleh sarbar ast.</a></li>
+			<li><a href="#">shaayad ta be haal ketaab ya mozu mored alaagheh am ra peida nakardam.</a></li>
+			<li><a href="#">makaan va fazaaye monaaseb baraaye ketaab khaani nadaaram.</a></li>
+			<li><a href="#">nazm va enzebaat baraaye ketaabkhaani nadaaram.</a></li>
+		</ul>
+	</div><!-- dignoseList -->
+	<div id="remedyList">
+		<ul>
+			<li><div>
+				<span>nadaashtan zamaan</span>
+				<div id="disc">tozihaat raaje be in moshkel va raah ha haayepishnahaadi</div>
+			</div></li>
+			<li><div>
+				<span>tajrobeh nakardan</span>
+				<div id="disc">tozihaat raaje be in moshkel va raah ha haayepishnahaadi</div>
+			</div></li>
+			<li><div>
+				<span>alaagheh nadaashtan</span>
+				<div id="disc">tozihaat raaje be in moshkel va raah ha haayepishnahaadi</div>
+			</div></li>
+			<li><div>
+				<span>adam dastresi be ketaab mored alaagheh</span>
+				<div id="disc">tozihaat raaje be in moshkel va raah ha haayepishnahaadi</div>
+			</div></li>
+			<li><div>
+				<span>nabud fazaaye monaaseb</span>
+				<div id="disc">tozihaat raaje be in moshkel va raah ha haayepishnahaadi</div>
+			</div></li>
+			<li><div>
+				<span>nadaashtan nazm</span>
+				<div id="disc">tozihaat raaje be in moshkel va raah ha haayepishnahaadi</div>
+			</div></li>
+		</ul>
+	</div><!-- remedyList -->
+	
+}{
+	<!-- پانل سمت راست -->
+	<div id="testimonial">
+		<article>
+			<h3 class="rightBoxHeader">شهادت نامه</h3>
+			<a href="#"><img class="authorPhoto" src="https://d.gr-assets.com/authors/1262129906p2/13326.jpg"></a>
+			<div class="readable">
+				<span>شهادت شخصی‌ در باب اینکه این تشخیص و درمان ارایه شده کارا بوده است</span>
+			</div>
+		</article>
+	</div><!-- testimonial -->
+	
+	<div id="eval">
+		<span>ارزیابی:</span>
+		@@helper.form(){
+			<input type="text" name="name" placeholder="نام">
+			<br><br>
+			<textarea name="message" rows="5" cols="20"></textarea>
+			<br>
+			<input type="submit" value="پست">
+		}
+		
+	</div><!-- eval -->
+}
+
