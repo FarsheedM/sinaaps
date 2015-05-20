@@ -6,16 +6,43 @@
 @defaultFont: 			   18px "NasimBreeze","Tahoma","Arial";
 
 @headerFont:               20px "NasimBreeze","Tahoma","Arial";
-@alternativeFont:          14px "tahoma","arial";
+@alternativeFont:          15px "tahoma","arial";
 @OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
 //-------------------------------------------------------------------
-
+#discription{
+	font : @defaultFont;
+	padding-right : 20px;
+}
+#dignoseList{
+	font : @defaultFont;
+}
 #testimonial{
 	background-color : white;
 	height : 0 auto;
 	margin-bottom : 10px;
     padding-top : 1px;
     padding-bottom : 1px;
+}
+#testimonial a{
+	float : right;
+}
+#testimonial img{
+	padding-right : 5px;
+	height : 40px;
+	width : 40px;
+}
+#info{
+	float : right;
+	padding-right : 5px;
+}
+#info span{
+	color : #666600;
+	font : @alternativeFont;
+}
+#info p{
+	font-size : 0.7em;
+	color : #9197a3;
+	margin-top : 0;
 }
 .rightBoxHeader{
 	font : @defaultFont;
@@ -24,7 +51,8 @@
 }
 .readable{
 	font : @alternativeFont;
-	padding-bottom : 10px;
+	padding : 0px 5px 10px 5px;
+	
 }
 #eval{
 	background-color : white;
@@ -34,4 +62,22 @@
 	padding-right : 10px;
 	padding-left : 5px;
 	font : @alternativeFont;
+}
+#desc{
+	font : @defaultFont;
+	//font-size : 16px;
+	line-height: 1.2;
+	padding : 10px 20px 10px 5px;
+}
+li span{
+	font : @headerFont;
+	color : #2a3a48;
+	padding-bottom : 5px;
+}
+#btm{
+	margin-bottom : 5px;
+}
+
+#clear{
+	clear : both;
 }
