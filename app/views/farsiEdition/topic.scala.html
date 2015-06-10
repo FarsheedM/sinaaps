@@ -52,7 +52,7 @@
 					<!-- we take the 6 latest books with the help of scala list function  -->
 					@newBooks.take(3).map{ book =>
 					<div id="bookBox">
-						<a href="#">
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
 							<img class="bookImage" src="@book.photo" ><span class="titleText">@book.isbn</span>
 						</a>
 					</div>
@@ -63,8 +63,8 @@
 					<!--  takeRight(n), Selects last n elements. -->
 					@newBooks.takeRight(3).map{ book =>
 					<div id="bookBox">
-						<a href="#">
-							<img class="bookImage" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">@book.isbn</span>
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
+							<img class="bookImage" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 				
@@ -82,7 +82,7 @@
 					<!-- we take the 6 latest books with the help of scala list function  -->
 					@recommendedBooks.take(3).map{ book =>
 					<div id="bookBox">
-						<a href="#">
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
 							<img class="bookImage" src="@book.photo" ><span class="titleText">@book.isbn</span>
 						</a>
 					</div>
@@ -93,8 +93,8 @@
 					<!--  takeRight(n), Selects last n elements. -->
 					@recommendedBooks.takeRight(3).map{ book =>
 					<div id="bookBox">
-						<a href="#">
-							<img class="bookImage" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">@book.isbn</span>
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
+							<img class="bookImage" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 				
@@ -111,7 +111,7 @@
 					<!-- we take the 6 latest books with the help of scala list function  -->
 					@popularBooks.take(3).map{ book =>
 					<div id="bookBox">
-						<a href="#">
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
 							<img class="bookImage" src="@book.photo" ><span class="titleText">@book.isbn</span>
 						</a>
 					</div>
@@ -122,8 +122,8 @@
 					<!--  takeRight(n), Selects last n elements. -->
 					@popularBooks.takeRight(3).map{ book =>
 					<div id="bookBox">
-						<a href="#">
-							<img class="bookImage" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">@book.isbn</span>
+						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
+							<img class="bookImage" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 				

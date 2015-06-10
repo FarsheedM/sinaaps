@@ -1,7 +1,7 @@
 @************************************
 ** This is the loggedIn v.1      **
 ** it just welcomes the user and **
-** suggest him to to to the blog **
+** suggest him to the blog		 **
 ** and leave comments. It should **
 ** eventually display the recent **
 ** activities of all the users as**
@@ -10,7 +10,7 @@
 
 @(user : User)
 
-@farsiEdition.FaMain("به فارسی ریدز خوش آمدید"){
+@farsiEdition.FaMain("خوش آمدید"){
 
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
@@ -44,39 +44,38 @@
 	<!--  left content for LOGGEDIN -->
 	<br>
 	<div id="welcome">
-		<p>دوست عزیز،</p>
-		<span>@user.fName   @user.lName</span>
-		<h3>از ورود شما به سایت فارسی ریدز خرسندیم</h3>
+		<p>دوست عزیز،<span>@user.fName   @user.lName  </span>; از ورود شما به سایت فارسی ریدز خرسندیم</p>
+		
 		<p>فارسی ریدز پلت فرمی فارسی است که برای فراهم نمودن مطالب خوب و دست‌چین شده (از جمله کتاب، مقاله، بلاگ پست، شعر) در دسترس شما است</p>
 	</div><!-- welcome -->
-	<br>
+	
 	<div id="introTour">
 		<h3>با روش استفاده و امکانات "فارسی ریدز" آشنا شوید</h3>
 		<p>ویدئو یا مراحل استفاده اینجا</p>
 	</div><!-- introTour -->
-	<br>
+	
 	
 	<div id="phase">
-		<h4>توسعه خدمات و امکانات</h4>
+		<h3>توسعه خدمات و امکانات</h3>
+		<p>فاز اول "فارسی ریدز" کامل شده است<span>در تاریخ 21.05.2015</span></p>
 		<ul>
-			فاز اول "فارسی ریدز" کامل شده است
 			<li>
-				<p>شما میتوانید از  <a href="@routes.Blog.display("farsi")">بلاگ فارسی ریدز </a>دیدن فرمائید. همچنین میتوانید به مطالب نمره دهید و نظر خود رو به اشتراک بگذارید.</p>
+				<p>شما میتوانید از  <a href="@routes.Blog.display("farsi")">بلاگ </a> فارسی ریدز دیدن فرمائید. همچنین میتوانید به مطالب نمره دهید و نظر خود رو به اشتراک بگذارید.</p>
 			</li>
 			<li>
-				<p>شما میتوانید در سایت ثبت‌نام کنید و  <a href="@routes.About.display("farsi")"> با ما </a>و  <a href="#services"> خدمات </a>فارسی ریدز آشنا شوید </p>
+				<p>شما میتوانید در سایت ثبت‌نام کنید و  <a href="@routes.About.display("farsi")"> با ما </a>و  <a href="@routes.Services.display("farsi")"> خدمات </a>فارسی ریدز آشنا شوید </p>
 			</li>
 		</ul>
-
-	</div><!-- redirect -->
-	<br>
+	</div><!-- phase -->
+	
+	<div id="return"><a href="@controllers.controllersFarsi.routes.ApplicationFa.index()">بازگشت به صفحه اصلی</a>‌</div>
 }{
 	<!--  right content for LOGGEDIN -->
 	
 	<div id="adBox">
 		در صورتی که در ورود به سیستم دچار مشکل شده اید، به ما اطلاع دهید
 		<br>
-		<a href="@routes.About.display("farsi")">تماس با ما</a>
+		<div id="contactLink"><a href="@routes.About.display("farsi")">تماس با ما</a></div>
 	</div>
 	
 	<!-- -----------------------twitter---------------------- -->

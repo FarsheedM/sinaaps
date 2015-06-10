@@ -2,7 +2,11 @@
 @(user : User, book : Book, reviewForm : Form[BookReview], reviews : List[BookReview])
 <!-- --------------------Farsi Edition---------------------- -->
 		@bookTranslation = @{BookTranslation.getBookDetails(book.bookID,"farsi")}
-		@author = @{AuthorTranslation.getAuthor(bookTranslation.author.authorID,"farsi")}
+		@bookTranslationEn = @{BookTranslation.getBookDetails(book.bookID,"english")}
+		@authorList = @{BookAuthor.getAuthorList(book.bookID)}
+		<!-- This is used to get only one Author in the case of multiple one -->
+		@author1 = @{BookAuthor.getAuthorList(book.bookID).get(0)}
+		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
 
 @FaMain("پروفایل کتاب"){
 	
@@ -59,7 +63,20 @@
 					<ul> 
 						<li><h1>@bookTranslation.title</h1></li>
 						<li class="metaInfo">
-							<span>نوشته: @author.fName @author.lName</span> 
+							<!--  <span>نوشته: @@author.fName @@author.lName</span> -->
+							 
+							<!-- @@for(a <- authorList){
+								
+								val author = views.html.AuthorTranslation.getAuthor(a.authorID,"farsi");
+								<span>نوشته: author.fName author.lName</span> 
+							} -->
+							نوشته: 
+							@authorList.map{ a => 
+								<!--  @@author = views.html.AuthorTranslation.getAuthor(a.authorID,"farsi");-->
+								@defining( AuthorTranslation.getAuthor(a.authorID,"farsi") ) { author => 
+							<span>@author.fName @author.lName </span>-  }}
+							
+							
 							<span></span>
 						</li>
 						<li class="metaInfo"><time >تاریخ انتشار: @book.published.format("dd.MM.yyyy")</time> توسط @bookTranslation.publication </li>
@@ -72,8 +89,8 @@
 				</div>
 				<div id="bookdetails">
 					<ul class="metaInfo">
-						<li>شابک:</li>
-						<li>عنوان اصلی‌ کتاب:</li>
+						<li>شابک: @book.isbn</li>
+						<li>عنوان اصلی‌ کتاب: @bookTranslationEn.title</li>
 						<li>تعداد صفحات:</li>
 						<li>وزن:</li>
 						<li>ابعاد:</li>
@@ -158,13 +175,19 @@
 			<li><a href="#">خواهم خواند</a></li>
 		</ul>
 		</div>
-		<div id ="aboutAuthor">
+		<div id="aboutAuthor">
 			<h3 class="rightBoxHeader">درباره‌ نویسنده</h3>
-			<a href="#"><img class="authorPhoto" src="https://d.gr-assets.com/authors/1262129906p2/13326.jpg"></a>
-			<div class="readable">
-				<span>@author.description</span>
+			<div id="aFotoDiv">
+				<a href="#">
+					<img class="authorPhoto" src="https://d.gr-assets.com/authors/1262129906p2/13326.jpg">
+				</a>
 			</div>
+			<div class="readable">
+				<span>@authorDetail.description</span>
+			</div>
+			<div id="clean"></div>
 		</div>
+		
 		<div id="authorsOtherWorks">
 			<h3 class="rightBoxHeader">کتاب‌های دیگر از این نویسنده</h3>
 			<div id="otherBooksContainer">

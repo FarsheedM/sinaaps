@@ -25,13 +25,6 @@
 @buttonHover:           #fff;
 @activeColor:           #5daad5;
 
-// Folders
-@folderBorder:          #9ba5ad;
-@folderBackground:      #dbe1e5;
-@folderHeaderLight:     #f2f5f8;
-@folderHeaderDark:      #dfe2e6;
-@folderTitle:           #7a8a99;
-
 // ----------------------------- FONTS -----------------------------------
 @font-face {
 	font-family : NasimBreeze;
@@ -415,22 +408,64 @@ fieldset legend{
 #welcome{
 	margin-right : 10px;
 	margin-left : 10px;
-	font : 14px "Lucida Grande","Helvetica Neue", "sans-serif";
+	font : @defaultFont;
 	line-height : 1.5;
 }
 #welcome span{
 	color:red;
-	padding-right : 10px;
+	padding-right : 3px;
+	padding-left : 3px;
+	font : @defaultFont;
 }
 #introTour{
 	margin-right : 10px;
 	margin-left : 10px;
+	font : @defaultFont;
+}
+#introTour h3{
+    color: #75bfb8;
+    font: bold 17px "NasimBreeze","Tahoma","Arial";
 }
 #phase{
 	margin-right : 10px;
 	margin-left : 10px;
+	font : @defaultFont;
 }
-
+#phase h3{
+    color: #75bfb8;
+    font: bold 17px "NasimBreeze","Tahoma","Arial";
+}
+#phase span{
+	color: #9197a3;
+    font-size: 0.7em;
+    padding-right : 5px;
+}
+#return{
+	border : 1px solid #dddddd;
+	font : @defaultFont;
+	color : #75bfb8;
+	font-size : 0.9em;
+	width : 100px;
+	text-align : center;
+	margin-right : 220px;
+	background-color : #ededed;
+	margin-bottom : 5px;
+	margin-top : 30px;
+}
+#adBox{
+	font : @alternativeFont;
+}
+#contactLink{
+	border : 1px solid #dddddd;
+	font : @defaultFont;
+	color : #75bfb8;
+	font-size : 0.9em;
+	width : 50px;
+	text-align : center;
+	margin: 5px;
+	background-color : #ededed;
+	//margin-bottom : 5px;
+}
 #horizonLine{
 	border-top:solid #75bfb8;				//#333333
 	width : 94%;

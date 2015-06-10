@@ -39,7 +39,8 @@ public class AuthorTranslation extends Model{
 	}
 	
 
-	
+	//This method is to retrieve the details of a Author by giving 
+	//the author_id and the language
 	public static AuthorTranslation getAuthor(Integer author_id,String language){
 		return AuthorTranslation.find.where().eq("author_id", author_id).
 											eq("language", language).findUnique();

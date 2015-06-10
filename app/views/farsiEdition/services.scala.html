@@ -94,9 +94,9 @@
  			<div id="eventForm">
 			@helper.form(controllers.routes.Services.sendFeedBack("farsi")){
 				<input type="text" name="name" placeholder="نام">
-				<br><br>
+				<br>
 				<input type="email" name="email" placeholder="ایمیل">
-				<br><br>
+				<br>
 				<select name="subject">
 					<option>موضوع</option>
 					<option>مشورت</option>
@@ -105,7 +105,7 @@
 					<option>راه اندازی کتابخانه</option>
 					<option>غیره</option>
 				</select>
-				<br><br>
+				<br>
 				<textarea name="message" rows="5" cols="60"></textarea><br>
 				<input type="submit" value="پست">
 			}

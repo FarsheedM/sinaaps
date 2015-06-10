@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -8,6 +9,8 @@ import models.*;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
+//This Class is used to implement the many to many relationship 
+//for the Book and Author classes.
 @Entity
 public class BookAuthor extends Model{
 	
@@ -30,5 +33,17 @@ public class BookAuthor extends Model{
 		this.book=book;
 		this.author=author;
 	}
-
+	
+	//This method is needed to somehow retrieve a list of author(s) of the
+	//given bookId. It will be called in e.g. bookProfile view.
+	public static List<Author> getAuthorList(Integer bookId){
+		List<BookAuthor> bA=  BookAuthor.find.where().eq("book_id", bookId).findList();
+		List<Author> authors = new ArrayList<Author>();
+		//Author aut = bA.get(0).author;
+		for(BookAuthor a : bA){
+			authors.add(a.author);
+		}
+		return authors;
+	}
+	
 }

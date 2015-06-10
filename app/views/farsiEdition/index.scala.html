@@ -110,7 +110,7 @@
 			<p id="@post.postID">@post.content</p>
 			<script>clamping();</script>
 			
-			<a href="@routes.Blog.display(post.language)"><p>ادامه مقاله ...</p></a>
+			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)"><p>ادامه مقاله ...</p></a>
 		</div>
 		<div id="clear"></div>
 		<div id="latestPostLinks"><h4><a href="@routes.Blog.display(post.language)">مشاهده تمامی مطالب بلاگ<b> فارسی ریدز</b></a></h4></div>
@@ -129,7 +129,7 @@
 		</ul>
 		<div id="clear"></div>
 		<div id="toServiceLink">
-			<a href="#ToService">مشاهده جزئیات فعالیت‌ها و خدمات</a>
+			<a href="@routes.Services.display("farsi")">مشاهده جزئیات فعالیت‌ها و خدمات</a>
 		</div>
 	</div> <!-- activityBox -->
 	

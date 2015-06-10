@@ -100,7 +100,7 @@
 					@books.take(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImg" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
+							<img class="bookImg" src="@book.photo" ><br><span class="titleText">@book.bookID</span>
 						</a>
 					</div>
 					}			
@@ -111,7 +111,7 @@
 				@books.takeRight(3).map{ book =>
 				<div id="bookBox">
 					<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-						<img class="bookImg" src="@routes.Assets.at("images/book2.jpg")" ><br><span class="titleText">@book.isbn</span>
+						<img class="bookImg" src="@book.photo" ><br><span class="titleText">@book.bookID</span>
 					</a>
 				</div>
 				}

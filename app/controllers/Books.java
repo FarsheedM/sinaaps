@@ -1,9 +1,12 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.joda.time.DateTime;
 
+import akka.util.Collections;
 import models.*;
 import play.data.Form;
 import play.mvc.Controller;
@@ -50,7 +53,7 @@ public class Books extends Controller{
 				
 		if(lang.equals("english")){
 			if(session().containsKey("email"))
-				//to update in english version!!
+				//to update in English version!!
 				return ok(views.html.farsiEdition.bookProfile.render(
 							User.find.byId(session().get("email")),book, Form.form(BookReview.class),reviewList));
 			else{
@@ -104,10 +107,30 @@ public class Books extends Controller{
 	
 	public static Result showByTopic(String lang, Integer topicId){
 		
+		// topicBooks holds a list of books with the same topic as topicIds
+		List<Book> topicBooks = new ArrayList<Book>();
+		List<TopicBook> tpbk = TopicBook.find.where().eq("topic_id", topicId).findList();
+		Book bk;
+		for(TopicBook i : tpbk){
+			bk = Book.find.byId(i.book.bookID);
+			topicBooks.add(bk);
+		}
+		
 		Topic topic = Topic.find.byId(topicId);
 		
-		List<Book> newBooks = Book.find.where().order().desc("published").findList();
-		newBooks = newBooks.subList(0, 6);
+		List<Book> newBooks = new ArrayList<Book>(topicBooks);
+		java.util.Collections.sort(newBooks, new PublishedCompare());
+		//newBooks = newBooks.subList(0, 6);   DEVELOPEMENT::there are no 6 item in the list right now!!
+		
+		
+		
+		//List<Book> newBooks = Book.find.where().order().desc("published").findList();
+		//newBooks = newBooks.subList(0, 6);
+		
+		
+		//----- The code below should be corrected as above ------//
+		
+		
 		//books which are recommended by farsiReads
 		List<Book> recommendedBooks = Book.find.order().desc("farsireadsRating").findList();
 		recommendedBooks = recommendedBooks.subList(0, 6);
@@ -142,9 +165,11 @@ public class Books extends Controller{
 			//if neither english nor farsi is selected
 			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
 		}
-		
-		
-		
-		
+	}
+	
+	public static class PublishedCompare implements Comparator<Book>{
+		public int compare(Book a, Book b){
+			return a.published.compareTo(b.published);
+		}
 	}
 }

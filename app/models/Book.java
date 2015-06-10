@@ -28,7 +28,7 @@ public class Book extends Model{
 															(Integer.class,Book.class);
 	
 	
-	public Book(Integer bookID, String isbn, int page, Date published, String photo, 
+	/*public Book(Integer bookID, String isbn, int page, Date published, String photo, 
 				String dimensions, float weight, int userRating, int farsireadsRating){
 		
 		this.bookID = bookID;
@@ -40,6 +40,6 @@ public class Book extends Model{
 		this.weight = weight;
 		this.userRating = userRating;
 		this.farsireadsRating = farsireadsRating;
-	}
+	}*/
 	
 }

@@ -30,7 +30,7 @@
 									<dt> @user.fName <span>@user.email</span></dt>
 									<dd><a href="@routes.Application.logout">خروج</a></dd>
 								} else {
-									<dt>وضعیت کاربر : <span>@user.fName</span></dt>
+									<dt>وضعیت کاربر : <span>مهمان</span></dt>
 									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
 									
 								}
@@ -72,8 +72,8 @@
 		<p>شما میتوانید از فرم زیر استفاده نمایید و نظرات خود را با ما در میان بگذارید</p>
 		<div id="contactForm">
 			@helper.form(controllers.routes.About.sendFeedBack("farsi")){
-				<input type="text" name="name" placeholder="نام"><br><br>
-				<input type="email" name="email" placeholder="ایمیل"><br><br>
+				<input type="text" name="name" placeholder="نام"><br>
+				<input type="email" name="email" placeholder="ایمیل"><br>
 				<select name="subject">
 					<option>موضوع</option>
 					<option>شهادت یا تشویق</option>
@@ -81,7 +81,7 @@
 					<option>گزارش توهین</option>
 					<option>اعلام همکاری</option>
 					<option>مشکل در حساب کاربری</option>
-				</select><br><br>
+				</select><br>
 				<textarea name="message" rows="5" cols="60"></textarea><br>
 				<input type="submit" value="پست">
 
