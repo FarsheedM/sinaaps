@@ -33,11 +33,13 @@ public class BlogPost extends Model{
 	public String language;
 	@Formats.DateTime(pattern="dd-MM-yyyy")
 	public Date published;
+	public String aux_img1;
+	public String aux_img2;
 	
 	public static Finder<Integer,BlogPost> find = new Finder<Integer,BlogPost>(Integer.class,BlogPost.class);
 	
 	public BlogPost(int postID,String title,String content,String image, 
-						Author author,String topic,String language){
+						Author author,String topic,String language,String aux_img1,String aux_img2){
 		
 		this.postID = postID;
 		this.title = title;
@@ -47,6 +49,8 @@ public class BlogPost extends Model{
 		this.topic = topic;
 		this.language = language;
 		this.published= DateTime.now().toDate();
+		this.aux_img1 = aux_img1;
+		this.aux_img2 = aux_img2;
 	}
 
 

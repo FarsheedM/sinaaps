@@ -132,11 +132,14 @@ public class Books extends Controller{
 		
 		
 		//books which are recommended by farsiReads
-		List<Book> recommendedBooks = Book.find.order().desc("farsireadsRating").findList();
-		recommendedBooks = recommendedBooks.subList(0, 6);
+		List<Book> recommendedBooks = new ArrayList<Book>(topicBooks);
+		java.util.Collections.sort(recommendedBooks, new FRRecommendCompare());
+		//recommendedBooks = recommendedBooks.subList(0, 6);  DEVELOPEMENT::there are no 6 item in the list right now!!
+		
 		//books recommended by users
-		List<Book> popularBooks = Book.find.order().desc("userRating").findList();
-		popularBooks = popularBooks.subList(0, 6);
+		List<Book> popularBooks = new ArrayList<Book>(topicBooks);
+		java.util.Collections.sort(popularBooks, new UsersRecommendCompare());
+		//popularBooks = popularBooks.subList(0, 6);   DEVELOPEMENT::there are no 6 item in the list right now!!
 		
 		
 		//here is to changed with the English version!!
@@ -167,9 +170,19 @@ public class Books extends Controller{
 		}
 	}
 	
+	//defining Comparator classes in order to be used in sort functions in showByTopic()
 	public static class PublishedCompare implements Comparator<Book>{
 		public int compare(Book a, Book b){
 			return a.published.compareTo(b.published);
+		}
+	}
+	public static class FRRecommendCompare implements Comparator<Book>{
+		public int compare(Book a, Book b){
+			return Integer.compare(a.farsireadsRating, b.farsireadsRating);
+		}
+	}public static class UsersRecommendCompare implements Comparator<Book>{
+		public int compare(Book a, Book b){
+			return Integer.compare(a.userRating, b.userRating);
 		}
 	}
 }
