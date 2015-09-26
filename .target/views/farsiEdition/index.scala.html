@@ -28,7 +28,9 @@
 		</head>
 		
     	<div id="headContent">  
-        		<div id="headContentLeft">Headlines</div>
+        		<div id="headContentLeft">
+        			<img alt="FarsiReads" src="@routes.Assets.at("images/Praesentation630_295.jpg")">
+        		</div>
         		<div id="headContentRight">
         				@helper.form(controllers.controllersFarsi.routes.ApplicationFa.authenticate){
 	        				<input type="text" name="lName" placeholder="نام" />
@@ -65,36 +67,36 @@
 		<p>در بخش کتاب ها، بانک اطلاعاتی‌ شامل کتابهای فارسی مسیحی‌(تالیف و ترجمه) آماده شده است. شما میتوانید عنوان کتاب مورد نظر را جستجو کنید و در صورت وجود، چکیده‌ای از کتاب به همراه اطلاعات جانبی(از جمله اطلاعاتی‌ مربوط به مولف، هدف نگارش، تاریخ نگارش و نحوه تهیه) در اختیار شما خواهد بود. همچنین شما قادر خواهید بود با استفاده از "فهرست موضوعی"، به مرور و گردش در کتاب‌ها بپردازید.
 				
 		در این قسمت، ماهیانه کتابهای انتخاب، تحلیل و برای مطالعه پیشنهاد میشود. علاوه بر این شما میتوانید از ترجمه و انتشار عنوان‌های جدید کتاب نیز خبردار شوید.
-		قبلیت دیگر این بخش، راه اندازی کتابخانه الکترونیکی‌ و مدیریت مطالعه شخصیتان است.
+		قابلیت دیگر این بخش، راه اندازی کتابخانه الکترونیکی‌ و مدیریت مطالعه شخصیتان است.
 		هدف اصلی‌ این قسمت، گردآوری تمامی کتابهای مسیحی‌ فارسی - از انتشارات مختلف، قدیمی‌ و جدید و بدون توجه به فرقه مربوطه - در بانک اطلاعاتی‌ و امکان جستجو در آن می‌باشد.
 		</p>
 		
 		<div id="categoryBox">
 			<h4>فهرست موضوعی</h4>
 				<div class="right">
-					<a href="#">الهیات</a><br>
-					<a href="#">باستان شناسی‌</a><br>
-					<a href="#">بشارت</a><br>
-					<a href="#">بیوگرافی</a><br>
-					<a href="#">تاریخ کلیسا</a><br>
+					<a href="@routes.Books.showByTopic("farsi",0)">الهیات</a><br>
+					<a href="@routes.Books.showByTopic("farsi",1)">باستان شناسی‌</a><br>
+					<a href="@routes.Books.showByTopic("farsi",2)">بشارت</a><br>
+					<a href="@routes.Books.showByTopic("farsi",3)">بیوگرافی</a><br>
+					<a href="@routes.Books.showByTopic("farsi",4)">تاریخ کلیسا</a><br>
 				</div>
 				<div class="right">
-					<a href="#">تفسیری</a><br>
-					<a href="#">خانواده</a><br>
-					<a href="#">خدمت</a><br>
-					<a href="#">داستانی</a><br>
-					<a href="#">دفاعیات</a><br>
+					<a href="@routes.Books.showByTopic("farsi",5)">تفسیری</a><br>
+					<a href="@routes.Books.showByTopic("farsi",6)">خانواده</a><br>
+					<a href="@routes.Books.showByTopic("farsi",7)">خدمت</a><br>
+					<a href="@routes.Books.showByTopic("farsi",8)">داستانی</a><br>
+					<a href="@routes.Books.showByTopic("farsi",9)">دفاعیات</a><br>
 				</div>
 				<div class="right">
-					<a href="#">رازگاهان</a><br>
-					<a href="#">زندگی‌ مسیحی‌</a><br>
-					<a href="#">شاگردسازی</a><br>
-					<a href="#">فرقه ها</a><br>
-					<a href="#">کتاب مقدس</a><br>
+					<a href="@routes.Books.showByTopic("farsi",10)">رازگاهان</a><br>
+					<a href="@routes.Books.showByTopic("farsi",11)">زندگی‌ مسیحی‌</a><br>
+					<a href="@routes.Books.showByTopic("farsi",12)">شاگردسازی</a><br>
+					<a href="@routes.Books.showByTopic("farsi",13)">فرقه ها</a><br>
+					<a href="@routes.Books.showByTopic("farsi",14)">کتاب مقدس</a><br>
 				</div>
 				<div class="right">
-					<a href="#">کلاسیک</a><br>
-					<a href="#">کودکان</a><br>
+					<a href="@routes.Books.showByTopic("farsi",15)">کلاسیک</a><br>
+					<a href="@routes.Books.showByTopic("farsi",16)">کودکان</a><br>
 				</div>
 				<br>
 		</div> <!-- categoryBox -->
@@ -110,7 +112,7 @@
 			<p id="@post.postID">@post.content</p>
 			<script>clamping();</script>
 			
-			<a href="@routes.Blog.display(post.language)"><p>ادامه مقاله ...</p></a>
+			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)"><p>ادامه مقاله ...</p></a>
 		</div>
 		<div id="clear"></div>
 		<div id="latestPostLinks"><h4><a href="@routes.Blog.display(post.language)">مشاهده تمامی مطالب بلاگ<b> فارسی ریدز</b></a></h4></div>
@@ -129,7 +131,7 @@
 		</ul>
 		<div id="clear"></div>
 		<div id="toServiceLink">
-			<a href="#ToService">مشاهده جزئیات فعالیت‌ها و خدمات</a>
+			<a href="@routes.Services.display("farsi")">مشاهده جزئیات فعالیت‌ها و خدمات</a>
 		</div>
 	</div> <!-- activityBox -->
 	
@@ -154,14 +156,73 @@
 	
 }{
 	<!--  <p>Right content for index محتوا اینجا</p> -->
-	
-	<div id="visitorCount">
-		@for(g <- ga){ 
-			<p> تعداد کاربران "فارسی ریدز" :  <span>@g</span> </p>}
+
+	<div id="userThumbnails" >
+		<p>کاربران فارسی ریدز</p>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+ 		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+<!--		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+		<div class="userThumb">
+			<a href="#">
+				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div> -->
 		
 		
-	</div><!-- visitorCount -->
-	
+	</div><!-- userThumbnails -->
+	<div id="clear"></div>
 	<!-- -----------------------twitter---------------------- -->
 	<a class="twitter-timeline" href="https://twitter.com/FarsiReads" data-tweet-limit="1"
 		width="300px" data-chrome="nofooter"
@@ -172,6 +233,12 @@
 		fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 
+	
+	<div id="visitorCount">
+		@for(g <- ga){ 
+			<p> تعداد کاربران "فارسی ریدز" :  <span>@g</span> </p>
+			}
+	</div><!-- visitorCount -->
 	
 }
 

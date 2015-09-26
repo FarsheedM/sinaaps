@@ -154,7 +154,7 @@ public class Application extends Controller {
          * create new ClientID ->service account and save the privateKey.p12 somewhere
          */
         
-        File analyticsPrivateKeyFile = new File("/public/key.p12.p12");
+        File analyticsPrivateKeyFile = new File("/public/images/key.p12.p12");
         
         GoogleCredential credential = new GoogleCredential.Builder()
         .setTransport(HTTP_TRANSPORT)
@@ -170,8 +170,8 @@ public class Application extends Controller {
     
     private static GaData executeDataQuery(Analytics analyticsService, String tableId) throws IOException {
         
-        String startDate = "2014-01-03";
-        String endDate = "2014-08-21";
+        String startDate = "2015-01-03";
+        String endDate = "2015-08-17";
         String mertrics = "ga:users";
 
         // Use the analytics object build a query

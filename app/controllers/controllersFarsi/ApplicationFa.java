@@ -5,6 +5,7 @@ package controllers.controllersFarsi;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.*;
 
 import controllers.routes;
@@ -100,7 +101,11 @@ public class ApplicationFa extends Controller{
          * create new ClientID ->service account and save the privateKey.p12 somewhere
          */
         
-        File analyticsPrivateKeyFile = new File("./public/key.p12.p12");
+        
+        //new File("./public/images/key.p12.p12"));
+        //this piece of code is working locally.
+        //in below the code should work in arvixe in production mode
+        File analyticsPrivateKeyFile = new File("/home/farsheed/public_html/key.p12.p12");
         
         GoogleCredential credential = new GoogleCredential.Builder()
         .setTransport(HTTP_TRANSPORT)
@@ -116,8 +121,8 @@ public class ApplicationFa extends Controller{
     
     private static GaData executeDataQuery(Analytics analyticsService, String tableId) throws IOException {
         
-        String startDate = "2014-01-03";
-        String endDate = "2014-08-21";
+        String startDate = "2015-01-03";
+        String endDate = "2015-08-17";
         String mertrics = "ga:users";
 
         // Use the analytics object build a query

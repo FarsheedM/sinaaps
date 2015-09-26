@@ -48,7 +48,7 @@
         		</div><!-- headContent -->
         		<div id="clear"></div>
         		
-        		<div id="horizonLine"></div>
+        		<!--  <div id="horizonLine"></div>  -->
 
 }{
 	<!--  left content for Blog -->
@@ -62,7 +62,7 @@
 			 in order to be called from a CMS, which in turn also should be written soon.-->
 		<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">   
 		
-			<img src="@(posts.head).image" rel="@(posts.head).title">
+			<img src="@posts.head.image" rel="@posts.head.title">
 		</a>
 		<hgroup>
 			<h2>@posts.head.title</h2>
