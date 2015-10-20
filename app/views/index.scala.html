@@ -4,7 +4,7 @@
 @main(message) {
 
 		<head>
-			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/index.css")">
+			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/indexD.css")">
 			<script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
 			<script>
 				var clamping = function(){
@@ -20,11 +20,11 @@
         		<div id="headContentLeft">Headlines</div>
         		<div id="headContentRight">
         				@helper.form(routes.Application.authenticate){
-	        				<input type="text" name="lName" placeholder="Name" />
-	        				<input type="email" name="email" placeholder="Email" />
-	        				<input type="password" name="password" placeholder="Password" />
+	        				<input class="form" type="text" name="lName" placeholder="Name" />
+	        				<input class="form" type="email" name="email" placeholder="Email" />
+	        				<input class="form" type="password" name="password" placeholder="Password" />
 	        				<br/>
-	        				<button type="submit">Sign In</button>
+	        				<button type="submit" id="signinBtn">Sign In</button>
 	        				<p>New to FarsiReads? Sign Up <a href="/english/signUp" id="signUpLink">Here</a></p>
 	        				@if(form.hasGlobalErrors){
 	        					<p id="error">Error: @form.globalError.message </p>
@@ -37,77 +37,106 @@
 		
 }{
 	<!--  Content Left comes here -->
-	<div id="infoBox">
-		<div id="infoBoxLeft">
-			<p><span>FarsiReads</span> is a Farsi Platform to provide the good and selected Farsi Reads(e.g. Books,Articles,
-			Blog posts, etc.) for farsi-speaking people.</p>
-		</div>
-		
-		<div id="infoBoxRight">
-			<p>It is social-based and interactive in a sense to encourage the reading in general and also promote the valuable
-			Christian works. Its ambitious aim is to develop or even create the vital habit of reading which is absent in
-			majority of the farsi-speakers including both Christians and non-christians alike.</p>
-		</div>
-	</div><!-- infoBox -->
-	<div id="clear"></div>
 	
-	<div id="bookBox">
-		<h3 style="padding-right:10px;">Books</h3>
-		<p>In this section a collection of farsi Christian books and booklets including the original farsi works as well as translated ones are gathered in a database. You can search to see whether a specific topic is available in farsi and see a short summary of the book. You could also browse the books using the book categories which are sorted by topics.
- In this section we choose and analyse and recommend a book monthly; you could also be informed about the new titles which are translated or published.
-Using this section enables you to establish and organize your own virtual library to keep track of your already read and current reading books.
-The main purpose is to organize the complete collection of all farsi Christian works regardless of their confessions.
-		</p>
-		<div id="categoryBox">
-			<h4>Topics</h4>
-				<div class="right">
-					<a href="#">Theology</a><br>
-					<a href="#">Archaeology</a><br>
-					<a href="#">Evangelism</a><br>
-					<a href="#">Biography</a><br>
-					<a href="#">Church History</a><br>
-				</div>
-				<div class="right">
-					<a href="#">Commentary</a><br>
-					<a href="#">Family</a><br>
-					<a href="#">Service</a><br>
-					<a href="#">Story</a><br>
-					<a href="#">Apologetics</a><br>
-				</div>
-				<div class="right">
-					<a href="#">Devotions</a><br>
-					<a href="#">Christian Living</a><br>
-					<a href="#">Discipleship</a><br>
-					<a href="#">Sects</a><br>
-					<a href="#">Bible</a><br>
-				</div>
-				<div class="right">
-					<a href="#">Classics</a><br>
-					<a href="#">Children</a><br>
-				</div>
-				<br>
-		</div> <!-- categoryBox -->
-		
-	</div><!-- bookBox -->
-	<div id="blogBox">
-		<div id="latestPost"><h3>Blog</h3></div>
-		<div id="latestPostImg"><img src="@post.image" alt="@post.title" title="@post.title"></div>
-		<div id="latestPostSum">
-			Latest published post:
-			<h4>@post.title</h4>
-			<p id="@post.postID">@post.content</p>
-			<script>clamping();</script>
-			<a href="@routes.Blog.display(post.language)"><p>Read more ...</p></a>
-		</div>
-		<div id="clear"></div>
-		<div id="latestPostLinks"><h4><a href="@routes.Blog.display(post.language)">Go to the <b>FarsiReads</b> Blog</a></h4></div>
+
+        <div id="infoBox">
+            <h2>
+                FarsiReads</h2>
+            <p>
+                <span>FarsiReads</span> is a Farsi Platform to provide the good and selected Farsi
+                Reads(e.g. Books,Articles, Blog posts, etc.) for farsi-speaking people.</p>
+            <p>
+                It is social-based and interactive in a sense to encourage the reading in general
+                and also promote the valuable Christian works. Its ambitious aim is to develop or
+                even create the vital habit of reading which is absent in majority of the farsi-speakers
+                including both Christians and non-christians alike.</p>
+            <div class="line"></div>
+            
+            <!-- Dima deleted the bookBox DIV -->
+            <h2>
+                Books</h2>
+            <p>
+                In this section a collection of farsi Christian books and booklets including the
+                original farsi works as well as translated ones are gathered in a database. You
+                can search to see whether a specific topic is available in farsi and see a short
+                summary of the book. You could also browse the books using the book categories which
+                are sorted by topics. In this section we choose and analyse and recommend a book
+                monthly; you could also be informed about the new titles which are translated or
+                published. Using this section enables you to establish and organize your own virtual
+                library to keep track of your already read and current reading books. The main purpose
+                is to organize the complete collection of all farsi Christian works regardless of
+                their confessions.
+            </p>
+        </div><!-- infoBox -->
+        
+        <div class="clear"></div>
+        
+
+        <div id="categoryBox">
+            <h2>
+                Topics</h2>
+            <div class="right">
+                <a href="#">Theology</a><br>
+                <a href="#">Archaeology</a><br>
+                <a href="#">Evangelism</a><br>
+                <a href="#">Biography</a><br>
+                <a href="#">Church History</a><br>
+            </div>
+            <div class="right">
+                <a href="#">Commentary</a><br>
+                <a href="#">Family</a><br>
+                <a href="#">Service</a><br>
+                <a href="#">Story</a><br>
+                <a href="#">Apologetics</a><br>
+            </div>
+            <div class="right">
+                <a href="#">Devotions</a><br>
+                <a href="#">Christian Living</a><br>
+                <a href="#">Discipleship</a><br>
+                <a href="#">Sects</a><br>
+                <a href="#">Bible</a><br>
+            </div>
+            <div class="right">
+                <a href="#">Classics</a><br>
+                <a href="#">Children</a><br>
+            </div>
+            <br>
+            <!-- categoryBox -->
+        </div>
+        <!-- bookBox  "@routes.Assets.at("/images/door.jpg")"-->
+ 
+ 
+ 	<div id="blogBox">
+            <div id="latestPost">
+                <h2>
+                    Blog</h2>
+                <p>
+                    Latest published post:</p>
+                <span>@post.title</span>
+            </div>
+            <div id="latestPostContainer">
+                <div id="latestPostSum">
+                    
+                        <img src="@post.image" alt="Image" />
+                        <span style="display:block;" id="@post.postID">@post.content</span>  
+                      	<script>clamping();</script> 
+                        <br>
+                        <a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)">Read more ...</a>
+                        <br>
+                        <a style="color:#f26100;" href="@routes.Blog.display(post.language)">Go to the<b> FarsiReads</b> Blog</a>
+                   
+                </div>
+
+            </div>
+            <div class="clear"></div>
+			<div class="line"></div>
+
+    </div><!-- blogBox -->
 	
-	</div><!-- blogBox -->
-	
-	<div id="horizonLine"></div>
 	
 	<div id="activityBox">
-		<h3>Activities</h3>
+		<h2>Activities</h2>
+<!-- 
 		<ul id="activityList">
 			<li><div id="service"><img src="@routes.Assets.at("images/icons/Translate.gif")" alt="srvc"><p>Translating useful books and articles</p></div></li>
 			<li><div id="service"><img src="@routes.Assets.at("images/icons/Seminar.gif")" alt="srvc"><p>Holding Seminars and Workshops to promote reading</p></div></li>
@@ -115,11 +144,19 @@ The main purpose is to organize the complete collection of all farsi Christian w
 		</ul>
 	
 		<br>
-		<a href="#ToService">Go to the Service section to see all activities</a>
+-->
+        <div id="TransDiv"><a href="#"><img src="@routes.Assets.at("images/Translating.jpg")" alt="Translate"/> </a></div>
+        <div class="nextDiv"><a href="#"><img src="@routes.Assets.at("images/Seminars.jpg")" alt="Seminars"/></a></div>
+        <div class="nextDiv"><a href="#"><img src="@routes.Assets.at("images/Library.jpg")" alt="FarsiLibrary"/></a></div>
+
+		<a href="@routes.Services.display("english")">Go to the Service section to see all activities</a>
 	</div> <!-- activityBox -->
 
+<div class="clear"></div>
+<div class="line"></div>
+
 	<div id="quotationBox">
-		<h3 style="margin-top:4px;">Quotation</h3>
+		<h2 style="margin-top:4px;">Quotation</h2>
 		<div style="display : inline;">
 			<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
 			<div id="quoteText">
@@ -139,7 +176,7 @@ The main purpose is to organize the complete collection of all farsi Christian w
 	}{
 	
 	<!--  Content Right comes here -->
-
+	<div id="clear"></div>
 		<div id="visitorCount">
 		@for(g <- ga){ 
 			<p> FarsiReads Visitors :  <span>@g</span> </p>}

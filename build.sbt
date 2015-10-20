@@ -15,7 +15,10 @@ libraryDependencies ++= Seq(
   "com.google.oauth-client" % "google-oauth-client-jetty" % "1.17.0-rc",
   "com.google.api-client" % "google-api-client" % "1.18.0-rc",
   "com.google.http-client" % "google-http-client" % "1.17.0-rc",
-  "com.typesafe" %% "play-plugins-mailer" % "2.1.0"
+  "com.typesafe" %% "play-plugins-mailer" % "2.1.0",
+  "com.cloudinary" % "cloudinary-http42" % "1.2.1",
+  "org.codehaus.jackson" % "jackson-core-asl" % "1.9.13",
+  "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13"
 )     
 
 play.Project.playJavaSettings

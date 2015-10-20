@@ -13,6 +13,7 @@ import controllers.Application.Login;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Results.*;
 import views.html.farsiEdition.*;
 import models.*;
 
@@ -36,6 +37,14 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.services.analytics.model.GaData;
 import com.google.api.services.analytics.model.GaData.*;
 import com.google.api.services.analytics.Analytics.Data.Ga.Get;
+import com.cloudinary.*;
+import com.cloudinary.utils.*;
+
+import play.libs.Json;
+
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.node.ObjectNode;
+
 
 public class ApplicationFa extends Controller{
 	
@@ -144,6 +153,42 @@ public class ApplicationFa extends Controller{
         }
         
       }
-    
+    /**
+     * Using AJAX for the thumbnails retrieval from cloudinary needs to be done
+     *  using JSONP(padding) format as the source is not in the same origin. 
+     *  As cloudinary doesn't support JSONP by wrapping the JSON output with our
+     *   named callback function(mysunc({--JSON data--})), the server approach 
+     *   should be used instead of relying only on the client code. 
+     *   **/
+    public static Result getImageUrls(){
+
+    	@SuppressWarnings("unchecked")
+		Map<String, Object> config = ObjectUtils.asMap(
+    	  "cloud_name", "cloudinary-sinaaps",
+    	  "api_key", "187356621496487",
+    	  "api_secret", "2NpXZWEoi2dv4-PG4_mJLzzp9Jc");
+
+    	Cloudinary cloudinary = new Cloudinary(config);
+    	Api api = cloudinary.api();
+    	JsonNode jsonResult = null;
+    	try {
+    	    jsonResult = (JsonNode) api.resources(ObjectUtils.asMap("type", "upload"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	  
+    	  com.fasterxml.jackson.databind.node.ObjectNode result = Json.newObject();
+    	  String name = jsonResult.findPath("format").getTextValue();
+    	  if(name == null) {
+    	    result.put("status", "KO");
+    	    result.put("message", "Missing parameter [name]");
+    	    return badRequest(result);
+    	  } else {
+    	    result.put("status", "OK");
+    	    result.put("message", "Hello " + name);
+    	return ok(result);
+    }
+    }
     
 }
