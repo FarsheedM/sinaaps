@@ -4,20 +4,13 @@ package controllers.controllersFarsi;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
 import java.util.*;
-
 import controllers.routes;
 import controllers.Application.Login;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Results.*;
-import views.html.farsiEdition.*;
 import models.*;
-
-import com.fasterxml.jackson.core.JsonParser;
 
 /*NOTE: if new external packages should be added:
  *      it should be added first to the "Java build Path" of the project
@@ -28,8 +21,6 @@ import com.fasterxml.jackson.core.JsonParser;
  *      http://mvnrepository.com/
  *       */
 import com.google.api.services.analytics.*;
-import com.google.api.services.analytics.model.*;
-import com.google.api.client.json.jackson2.*;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -37,19 +28,12 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.services.analytics.model.GaData;
-import com.google.api.services.analytics.model.GaData.*;
 import com.google.api.services.analytics.Analytics.Data.Ga.Get;
+
 import com.cloudinary.*;
-import com.cloudinary.api.ApiResponse;
 import com.cloudinary.utils.*;
 
-import play.libs.Json;
-
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.node.ObjectNode;
-import org.hibernate.jpa.criteria.path.MapKeyHelpers;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 
 public class ApplicationFa extends Controller{
@@ -159,6 +143,7 @@ public class ApplicationFa extends Controller{
         }
         
       }
+    
     /**
      * Using AJAX for the thumbnails retrieval from cloudinary needs to be done
      *  using JSONP(padding) format as the source is not in the same origin. 
@@ -166,10 +151,10 @@ public class ApplicationFa extends Controller{
      *   named callback function(mysunc({--JSON data--})), the server approach 
      *   should be used instead of relying only on the client code. 
      *   **/
-    @SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings("unchecked")
 	public static Result getImageUrls(){
 
-    	@SuppressWarnings("unchecked")
+
 		Map<String, Object> config = ObjectUtils.asMap(
     	  "cloud_name", "cloudinary-sinaaps",
     	  "api_key", "187356621496487",
@@ -177,49 +162,47 @@ public class ApplicationFa extends Controller{
 
     	Cloudinary cloudinary = new Cloudinary(config);
     	Api api = cloudinary.api();
-    	com.fasterxml.jackson.databind.JsonNode jsonResult = null;
+    	//The return type of the cloudinary API is a Response Obj which is inherited from HashMap
     	Map<String,Object> r = new HashMap<String,Object>();
     	try {
-    	    //jsonResult = Json.parse("{\"format\":\"jpeg\"}"); //(JsonNode) api.resources(ObjectUtils.asMap("type", "upload"));
-    	    
+    	    //'r' is not a json but HashMap
 			r = api.resources(ObjectUtils.asMap("type", "upload"));
-    	    
-    	    //jsonResult = Json.parse(r.toString());
     	} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	  
- /*   	  com.fasterxml.jackson.databind.node.ObjectNode result = Json.newObject();
-    	  String name = jsonResult.findPath("format").textValue();*/
-    	
-    	ArrayList<Object> Fartest =  (ArrayList<Object>) r.get("resources");
-		Object see = Fartest.get(3);
-		HashMap<String,String> Hm = (HashMap<String, String>) see;
-		String publicId= Hm.get("public_id").toString();
-		
-    	String transformedUrl = cloudinary.url()
-    	  .transformation(new Transformation().width(50).height(66).crop("fill"))
-    	  .generate(publicId);
-    	Hm.put("url", transformedUrl);
-    	r.put("resources", Fartest);
-    	
+    	/*We had retrieved the value of key "resources" in 'r' HashMap, which is in turn
+    	 * am array of Objects. The purpose is to update the "url" value of each image
+    	 * before we would wrap the JSON abject to send to the AJAX call. The updated urls 
+    	 * will transform the images to width 50 and height 66 and type 'crop' with 
+    	 * gravity='faces'. The updated urls would be placed in the HashMap-like elements(Hm) 
+    	 * of the 'resources' array and finally the array would be updated in our general
+    	 * 'r' HashMap which then converted to the JSON format using JSONObject. */
+    	ArrayList<Object> resArray =  (ArrayList<Object>) r.get("resources");
+    	for (Object imgDetail : resArray) {
+    		HashMap<String,String> Hm = (HashMap<String, String>) imgDetail;
+    		String publicId= Hm.get("public_id").toString();
+    		String transformedUrl = cloudinary.url()
+    		    	  .transformation(new Transformation().width(50).height(66).crop("fill"))
+    		    	  .generate(publicId);
+    		Hm.put("url", transformedUrl);
+		}
+
+    	r.put("resources", resArray);
+    	/*To convert HashMap 'r' to JSON 'j'. JSON object is defined in "org.json.simple" in
+    	 * "org.json" package*/
     	
     	JSONObject j= new JSONObject(r);
     	
     	String name = j.toString();
-    	System.err.println("farsheed");
-    	  if(name == null) {
-    	    return badRequest("error");
-    	  } else {
 
-    	return ok(name);
+    	  if(name == null) {
+    		  return badRequest("error");
+    	  } else {
+    		  return ok(name);
     	  }
 }
-    
-    
-    public static Result renewTheMind(){
-    	return ok("Romans12_1");
-    }
+
     
 }

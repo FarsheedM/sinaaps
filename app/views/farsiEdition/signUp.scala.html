@@ -16,9 +16,9 @@
         <script src="@routes.Assets.at("javascripts/jquery.cloudinary.js")" type="text/javascript"></script>
 		<script src="http://widget.cloudinary.com/global/all.js" type="text/javascript"></script> 
 
-        <script type="text/javascript">
+<!--         <script type="text/javascript">
    				$.cloudinary.config({"api_key":"187356621496487","cloud_name":"cloudinary-sinaaps"});
-		</script>
+		</script> -->
 </head>
 <body>
 <div id="wrapper">
@@ -66,19 +66,22 @@
 			<a href="#" id="upload_widget_opener">Upload image</a>
 			
 			
-						 <script type="text/javascript">
+			<script type="text/javascript">
 				var i = document.getElementsByClassName("cloudinary-thumbnails");
 				i.style.display = 'none';
-			 </script>
+			</script>
 			 
 			 <script type="text/javascript">  
  				//Using the cloudinary's upload widget to directly upload to the cloud
  				//using this code, the url of the uploaded imaged retrieved from 'result'
  						
  					
- 				//'public_id' should be set to the name of the user and it should be unique
+ 				/*'public_id' could be set to the name of the user and it should be unique.
+ 				   using the upload settings in the cloudinary, Unsigned uploading is enabled;
+ 				   That means that the public_id will be automaticalley incremeneted. */
 				$('#upload_widget_opener').cloudinary_upload_widget(
-						{ cloud_name: 'cloudinary-sinaaps', upload_preset: 'zi2dsbt2', 
+						{ 
+							  cloud_name: 'cloudinary-sinaaps', upload_preset: 'zi2dsbt2', 
 						      cropping: 'server', gravity : 'custom', 'folder': 'user_photos', 
 						      multiple : 'false',//public_id : '1234',
 						      client_allowed_formats : ["png","gif", "jpeg","jpg"],
@@ -96,11 +99,12 @@
 						    	  "sources.url.upload": "آپلود کنید",
 						    	  "progress.uploading": "در حال آپلود شدن ...",
 						    	  "progress.upload_cropped": "آپلود",
-						    	  "progress.processing": "پروسس کردن ...",
+						    	  "progress.processing": "در حال آپلود شدن...",
 						    	  "progress.retry_upload": "دوباره امتحان کنید",
 						    	  "progress.use_succeeded": "اوکی"}
 						 },
-						 function(error, result) { console.log(error, result);
+						 function(error, result) { 
+							//--(Testing purposes) console.log(error, result);
 						   					
 							//This piece of nagging code gets the 'result' which contains(1 ele array)
 							//the JSON rep of the uploaded image. It should be first stringify
@@ -109,14 +113,24 @@
 							var obj = JSON.parse(json);
 							//window.alert(obj.url);
 							document.getElementById("photo_input").value = obj.url;
-				
+							
+							/*This peice of code is to disable a user to upload many photos.
+							  It disables the cloudinary upload button after the upload was successful.*/
+							$(document).on('cloudinarywidgetsuccess', function(e, data) {
+								$(".myUploadClass").prop('disabled', true);
+								$(".myUploadClass").hide();
+								$("<span style='margin-right:15px;margin-top:0px;'>'آپلود عکس با موفقیت انجام شد'</span>").insertBefore("#hint");
+								$("#hint").hide();
+								});
+								
 						  }); 
-				var i = document.getElementsByClassName("cloudinary-thumbnails");
-				i.style.display = 'none';
+/* 				var i = document.getElementsByClassName("cloudinary-thumbnails");
+				i.style.display = 'none'; */
+				
 			 </script>
 
 			<input name="photo" id="photo_input" type="hidden">
-			<p style="font-size:0.9em;margin-top:2px;margin-right:16px;color:gray;"> آپلود عکس الزامی نیست. برای عکس پروفایلتان تنها یک عکس میتوانید انتخاب کنید</p>
+			<p id ="hint" style="font-size:0.9em;margin-top:2px;margin-right:16px;color:gray;"> آپلود عکس الزامی نیست. برای عکس پروفایلتان تنها یک عکس میتوانید انتخاب کنید</p>
 			<input type="submit" value="نام نویسی" id="submitBtn">
 			<p style="font-size:0.8em;margin-right:20px;color:gray;">* لطفا قسمتهای ستاره دار را حتما پر کنید</p>
         }
@@ -126,7 +140,7 @@
         </fieldset>
 	</div><!-- register form -->
 	<br>
-	<div id="footerImage"><img src="@routes.Assets.at("images/icons/signup.jpg")"></div>
+	<div id="footerImage"><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><img src="@routes.Assets.at("images/icons/signup.jpg")"></a></div>
 	
 	<div id="footer">&copy; 2014 تمام حقوق برای "فارسی ریدز" محفوظ میباشد</div>
 </div>

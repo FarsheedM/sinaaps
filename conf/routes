@@ -19,7 +19,7 @@ GET     /:lang/services                   controllers.Services.display(lang : St
 GET     /:lang/books                      controllers.Books.display(lang : String)
 #
 GET     /		                    controllers.controllersFarsi.ApplicationFa.index()
-GET     /farsi	                    controllers.controllersFarsi.ApplicationFa.index()
+#GET     /farsi	                    controllers.controllersFarsi.ApplicationFa.index()
 GET     /farsi/signUp               controllers.controllersFarsi.Signup.register()
 POST    /farsi/signUp               controllers.controllersFarsi.Signup.authenticate()
 GET     /:lang/aboutUs              controllers.About.display(lang : String)
@@ -35,6 +35,6 @@ GET     /:lang/therapy               controllers.Therapy.display(lang : String)
 POST    /:lang/therapy/              controllers.Therapy.postFeedback(lang : String)
 #
 GET     /farsi/getImages             controllers.controllersFarsi.ApplicationFa.getImageUrls()
-GET     /farsi/renewal 				 controllers.controllersFarsi.ApplicationFa.renewTheMind()
+#GET     /farsi/renewal 				 controllers.controllersFarsi.ApplicationFa.renewTheMind()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

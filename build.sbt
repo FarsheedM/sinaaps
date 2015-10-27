@@ -17,8 +17,7 @@ libraryDependencies ++= Seq(
   "com.google.http-client" % "google-http-client" % "1.17.0-rc",
   "com.typesafe" %% "play-plugins-mailer" % "2.1.0",
   "com.cloudinary" % "cloudinary-http42" % "1.2.1",
-  "org.codehaus.jackson" % "jackson-core-asl" % "1.9.13",
-  "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13"
+  "org.json" % "json" % "20150729"
 )     
 
 play.Project.playJavaSettings
