@@ -43,9 +43,16 @@
 					</div><!-- logo -->
 					<div id="languages">
 							<dl id="languageBar">
-								<dt>languages:</dt>
-								<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index">فارسی</a></dd>
+
+									<a href="@controllers.controllersFarsi.routes.ApplicationFa.index">
+										<img src="@routes.Assets.at("images/farsi.png")" alt="FarsiReadsLogo"/>
+									<a/>
+									<img src="@routes.Assets.at("images/en_o.png")" alt="FarsiReadsLogo"/>
+<!--							
+ 								<dt>languages:</dt>
+ 								<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index">فارسی</a></dd>
 								<dd>English</dd>
+-->
 							</dl>
 					 </div> 
         			<div id="menu">
@@ -84,7 +91,7 @@
         					<li><a href="@routes.Blog.display("english")">Blog</a></li>
         					<li><a href="@routes.Books.display("english")">Books</a></li>
         					<li><a href="@routes.Services.display("english")">Services</a></li>
-        					<li><a href="#">I don't Read</a></li>
+        					<li><a href="#">Diagnose & Therapy</a></li>
         					<li><a href="@routes.About.display("english")">About</a></li>	
         				</ul>
         			</div><!-- menu -->

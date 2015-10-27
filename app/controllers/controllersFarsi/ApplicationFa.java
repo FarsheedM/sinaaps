@@ -17,6 +17,8 @@ import play.mvc.Results.*;
 import views.html.farsiEdition.*;
 import models.*;
 
+import com.fasterxml.jackson.core.JsonParser;
+
 /*NOTE: if new external packages should be added:
  *      it should be added first to the "Java build Path" of the project
  *      after that, it should be imported to the java class where it is to used
@@ -38,12 +40,16 @@ import com.google.api.services.analytics.model.GaData;
 import com.google.api.services.analytics.model.GaData.*;
 import com.google.api.services.analytics.Analytics.Data.Ga.Get;
 import com.cloudinary.*;
+import com.cloudinary.api.ApiResponse;
 import com.cloudinary.utils.*;
 
 import play.libs.Json;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
+import org.hibernate.jpa.criteria.path.MapKeyHelpers;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 
 public class ApplicationFa extends Controller{
@@ -160,7 +166,8 @@ public class ApplicationFa extends Controller{
      *   named callback function(mysunc({--JSON data--})), the server approach 
      *   should be used instead of relying only on the client code. 
      *   **/
-    public static Result getImageUrls(){
+    @SuppressWarnings({ "unchecked", "unused" })
+	public static Result getImageUrls(){
 
     	@SuppressWarnings("unchecked")
 		Map<String, Object> config = ObjectUtils.asMap(
@@ -170,25 +177,49 @@ public class ApplicationFa extends Controller{
 
     	Cloudinary cloudinary = new Cloudinary(config);
     	Api api = cloudinary.api();
-    	JsonNode jsonResult = null;
+    	com.fasterxml.jackson.databind.JsonNode jsonResult = null;
+    	Map<String,Object> r = new HashMap<String,Object>();
     	try {
-    	    jsonResult = (JsonNode) api.resources(ObjectUtils.asMap("type", "upload"));
-		} catch (Exception e) {
+    	    //jsonResult = Json.parse("{\"format\":\"jpeg\"}"); //(JsonNode) api.resources(ObjectUtils.asMap("type", "upload"));
+    	    
+			r = api.resources(ObjectUtils.asMap("type", "upload"));
+    	    
+    	    //jsonResult = Json.parse(r.toString());
+    	} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	  
-    	  com.fasterxml.jackson.databind.node.ObjectNode result = Json.newObject();
-    	  String name = jsonResult.findPath("format").getTextValue();
+ /*   	  com.fasterxml.jackson.databind.node.ObjectNode result = Json.newObject();
+    	  String name = jsonResult.findPath("format").textValue();*/
+    	
+    	ArrayList<Object> Fartest =  (ArrayList<Object>) r.get("resources");
+		Object see = Fartest.get(3);
+		HashMap<String,String> Hm = (HashMap<String, String>) see;
+		String publicId= Hm.get("public_id").toString();
+		
+    	String transformedUrl = cloudinary.url()
+    	  .transformation(new Transformation().width(50).height(66).crop("fill"))
+    	  .generate(publicId);
+    	Hm.put("url", transformedUrl);
+    	r.put("resources", Fartest);
+    	
+    	
+    	JSONObject j= new JSONObject(r);
+    	
+    	String name = j.toString();
+    	System.err.println("farsheed");
     	  if(name == null) {
-    	    result.put("status", "KO");
-    	    result.put("message", "Missing parameter [name]");
-    	    return badRequest(result);
+    	    return badRequest("error");
     	  } else {
-    	    result.put("status", "OK");
-    	    result.put("message", "Hello " + name);
-    	return ok(result);
-    }
+
+    	return ok(name);
+    	  }
+}
+    
+    
+    public static Result renewTheMind(){
+    	return ok("Romans12_1");
     }
     
 }

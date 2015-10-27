@@ -26,32 +26,46 @@
 					
 				}	
 			</script>
-			<script type="text/javascript">
-							
-				$(document).ready(function () {
- 				    
- 				    		
- 				    	$.get('@routes.controllers.controllersFarsi.ApplicationFa.getImageUrls()', function(data) {
-
-                            window.alert(data);
-
-                          }
-						);
- 				    	/*
- 				    	
-				        type: 'GET', 
-				        url: 'https://187356621496487:2NpXZWEoi2dv4-PG4_mJLzzp9Jc@@api.cloudinary.com/v1_1/cloudinary-sinaaps/resources',  
-				        dataType:'jsonp', 
-				        crossDomain : true,
-				        success: function (data) { 
-				        	alert("test");
-				        	var json = $.parseJSON(data);
-				           /*  var names = data
-				            $('#ajax').html(data); 
-				        },*/
- 				  
-				    }); 
-
+			
+			<script type="text/javascript">			
+			/*This piece of JS code retrieves the user photos from the cloudinary cloud
+			  using a AJAX call. The logic of getting all the uploaded images in cloudinary
+			  placed in the ApplicationFa's "getImageUrls()".*/
+			
+				  $(document).ready(function() { 
+					  
+					  //--TEST: add line below for adding "clickfunction"
+					  //$('#saveAsDefaultButton').click(function() {
+						
+				        $.ajax({
+				            type : 'GET',
+				            url : '@controllers.controllersFarsi.routes.ApplicationFa.getImageUrls()',
+				            dataType : "json",
+				            success : function(data) {
+				                var length = data.resources.length;
+				                /*--TEST: to do some JS check*/
+				                 console.log("this is the length of the array "+length);
+				                
+				                for(i=0 ; i<length ; i++){
+				                	var imgId= "userThumb"+(i+1);
+				                	// 'data' is a JSON returned as the response to the AJAX call
+				                	var url = data.resources[i].url;
+				                	console.log("imgId "+imgId);
+				                	document.getElementById(imgId).setAttribute("src", url);	
+				                }
+				                
+				                return true;
+				            },
+				            error : function(data) {
+				                setError('Cloudinary call failed');
+				                window.alert("Cloudinary call failed");
+				            }
+				        });
+				        return false;  
+				        
+				  //  });  --TEST: add This for adding "clickfunction"
+				    });
+				  
 			</script>
 		</head>
 		
@@ -187,64 +201,64 @@
 
 	<div id="userThumbnails" >
 		<p>کاربران فارسی ریدز</p>
-		<div class="userThumb">
+		<div class="userThumb" >
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb1" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb2" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb3" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb4" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb5" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb6" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
  		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb7" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb8" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb9" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb10" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+				<img id="userThumb11" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
 			<a href="#">
-				<img width="50" height="66" src="http://res.cloudinary.com/cloudinary-sinaaps/image/upload/v1443628302/FR/users/">
+				<img id="userThumb12" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div> 
 		
@@ -268,8 +282,8 @@
 			}
 	</div><!-- visitorCount -->
 	
-	<div id="ajax" style="width:100px;height:50px;">test:</div>
-	
+<!-- 	<div id="ajax" style="width:100px;height:50px;">test:</div>
+	<button id="saveAsDefaultButton">renewal</button> -->
 }
 
 	
