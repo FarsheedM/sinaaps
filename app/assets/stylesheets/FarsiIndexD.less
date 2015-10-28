@@ -1,0 +1,527 @@
+﻿// ----------------------------- FONTS ---------------------------------------
+@defaultFont: 			   1.07em "arial","Lucida Grande","Helvetica Neue","sans-serif","Tahoma";
+@headerFont:               1.5em "arial",helvetica,"sans-serif","Tahoma";
+@alternativeFont:          14px "arial",helvetica,"sans-serif","tahoma";
+@farsiFont: 		   	   18px "NasimBreeze";
+//-------------------------------COLORS-----------------------------------------
+
+@skyBlue:               #87ceeb;
+@skyBlueLight:          #dbf0f9;
+@skyBlueLighter:        #cae9f6;
+@royalPurple:           #8751a9;
+@royalPurpleLight:      #e8c1f1;
+@royalPurpleDark:       #65448e;
+@scarlet:               #da000f;
+@blueLight:				#c4c4ff;
+@blueLightest:          #d8d8ff;
+@blueDark:				#00009d;
+//------------------------------------------------------------------------------ 
+body
+{
+    background: #f2f1f1 none repeat scroll 0 0;
+    color: #2a3a48;
+    font: 12pt "Calibri","Helvetica Neue",sans-serif;
+    height: auto;
+}
+
+a
+{
+color:#347a74;    
+    }
+a:hover
+{
+color:#f26100;  
+    }    
+h2
+{
+color:#84581e;
+font: Calibri;
+font-weight:normal;    
+    }
+.line
+{
+ border-top: 1px dashed #9dbba9; /* Параметры линии */
+ height: 2px; /* Высота блока */
+ width:auto;
+    }
+#wrapper
+{
+    height: auto;
+    margin: 0 auto;
+    width: 960px;
+}
+#header
+{
+    height: auto;
+    width: 960px;
+    margin-top: -8px;
+}
+/*----------------------header-------------------------*/
+#logo{
+	float:right;
+
+}
+    
+#logo img{
+	height: 50px; /*  //30px;*/
+	width: 94px;   /* //128px;*/
+	padding-left: 0px;
+	padding-top: 5px;
+}
+
+#logo a {
+	text-decoration: none;
+}
+#languageBar{
+	font : @farsiFont;
+	//font-size : 10px;
+	float: left;
+	padding-left:0px;
+	margin: 20px 0px 0px 250px;
+    > * {
+    display: inline-block;
+    }
+    dt {
+        color: #fff;
+        span {
+            opacity: .5;
+            font-size: 11px;
+        }
+    }
+    dd {
+        	margin-left:3px;
+        }
+}
+
+#languageBar dd{
+
+}
+
+#menu{
+	float:left;
+	padding-top: 5px;
+	font : Calibri;
+	font-weight :normal;
+}
+
+#menu ul {
+	list-style-type:none;
+}
+#menu ul li {
+	display: inline;
+	margin-right: 25px;
+}
+#menu ul a{
+	text-decoration: none;  
+	color: #361616;
+}
+#menu ul a:hover{
+	color:#f26100;
+}
+#menu ul a:active{
+	font-weight: bold;
+}
+//---------------------------farsi menu-----------------------------
+#menuFarsi{
+	float:right;
+	padding-top: 10px;
+}
+
+#menuFarsi ul {
+	list-style-type:none;
+}
+#menuFarsi ul li{
+	font: @farsiFont;
+	display: inline;
+	margin-right: 25px;
+}
+#menuFarsi ul a{
+	text-decoration: none;
+	color: #575756;
+}
+#menuFarsi ul a:hover{
+	color:red;
+}
+#menuFarsi ul a:active{
+	font-weight: bold;
+}
+#headContent
+{
+    height: 402px; 
+    background-image: url('/assets/images/head_bg.jpg'); //url('Images/head_bg.jpg');
+    background-repeat: no-repeat;  
+    background-position:0px 65px;
+    /*border-bottom : solid #333333;*/ /*padding-top:65px;*/ /*border:solid green 3px;*/
+}
+#headContentLeft
+{
+    float: left;
+}
+#headContentRight
+{
+    float: right;
+    width: 400px;
+    height: 241px;
+    background-color: white; /*//@blueLight;*/
+    border: 1px solid #e9ebde; /*//@blueDark;*/
+    margin: 120px 30px 0px 0px;
+    padding-left: 10px;
+    padding-top: 10px;
+    color: black; /*//@blueDark;*/
+    font: Calibri; /*@alternativeFont;*/
+    opacity: 0.7;
+    filter: alpha(Opacity=70);
+}
+.form
+{
+    width: 370px;
+    height: 30px;
+    margin: 10px 0px 0px 7px;
+    border: solid #f3ae4b 1px;
+    padding-right:10px;
+    font-size: 12pt;
+    font: Calibri;
+    text-align:right;
+}
+#sendBtn
+{
+    margin: 10px 7px 0px 0px;
+    color: white; /* цвет текста */
+    text-decoration: none; /* убирать подчёркивание у ссылок */
+    user-select: none; /* убирать выделение текста */
+    background: #347a74; /* фон кнопки */
+    padding: .4em 1.5em; /* отступ от текста */
+    outline: none; /* убирать контур в Mozilla */
+    font-size: 13pt;
+    font: Calibri;
+    float:right ;
+}
+
+#sendBtn:hover
+{
+    background: #f19107;
+}
+
+#headContentRight a
+{
+    color: white;
+}
+#error
+{
+    color: red;
+}
+
+#infoBox
+{
+    width: 645px;
+    height: auto;
+    margin-bottom: 2px;
+    padding-bottom: 6px;
+    font: @defaultFont;
+    line-height: 18px;
+}
+
+.rightAlign
+{
+    text-align: right;
+}
+.rightAlign span
+{
+    font: @defaultFont;
+    color: gray;
+    line-height: 18px;
+}
+#headContentRight p
+{
+ text-align:right;   
+    }
+/*----------------------BOOK WINDOW--------------------*/
+#bookBox p
+{
+    padding: 2px 10px 2px 15px; 
+    line-height: 1.5;
+}
+#categoryBox
+{
+    margin: 5px 10px 10px 0px;
+    padding-left: 25px;
+    width: 620px;
+    height: 219px;
+    border: 1px dashed #9dbba9;
+}
+#categoryBox h4
+{
+    height: 7px;
+    width: 200px;
+    margin-top: 5px;
+    margin-left: -5px;
+    color: blue; /*@blueDark*/
+}
+.right
+{
+    float: left;
+    padding-left: 10px;
+    padding-top: 0px;
+    width: 23.1%;
+    padding-bottom: 15px;
+    font-size: 0.9em;
+}
+.right a
+{
+    line-height: 1.5;
+   /* color: @blueDark;*/
+    font:Calibri; /*@alternativeFont;*/
+}
+
+/*----------------------BLOG WINDOW--------------------*/
+#blogBox
+{
+    clear: both;
+    font: @defaultFont;
+    line-height: 18px;
+}
+#latestPost
+{
+    padding-left: 10px;
+}
+#latestPost span
+{
+    font: Calibri;
+    color:black;
+    font-style:italic;
+    font-weight:500;
+    font-size:18pt;
+    }
+#latestPostImg
+{
+    width: 650px;
+    height:200px;
+    margin-top:10px;
+   /* border:solid red 1px;*/
+}
+#latestPostImg img
+{
+    width: 253px;
+    height: 168px;
+   /* border-style: solid;*/
+    float: left;
+}
+#latestPostSum
+{
+    float: left;
+    /*width: 220px;*/
+    height: auto; 
+   /* background-color: silver;*/
+    padding-left: 3px;
+}
+ #latestPostSum p
+{
+    /* font: @defaultFont;*/
+    font-size:12pt;
+    line-height: 20px;
+    margin: 7px;
+}
+#latestPostSum h4
+{
+    padding-left: 7px;
+    padding-right: 5px;
+    font: @headerFont;
+}
+#latestPostLinks
+{
+    clear: both;
+    padding: 1px 0px 3px 10px;
+}
+#latestPostLinks a
+{
+    /*text-decoration : none; 	border-style : solid; 	border-width : 1px;*/
+    color: blue; /*@blueDark*/
+    font: Arial; /*@defaultFont*/
+}
+#latestPostLinks b
+{
+    color: black;
+}
+/*--------------------ACTIVITY WINDOW--------------------*/
+#contentLeftPanel
+{
+    /*background-color: white;     border-right: medium solid #75bfb8;*/
+    clear: both;
+    float: left;
+    height: auto;
+    width: 650px;
+    text-align:right;
+}
+#activityBox
+{
+    float: left;
+    width: 645px;
+    height: 280px;
+    font: @defaultFont;
+    /*border: solid violet 1px;*/
+}
+#TransDiv
+{
+width:210px;
+height:134px;
+float:left;
+margin-bottom:20px;    
+    }
+.nextDiv
+{
+width:210px;
+height:134px;
+float:left;
+margin:0px 0px 20px 7px;     
+    }    
+/*
+#activityList
+{
+    list-style-type: none;
+    height: 100%;
+    width: 100%;
+    padding-left: 3px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+}
+#activityList li
+{
+    height: 70px;
+}
+#service
+{
+    height: 100%;
+    width: 100%; 
+    background-image: url('/assets/fonts/CSlewis.jpg');
+}
+#service img
+{
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+#service p
+{
+    float: left;
+    width: 80%;
+    margin-left: 5px;
+    font: @defaultFont;
+    line-height: 18px;
+} */
+/*--------------------QUOTATION WINDOW--------------------*/
+#quotationBox
+{
+    font: @defaultFont;
+    width: 605px;
+    height:auto;
+    float: left;
+    background-color:#e6e6e6;
+    padding:0px 20px 20px 20px ;
+   /*border: solid green 1px;*/
+}
+  #quoteimg
+{
+    width: 100px;
+    height: 100px;
+    float: right;
+    margin-left: 8px;
+}
+/*#quotationBox a
+{
+    text-decoration: none;
+    color: gray;
+}*/
+#quotationBox h3
+{
+    color: blue; /*@blueDark*/
+}
+#quoteText
+{
+    word-wrap: break-word;
+    float:right;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+/*--------------------------------------------------------------*/
+.clear
+{
+    both: clear;
+}
+#horizonLine
+{
+    border-top: solid #333333;
+    width: 94%;
+    margin-left: 10px;
+    margin-bottom: 4px;
+}
+h3
+{
+    color: blue; /*@blueDark*/
+}
+/*//-----------------------the right Sidebar---------------------*/
+#contentRightPanel
+{
+    background-color: #f4efe9;
+    float: right;
+    height: 100%;
+    width: 300px;
+}
+
+#visitorCount
+{
+    background-color: white;
+    height: 0 auto;
+    margin-top: 3px;
+    padding: 3px;
+    padding-right: 10px;
+    font: @alternativeFont;
+}
+#visitorCount span
+{
+    font-size: 1.3em;
+}
+.twitter-timeline
+{
+    margin-top: 5px;
+}
+#adBox
+{
+}
+#footer
+{
+  width:100%;
+  height:500px;
+  background-color:#c8db8f;
+  border:solid blue 2px;  
+    }
+#footerElements
+{
+width:960px;
+height:auto;
+margin:auto;
+border: solid gray 1px;    
+    }       
+#footermenu{
+	float:left;
+	padding-top: 5px;
+	font : Calibri;
+	font-weight :normal; 
+	border: solid green 1px; 
+}
+#footermenu ul {
+	list-style-type:none;
+}
+#footermenu ul li {
+	display: inline;
+	margin-right: 25px;
+}
+#footermenu ul a{
+	text-decoration: none;  
+	color: #361616;
+}
+#footermenu ul a:hover{
+	color:#f26100;
+}
+#footermenu ul a:active{
+	font-weight: bold;
+}

@@ -42,6 +42,7 @@ h2
 {
 	 border-top: 1px dashed #9dbba9; /* Параметры линии */
 	 height: 2px; /* Высота блока */
+	 margin-top : 10px;
     }
 #wrapper
 {
@@ -57,12 +58,6 @@ h2
 }
 /*----------------------header-------------------------*/
 /*this class should be define accordingly in each page's CSS*/
-#navigation{
-	height: 65px;
-	width: 960px;
-	background-color: #c8db8f;	//@blueLightest;#ddeda3#dbe6a6
-	position: fixed;
-}
 #logo{
 	float:left;
 
@@ -153,15 +148,19 @@ h2
 #headContent
 {
     height: 402px;
+	padding-top : 65px;
     background-image: url('/assets/images/head_bg.jpg'); //url('Images/head_bg.jpg');
-    background-repeat: no-repeat; /*//border-bottom : solid #333333;*/ /*padding-top:65px;*/ /*border:solid green 3px;*/
+    background-repeat: no-repeat;  
+    background-position:0px 65px;
+    /*border-bottom : solid #333333;*/ /*padding-top:65px;*/ /*border:solid green 3px;*/
 }
 #headContentLeft
 {
-    float: left;
+    float: left; 
 }
 #headContentRight
 {
+
     float: right;
     width: 400px;
     height: 241px;
@@ -297,12 +296,16 @@ h2
     margin-top:10px;
    /* border:solid red 1px;*/
 }
+#imgCont{
+	margin :0 7px 7px 0;
+	width: 253px; height: 168px; float: left;
+}
 #latestPostContainer img
 {
     width: 253px;
     height: 168px;
-    margin :0 7px 7px 0;
-   /* border-style: solid;*/
+   /* margin :0 7px 7px 0;
+    border-style: solid;*/
     float: left;
 }
 #latestPostSum
@@ -346,7 +349,7 @@ h2
 {
     //float: left;
     width: 645px;
-    height: 280px;
+    height: 270px;
     font: @defaultFont;
    /* border: solid lime 1px;*/
 }
@@ -401,32 +404,45 @@ margin:0px 0px 20px 7px;
 /*--------------------QUOTATION WINDOW--------------------*/
 #quotationBox
 {
-    font: @defaultFont;
+    //font: @defaultFont;
     width: 645px;
-  /*  border: solid green 1px;*/
+    
+    height:auto;
+    float: left;
+    background-color:#e6e6e6;
+    padding:0px 20px 20px 20px ;
 }
-#quotationBox img
+#quoteimg
+{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 8px;
+}
+/*#quotationBox img
 {
     width: 50px;
     height: 66px;
     float: left;
     margin-right: 8px;
 }
-/*#quotationBox a
-{
-    text-decoration: none;
-    color: gray;
-}*/
-/*#quotationBox h3
-{
-    color: blue; //@blueDark
-} */
 #quoteText
 {
     word-wrap: break-word;
+    float:left;
     font-size: 14px;
     padding-bottom: 5px;
 }
+#quotationBox a
+{
+    text-decoration: none;
+    color: gray;
+}
+#quotationBox h3
+{
+    color: blue; //@blueDark
+}*/
+
 /*//--------------------------------------------------------------*/
 .clear
 {

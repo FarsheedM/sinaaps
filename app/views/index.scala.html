@@ -17,7 +17,7 @@
 		</head>
 		
     	<div id="headContent">  
-        		<div id="headContentLeft">Headlines</div>
+        		<div id="headContentLeft"></div>
         		<div id="headContentRight">
         				@helper.form(routes.Application.authenticate){
 	        				<input class="form" type="text" name="lName" placeholder="Name" />
@@ -116,15 +116,15 @@
             </div>
             <div id="latestPostContainer">
                 <div id="latestPostSum">
-                    
-                        <img src="@post.image" alt="Image" />
-                        <span style="display:block;" id="@post.postID">@post.content</span>  
+						<div id ="imgCont">
+							<img alt="Image" style="width: 253px; height: 168px;" src="@post.image">
+						</div>
+                        <p style="display:block;" id="@post.postID">@post.content</p>  
                       	<script>clamping();</script> 
                         <br>
                         <a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)">Read more ...</a>
                         <br>
                         <a style="color:#f26100;" href="@routes.Blog.display(post.language)">Go to the<b> FarsiReads</b> Blog</a>
-                   
                 </div>
 
             </div>
@@ -152,25 +152,48 @@
 		<a href="@routes.Services.display("english")">Go to the Service section to see all activities</a>
 	</div> <!-- activityBox -->
 
-<div class="clear"></div>
-<div class="line"></div>
+	<div class="clear"></div>
 
-	<div id="quotationBox">
-		<h2 style="margin-top:4px;">Quotation</h2>
-		<div style="display : inline;">
+
+		<div id="quotationBox">
+			<h2>Quotation</h2>
+			<div>
+				<a href="#author">
+					<div id="quoteimg" style="width: 100px; height: 100px;">
+						<img src="@routes.Assets.at("images/CSlewis.png")" style="width: 100px; height: 100px;"
+							alt="author'sName" />
+					</div>
+				</a>
+				<div id="quoteText">
+					"I believe in Christianity as I believe in sun; not only because I
+					see it but through it I see everything." <br /> - <a href="#author's">C.S.Lewis</a>
+				</div>
+			</div>
+			<!-- 		<div style="display : none;"> Quote 2</div>
+				<div style="display : none;"> Quote 3</div>
+				<div style="display : none;"> Quote 4</div> -->
+		</div>		
+		
+		
+		
+		<!--OLD quotationBox -->
+
+<!-- 		<div id="quotationBox">
+			<h2 style="margin-top:4px;">Quotation</h2>
+			<div style="display : inline;">
 			<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
 			<div id="quoteText">
 				"I believe in Christianity as I believe in sun; not only because I see it but through it I see everything."
 				<br> -
 				<a href="#author's">C.S.Lewis</a>
 			</div>
-		</div>
+		</div> 
+		</div> 
+-->
+
 		
-<!-- 		<div style="display : none;"> Quote 2</div>
-		<div style="display : none;"> Quote 3</div>
-		<div style="display : none;"> Quote 4</div> -->
-		
-	</div> <!-- quotationBox -->
+	
+	
 	<div id="clear"></div>
 	
 	}{
