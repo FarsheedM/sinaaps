@@ -18,7 +18,7 @@
 	src : url('/assets/fonts/NasimBreeze.ttf');
 }
 @farsiFont: 		   14px "tahoma","arial"; //18px "NasimBreeze";
-@headerFont:           1em/24px arial ,"Lucida Grande","Helvetica Neue", sans-serif;
+@headerFont: 		   18px "NasimBreeze";
 //-----------------------------------------------------------------------------
 
 
@@ -36,6 +36,12 @@ body{
 #registerForm{
 	margin-top : 50px;
 }	
+legend{
+	color:#84581e;
+	font: @headerFont;
+	font-weight:normal;  
+}
+
 
 // the inputText will be translated to the "dl dt dd" tages after compilation
 dl {
@@ -130,6 +136,12 @@ dl {
  	font : @farsiFont;
  	width : 90px;
  	margin-top : 5px;
+ 	background : #347a74;
+ 	outline: none;
+ 	color: white;
+ 	user-select: none;
+ 	font-size: 13pt;
+    font-weight : bold;
  }
 
  a{

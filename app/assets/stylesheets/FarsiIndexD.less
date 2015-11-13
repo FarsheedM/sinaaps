@@ -1,8 +1,17 @@
-﻿// ----------------------------- FONTS ---------------------------------------
-@defaultFont: 			   1.07em "arial","Lucida Grande","Helvetica Neue","sans-serif","Tahoma";
-@headerFont:               1.5em "arial",helvetica,"sans-serif","Tahoma";
-@alternativeFont:          14px "arial",helvetica,"sans-serif","tahoma";
-@farsiFont: 		   	   18px "NasimBreeze";
+﻿//----------------------------Farsi--------------------------------------------
+
+
+// ----------------------------- FONTS ---------------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+
+@defaultFont: 			   18px "NasimBreeze","Tahoma","Arial";
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+
+@OldDefaultFont:           14px "Lucida Grande","Helvetica Neue", sans-serif;
 //-------------------------------COLORS-----------------------------------------
 
 @skyBlue:               #87ceeb;
@@ -20,7 +29,7 @@ body
 {
     background: #f2f1f1 none repeat scroll 0 0;
     color: #2a3a48;
-    font: 12pt "Calibri","Helvetica Neue",sans-serif;
+    font: @defaultFont;//12pt "Calibri","Helvetica Neue",sans-serif;
     height: auto;
 }
 
@@ -37,7 +46,7 @@ h2
 color:#84581e;
 font: Calibri;
 font-weight:normal;    
-    }
+}
 .line
 {
  border-top: 1px dashed #9dbba9; /* Параметры линии */
@@ -57,14 +66,15 @@ font-weight:normal;
     margin-top: -8px;
 }
 /*----------------------header-------------------------*/
+/*
 #logo{
-	float:right;
+	float:left;
 
 }
     
 #logo img{
-	height: 50px; /*  //30px;*/
-	width: 94px;   /* //128px;*/
+	height: 50px; 
+	width: 94px;   
 	padding-left: 0px;
 	padding-top: 5px;
 }
@@ -72,8 +82,9 @@ font-weight:normal;
 #logo a {
 	text-decoration: none;
 }
+
 #languageBar{
-	font : @farsiFont;
+	font : @defaultFont;
 	//font-size : 10px;
 	float: left;
 	padding-left:0px;
@@ -96,7 +107,7 @@ font-weight:normal;
 #languageBar dd{
 
 }
-
+*/
 #menu{
 	float:left;
 	padding-top: 5px;
@@ -122,6 +133,7 @@ font-weight:normal;
 	font-weight: bold;
 }
 //---------------------------farsi menu-----------------------------
+/*
 #menuFarsi{
 	float:right;
 	padding-top: 10px;
@@ -131,7 +143,7 @@ font-weight:normal;
 	list-style-type:none;
 }
 #menuFarsi ul li{
-	font: @farsiFont;
+	font: @defaultFont;
 	display: inline;
 	margin-right: 25px;
 }
@@ -145,10 +157,12 @@ font-weight:normal;
 #menuFarsi ul a:active{
 	font-weight: bold;
 }
+*/
 #headContent
 {
-    height: 402px; 
-    background-image: url('/assets/images/head_bg.jpg'); //url('Images/head_bg.jpg');
+    height: 350px;//402px; 
+    padding-top : 65px;
+    background-image: url('/assets/images/head_farsi.jpg'); //url('Images/head_bg.jpg');
     background-repeat: no-repeat;  
     background-position:0px 65px;
     /*border-bottom : solid #333333;*/ /*padding-top:65px;*/ /*border:solid green 3px;*/
@@ -160,12 +174,12 @@ font-weight:normal;
 #headContentRight
 {
     float: right;
-    width: 400px;
-    height: 241px;
+    width: 280px;//DIMA--400px;
+    height: 230px;   //241px;
     background-color: white; /*//@blueLight;*/
     border: 1px solid #e9ebde; /*//@blueDark;*/
-    margin: 120px 30px 0px 0px;
-    padding-left: 10px;
+    margin: 80px 40px 0px 0px;//DIMA--120px 30px 0px 0px;
+    padding-right: 10px;
     padding-top: 10px;
     color: black; /*//@blueDark;*/
     font: Calibri; /*@alternativeFont;*/
@@ -174,49 +188,54 @@ font-weight:normal;
 }
 .form
 {
-    width: 370px;
+    width: 250px;//DIMA--370px;
     height: 30px;
-    margin: 10px 0px 0px 7px;
+    margin: 6px 0px 0px 7px;
     border: solid #f3ae4b 1px;
     padding-right:10px;
     font-size: 12pt;
-    font: Calibri;
+    font: @defaultFont;//Calibri;
     text-align:right;
 }
 #sendBtn
 {
-    margin: 10px 7px 0px 0px;
+	clear : both;
+    margin: 5px 0px 0px 0px;
     color: white; /* цвет текста */
     text-decoration: none; /* убирать подчёркивание у ссылок */
     user-select: none; /* убирать выделение текста */
     background: #347a74; /* фон кнопки */
-    padding: .4em 1.5em; /* отступ от текста */
+    padding:.2em 1em; /* отступ от текста */
     outline: none; /* убирать контур в Mozilla */
     font-size: 13pt;
-    font: Calibri;
-    float:right ;
+    font-weight : bold;
+    font: @defaultFont;   //Calibri;
+    letter-spacing: 2px;
 }
 
 #sendBtn:hover
 {
     background: #f19107;
 }
-
-#headContentRight a
-{
-    color: white;
-}
 #error
 {
     color: red;
+    margin-top : -15px;
 }
-
+#signUpLink{
+	text-decoration: none;
+	color: #CC5500;//#84581e;
+	font-weight : bold;
+}
+//--------------------------------------INFO BOX------------------------------
 #infoBox
 {
     width: 645px;
     height: auto;
     margin-bottom: 2px;
     padding-bottom: 6px;
+    padding-right : 10px;
+    padding-left : 15px;
     font: @defaultFont;
     line-height: 18px;
 }
@@ -236,6 +255,9 @@ font-weight:normal;
  text-align:right;   
     }
 /*----------------------BOOK WINDOW--------------------*/
+#bookBox{
+    font: @defaultFont;
+}
 #bookBox p
 {
     padding: 2px 10px 2px 15px; 
@@ -243,23 +265,21 @@ font-weight:normal;
 }
 #categoryBox
 {
-    margin: 5px 10px 10px 0px;
-    padding-left: 25px;
+    font: @defaultFont;
+    margin: 5px 0px 10px 0px;
+    padding-right: 30px;
     width: 620px;
-    height: 219px;
+    height: 200px;
     border: 1px dashed #9dbba9;
 }
-#categoryBox h4
+#categoryBox h2
 {
-    height: 7px;
-    width: 200px;
-    margin-top: 5px;
-    margin-left: -5px;
-    color: blue; /*@blueDark*/
+	margin-top : 0px;
+	margin-right : -15px;
 }
 .right
 {
-    float: left;
+    float: right;
     padding-left: 10px;
     padding-top: 0px;
     width: 23.1%;
@@ -269,8 +289,9 @@ font-weight:normal;
 .right a
 {
     line-height: 1.5;
-   /* color: @blueDark;*/
-    font:Calibri; /*@alternativeFont;*/
+    /*color: @blueDark;*/
+    font: @alternativeFont;/*@defaultFont;*/
+    text-decoration : none;
 }
 
 /*----------------------BLOG WINDOW--------------------*/
@@ -279,6 +300,8 @@ font-weight:normal;
     clear: both;
     font: @defaultFont;
     line-height: 18px;
+    width: 645px;
+    height: auto;
 }
 #latestPost
 {
@@ -292,6 +315,20 @@ font-weight:normal;
     font-weight:500;
     font-size:18pt;
     }
+    #latestPostContainer
+{
+    width: 650px;
+    height:230px;
+    margin-top:10px;
+    padding-bottom : 5px;
+   /* border:solid red 1px;*/
+}
+#imgCont{
+	margin :0 7px 7px 0;
+		margin :0 0 7px 7px;	
+	width: 253px; 
+	height: 168px; float: right;
+}
 #latestPostImg
 {
     width: 650px;
@@ -343,37 +380,89 @@ font-weight:normal;
     color: black;
 }
 /*--------------------ACTIVITY WINDOW--------------------*/
+/*
 #contentLeftPanel
 {
-    /*background-color: white;     border-right: medium solid #75bfb8;*/
     clear: both;
     float: left;
     height: auto;
     width: 650px;
     text-align:right;
 }
+*/
 #activityBox
 {
     float: left;
     width: 645px;
-    height: 280px;
+    height: auto;  //280px;
     font: @defaultFont;
+    padding-bottom : 15px;
     /*border: solid violet 1px;*/
 }
-#TransDiv
-{
+/*
+#TransDiv{
 width:210px;
 height:134px;
 float:left;
 margin-bottom:20px;    
-    }
-.nextDiv
-{
+}
+.nextDiv{
 width:210px;
 height:134px;
 float:left;
 margin:0px 0px 20px 7px;     
-    }    
+}    
+
+*/
+
+
+
+
+.TransDiv
+{
+   display: block;
+   width:210px;
+   height:134px;
+   float:left;
+   margin-bottom:10px;
+   background-image:url('/assets/images/Translating.jpg');//url(../Images/Translating.jpg);
+   text-decoration:none; 
+   font-size:11pt;   
+    }
+.nextDiv1
+{
+   display: block;
+   width:210px;
+   height:134px;
+   float:left;
+   margin:0px 0px 10px 7px;
+   background-image:url('/assets/images/Seminars.jpg');
+   text-decoration:none; 
+   font-size:11pt;        
+    }
+.nextDiv2
+{
+   display: block;
+   width:210px;
+   height:134px; 
+   float:left;
+   margin:0px 0px 10px 7px;
+   background-image:url('/assets/images/Library.jpg');
+   text-decoration:none; 
+   font-size:11pt;        
+    }
+.BannerText{
+    color: white;
+    display: block;
+    height: 70px;
+    margin: 60px 10px 0 0;
+    width: 200px;
+}
+
+span.H {
+    color: #fff600;
+    font-size: 14pt;
+}
 /*
 #activityList
 {
@@ -418,22 +507,29 @@ margin:0px 0px 20px 7px;
     background-color:#e6e6e6;
     padding:0px 20px 20px 20px ;
    /*border: solid green 1px;*/
+   margin-bottom : 3px;
 }
-  #quoteimg
+#quoteimg
 {
     width: 100px;
     height: 100px;
     float: right;
     margin-left: 8px;
 }
-/*#quotationBox a
+
+#quoteText a{
+	font: @alternativeFont;
+	text-decoration: none;
+}
+/*
+#quotationBox a
 {
     text-decoration: none;
     color: gray;
-}*/
+}
 #quotationBox h3
 {
-    color: blue; /*@blueDark*/
+    color: blue; 
 }
 #quoteText
 {
@@ -442,6 +538,7 @@ margin:0px 0px 20px 7px;
     font-size: 14px;
     padding-bottom: 5px;
 }
+*/
 /*--------------------------------------------------------------*/
 .clear
 {
@@ -459,14 +556,19 @@ h3
     color: blue; /*@blueDark*/
 }
 /*//-----------------------the right Sidebar---------------------*/
-#contentRightPanel
-{
-    background-color: #f4efe9;
-    float: right;
-    height: 100%;
-    width: 300px;
+#userThumbnails{
+	float: none;
+	width: 300px;
+	height: 180px;
 }
-
+#userThumbnails p{
+	margin-bottom : 2px;
+	color: #84581e;
+}
+.userThumb{
+	float: left;
+	line-height: 0;
+}
 #visitorCount
 {
     background-color: white;
@@ -486,42 +588,4 @@ h3
 }
 #adBox
 {
-}
-#footer
-{
-  width:100%;
-  height:500px;
-  background-color:#c8db8f;
-  border:solid blue 2px;  
-    }
-#footerElements
-{
-width:960px;
-height:auto;
-margin:auto;
-border: solid gray 1px;    
-    }       
-#footermenu{
-	float:left;
-	padding-top: 5px;
-	font : Calibri;
-	font-weight :normal; 
-	border: solid green 1px; 
-}
-#footermenu ul {
-	list-style-type:none;
-}
-#footermenu ul li {
-	display: inline;
-	margin-right: 25px;
-}
-#footermenu ul a{
-	text-decoration: none;  
-	color: #361616;
-}
-#footermenu ul a:hover{
-	color:#f26100;
-}
-#footermenu ul a:active{
-	font-weight: bold;
 }

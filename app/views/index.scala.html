@@ -25,7 +25,7 @@
 	        				<input class="form" type="password" name="password" placeholder="Password" />
 	        				<br/>
 	        				<button type="submit" id="signinBtn">Sign In</button>
-	        				<p>New to FarsiReads? Sign Up <a href="/english/signUp" id="signUpLink">Here</a></p>
+	        				<p style="padding-left:5px;">New to FarsiReads? Sign up <a href="/english/signUp" id="signUpLink">Here</a></p>
 	        				@if(form.hasGlobalErrors){
 	        					<p id="error">Error: @form.globalError.message </p>
 	        				}
@@ -145,11 +145,36 @@
 	
 		<br>
 -->
-        <div id="TransDiv"><a href="#"><img src="@routes.Assets.at("images/Translating.jpg")" alt="Translate"/> </a></div>
+
+
+<!--         THE OLDER IMAGE VERSION OF THE ACTIVITIES
+		<div id="TransDiv"><a href="#"><img src="@routes.Assets.at("images/Translating.jpg")" alt="Translate"/> </a></div>
         <div class="nextDiv"><a href="#"><img src="@routes.Assets.at("images/Seminars.jpg")" alt="Seminars"/></a></div>
         <div class="nextDiv"><a href="#"><img src="@routes.Assets.at("images/Library.jpg")" alt="FarsiLibrary"/></a></div>
+ -->
 
-		<a href="@routes.Services.display("english")">Go to the Service section to see all activities</a>
+
+
+			<!-- NEWER VERSION OF THE ACTIVITIES WITH CSS -->
+			<a class="TransDiv" href="#">
+				<div class="BannerText">
+					<span class="H">Translating</span> <br /> Translating useful books
+					and articles
+				</div>
+			</a>
+			<a class="nextDiv1" href="#">
+				<div class="BannerText">
+					<span class="H">Seminars & Workshops</span> <br /> Holding Seminars
+					and Workshops to promote reading
+				</div>
+			</a>
+			<a class="nextDiv2" href="#">
+				<div class="BannerText">
+					<span class="H">Farsi library</span> <br /> Helping to establish a
+					farsi library in the local church
+				</div>
+			</a><a href="#">Go to the Service section to see all activities</a> <a href="@routes.Services.display("english")">Go to the Service section to see all activities</a>
+	
 	</div> <!-- activityBox -->
 
 	<div class="clear"></div>
@@ -191,8 +216,6 @@
 		</div> 
 -->
 
-		
-	
 	
 	<div id="clear"></div>
 	
