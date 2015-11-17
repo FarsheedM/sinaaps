@@ -58,7 +58,43 @@
 				                setError('Cloudinary call failed');
 				                window.alert("Cloudinary call failed");
 				            }
-				        });
+				        });/*end of first AJAX call*/
+				        
+				        
+				       /*This AJAX call is the second call in this document and will invoke the
+				        getStatistics() which is in turn return a JSON consisting 2 values of
+				        number of the blogPosts and number of the books in the Database. */
+				       
+						/*This piece of JS code is to convert the latin number to the persian*/
+						String.prototype.toIndiaDigits= function(){
+							 var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+							 return this.replace(/[0-9]/g, function(w){
+							  return id[+w]
+							 });
+							}
+				        /*----------------------------------------------------------------------*/
+				        $.ajax({
+				            type : 'GET',
+				            url : '@controllers.controllersFarsi.routes.ApplicationFa.getStatistics()',
+				            dataType : "json",
+				            success : function(data) {
+				                //var length = data.resources.length;
+				                /*--TEST: to do some JS check*/
+				                 console.log("this is the length of the array "+length);
+
+				                 document.getElementById('blogPostsNo').innerHTML = data.blogPosts.toIndiaDigits().toString();	
+				                 document.getElementById('usersNo').innerHTML = data.users.toIndiaDigits().toString();
+				                
+				                return true;
+				            },
+				            error : function(data) {
+				                setError('GA call failed');
+				                window.alert("AG call failed");
+				            }
+				        }); /*end of second AJAX call*/
+				        
+				        
+				     
 				        return false;  
 				        
 				  //  });  --TEST: add This for adding "clickfunction"
@@ -370,13 +406,37 @@
 	</script>
 
 
+
 	<div id="visitorCount">
+		<p style="background-color:silver;color:black;font-weight:bold;height:20px;margin:0 -8px 0 0;padding: 5px 5px 3px 3px;">فارسی ریدز قد می‌‌کشد</p>
+		
+		<!-- The statistics about the newUsers, Number of blogposts and number of books
+			 in the Book DB will be called using AJAX call. See the Script in top. -->
 		@for(g <- ga){
+
 		<p>
-			تعداد کاربران "فارسی ریدز" : <span>@g</span>
+			تعداد کاربران در این هفته: <span id="GAspan"></span>
+				
+		<script>
+		/*This piece of JS code is to convert the latin number to the persian*/
+			String.prototype.toIndiaDigits= function(){
+				 var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+				 return this.replace(/[0-9]/g, function(w){
+				  return id[+w]
+				 });
+				}
+			var conv= "@g";
+			document.getElementById('GAspan').innerHTML = conv.toIndiaDigits();
+			console.log(conv.toIndiaDigits());
+		</script>
+		
 		</p>
 		}
+		<p> تعداد پست‌های بلاگ: <span id="blogPostsNo"></span></p>
+		<p>تعداد کتاب‌های بانک داده: <span id="usersNo"></span></p>
+		
 	</div>
+	<div style="background-image: url('/assets/images/metrics.png');background-size: cover;height:15px;width:300px;"></div>
 	<!-- visitorCount -->
 
 	<!-- 	<div id="ajax" style="width:100px;height:50px;">test:</div>

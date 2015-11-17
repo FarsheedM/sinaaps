@@ -4,7 +4,10 @@ package controllers.controllersFarsi;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
 import controllers.routes;
 import controllers.Application.Login;
 import play.data.Form;
@@ -29,10 +32,10 @@ import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.services.analytics.model.GaData;
 import com.google.api.services.analytics.Analytics.Data.Ga.Get;
-
 import com.cloudinary.*;
 import com.cloudinary.utils.*;
 
+import org.joda.time.LocalDateTime;
 import org.json.simple.JSONObject;
 
 
@@ -101,10 +104,13 @@ public class ApplicationFa extends Controller{
          */
         
         
-        //new File("./public/images/key.p12.p12"));
+        
         //this piece of code is working locally.
         //in below the code should work in arvixe in production mode
-        File analyticsPrivateKeyFile = new File("/home/farsheed/public_html/key.p12.p12");
+        //--File analyticsPrivateKeyFile = new File("/home/farsheed/public_html/key.p12.p12");
+        
+        /*Local Testing*/
+        File analyticsPrivateKeyFile =new File("./public/images/key.p12.p12");
         
         GoogleCredential credential = new GoogleCredential.Builder()
         .setTransport(HTTP_TRANSPORT)
@@ -119,29 +125,26 @@ public class ApplicationFa extends Controller{
     }
     
     private static GaData executeDataQuery(Analytics analyticsService, String tableId) throws IOException {
-        
-        String startDate = "2015-01-03";
-        String endDate = "2015-08-17";
+    	
+        String startDate = "7daysAgo"; 
+        String endDate = "today"; 
         String mertrics = "ga:users";
 
         // Use the analytics object build a query
+        
         Get get = analyticsService.data().ga().get(tableId, startDate, endDate, mertrics);
         
         // Run the query
         GaData data = get.execute();
-       
         return data;
      }
     private static List<String> getDataTable(GaData gaData) {
         if (gaData.getTotalResults() > 0) {
         	return gaData.getRows().get(0);
-
-          
         } else {
           //System.out.println("No data");
         	return null;
         }
-        
       }
     
     /**
@@ -204,5 +207,13 @@ public class ApplicationFa extends Controller{
     	  }
 }
 
+	public static Result getStatistics(){
+		Integer numberOfPosts = BlogPost.find.all().size();
+		Integer numberOfBooks = Book.find.all().size();
+		String jsonInfo = "{\"blogPosts\":\""+numberOfPosts.toString()+
+								"\", \"users\":\""+numberOfBooks.toString()+"\"} ";
+		return ok(jsonInfo);
+	}
+	
     
 }
