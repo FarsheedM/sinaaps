@@ -15,7 +15,7 @@
 	padding-left : 20px;
 	margin-bottom : 10px;
 	padding-bottom : 20px;
-	border-bottom : 1px solid #dddddd;
+	//border-bottom : 1px solid #dddddd;
 	font : @defaultFont;
 }
 #contactBox{
@@ -23,14 +23,52 @@
 	padding-left : 20px;
 	font : @defaultFont;
 }
+.form {
+    border: 1px solid #f3ae4b;
+    font: 18px "NasimBreeze","Tahoma","Arial";
+    height: 30px;
+    margin: 6px 0 0 7px;
+    padding-right: 10px;
+    text-align: right;
+    width: 250px;
+}
+.subBtn{
+    background: #347a74 none repeat scroll 0 0;
+    color: white;
+    font: bold 13pt "tahoma","arial";
+    margin-top: 5px;
+    outline: medium none;
+    width: 90px;
+    text-align : center;
+}
+h2{
+    color: #84581e;
+    font-weight: normal;
+}
 .questions{}
 .qTitle{}
-.qExpand{}
+.qExpand p{
+	margin : 0;
+}
+.teamLink{
 
+	font: 14px "NasimBreeze", "arial";
+	font-weight: bold;
+	padding-bottom : 5px;
+}
+.teamLink a{
+	color:#84581e;
+	text-decoration: none;
+}
+.line {
+    border-top: 1px dashed #9dbba9;
+    height: 2px;
+    width: auto;
+}
 #addressBox{
 	background-color : white;
 	height : 0 auto;
-	margin-bottom : 10px;
+	margin-bottom : 5px;
 	letter-spacing: 2px;
     line-height: 1.75em;
     text-align: center;
@@ -41,13 +79,50 @@
 #donationBox{
 	background-color : white;
 	height : 0 auto;
-	padding-top : 2px;
-	padding-bottom : 2px;
-	padding-right : 10px;
-	padding-left : 5px;
+	padding : 2px 10px 15px 5px;
 	font : @alternativeFont;
+	margin-bottom :5px;
 }
 
-#payPal{
-
+.payPal{
+    background: #347a74 none repeat scroll 0 0;
+    color: white;
+    font: bold 13pt "arial","tahoma";
+    margin-top: 5px;
+    outline: medium none;
+    text-align: center;
+    width: 90px;
+}
+.payPal a{
+	color : white;
+}
+#followUs{
+	//background-image: url("data:image/png;");
+	//height: 18px;
+    //margin-right: 10px;
+    //width: 18px;
+   	background-color : white;
+    height : 0 auto;
+	padding : 2px 10px 15px 5px;
+	font : @alternativeFont;
+}
+#followUs ul{
+	list-style-type:none;
+}
+#box {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #333;
+    margin: 0;
+    padding: 0;
+}
+#overlay {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs%2B9AAAAE0lEQVQYlWNgYGDYTCQeVUhPhQCZ7UXt5kdfxAAAAABJRU5ErkJggg%3D%3D");
+    z-index: 100088;
 }

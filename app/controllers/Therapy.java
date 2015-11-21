@@ -72,7 +72,7 @@ public class Therapy extends Controller{
 			System.err.println(ex.getMessage());
 		}
 		if(language.equals("farsi"))
-			return ok(views.html.farsiEdition.alert.render(usr,"سپاس، ارزیابی شما با موفقیت فرستاده شد. پیام شما پس از بررسی‌، برای استفاده دیگران منتشر میشود.."));
+			return ok(views.html.farsiEdition.alert.render(usr,"سپاس، ارزیابی شما با موفقیت فرستاده شد. <br>پیام شما پس از بررسی‌، برای استفاده دیگران منتشر میشود."));
 		else
 			return ok(views.html.alert.render(usr,"Thanks!  Your evaluation sent successfully. We will reply soon."));
 

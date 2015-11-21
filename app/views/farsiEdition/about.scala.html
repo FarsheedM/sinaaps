@@ -13,12 +13,12 @@
         		<div id="socialBar">
         			<div id="socialBarRightFarsi">
 						<ul style="padding-left : 15px;">
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 						</ul>
 					</div><!-- socialBarLeft -->
 					
@@ -50,6 +50,7 @@
 		<div class="questions">
 			<p class="qTitle">ما چه کسانی‌ هستیم؟</p>
 			<div class="qExpand">ما تیمی از مسیحیان جوان هستیم که عیسی مسیح را خیلی‌ دوست داریم. همچنین دوست داریم از هدایای روحانی‌ و انرژی خود در جهت جلال دادن به خدا استفاده کنیم.</div>
+			<div class="teamLink"><a href="#">تیم‌ فارسی ریدز >></a></div>
 		</div>
 		<div class="questions">
 			<p class="qTitle">ما چه اعتقادی داریم؟</p>
@@ -61,20 +62,39 @@
 		</div>
 		<div class="questions">
 			<p class="qTitle">چگونه در جهت تحقق‌ این رویا پیش می‌رویم؟</p>
-			<div class="qExpand">ما پروژه آماده سازی پلتفرم فارسی ریدز را به ۵ فاز جداگانه تقسیم کرده ایم. ۱-سایت در حالت استاتیک خود؛ بخش وبلاگ و اطلاعات کلی‌ در مورد موجودیت فارسی ریدز، همچنین معرفی‌ رویا و اهداف پلتفرم. ۲-افزودن دیتابیس کتابهای فارسی به صورت تدریجی‌ و آماده سازی پروفایل هر کتاب بطور مجزا. ۳-افزودن قابلیت‌های شبکه‌های اجتماعی(از جمله قابلیت امتیاز دادن به مطالب و کتاب و نظر دهی‌ و به اشتراک گذاری) + پیاده سازی کتابخانه مجازی برای هر کاربر. ۴-آماده سازی و تهیه پکیج‌های تشویقی برای شروع و یا ادامه کتاب خوانی ۵-اجرای بخش بوک شاپ(از جمله آدرس دهی‌ به دیگر کتابفروشی ها) و نشر کتاب.
+			<div class="qExpand">
+				<p>
+				ما پروژه آماده سازی پلتفرم فارسی ریدز را به ۵ فاز جداگانه تقسیم کرده ایم.
+				</p>
+				<p>
+				۱- سایت در حالت استاتیک خود؛ بخش وبلاگ و اطلاعات کلی‌ در مورد موجودیت فارسی ریدز، همچنین معرفی‌ رویا و اهداف پلتفرم.
+				</p>
+				<p>
+				۲- افزودن دیتابیس کتابهای فارسی به صورت تدریجی‌ و آماده سازی پروفایل هر کتاب بطور مجزا. 
+				</p>
+				<p>
+				۳- افزودن قابلیت‌های شبکه‌های اجتماعی(از جمله قابلیت امتیاز دادن به مطالب و کتاب و نظر دهی‌ و به اشتراک گذاری) + پیاده سازی کتابخانه مجازی برای هر کاربر. 
+				</p>
+				<p>
+				۴- آماده سازی و تهیه پکیج‌های تشویقی برای شروع و یا ادامه کتاب خوانی.
+				</p>
+				<p>
+				۵- اجرای بخش بوک شاپ (از جمله آدرس دهی‌ به دیگر کتابفروشی ها) و نشر کتاب.
+				</p>
 			</div>
 		</div>
 	</div><!-- about box-->
 	
-	
+	<div class="line"></div>
+		
 	<div id="contactBox">
 		<h2>تماس با ما</h2>
 		<p>شما میتوانید از فرم زیر استفاده نمایید و نظرات خود را با ما در میان بگذارید</p>
 		<div id="contactForm">
 			@helper.form(controllers.routes.About.sendFeedBack("farsi")){
-				<input type="text" name="name" placeholder="نام"><br>
-				<input type="email" name="email" placeholder="ایمیل"><br>
-				<select name="subject">
+				<input class="form" type="text" name="name" placeholder="نام"><br>
+				<input class="form" type="email" name="email" placeholder="ایمیل"><br>
+				<select class="form" name="subject">
 					<option>موضوع</option>
 					<option>شهادت یا تشویق</option>
 					<option>وب سایت</option>
@@ -82,8 +102,10 @@
 					<option>اعلام همکاری</option>
 					<option>مشکل در حساب کاربری</option>
 				</select><br>
-				<textarea name="message" rows="5" cols="60"></textarea><br>
-				<input type="submit" value="پست">
+				<textarea class="form" name="message" 
+				rows="5" cols="60" placeholder="لطفا پیام خود را اینجا بنویسید"
+				style="height: 130px;"></textarea><br>
+				<input class ="subBtn" type="submit" value="پست">
 
 			}
 			<br>
@@ -91,19 +113,45 @@
 		</div>
 	</div><!-- contact box-->
 
-
+	
 	
 }{
 	
 	<!--  Content Right comes here -->
 	<div id="addressBox">
-		<h4>آدرس پستی ما:</h4>
-		<p>Ludwigstrasse.42</p>
-		<p>Giessen 35390 </p>
-		<p>Germany</p>
+		<p style="background-color:silver;color:black;font-weight:bold;
+				    width : 290px;height:20px;margin:-1px 1px 0 -3px;padding: 5px 5px 3px 3px;">آدرس پستی ما:</p>
+					<p>Ludwigstrasse.42</p>
+					<p>Giessen 35390 </p>
+					<p>Germany</p>
 	</div>
 	<div id="donationBox">
-		<p>شما میتوانید با کمکهای مالی خود در پیشبرد پروژه کتابخوانی سهمی داشته باشید</p>
-		<div id="payPal"><a href="#paypal">PayPal</a></div>
+			<p>شما میتوانید با کمکهای مالی خود در پیشبرد پروژه کتابخوانی سهمی داشته باشید</p>
+			<div class="payPal"><a href="#paypal">PayPal</a></div>
 	</div>
+	
+	<div id="followUs">
+			<ul>
+				<li><a href="www.facebook.com/farsireads"><div class="followUsFacebook">FB</div></a></li>
+				<li><a href="www.twitter.com/farsireads"></a>TW</li>
+				<li><a href="www.linkedid.com/farsireads"></a>LinkedID</li>
+			</ul>
+	</div>
+		
+			<!-- The Box is the equivalent to the box in goodReads -> about. May be done later. -->	
+			<!--  
+			<div id="overlay" onclick="Lightbox.hideBox('dropout')" style="height: 3172px;"></div>	
+			<div id="box" style="width: 600px; min-height: 292px; 
+				position: absolute; z-index: 100089; left: 349.5px; top: 203.5px;">
+					
+				<div id="boxContents">
+					<img class="employeeModalImage" alt="Jessica donaghy" src="https://s.gr-assets.com/assets/about/employees_modal/jessica_donaghy-2094046e33e340f642310066b0066ffb.jpg">
+					<div class="employeeBio">
+						<h2>
+						<h3> Features Editor </h3>
+						<p>
+					</div>
+				</div>
+			-->
+			
 }

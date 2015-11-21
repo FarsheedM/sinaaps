@@ -38,13 +38,15 @@
         			</div><!-- headcontentRight (loggedIn) -->
         		</div><!-- headContent -->
         		<div id="clear"></div>
-        		
-        		<div id="horizonLine"></div>
 
 
 }{
 	<!--  Content Left comes here -->
-	@message
+	<div class="message">
+		@Html(message)
+	</div>
+	<br>
+	<div id="return"><a href="@controllers.controllersFarsi.routes.ApplicationFa.index()">بازگشت به صفحه اصلی >> </a>‌</div>
 }{
 
 	<!--  Content Right comes here -->

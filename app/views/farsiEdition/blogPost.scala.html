@@ -31,7 +31,7 @@
 	@author = @{AuthorTranslation.getAuthor(post.author.authorID,"farsi")}
 			
 	<article id="postBox" >
-		<h4 style="text-align: right; padding-right: 20px;">@post.title</h4>
+		<h3 style="text-align: right; padding-right: 20px;">@post.title</h3>
 		<div id="photoBanner">
 			<!-- "dl.dropboxusercontent." should be used in order to access DropBox docs with a static link -->
 			<img src="@post.aux_img1" alt="@post.aux_img1">
@@ -56,7 +56,11 @@
 			
 			<!-- This clamping func should be invoked after the declared tages in it!!!! -->
 			<script>clamping();</script>
-			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)"><p  style="text-align: right; padding-right: 20px;">ادامه مطلب ...</p></a>
+<!-- 			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)"><p  style="text-align: right; padding-right: 20px;">ادامه مطلب ...</p></a>
+			 -->
+			<div id="return">
+				<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)">ادامه مطلب >> </a>
+			</div>
 		</div>
 	</article>
-	<div id="horizonLine"></div>
+	<div class="line"></div>
