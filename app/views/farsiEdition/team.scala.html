@@ -1,0 +1,112 @@
+@(user : User, form : Form[About.FeedBack])
+@FaMain("تیم‌ فارسی ریدز"){
+
+
+<!-- -------------------farsi Edition----------------------- -->
+<head>
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiTeam.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiAbout.css")">
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+     <script src="@routes.Assets.at("javascripts/accordion.js")" type="text/javascript"></script>
+</head>
+
+        		<div id="clear"></div>
+        		
+        		<div id="socialBar">
+        			<div id="socialBarRightFarsi">
+						<ul style="padding-left : 15px;">
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>مهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+									
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+        		<div id="clear"></div>  		
+
+}{
+
+	<!--  left content for TEAM -->
+	<div id="teamMember">
+		<img id="teamMemberImg" src="http://s.gr-assets.com/assets/about/employees_modal/robert_lathanh-90ab526364806215de99adf75ba4b9e8.jpg">
+		<div id="employeeBio">
+			<h2>فرشید فریان</h2>
+			<h3>موسس و برنامه نویس</h3>
+			<p>فرشید یکی‌ از مؤسسان فارسی ریدز است. او مشتاق این است که افراد بیشتری، مخصوصاً نسل جوان ایرانی‌، بتواند زندگی‌ خوش تر، پر، و با معنی‌ تری داشته باشند. او خود، از مطالعه کتاب لذت میبرد و در پی‌ این است که مطالعه کتاب‌های خوب را رونق بخشد. وی فارغ التحصیل رشتهٔ کامپیوتر از آلمان است و ساعت‌ها از عمر خود را صرف خیره شدن به مانیتور برای پیدا کردن نقطه ویرگول می‌‌کند. فرشید همچنین در مطالعه هرمنتیکس کتاب مقدسی و رمز گشایی از جملات آن وجد می‌‌کند.</p>
+		</div>
+	</div>
+		
+	<div class="line"></div>
+	
+	<div id="teamMember">
+		<img id="teamMemberImg" src="http://s.gr-assets.com/assets/about/employees_modal/dan_lopez-983e60de771f53504af631fa3486d8a3.jpg">
+		<div id="employeeBio">
+			<h2>میخاییل یورچوک</h2>
+			<h3>موسس و استراتژیست محتوا</h3>
+			<p>. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمدتست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد.. تست:معرفی‌ خودمونی از میخاییل اینجا خواهد آمد</p>
+		</div>
+	</div>
+	
+	<div class="line"></div>
+	
+	<div id="teamMember">
+		<img id="teamMemberImg" src="http://s.gr-assets.com/assets/about/employees_modal/amanda_cooper-7f7d35b06be95cb152f8fd7308ecc756.jpg">
+		<div id="employeeBio">
+			<h2>خانم ایکس ایگرگ</h2>
+			<h3>استراتژیست محتوا</h3>
+			<p>تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.</p>
+		</div>
+	</div>
+	
+	<div class="line"></div>
+		
+	<div id="teamMember">
+		<img id="teamMemberImg" src="http://s.gr-assets.com/assets/about/employees_modal/cleo_morrison-5bad46a76b3518ae4572401e4fb8c5c7.png">
+		<div id="employeeBio">
+			<h2>آناهیتا آنالیز دوست</h2>
+			<h3>آنالیزور و ارتباطات</h3>
+			<p>تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.تست : اطلاعات شامل معرفی‌ و فعالیت‌ها و تحصیلات و سرگرمی و هابی  اینجا.</p>
+		</div>
+	</div>
+	
+}{
+	<!--  Content Right comes here -->
+	<div id="addressBox">
+		<p style="background-color:silver;color:black;font-weight:bold;
+				    width : 290px;height:20px;margin:-1px 1px 0 -3px;padding: 5px 5px 3px 3px;">آدرس پستی ما:</p>
+					<p>Ludwigstrasse.42</p>
+					<p>Giessen 35390 </p>
+					<p>Germany</p>
+	</div>
+	<div id="contactBox">
+			<p> shoma mitavaanid tim farsi ridz ra ba pishnahaadaat khod dar behbud khadamaat yaari resaanid</p>
+			<div><a href="@routes.About.display("farsi")">تماس با ما</a></div>
+	</div>
+	<div id="followUs">
+			<ul>
+				<li><a href="http://facebook.com/farsireads"><img src="@routes.Assets.at("images/facebook.png")"></a></li>
+				<li><a href="http://twitter.com/farsireads"><img src="@routes.Assets.at("images/twitter.png")"></a></li>
+				<li><a href="http://linkedid.com/farsireads"><img src="@routes.Assets.at("images/linkedIn.png")"></a></li>
+			</ul>
+	</div>
+
+}

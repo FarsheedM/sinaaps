@@ -96,4 +96,27 @@ public class About extends Controller{
 		
 	}
 	
+	public static Result displayTeam(String lang){
+		
+		if(lang.equals("english")){
+			if(session().containsKey("email"))
+				return ok(about.render(User.find.byId(session().get("email")),Form.form(FeedBack.class)));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(about.render(guest,Form.form(FeedBack.class)));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.team.render(User.find.byId(session().get("email")),Form.form(FeedBack.class)));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.team.render(guest,Form.form(FeedBack.class)));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+	}
+	
 }

@@ -24,6 +24,7 @@ GET     /farsi/signUp               controllers.controllersFarsi.Signup.register
 POST    /farsi/signUp               controllers.controllersFarsi.Signup.authenticate()
 GET     /:lang/aboutUs              controllers.About.display(lang : String)
 POST    /:lang/aboutUs              controllers.About.sendFeedBack(lang : String)
+GET     /:lang/aboutUs/team			controllers.About.displayTeam(lang : String)
 #
 GET     /:lang/book/bookid=:bookId            controllers.Books.showBookProfile(lang : String, bookId : Integer)
 POST    /:lang/book/bookid=:bookId            controllers.Books.postReview(lang : String,bookId : Integer)
