@@ -5,7 +5,7 @@
 }
 @defaultFont: 			   17px "NasimBreeze","Tahoma","Arial";
 
-@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@headerFont:               22px "NasimBreeze","Tahoma","Arial";
 @alternativeFont:          14px "tahoma","arial";
 @OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
 
@@ -42,11 +42,17 @@
 }
 #bookTitleAuthor ul li h1{
 	font : @headerFont;
-	font-weight : bold;
+	//font-weight : bold;
+	color : #84581e;
 }	
 .metaInfo{
 	font : @alternativeFont;
-	//color : red;
+}
+.metaInfo span{
+	color : #382110;
+}
+time{
+	font-size : 13px;
 }
 #summary{
 	line-height: 1.4;
@@ -67,8 +73,8 @@
 .shareBox{
 	width : 90%;
 	height : 0 auto;
-	border-top : 1px solid #75bfb8;     //#dddddd;
-	border-bottom : 1px solid #75bfb8;  //#dddddd;
+    border-bottom: 1px dashed #9dbba9;
+    border-top: 1px dashed #9dbba9;
 	padding-bottom : 5px;
 	//margin-bottom : 5px;
 	margin-right : 30px;
@@ -93,15 +99,25 @@
 	margin-bottom : 5px;
 	margin-top : 15px;
 	font : @alternativeFont;
+	background-color: #ededed;
+    border: 0 none
+}
+#reviewBox p{
+    font: 17px "NasimBreeze","Tahoma","Arial";
+    padding-right: 10px;
 }
 #reviewBox legend{
-	height : 30px;
+	//height : 30px;
 	//padding-top : 5px;
+	color: #84581e;		//#75bfb8;
+    font: 22px "NasimBreeze","Tahoma","Arial"
 }
 
 #reviewBox h3{
 	margin-top : 0px;
 	margin-bottom : 0px;
+	color : #84581e;
+	font-weight : normal;
 }
 #clean{
 	clear : both;
@@ -111,6 +127,10 @@
 	font : @defaultFont;
     font-size : 1.2rem;
     margin-top : 0px;
+}
+.rightBoxHeader span{
+	color : red;
+	font-size : 0.8em;
 }
 #otherBooksContainer{
 	text-align: center;

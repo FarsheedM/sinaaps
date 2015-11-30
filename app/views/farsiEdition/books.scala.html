@@ -12,12 +12,12 @@
         		<div id="socialBar">
         			<div id="socialBarRightFarsi">
 						<ul>
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 						</ul>
 					</div><!-- socialBarRightFarsi -->
         			<div id="socialBarLeftFarsi">
@@ -29,7 +29,7 @@
 									<dd><a href="@routes.Application.logout">خروج</a></dd>
 								} else {
 									<dt>وضعیت کاربر : <span>میهمان</span></dt>
-									<dd><a href="@routes.Application.index">ورود</a></dd>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index">ورود</a></dd>
 								}
 							</dl>
 						</header>
@@ -51,7 +51,7 @@
 	<div id="searchBox">
 		<fieldset>
 			<legend>جستجو کتاب</legend>
-			<input type="search" value="عنوان / شابک" name="search">
+			<input type="search" placeholder="عنوان / شابک" name="search">
 			<input type="submit" value="جستجو" >
 			
 			<div id="categoryBox">
@@ -100,7 +100,7 @@
 					@books.take(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImg" src="@book.photo" ><br><span class="titleText">@book.bookID</span>
+							<img class="bookImg" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 					}			
@@ -111,7 +111,7 @@
 				@books.takeRight(3).map{ book =>
 				<div id="bookBox">
 					<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-						<img class="bookImg" src="@book.photo" ><br><span class="titleText">@book.bookID</span>
+						<img class="bookImg" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 					</a>
 				</div>
 				}
@@ -130,7 +130,16 @@
 
 	<!--  ---------------right content for book------------------- -->
 	<div id="suggestBookAdd">
+		
 		<p> کتاب فارسی مسیحی‌ می‌شناسید که هنوز در بانک کتاب ما موجود نیست؟ لطفا آن را به ما معرفی‌ کنید:</p>
-		<a href="@routes.About.display("farsi")">تماس با ما</a>
+		<a href="@routes.About.display("farsi")"><div id ="contactLink">تماس با ما</div></a>
 	</div> <!-- suggestBookAdd -->
+	
+	<div id="followUs">
+		<ul>
+			<li><a href="http://facebook.com/farsireads"><img src="@routes.Assets.at("images/facebook.png")"></a></li>
+			<li><a href="http://twitter.com/farsireads"><img src="@routes.Assets.at("images/twitter.png")"></a></li>
+			<li><a href="http://linkedid.com/farsireads"><img src="@routes.Assets.at("images/linkedIn.png")"></a></li>
+		</ul>
+	</div>
 }

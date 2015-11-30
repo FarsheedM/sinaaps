@@ -10,11 +10,17 @@
 
 @FaMain("پروفایل کتاب"){
 	
-	<head>
+	<head itemscope itemtype="http://schema.org/Article" >
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
      <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiBookProfile.css")">
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/reviewFarsi.css")">
+     <meta property="og:url"           content="http://www.farsireads.com/farsi/book/bookid=1" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+     
 	</head>
 
         		<div id="clear"></div>
@@ -55,13 +61,13 @@
 		
 			<div id="bookCover">
 				<a href="#">
-					<img id="coverImage" src="@book.photo" alt="">
+					<img itemprop="image" id="coverImage" src="@book.photo" alt="">
 				</a>
 			</div>
 			<div id="leftBlock">
 				<div id="bookTitleAuthor">
 					<ul> 
-						<li><h1>@bookTranslation.title</h1></li>
+						<li><h1 itemprop="name">@bookTranslation.title</h1></li>
 						<li class="metaInfo">
 							<!--  <span>نوشته: @@author.fName @@author.lName</span> -->
 							 
@@ -70,7 +76,7 @@
 								val author = views.html.AuthorTranslation.getAuthor(a.authorID,"farsi");
 								<span>نوشته: author.fName author.lName</span> 
 							} -->
-							نوشته: 
+							نوشته 
 							@authorList.map{ a => 
 								<!--  @@author = views.html.AuthorTranslation.getAuthor(a.authorID,"farsi");-->
 								@defining( AuthorTranslation.getAuthor(a.authorID,"farsi") ) { author => 
@@ -79,21 +85,21 @@
 							
 							<span></span>
 						</li>
-						<li class="metaInfo"><time >تاریخ انتشار: @book.published.format("dd.MM.yyyy")</time> توسط @bookTranslation.publication </li>
-						<li class="metaInfo">ریتینگ:</li>
+						<li class="metaInfo">تاریخ انتشار <span><time>@book.published.format("dd.MM.yyyy")</time></span> توسط <span>@bookTranslation.publication</span> </li>
+						<li class="metaInfo">ریتینگ</li>
 					</ul>
 				</div>
 				
 				<div id="summary">
-					<p>@bookTranslation.summary</p>
+					<p itemprop="description">@bookTranslation.summary</p>
 				</div>
 				<div id="bookdetails">
 					<ul class="metaInfo">
-						<li>شابک: @book.isbn</li>
-						<li>عنوان اصلی‌ کتاب: @bookTranslationEn.title</li>
-						<li>تعداد صفحات:</li>
-						<li>وزن:</li>
-						<li>ابعاد:</li>
+						<li>شابک <span>@book.isbn</span></li>
+						<li>عنوان اصلی‌ کتاب <span> @bookTranslationEn.title</span></li>
+						<li>تعداد صفحات </li>
+						<li>وزن </li>
+						<li>ابعاد </li>
 					</ul>
 				</div>
 			</div><!-- leftBlock -->
@@ -101,16 +107,29 @@
 				<div class="shareBox">
 					<p>اطلاعات این کتاب را با دوستانتان در شبکه‌های زیر به اشتراک بگذارید:</p>
 					<!-- -----------------------FB------------------- -->
+					    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+					
+					
 					<div class="fb-share-button" data-href="http://www.farsireads.com/farsi/book/bookid=@book.bookID" 
 						data-type="button_count" >
 					</div>
 					<!-- -----------------------FB------------------- -->
 
 					<!-- -----------------------g+------------------- -->
-					<div class="g-plus" data-action="share" data-annotation="bubble" 
+ 					<div class="g-plus" data-action="share" data-annotation="bubble" 
 						data-href="http://www.farsireads.com/farsi/book/bookid=@book.bookID">
-					</div>
+					</div> 
 					<!-- -----------------------g+------------------- -->
+
+					
 					<div id="clear"></div>
 				</div><!-- end of shareBox -->
 				
@@ -138,7 +157,7 @@
 								crp.style.display = "none";
 							</script>
 							<p>برای ارسال نظرات خود میبایست به "فارسی‌ ریدز" وارد شوید</p>
-							<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3>برای ورود، لطفا اینجا را کلیک کنید</h3></a>
+							<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3 style="padding-right:10px;">برای ورود، لطفا اینجا را کلیک کنید</h3></a>
 			
 						}else{
 						<section id="reviewForm">
@@ -166,7 +185,7 @@
 
 		<!-- --------------------------پانل راست----------------------- -->
 		<div id="virtualshelf">
-		<h3 class="rightBoxHeader">کتابخانه مجازی من</h3>
+		<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
 		<ul>
 			<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
 			<li><a href="#">همه</a></li>

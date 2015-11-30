@@ -50,7 +50,7 @@
 		clp.style.float = "right";
 	</script>
 
-	<div id="post" style="padding : 15px 30px 15px 20px;">
+	<div id="post" style="padding : 10px 30px 5px 20px;">
 		<div id="pt" ><h2>@post.title</h2></div>
 				<div id="resourceMeta">
 					<ul> 
@@ -69,7 +69,7 @@
 		<!-- @@Html(): if we do not want to escape the content parts(e.g. ignoring HTML tags),wrap it in template content type -->
 		<div id="pcFarsi" > @Html(post.content) </div>
 		<br>
-		<br>
+		
 		<!-- -------------------------rating section to be implemented--------------------- -->
 		<!-- <div id="horizonLine"></div>
 		<br>
@@ -137,7 +137,7 @@
 			<div id="clear"></div>
 		</div><!-- end of shareBox -->
 		<br>
-		<br>
+		
 		<!-- ----------------------COMMENTING SECTION--------------------- -->
 		<fieldset>
 			<legend><h3> بخش نظرات </h3></legend>
@@ -162,7 +162,7 @@
 					crp.style.display = "none";
 				</script>
 				<p>برای ارسال نظرات خود میبایست به "فارسی‌ ریدز" وارد شوید</p>
-				<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3>برای ورود، لطفا اینجا را کلیک کنید</h3></a>
+				<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3 style="padding-right:10px;">برای ورود، لطفا اینجا را کلیک کنید</h3></a>
 
 			}else{
 			<section id="commentComments">
@@ -176,7 +176,7 @@
 		        	<p id="error"> @commentForm.globalError.message </p>
 		        }else{
 					<script type="text/javascript">
-							document.getElementById('commentComments').scrollIntoView();
+							//document.getElementById('commentComments').scrollIntoView();
 					</script>
 		        }
 			</section>

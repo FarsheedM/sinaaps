@@ -6,6 +6,7 @@
 <!-- this is the helper template (used like functions) to handle each individual post
 	--The structure of each post can be designed here -->
 	
+	<script src="@routes.Assets.at("javascripts/jquery-1.11.3.js")" type="text/javascript"></script>
 	<script>
 		/*This function is used to trunce the blogContent to the specified size, e.g. 3,10 lines
 		**It uses the clamp.js library. NOTE: (useNativeClamp : true) should be set to get the same 
@@ -25,18 +26,23 @@
 			//header.style.backgroundColor ="RED";
 			header.innerHTML = strip(document.getElementById("@post.postID").textContent);
 			$clamp(header,{clamp : 5, useNativeClamp : true});
-		}	
+		}
+		
+
 	</script>
 	<!-- this line just assign the desired author in the variable '@author' to be used in the resourceMeta -->
 	@author = @{AuthorTranslation.getAuthor(post.author.authorID,"farsi")}
 			
 	<article id="postBox" >
-		<h3 style="text-align: right; padding-right: 20px;">@post.title</h3>
-		<div id="photoBanner">
-			<!-- "dl.dropboxusercontent." should be used in order to access DropBox docs with a static link -->
-			<img src="@post.aux_img1" alt="@post.aux_img1">
+		<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)">
+			<h3 style="text-align: right; padding-right: 20px;">@post.title</h3>
+			<div id="photoBanner">
+				<!-- "dl.dropboxusercontent." should be used in order to access DropBox docs with a static link -->
+				<img src="@post.aux_img1" alt="@post.aux_img1">
+			
+			</div><!-- end of "photoBanner" -->
+		</a>
 		
-		</div><!-- end of "photoBanner" -->
 		<br>
 		<div id="resourceMeta">
 			<ul> 
@@ -44,7 +50,7 @@
 				
 				<li id="topicFarsi">موضوع : @post.topic</li>
 			</ul>
-			<time id="time">@post.published.format("dd-MM-yyyy")</time>
+			<div id="time">@post.published.format("dd-MM-yyyy")</div>
 		</div>
 		<div id="clear"></div>
 		<script src="@routes.Assets.at("javascripts/clamp.js")" type="text/javascript"></script>

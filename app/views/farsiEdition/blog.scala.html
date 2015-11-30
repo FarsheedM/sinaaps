@@ -62,12 +62,13 @@
 		<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">   
 		
 			<img src="@posts.head.image" rel="@posts.head.title">
+		
+			<hgroup>
+				<h2>@posts.head.title</h2>
+				
+				<h4>@author.fName @author.lName</h4>
+			</hgroup>
 		</a>
-		<hgroup>
-			<h2>@posts.head.title</h2>
-			
-			<h4>@author.fName @author.lName</h4>
-		</hgroup>
 	</div>
 	
 	<div class="line"></div>

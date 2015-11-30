@@ -13,12 +13,12 @@
         		<div id="socialBar">
         			<div id="socialBarRightFarsi">
 						<ul>
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 						</ul>
 					</div><!-- socialBarRightFarsi -->
         			<div id="socialBarLeftFarsi">
@@ -30,7 +30,7 @@
 									<dd><a href="@routes.Application.logout">خروج</a></dd>
 								} else {
 									<dt>وضعیت کاربر : <span>میهمان</span></dt>
-									<dd><a href="@routes.Application.index">ورود</a></dd>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index">ورود</a></dd>
 								}
 							</dl>
 						</header>
@@ -44,14 +44,20 @@
 	<!-- پانل سمت چپ قسمت خدمات -->
 	
 	<div id="desc">
-در حال حاضر خدمات ارائه شده توسط فارسی ریدز به سه دسته بندی کلی‌ تقسیم میشود. شایان ذکر است که تمام خدمات به صورت مستقیم  و یا غیر مستقیم به کتابخوانی مرتبط می‌‌شود.   
+		<p>
+			در حال حاضر خدمات ارائه شده توسط فارسی ریدز به چهار دسته بندی کلی‌ تقسیم میشود. شایان ذکر است که تمام خدمات به صورت مستقیم  و یا غیر مستقیم به کتابخوانی مرتبط می‌‌شود.   
+		</p>
+		<br>
 	</div>
 	<div id="catalog">
 		<div class="title">کاتالوگ کتاب</div>
-		<div class="icon"><img alt="catalog" src="@routes.Assets.at("images/icons/Translate.gif")"></div>
+		<div class="icon"><img alt="catalog" src="@routes.Assets.at("images/icons/BookCatalog.png")"></div>
 		<div class="description">یکی‌ از مرکزیترین خدمات فارسی ریدز، تهیه بانک اطلاعاتی‌ از تمام کتاب‌ها و نشریات مسیحی‌ چاپ شده به زبان فارسی است. این قسمت به شما امکان می‌‌دهد که کتاب‌ها را بر حسب اسم، مولف و یا شماره شابک جستجو کنید. جستجوی عنوان کتاب‌های ترجمه شده به زبان اصلی‌، به شما این امکان را میدهد که بتوانید از موجود بودن ترجمه کتاب مورد نظر شما به فارسی اطمینان حاصل کنید.</div>
 		<a class="forward"></a>
+		<br>
 	</div><!-- catalog -->	
+	
+	<br>
 	
 	<div id="translation">
 	
@@ -78,8 +84,10 @@
 			</div>
 		</div><!-- newBookList -->
 		<a class="forward"></a>
-		
+		<br>
 	</div><!-- translation -->
+	
+	<br>
 	
 	<div id="workshop">
 		<div class="title">برگزاری سمینار و ورکشاپ در زمینه کتابخوانی</div>
@@ -93,11 +101,11 @@
  			<p>برای برگزاری این رویداد با ما مشورت کنید:</p>
  			<div id="eventForm">
 			@helper.form(controllers.routes.Services.sendFeedBack("farsi")){
-				<input type="text" name="name" placeholder="نام">
+				<input class="form" type="text" name="name" placeholder="نام">
 				<br>
-				<input type="email" name="email" placeholder="ایمیل">
+				<input class="form" type="email" name="email" placeholder="ایمیل">
 				<br>
-				<select name="subject">
+				<select class="form" name="subject">
 					<option>موضوع</option>
 					<option>مشورت</option>
 					<option>درخواست ورکشاپ</option>
@@ -106,13 +114,16 @@
 					<option>غیره</option>
 				</select>
 				<br>
-				<textarea name="message" rows="5" cols="60"></textarea><br>
-				<input type="submit" value="پست">
+				<textarea class="form" style="height: 100px;" name="message" placeholder="لطفا پیام خود را اینجا بنویسید"></textarea><br>
+				<input class="subBtn" type="submit" value="پست">
 			}
 			</div><!-- eventForm -->
  		</div> <!-- event -->
 		<a class="forward"></a>
+		<br>
 	</div><!-- workshop -->
+	
+	<br>
 	
 	<div id="buildLib">
 		<div class="title">کمک به تاسیس کتابخانه در کلیسا و یا گروه شما</div>
@@ -128,6 +139,9 @@
 				<li>آموزش ساده کتابداری به فرد متصدی در نصف روز</li>
 			</ol>
 		</div>
+		
+		<br>
+		
 		<div id="testimonials">
 			<p>تصدیق نامه‌های ارسال شده:</p>
 			<article>

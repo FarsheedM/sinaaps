@@ -32,13 +32,23 @@
 	margin-top:-5px;
 	font : @alternativeFont;
 }
+#commentContent p{
+	font : @defaultFont;
+	padding-right : 10px;
+}
 fieldset{
 	background-color: #ededed;					//@blueLightest;
 	width : 85%;
 	border-color : #dddddd;						//@blueLight;
+	border: 0;
+}
+fieldset p{
+	font : @defaultFont;
+	padding-right : 10px; 
 }
 fieldset h3{
-	color : #75bfb8;							//@blueDark;
+	color : #666600;		//#75bfb8;	@blueDark;
+	font-weight : normal;
 }
 #commentList{
 	list-style-type:none;
@@ -51,22 +61,24 @@ fieldset h3{
 #comment{
 	width : 600px; 
 	height : auto; 
-	background-color : white;
-	padding-top : 1px;
+	background-color : #f2f1f1;		//white;
+	padding-top : 5px;
 	padding-bottom : 1px;
 	border-bottom : 1px solid #ebe8d5;
+	border-radius: 10px;
+	padding-right : 5px;
 }
 
 #usr_photo{
 	float : right;
 	width : 50px;
 	height : 50px;
-	
 }
 .usrPhoto{
 	width : 50px;
 	height : 50px;
-	background-image : url("/assets/images/man.png");
+	//background-image : url("/assets/images/man.png");
+	//opacity : 0.5;
 }
 #commentRightBlock{
 	width : 530px;
@@ -82,7 +94,9 @@ fieldset h3{
 #post_published{
 	width : 140px;
 	float : left;
-	opacity : 0.8;
+	//opacity : 0.8;
+	color : #999999;
+	font-size : 0.93em;
 }
 #deleteBtn{
 	border : none;
@@ -105,6 +119,11 @@ fieldset h3{
 	padding-bottom : 5px;
 	font : @alternativeFont;
 }
+#commentComments{
+	font : @alternativeFont;
+	height : 70px;
+	width : 100%;
+}
 #textArea{
 	margin-right : 20px;
 	float : right;
@@ -114,7 +133,12 @@ fieldset h3{
 #btn{
 	//post button
 	float : right;
-	font : @alternativeFont;
+	font : @defaultFont;
+	background: #347a74 none repeat scroll 0 0;
+    color: white;
+    margin: 10px 0 0;
+    outline: medium none;
+    text-decoration: none;
 }
 #clear {
 	clear : both;
@@ -173,8 +197,8 @@ fieldset h3{
 .shareBox{
 	width : 90%;
 	height : 0 auto;
-	border-top : 1px solid #75bfb8;
-	border-bottom : 1px solid #75bfb8;
+	border-top : 1px dashed #9dbba9;	//1px solid #75bfb8;
+	border-bottom : 1px dashed #9dbba9;	//1px solid #75bfb8;
 	padding-bottom : 5px;
 }
 .shareBox p{

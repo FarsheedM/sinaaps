@@ -12,12 +12,12 @@
         		<div id="socialBar">
         			<div id="socialBarRightFarsi">
 						<ul style="margin-left : 15px;">
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+							<li><a href="@controllers.controllersFarsi.routes.ApplicationFa.index()"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 						</ul>
 					</div><!-- socialBarLeft -->
 					
@@ -45,6 +45,9 @@
 		<div id="topicTitle"><h1>@topic.faName</h1></div>
 		<div id="topicDescription"><span>@topic.faDescription</span></div>
 		
+		<br>
+		<div class="line"></div>
+			
 		<div id="newRelease">
 			<div class="h2container"><span>عناوین جدید</span></div>
 			<div class="bigBox">
@@ -53,7 +56,7 @@
 					@newBooks.take(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImage" src="@book.photo" ><span class="titleText">@book.isbn</span>
+							<img class="bookImage" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 					}
@@ -64,7 +67,7 @@
 					@newBooks.takeRight(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImage" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
+							<img class="bookImage" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 				
@@ -75,6 +78,9 @@
 		</div><!-- newRelease -->
 		<div id="clear"></div>
 		
+		<br>
+		<div class="line"></div>
+		
 		<div id="recommended">
 			<div class="h2container"><span>عناوین پیشنهادی</span></div>
 			<div class="bigBox">
@@ -83,7 +89,7 @@
 					@recommendedBooks.take(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImage" src="@book.photo" ><span class="titleText">@book.isbn</span>
+							<img class="bookImage" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 					}
@@ -94,7 +100,7 @@
 					@recommendedBooks.takeRight(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImage" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
+							<img class="bookImage" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 				
@@ -104,6 +110,9 @@
 		</div><!-- end of recommended -->
 		<div id="clear"></div>
 		
+		<br>
+		<div class="line"></div>
+				
 		<div id="popular">
 			<div class="h2container"><span>عناوین مورد پسند کاربران</span></div>
 			<div class="bigBox">
@@ -112,7 +121,7 @@
 					@popularBooks.take(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImage" src="@book.photo" ><span class="titleText">@book.isbn</span>
+							<img class="bookImage" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 					}
@@ -123,7 +132,7 @@
 					@popularBooks.takeRight(3).map{ book =>
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImage" src="@book.photo" ><br><span class="titleText">@book.isbn</span>
+							<img class="bookImage" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
 				
@@ -142,7 +151,9 @@
 		but for now it is static, and hard coded here!
 		-->
 	<div class ="rightBox">
-		<h3 class="rightBoxHeader">نقل قولهای با برچسب "@topic.faName"</h3>
+		<p style="background-color:silver;color:black; width : 290px;
+				height:20px;margin:-1px -9px 0 -3px;padding: 2px 5px 10px 3px;">نقل قولهای با برچسب "@topic.faName"</p>
+		<!--  <h3 class="rightBoxHeader">نقل قولهای با برچسب "@topic.faName"</h3>  -->
 		<div class="quote">
 			<a href="#"><img class="authorPhoto" src="@routes.Assets.at("images/Augustinus.jpg")"></a>
 			<div class="readable">

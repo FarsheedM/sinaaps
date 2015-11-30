@@ -4,11 +4,17 @@
 	
 	@if(comment != null){
 		<div id="usr_photo">
-			@if(comment.user.gender){
+		<!-- if the user didn't pick a photo -->
+		@if(comment.user.photo == ""){
+				@if(comment.user.gender){
 				<img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/woman.png")">
 				}else {
 				<img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/man.png")">
 				}
+		}else{
+			<img class="usrPhoto" title="@comment.user.fName" src="@comment.user.photo">
+		}
+
 		</div>
 		<div id="commentRightBlock">
 			<div id="usr_name">
