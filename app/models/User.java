@@ -30,8 +30,8 @@ public class User extends Model{
 	public int year;
 	public String address;
 	public String photo;
-	@Required
 	//false is male , and true female
+	@Required
 	public boolean gender;
 	
 	public User(String fName,String lName,String email,
@@ -60,8 +60,7 @@ public class User extends Model{
 		this.month=1;
 		this.year=1900;
 		this.address= "unknown";
-		this.photo = "noPhoto";
-		this.gender=false; 
+		this.photo = "noPhoto"; 
 	}
 	
 	public static Finder<String,User> find = new Finder<String,User>(

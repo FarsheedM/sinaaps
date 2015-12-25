@@ -107,10 +107,10 @@ public class ApplicationFa extends Controller{
         
         //this piece of code is working locally.
         //in below the code should work in arvixe in production mode
-        //--File analyticsPrivateKeyFile = new File("/home/farsheed/public_html/key.p12.p12");
+        File analyticsPrivateKeyFile = new File("/home/farsheed/public_html/key.p12.p12");
         
         /*Local Testing*/
-        File analyticsPrivateKeyFile =new File("./public/images/key.p12.p12");
+        //File analyticsPrivateKeyFile =new File("./public/images/key.p12.p12");
         
         GoogleCredential credential = new GoogleCredential.Builder()
         .setTransport(HTTP_TRANSPORT)
@@ -169,7 +169,8 @@ public class ApplicationFa extends Controller{
     	Map<String,Object> r = new HashMap<String,Object>();
     	try {
     	    //'r' is not a json but HashMap
-			r = api.resources(ObjectUtils.asMap("type", "upload"));
+    		//'max_results' is the max number of fetched photos which is uploaded
+			r = api.resources(ObjectUtils.asMap("type", "upload","max_results","12"));
     	} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -208,7 +209,7 @@ public class ApplicationFa extends Controller{
 }
 
 	public static Result getStatistics(){
-		Integer numberOfPosts = BlogPost.find.all().size();
+		Integer numberOfPosts = BlogPost.find.where().eq("language", "farsi").findList().size();
 		Integer numberOfBooks = Book.find.all().size();
 		String jsonInfo = "{\"blogPosts\":\""+numberOfPosts.toString()+
 								"\", \"users\":\""+numberOfBooks.toString()+"\"} ";

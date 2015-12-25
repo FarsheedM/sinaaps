@@ -12,12 +12,12 @@
         		<div id="socialBar">
         			<div id="socialBarRightFarsi">
 						<ul style="padding-left : 15px;">
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 						</ul>
 					</div><!-- socialBarLeft -->
 					
@@ -43,6 +43,7 @@
 }{
 	<!--  Content Left comes here -->
 	<div class="message">
+		<br>
 		@Html(message)
 	</div>
 	<br>
@@ -57,7 +58,7 @@
 		<p>Germany</p>
 	</div>
 	<div id="donationBox">
-		<p>شما میتوانید با کمکهای مالی خود در پیشبرد پروژه کتابخوانی سهمی داشته باشید</p>
-		<div id="payPal"><a href="#paypal">PayPal</a></div>
+		<p>اگر در دسترسی‌ به امکانات فارسی ریدز به مشکل فنی‌ برخورده اید، لطفا با تیم‌ ما تماس بگیرید.</p>
+		<div id="payPal"><a href="@routes.About.display("farsi")"><div id ="contactLink">تماس با ما</div></a></div>
 	</div>
 }
