@@ -1,7 +1,7 @@
 ﻿# --- !Ups
  
 insert into user values("info@1.com","far","far","1234",null,null,null,0);
-insert into author values(1,null);
+insert into author values(1,null,null);
 
 insert into author_translation values(2,1,"farsi","C S","Lewis","Lewis is the founder of Narnia and the senior pastor of Bethlehem Baptist Church for 33 years. He is author of more than 50 books.","Minnesota","Male");
 

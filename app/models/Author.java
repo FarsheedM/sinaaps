@@ -13,7 +13,7 @@ public class Author extends Model{
 	@Required
 	public Integer authorID;
 	public String email;
-	//public String photo;
+	public String photo;
 
 	
 	public static Finder<Integer, Author> find = new Finder<Integer,Author>(

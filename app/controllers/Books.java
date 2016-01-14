@@ -50,24 +50,36 @@ public class Books extends Controller{
 		//the same in different translations, e.g. ISBN, No. of Pages.
 		Book book = Book.find.where().eq("bookID", bookId).findUnique();
 		List<BookReview> reviewList = BookReview.find.where().eq("book_id", bookId).findList();
-				
+			
+		//This piece of code prepares the 'listOfBooksOfTheAuthor', in other words the list of books by a 
+		//specified author. this is populated in the rightPanel under the books by the same author.
+		Author author = BookAuthor.getAuthorList(bookId).get(0);
+		List<BookAuthor> booksOfTheAuthor = BookAuthor.find.where().eq("author", author).findList();
+		List<Book> listOfBooksOfTheAuthor = new ArrayList<Book>();
+		Book bk;
+		for(BookAuthor i : booksOfTheAuthor){
+			bk = Book.find.byId(i.book.bookID);
+			listOfBooksOfTheAuthor.add(bk);
+		}
+		
+		
 		if(lang.equals("english")){
 			if(session().containsKey("email"))
 				//to update in English version!!
 				return ok(views.html.farsiEdition.bookProfile.render(
-							User.find.byId(session().get("email")),book, Form.form(BookReview.class),reviewList));
+							User.find.byId(session().get("email")),book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),reviewList));
+				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
 			}	
 		}else if(lang.equals("farsi")){
 			
 			if(session().containsKey("email"))
 				return ok(views.html.farsiEdition.bookProfile.render(
-							User.find.byId(session().get("email")),book, Form.form(BookReview.class),reviewList));
+							User.find.byId(session().get("email")),book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),reviewList));
+				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
 			}
 		}
 		else{
@@ -142,7 +154,7 @@ public class Books extends Controller{
 		//popularBooks = popularBooks.subList(0, 6);   DEVELOPEMENT::there are no 6 item in the list right now!!
 		
 		
-		//here is to changed with the English version!!
+		//here is to changed in the English version!!
 		if(lang.equals("english")){
 			if(session().containsKey("email")){
 				User usr = User.find.byId(session().get("email"));
@@ -180,9 +192,13 @@ public class Books extends Controller{
 		public int compare(Book a, Book b){
 			return Integer.compare(a.farsireadsRating, b.farsireadsRating);
 		}
-	}public static class UsersRecommendCompare implements Comparator<Book>{
+	}
+	public static class UsersRecommendCompare implements Comparator<Book>{
 		public int compare(Book a, Book b){
 			return Integer.compare(a.userRating, b.userRating);
 		}
 	}
+
+
+	
 }

@@ -5,7 +5,7 @@ create table user (email varchar(255),f_name varchar(255),l_name varchar(255),pa
 
 
 
-create table author(author_id int,  email varchar(50),primary key (author_id) );
+create table author(author_id int,  email varchar(50), photo varchar(300),primary key (author_id) );
 
 create table author_translation(id int, author_id int,language varchar(50),f_name nvarchar(50),
  l_name nvarchar(50),description nvarchar(2000),born nvarchar(50), gender nvarchar(50), primary key (id), foreign key (author_id) references author (author_id));
