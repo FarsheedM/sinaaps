@@ -50,6 +50,9 @@ public class Books extends Controller{
 		//the same in different translations, e.g. ISBN, No. of Pages.
 		Book book = Book.find.where().eq("bookID", bookId).findUnique();
 		
+		/* This is used to get the books of the same topic for the rightPanel thumbnail.
+	     In case of books with multiple topics, it gets the first topic of the book and
+	     just list the books of that topic. */
 		List<Book> listOfBooksWithsameTopic = new ArrayList<Book>();
 		try {
 			listOfBooksWithsameTopic = getBooksWithSameTopicAsBook(book);

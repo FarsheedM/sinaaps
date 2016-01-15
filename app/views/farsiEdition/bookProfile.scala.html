@@ -8,9 +8,7 @@
 		<!-- This is used to get only one Author in the case of multiple one -->
 		@author1 = @{BookAuthor.getAuthorList(book.bookID).get(0)}
 		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
-		<!-- This is used to get the books of the same topic for the rightPanel thumbnail.
-	     In case of books with multiple topics, it gets the first topic of the book and
-	     just list the books of that topic. -->
+
 
 
 @FaMain("پروفایل کتاب"){
@@ -228,7 +226,7 @@
 			<h3 class="rightBoxHeader">کتاب‌های با موضوع مشابه</h3>
 			<div id="relatedWorksContainer">
 			@if(listOfBooksWithsameTopic.isEmpty){
-				<p>no book of the same topic</p>
+				<p>کتابی‌ با موضوع مشابه موجود نیست</p>
 			}else{
 				@listOfBooksWithsameTopic.take(3).map{  bk =>
 				<a href="@routes.Books.showBookProfile("farsi", bk.bookID)"> 
