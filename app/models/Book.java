@@ -30,21 +30,6 @@ public class Book extends Model{
 															(Integer.class,Book.class);
 	
 	
-	/*This method is used in 'bookProfile.scala.html'. Giving the bookId as a parameter, it
-	 *returns a list of books with the same topic. It finds the books topic first, then queries 
-	 *the Book DB for the books with that specific topic. */
-	public static List<Book> getBooksWithSameTopicAsBook(Book book){
-		
-		Integer topicId = TopicBook.find.where().eq("book", book).findList().get(0).topic.topicID;
-		// topicBooks holds a list of books with the same topic as topicId
-		List<Book> topicBooks = new ArrayList<Book>();
-		List<TopicBook> tpbk = TopicBook.find.where().eq("topic_id", topicId).findList();
-		Book bk;
-		for(TopicBook i : tpbk){
-			bk = Book.find.byId(i.book.bookID);
-			topicBooks.add(bk);
-		}
-		return topicBooks;
-	} 
+
 	
 }

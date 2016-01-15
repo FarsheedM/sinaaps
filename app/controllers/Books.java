@@ -49,6 +49,16 @@ public class Books extends Controller{
 		//book obj contains the general information about the book which is 
 		//the same in different translations, e.g. ISBN, No. of Pages.
 		Book book = Book.find.where().eq("bookID", bookId).findUnique();
+		
+		List<Book> listOfBooksWithsameTopic = new ArrayList<Book>();
+		try {
+			listOfBooksWithsameTopic = getBooksWithSameTopicAsBook(book);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+
+		
 		List<BookReview> reviewList = BookReview.find.where().eq("book_id", bookId).findList();
 			
 		//This piece of code prepares the 'listOfBooksOfTheAuthor', in other words the list of books by a 
@@ -67,19 +77,23 @@ public class Books extends Controller{
 			if(session().containsKey("email"))
 				//to update in English version!!
 				return ok(views.html.farsiEdition.bookProfile.render(
-							User.find.byId(session().get("email")),book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
+							User.find.byId(session().get("email")),book, Form.form(BookReview.class),
+							reviewList,listOfBooksOfTheAuthor,listOfBooksWithsameTopic));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
+				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),
+						reviewList,listOfBooksOfTheAuthor,listOfBooksWithsameTopic));
 			}	
 		}else if(lang.equals("farsi")){
 			
 			if(session().containsKey("email"))
 				return ok(views.html.farsiEdition.bookProfile.render(
-							User.find.byId(session().get("email")),book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
+							User.find.byId(session().get("email")),book, Form.form(BookReview.class),
+							reviewList,listOfBooksOfTheAuthor,listOfBooksWithsameTopic));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),reviewList,listOfBooksOfTheAuthor));
+				return ok(views.html.farsiEdition.bookProfile.render(guest,book, Form.form(BookReview.class),
+						reviewList,listOfBooksOfTheAuthor,listOfBooksWithsameTopic));
 			}
 		}
 		else{
@@ -200,5 +214,21 @@ public class Books extends Controller{
 	}
 
 
+	/*This method is used in 'bookProfile.scala.html'. Giving the bookId as a parameter, it
+	 *returns a list of books with the same topic. It finds the books topic first, then queries 
+	 *the Book DB for the books with that specific topic. */
+	public static List<Book> getBooksWithSameTopicAsBook(Book book){
+		
+		Integer topicId = TopicBook.find.where().eq("book", book).findList().get(0).topic.topicID;
+		// topicBooks holds a list of books with the same topic as topicId
+		List<Book> topicBooks = new ArrayList<Book>();
+		List<TopicBook> tpbk = TopicBook.find.where().eq("topic_id", topicId).findList();
+		Book bk;
+		for(TopicBook i : tpbk){
+			bk = Book.find.byId(i.book.bookID);
+			topicBooks.add(bk);
+		}
+		return topicBooks;
+	} 
 	
 }

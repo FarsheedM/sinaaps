@@ -1,5 +1,6 @@
 		
-@(user : User, book : Book, reviewForm : Form[BookReview], reviews : List[BookReview], listOfBooksOfTheAuthor : List[models.Book])
+@(user : User, book : Book, reviewForm : Form[BookReview], reviews : List[BookReview], 
+		listOfBooksOfTheAuthor : List[models.Book], listOfBooksWithsameTopic : List[Book])
 <!-- --------------------Farsi Edition---------------------- -->
 		@bookTranslation = @{BookTranslation.getBookDetails(book.bookID,"farsi")}
 		@bookTranslationEn = @{BookTranslation.getBookDetails(book.bookID,"english")}
@@ -10,7 +11,7 @@
 		<!-- This is used to get the books of the same topic for the rightPanel thumbnail.
 	     In case of books with multiple topics, it gets the first topic of the book and
 	     just list the books of that topic. -->
-		@sameTopicBooks = @{Book.getBooksWithSameTopicAsBook(book)}
+
 
 @FaMain("پروفایل کتاب"){
 	
@@ -226,10 +227,14 @@
 		<div id="relatedWorks">
 			<h3 class="rightBoxHeader">کتاب‌های با موضوع مشابه</h3>
 			<div id="relatedWorksContainer">
-				@sameTopicBooks.take(3).map{  bk =>
+			@if(listOfBooksWithsameTopic.isEmpty){
+				<p>no book of the same topic</p>
+			}else{
+				@listOfBooksWithsameTopic.take(3).map{  bk =>
 				<a href="@routes.Books.showBookProfile("farsi", bk.bookID)"> 
 					<img height="130px" src="@bk.photo">
 				</a> }
+			}
 			</div><!-- relatedWorksContainer -->
 		</div>
 }
