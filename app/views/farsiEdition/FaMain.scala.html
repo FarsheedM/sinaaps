@@ -1,9 +1,11 @@
-@(title :String)(headerContent: Html)(contentLeft : Html)(contentRight : Html)
+@(title :String)(headfill : Html)(headerContent: Html)(contentLeft : Html)(contentRight : Html)
 
 <!DOCTYPE html>
 
 <html lang="fa" dir="rtl" itemscope itemtype="http://schema.org/Product">
     <head>
+    @headfill
+    
         <title>@title</title>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/icons/Logo.gif")"> 
@@ -27,6 +29,8 @@
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 		  })();
 		</script> 
+		
+		
     </head>
     
     <body>

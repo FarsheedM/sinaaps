@@ -10,7 +10,14 @@
 
 @(user : User)
 
-@farsiEdition.FaMain("خوش آمدید"){
+
+
+@headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
+		<!-- This meta tages TESTING -->
+		}
+
+
+@farsiEdition.FaMain("خوش آمدید")(headfill){
 
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">

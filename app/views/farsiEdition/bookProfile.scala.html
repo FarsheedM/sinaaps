@@ -10,8 +10,24 @@
 		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
 
 
+@headfill = {	 
+		<!-- This meta tages is for G+ snippet rendering -->
+		<meta itemprop="name" content="@bookTranslation.title">
+		<meta itemprop="image" content="@book.photo">
+		<meta itemprop="description" content="@bookTranslation.summary">
+		
+		<!-- This meta tages is for FB snippet rendering -->
+		<meta property="og:site_name"     content="FarsiReads"/>
+		<meta property="fb:app_id"        content="1664962823738581"/>
+		<meta property="og:type"          content="Product" />
+		<meta property="og:url"           content="http://www.farsireads.com/farsi/book/bookid=@book.bookID" />
+		<meta property="og:title"         content="@bookTranslation.title" />
+		<meta property="og:image"         content="@book.photo" />
+		<meta property="og:description"   content="@bookTranslation.summary" />
+		
+		}
 
-@FaMain("پروفایل کتاب"){
+@FaMain(bookTranslation.title)(headfill){
 	
 	<head itemscope itemtype="http://schema.org/Article" >
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">

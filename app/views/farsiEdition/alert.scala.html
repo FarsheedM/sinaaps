@@ -1,5 +1,10 @@
 @(user : User, message : String)
-@FaMain("گزارشات"){
+
+@headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
+		<!-- This meta tages TESTING -->
+		}
+
+@FaMain("گزارشات")(headfill){
 <!-- -------------------farsi Edition----------------------- -->
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">

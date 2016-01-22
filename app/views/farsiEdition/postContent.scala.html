@@ -2,27 +2,33 @@
 
 <!-- ----------------Farsi Edition ------------------------ -->
 
+@headfill = {	 
+		
+		<!-- This meta tages is for G+ snippet rendering -->
+		<meta itemprop="name" content="@post.title">
+		<meta itemprop="image" content="@post.image">
+		<meta itemprop="description" content="@post.content">
+		
+		<!-- This meta tages is for FB snippet rendering -->
+		<meta property="og:site_name"     content="FarsiReads"/>
+		<meta property="fb:app_id"        content="1664962823738581"/>
+		<meta property="og:type"          content="Product" />
+		<meta property="og:url"           content="http://www.farsireads.com/farsi/blog/postid=@post.postID" />
+		<meta property="og:title"         content="@post.title" />
+		<meta property="og:image"         content="@post.image" />
+		<meta property="og:description"   content="@post.content" />
+		
 
-@FaMain(post.title){
+		}
+		
+		
+@FaMain(post.title)(headfill){
 	
 	<head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
      <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/commentFarsi.css")">
-				
-		<!-- This meta tages is for G+ snippet rendering -->
-		<meta itemprop="name" content="@post.title">
-		<meta itemprop="description" content="@post.content">
-		<meta itemprop="image" content="@post.image">
-		
-		
-		<!-- You can use Open Graph tags to customize link previews.
-	    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-		<meta property="og:url"           content="http://www.farsireads.com/farsi/blog/postid=@post.postID" />
-		<meta property="og:type"          content="Product" />
-		<meta property="og:title"         content="@post.title" />
-		<meta property="og:description"   content="@post.content" />
-		<meta property="og:image"         content="@post.image" />
+
 	</head>
 
 

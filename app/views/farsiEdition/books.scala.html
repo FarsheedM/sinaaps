@@ -1,5 +1,11 @@
 @(user : User, books : List[models.Book])
-@FaMain("کتابها"){
+
+@headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
+		<!-- This meta tages TESTING -->
+		}
+
+
+@FaMain("کتابها")(headfill){
 
 <!-- -------------------farsi Edition----------------------- -->
 
@@ -51,8 +57,32 @@
 	<div id="searchBox">
 		<fieldset>
 			<legend>جستجو کتاب</legend>
-			<input type="search" placeholder="عنوان / شابک" name="search">
-			<input type="submit" value="جستجو" >
+			<div id="gcs">
+				<!-- <input type="search" placeholder="عنوان / شابک" name="search">
+				     <input type="submit" value="جستجو" > -->
+				
+				<!-- This piece of code is generated from Google Custom Search. It works asynchronically 
+					 and search the work in the whole FarsiReads.com. It shows not only books as results. -->
+				<script>
+				  (function() {
+				    var cx = '000095487307879376959:zzdqc_parj4';
+				    var gcse = document.createElement('script');
+				    gcse.type = 'text/javascript';
+				    gcse.async = true;
+				    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+				        '//cse.google.com/cse.js?cx=' + cx;
+				    var s = document.getElementsByTagName('script')[0];
+				    s.parentNode.insertBefore(gcse, s);
+				  })();
+				</script>
+				
+				<gcse:search webSearchResultSetSize="7" enableOrderBy="true" noResultsString="متاسفانه عبارتی که وارد کرده اید در فارسی ریدز موجود نمی‌باشد"></gcse:search>
+				<gcse:searchresults refinementStyle="link">
+				
+				<p style="font-size:0.7em;color:gray;margin-top:-9px;">شما میتوانید در این قسمت به جستجوی کتابها بپردازید؛ بر اساس نام، مولف، شابک یا موضوع.</p>
+
+			</div>
+			
 			
 			<div id="categoryBox">
 				<h3 style="margin-right : 10px;"></h3>
