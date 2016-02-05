@@ -37,5 +37,8 @@ POST    /:lang/therapy/              controllers.Therapy.postFeedback(lang : Str
 #
 GET     /farsi/getImages             controllers.controllersFarsi.ApplicationFa.getImageUrls()
 GET     /farsi/getStatistics 		 controllers.controllersFarsi.ApplicationFa.getStatistics()
+
+GET     /:lang/event                 controllers.Event.displayEvent(lang : String)
+POST    /farsi/event                 controllers.Event.register()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

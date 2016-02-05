@@ -170,7 +170,7 @@ public class ApplicationFa extends Controller{
     	try {
     	    //'r' is not a json but HashMap
     		//'max_results' is the max number of fetched photos which is uploaded
-			r = api.resources(ObjectUtils.asMap("type", "upload","max_results","12"));
+			r = api.resources(ObjectUtils.asMap("type", "upload","prefix", "FR/users/","max_results","12"));
     	} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

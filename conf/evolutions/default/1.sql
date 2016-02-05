@@ -36,6 +36,33 @@ foreign key (user_email) references  user (email)
 
 create table topic(topic_id int,  en_name varchar(50), fa_name varchar(50), en_description LongText, fa_description LongText,primary key (topic_id) );
 create table topic_book(id int,book_id int,topic_id int, primary key (id) ,foreign key (book_id) references book (book_id), foreign key (topic_id) references topic (topic_id));
+
+create table event(
+	event_id int,
+	title varchar(100),
+	events_date varchar(100),
+	location varchar(100),
+	speakers varchar(300),
+	speaker_img1 varchar(300),
+	speaker_img2 varchar(300),
+	speaker_img3 varchar(300),
+	hosted_by varchar(300),
+	image varchar(300),
+	description LongText,
+	price varchar(100),
+	language varchar(50),
+	primary key (event_id)
+);
+
+create table event_guest (
+email varchar(255),
+name varchar(255),
+contact_number varchar(100),
+number_of_adults int,
+number_of_kids int,
+comment varchar(255),
+primary key (email));
+
 # --- !Downs
 
 #--- !SET FOREIGN_KEY_CHECKS=0;
@@ -54,6 +81,8 @@ drop table if exists blog_comment;
 drop table if exists book_review;
 drop table if exists topic;
 drop table if exists topic_book;
+drop table if exists event;
+drop table if exists event_guest;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 
 

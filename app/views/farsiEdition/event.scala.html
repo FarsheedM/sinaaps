@@ -1,0 +1,251 @@
+@(registerform : Form[models.EventGuest])(user : User)(events : List[models.Event])
+@import helper._
+
+@headfill = {	 
+
+		<!-- This meta tages is for G+ snippet rendering -->
+		<meta itemprop="name" content="@events.head.title" />
+		<meta itemprop="image" content="@events.head.image" />
+		<meta itemprop="description" content="@events.head.description" />
+		
+		<!-- This meta tages is for FB snippet rendering -->
+		<meta property="og:site_name"     content="FarsiReads"/>
+		<meta property="fb:app_id"        content="1664962823738581"/>
+		<meta property="og:type"          content="Product" />
+		<meta property="og:url"           content="http://www.farsireads.com/farsi/event" />
+		<meta property="og:title"         content="@events.head.title" />
+		<meta property="og:image"         content="@events.head.image" />
+		<meta property="og:description"   content="@events.head.description" />
+		
+		
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiEvent.css")">
+     	<script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+		}
+		
+<!-- -----------FARSI EDITION----------  -->
+
+
+@FaMain(events.head.title)(headfill){
+	<!-- ----Head----- -->
+	
+	        	<div id="socialBar">
+        			<div id="socialBarRightFarsi">
+						<ul style="padding-left : 15px;">
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>میهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+									
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+}{
+	<!-- ----Left Panel---- -->
+	
+	<div id="eventImg"><img src="@events.head.image"></div>
+	<div id="title"><h3>@events.head.title   @events.head.hostedBy</h3></div>
+
+	<div id="speaker">
+		<h3>سخنران : @events.head.speakers</h3>
+		@if(events.head.speakerImg1 != "" && events.head.speakerImg1 != null){
+			<img alt="speakerImg1" src="@events.head.speakerImg1">
+		}
+		@if(events.head.speakerImg2 != "" && events.head.speakerImg2 != null){
+			<img alt="speakerImg2" src="@events.head.speakerImg2">
+		} 
+		@if(events.head.speakerImg3 != "" && events.head.speakerImg3 != null){
+			<img alt="speakerImg3" src="@events.head.speakerImg3">
+		}
+	</div>
+	<div id="date"><h3>تاریخ :  @events.head.eventsDate</h3></div>
+	<div id="location"><h3>مکان : @events.head.location</h3></div>
+	<div><h3>قیمت :  @events.head.price</h3></div>
+	
+	<h3 id="regBtn">ثبت نام کنید</h3>
+	<p id="prompt" style="display:none;color:#c6000e;margin-top:3px;"></p>
+
+
+	<script type="text/javascript">
+	
+	/*protecting the Event's registration by limiting a user to register only once.
+	  the 'currentDay' concatinates to the constant 'registered' in order to make it possible,
+	  for family registration from the same computer to be done in consecuent days; that means
+	  on a computer in a day, only one registration can be done. the next day the value in 'localStorage'
+	  will be updated and made it possible for another registration from the same computer.*/
+	function register() {
+		
+			var d = new Date();
+			var currentDay = d.getDate().toString();
+
+  			if(localStorage['registered' + currentDay] == 'true'){
+				// abort if already registered
+				$('#prompt').css('display', 'inline');
+				$('#prompt').html("شما قبلا در این رویداد ثبت نام کرده اید. ثبت‌نام تنها یک بار امکان پذیر می‌‌باشد! اگر برای ثبت‌نام نیاز به کمک دارید، لطفا با ما تماس بگیرید.");
+				return; 
+			}    
+			// ...
+			$('#registerField').css('display', 'inline');
+			localStorage['registered' + currentDay] = 'true'; // you can only store strings
+			return;
+	}
+		
+	/*control the 'regBtn' */
+	$('#regBtn')
+	.css('cursor', 'pointer')
+	.click(
+	  function(){  
+		  register();
+	  }
+	)
+	.hover(
+	  function(){
+	    /*$('#registerField').css('background', '#ff00ff');*/
+	 
+	  },
+	  function(){
+	    /*$('#registerField').css('background', '');*/
+	  }
+	);
+	</script>
+
+	
+	<div id="registerField">
+
+	@helper.form(action = routes.Event.register, 'enctype -> "multipart/form-data"){
+		<fieldset>
+			<legend> فرم ثبت نام در کنفرانس </legend>
+			@inputText(registerform("name"), 'placeholder -> "نام شخص یا کلیسای شرکت کننده")
+			@inputText(registerform("email"), 'placeholder -> "ایمیل*", '_help -> "لطفا آدرس ایمیل فعال خود را وارد کنید")
+			@inputText(registerform("contactNumber"), 'placeholder -> "شماره تماس")
+			<div id="clear"></div>
+			@select(registerform("numberOfAdults"), options("0"->"0","1"->"1", "2"->"2", "3"->"3", "4"->"4", "5"->"5", "6"->"6",
+					 "7"->"7", "8"->"8", "9"->"9", "10"->"10", "11"->"11", "12"->"12", "13"->"13", "14"->"14",
+						 "15"->"15", "16"->"16", "17"->"17", "18"->"18", "19"->"19", "20"->"20"),
+						 	'_label -> "تعداد بزرگسال*")
+			@select(registerform("numberOfKids"), options("0"->"0","1"->"1", "2"->"2", "3"->"3", "4"->"4", "5"->"5", "6"->"6",
+					 "7"->"7", "8"->"8", "9"->"9", "10"->"10", "11"->"11", "12"->"12", "13"->"13", "14"->"14",
+						 "15"->"15", "16"->"16", "17"->"17", "18"->"18", "19"->"19", "20"->"20"),
+						 	'_label -> "تعداد خردسال")
+			<div id="clear"></div>
+
+			@textarea(field = registerform("comment"), args = 'rows -> 5, 'cols -> 50, 'placeholder -> "در صورت نیاز، می‌‌توانید توضیحات خود را در اینجا براییمان بنویسید.")
+			<input type="submit" value="نام نویسی" id="submitBtn">
+			<p style="font-size:0.8em;margin-right:10px;color:gray;margin-bottom:0px;">* لطفا قسمتهای ستاره دار را حتما پر کنید</p>
+        }
+        @if(registerform.hasGlobalErrors){
+        	<p id="error"> @registerform.globalError.message </p>
+        }
+        </fieldset>
+        </div><!-- end of registerField -->
+        
+		<script type="text/javascript">
+		/*This script is used to disable the feedback DIV to  
+		  disable the GUEST users to send feedback
+		*/
+		 $('#registerField').css('display', 'none');
+
+		 /*the code below hide the all the "label"s in 'registerField' except the 
+		   'numberOfAdults' and 'numberOfKids'.*/
+		 var x = document.getElementById("registerField");
+		 var y = x.getElementsByTagName("LABEL");
+		 var i;
+		 for (i = 0; i < y.length; i++) {
+		     y[i].style.display = "none";
+		 }
+		 y[3].style.display = "inline";
+		 y[4].style.display = "inline";
+	</script>
+	
+	
+	<div id="description">توضیحات : @Html(events.head.description)</div>
+	
+
+	<div class="line"></div>
+	
+	<div class="shareBox">
+		<p>شرکت در این سمینار را به دوستان خود پیشنهاد دهید:</p>
+			<!-- -----------------------FB------------------- -->
+			<!-- Load Facebook SDK for JavaScript -->
+			<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+				      var js, fjs = d.getElementsByTagName(s)[0];
+				      if (d.getElementById(id)) return;
+				      js = d.createElement(s); js.id = id;
+				      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+				      fjs.parentNode.insertBefore(js, fjs);
+				    }(document, 'script', 'facebook-jssdk'));
+			</script>
+					
+					
+			<div class="fb-share-button" data-href="http://www.farsireads.com/farsi/event" 
+						data-type="button_count" >
+			</div>
+			<!-- -----------------------FB------------------- -->
+
+			<!-- -----------------------g+------------------- -->
+ 			<div class="g-plus" data-action="share" data-annotation="bubble" 
+						data-href="http://www.farsireads.com/farsi/event">
+			</div> 
+			<!-- -----------------------g+------------------- -->
+
+					
+			<div id="clear"></div>
+			
+	</div><!-- end of shareBox -->
+		
+}{
+	<!-- ----Right Panel---- -->
+	
+		<div id="prevEvents">
+		<p style="background-color:silver;color:black;height:20px;
+					padding: 5px 5px 3px 3px;margin-top:0px;font: bold 14px 'tahoma','arial';">رویدادهای گذشته</p>
+		   
+			<ul>
+				@events.map{ event =>
+								<li>@event.title - <span class="dateStyle">@event.eventsDate</span></li>
+				}
+			</ul>
+		
+	</div>
+	
+	<div id="moreInfo">
+		<h4>برای اطلاعات بیشتر درباره‌ سمینار با ما تماس بگیرید:</h4>
+		<p style="letter-spacing: 2px;margin-bottom:-5px;">۰۱۷۶-۸۳۴-۸۸۸-۶۴</p>
+		<p>آقای عابد</p>
+	</div>
+
+	<div id="resources">
+		<a href="https://www.dropbox.com/s/oko6o3hpnjc8lct/ScheduleforTatStewartinGie%C3%9Fen.pdf?dl=0" target="_blank">
+			<img height="30" width="30" border="0" src="@routes.Assets.at("images/icons/downloadIcon.png")">
+		</a>
+		برنامه روزانه کنفرانس را مرور کنید (انگلیسی‌)
+	</div><!-- resources -->
+	
+	<div id="externalLinks">
+	لینکهای مرتبط
+		<ul>
+			<li><a href="http://home.talimministries.com/farsi/">سازمان تعلیم </a>(تت ستوآرت)</li>
+			<li><a href="http://www.feg-giessen.de">کلیسای اونجلیکال گیسن</a></li>
+		</ul>
+	</div><!-- externalLinks -->
+	
+	
+}

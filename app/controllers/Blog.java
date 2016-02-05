@@ -41,7 +41,7 @@ public class Blog extends Controller{
 		}
 		else{
 			//if neither english nor farsi is selected
-			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+			return badRequest("خطا: مطالب وبسایت به زبان وارد شده در دسترس نیست! لطفا زبان فارسی و یا انگلیسی‌ را انتخاب کنید.");
 		}
 		
 	}

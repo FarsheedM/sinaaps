@@ -358,14 +358,14 @@
 	<div id="testimonial">
 		<article>
 			<h3 class="rightBoxHeader">شهادت نامه</h3>
-			<a href="#"><img class="authorPhoto" src="https://d.gr-assets.com/authors/1262129906p2/13326.jpg"></a>
+			<a href="#"><img class="authorPhoto" src="@routes.Assets.at("images/FarFarian_w160.JPG")"></a>
 			<div id="info">
-				<span>جاناتان فریان</span>
+				<span>فرشید فرییان</span>
 				<p>نوشته شده در 20.05.15</p>
 			</div>
 			<div id="clear"></div>
 			<div class="readable">
-				<span>شهادت شخصی‌ در باب اینکه این تشخیص و درمان ارایه شده کارا بوده است</span>
+				<span>با اینکه کتابخوانی رو دوست داشتم و به مهم بودن امر مطالعه اعتقاد تئوریک، ولی‌ نظمی در مطالعه کردن نداشتم و متاسفانه نمی‌‌توانستم که پیوسته کتاب بخوانم و یا کتابی را تمام بکنم. تا اینکه با کتاب آلمانی "مدیریت زمان برای کاهلان، اثر خانم سئول" آشنا شدم. مطالب این کتاب و همچنین تشویقهای بخش بلاگِ فارسی ریدز به من کمک میکنند تا هر روزه انگیزه لازم را برای مطالعه داشته باشم.</span>
 			</div>
 		</article>
 	</div><!-- testimonial -->
@@ -387,7 +387,7 @@
 			<section id="feedback">
 			
 				@helper.form(routes.Therapy.postFeedback("farsi")){
-					<select name="subject">
+					<select class="form" name="subject">
 						<option>موضوع</option>
 						<option>نداشتن زمان</option>
 						<option>تجربه نکردن</option>
@@ -396,9 +396,9 @@
 						<option>نبود فضای مناسب</option>
 						<option>نداشتن نظم</option>
 					</select>
-					<textarea id="textArea" name="feedback" style="width:260px;" placeholder="شهادت شخصی‌ در باب اینکه این تشخیص و درمان ارایه شده کارا بوده است" ></textarea>
+					<textarea class="form" id="textArea" name="feedback" style="width:235px;height:60px" placeholder="شهادت شخصی‌ در باب اینکه این تشخیص و درمان ارایه شده کارا بوده است" ></textarea>
 		        	<br>
-		        	<button id="btm" type="submit" value="post" formmethod="post">پست</button>
+		        	<button class="subBtn" id="btm" type="submit" value="post" formmethod="post">پست</button>
 		        	
 				}
 				        
