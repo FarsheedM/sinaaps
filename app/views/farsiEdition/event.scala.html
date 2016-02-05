@@ -11,10 +11,13 @@
 		<!-- This meta tages is for FB snippet rendering -->
 		<meta property="og:site_name"     content="FarsiReads"/>
 		<meta property="fb:app_id"        content="1664962823738581"/>
-		<meta property="og:type"          content="Product" />
+		<meta property="og:type"          content="book" />
 		<meta property="og:url"           content="http://www.farsireads.com/farsi/event" />
 		<meta property="og:title"         content="@events.head.title" />
 		<meta property="og:image"         content="@events.head.image" />
+		<meta property="og:image:width" content="530" />
+		<meta property="og:image:height" content="284" />
+		<meta property="og:image:type" content="image/png" />
 		<meta property="og:description"   content="@events.head.description" />
 		
 		
@@ -95,12 +98,12 @@
 			var d = new Date();
 			var currentDay = d.getDate().toString();
 
-  			if(localStorage['registered' + currentDay] == 'true'){
+/*    			if(localStorage['registered' + currentDay] == 'true'){
 				// abort if already registered
 				$('#prompt').css('display', 'inline');
 				$('#prompt').html("شما قبلا در این رویداد ثبت نام کرده اید. ثبت‌نام تنها یک بار امکان پذیر می‌‌باشد! اگر برای ثبت‌نام نیاز به کمک دارید، لطفا با ما تماس بگیرید.");
 				return; 
-			}    
+			} */    
 			// ...
 			$('#registerField').css('display', 'inline');
 			localStorage['registered' + currentDay] = 'true'; // you can only store strings
@@ -147,7 +150,7 @@
 			<div id="clear"></div>
 
 			@textarea(field = registerform("comment"), args = 'rows -> 5, 'cols -> 50, 'placeholder -> "در صورت نیاز، می‌‌توانید توضیحات خود را در اینجا براییمان بنویسید.")
-			<input type="submit" value="نام نویسی" id="submitBtn">
+			<input type="submit" value="نام نویسی" id="submitBtn"><p style="float:left;margin:8px 0 0 238px;;font-size:0.8em;">در صورت موفقیت در ثبت نام، تأییدیه‌ای را دریافت خواهید کرد</p> 
 			<p style="font-size:0.8em;margin-right:10px;color:gray;margin-bottom:0px;">* لطفا قسمتهای ستاره دار را حتما پر کنید</p>
         }
         @if(registerform.hasGlobalErrors){

@@ -58,14 +58,13 @@ public class Event extends Controller{
 		
 		//check and reject multiple registration with a same email address
 		if(EventGuest.find.byId(registerForm.field("email").value()) != null){
-			MessageBox.infoBox("با این آدرس ایمیل قبلا ثبت نام شده است. لطفا از ایمیل خود استفاده کنید.", "اشکال در ثبت نام");
+			//MessageBox is not working in my host: arvixe even deploying with the parameter: "-Djava.awt.headless=true"
+			//MessageBox.infoBox("با این آدرس ایمیل قبلا ثبت نام شده است. لطفا از ایمیل خود استفاده کنید.", "اشکال در ثبت نام");
 			return badRequest(views.html.farsiEdition.event.render(Form.form(EventGuest.class),usr,getEventsByLang("farsi")));
 		}
-		
-		if(registerForm.hasErrors()){
-			MessageBox.infoBox("آدرس ایمیل خود را اشتباه وارد کرده اید. دوباره تلاش کنید!", "اشکال در ثبت نام");
-			registerForm.discardErrors();
-			return badRequest(views.html.farsiEdition.event.render(registerForm,usr,getEventsByLang("farsi")));
+		else if(registerForm.hasErrors()){
+			//MessageBox.infoBox("آدرس ایمیل خود را اشتباه وارد کرده اید. دوباره تلاش کنید!", "اشکال در ثبت نام");
+			return badRequest(views.html.farsiEdition.event.render(Form.form(EventGuest.class),usr,getEventsByLang("farsi")));
 		}
 		else{
 			/*CODE HERE: add the new User in DB*/
@@ -74,8 +73,16 @@ public class Event extends Controller{
 			registerForm.get().save();
 			//flash is simply the cookie facility in Play! the flash content can be check in the redirected page
 			flash("success","Dear "+ registerForm.get().name +"You are successfully registered for the Event!");
-			MessageBox.infoBox("شما در این رویداد با موفقیت ثبت نام کردید", "گزارش ثبت نام");
-			return redirect(routes.Event.displayEvent("farsi"));
+			//MessageBox is not working in my host: arvixe even deploying with the parameter: "-Djava.awt.headless=true"
+			//MessageBox.infoBox("شما در این رویداد با موفقیت ثبت نام کردید", "گزارش ثبت نام");
+			//return redirect(routes.EventEvent.displayEvent("farsi"));
+			
+			//the 'detailedTitle' is the name of the conference attendant, if it's given.
+			String detailedTitle = "";
+			if(registerForm.get().name != null && registerForm.get().name != ""){
+				detailedTitle = "سرکار خانم/ جناب آقای " + registerForm.get().name.toString();
+			}
+			return ok(views.html.farsiEdition.alert.render(usr,detailedTitle + "<h3>ثبت‌نام شما در این کنفرانس با موفقیت انجام شد.</h3><p>لطفا از قبل برای سفر خود برنامه ریزی کنید و وسایل مورد نیاز خود را به همراه داشته باشید.</p><p>هزینه شرکت در کنفرانس، پیش از شروع برنامه دریافت خواهد شد.از دیدار با شما خوشحال خواهیم شد. برای این گردهمایی لطفا در دعا‌ باشید.</p>"));
 			
 		}
 	}
