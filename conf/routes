@@ -30,6 +30,8 @@ GET     /:lang/book/bookid=:bookId            controllers.Books.showBookProfile(
 POST    /:lang/book/bookid=:bookId            controllers.Books.postReview(lang : String,bookId : Integer)
 POST 	/:lang/book/bookid=:bookId/delete	  controllers.Books.deleteReview(reviewId:Long,lang:String,bookId:Integer)
 GET     /:lang/book/topicid=:topicId          controllers.Books.showByTopic(lang : String, topicId : Integer)
+GET     /:lang/book/shelfAll  				  controllers.Books.showShelfAll(lang : String)
+POST     /:lang/book/shelfAll/addedBook=:bookId 	 controllers.Books.addtoShelfAll(lang : String,bookId : Integer)
 #
 POST	/:lang/services              controllers.Services.sendFeedBack(lang : String)
 GET     /:lang/therapy               controllers.Therapy.display(lang : String)

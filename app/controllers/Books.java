@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.persistence.PersistenceException;
+
 import org.joda.time.DateTime;
 
 import akka.util.Collections;
@@ -232,6 +234,77 @@ public class Books extends Controller{
 			topicBooks.add(bk);
 		}
 		return topicBooks;
-	} 
+	}
+	
+	
+	public static Result showShelfAll(String lang){
+
+		User usr = User.find.byId(session().get("email"));
+		//getting all the books of a specific uses
+		List<BookUser> listOfUsersBooks = BookUser.find.where().eq("user",usr).findList();
+		
+		List<Book> bookList = new ArrayList<Book>();
+		Book bk;
+		for( BookUser i : listOfUsersBooks){
+			bk = Book.find.byId(i.book.bookID);
+			bookList.add(bk);
+		}
+		
+		if(lang.equals("english")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfAll.render(usr,bookList));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.shelfAll.render(guest,bookList));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfAll.render(usr,bookList));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+	}
+	
+	/*This method used to add a book to the VL in allBooks shelf*/
+	public static Result addtoShelfAll(String lang,int bookID){
+		
+		/*the DB table 'BookUser' should be updated.*/
+			Book bk = Book.find.where().eq("book_id", bookID).findUnique();
+		
+		if(session().containsKey("email")){
+			User usr = User.find.byId(session().get("email"));
+			try {
+				BookUser bu = new BookUser(bk,usr,false,false,false);
+				List<BookUser> buList = BookUser.find.all();
+				bu.save();
+				buList.add(bu);
+			} catch (PersistenceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return ok("ERROR: Book already exist in VL!");
+			}
+			
+			
+			if(lang.equals("english")){
+					return ok("book added");
+			}
+			else{
+				return ok("کتاب جدید به کتابخانه مجازی افزوده شد");
+			}
+		}
+		else{
+			//the user must have been logged in otherwise, show internal error
+			return badRequest("Logi ERROR : The User is not logged in.");
+			
+		}
+	  
+    }
+	
 	
 }

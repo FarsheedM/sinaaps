@@ -1,4 +1,22 @@
 # --- !Ups
+
+/*
+Useful Tools:
+-- SHOW ENGINE INNODB STATUS;  //shows the detailed info about sql error
+-- SHOW FULL COLUMNS FROM tbl_name;  //shows the detailed info about table's cols
+
+In the case of this error(by creating a new table):
+"There is no index in the table which would contain
+the columns as the first columns, or the data types in the
+table do not match the ones in the referenced table."
+
+The problem could be in mismatched CHARACTERSET or in missmatched COLLATION. 
+In defining the foreign key, the referencing field should be defined explicitly, e.g.
+'usr_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci'
+
+*/
+
+
 use sinaaps;
 create table user (email varchar(255),f_name varchar(255),l_name varchar(255),password varchar(255),day int,month int,year int,address varchar(255),photo varchar(300),gender bool,primary key (email));
 
@@ -63,6 +81,21 @@ number_of_kids int,
 comment varchar(255),
 primary key (email));
 
+
+create table book_user(
+id int,
+book_id int,
+user_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci, 
+finished boolean,
+reading boolean,
+to_read boolean,
+primary key (id),
+foreign key (book_id) references  book (book_id),
+foreign key (user_email) references  user (email)
+);
+
+
+
 # --- !Downs
 
 #--- !SET FOREIGN_KEY_CHECKS=0;
@@ -83,6 +116,7 @@ drop table if exists topic;
 drop table if exists topic_book;
 drop table if exists event;
 drop table if exists event_guest;
+drop table if exists book_user;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 
 

@@ -80,7 +80,19 @@
 				<a href="#">
 					<img itemprop="image" id="coverImage" src="@book.photo" alt="">
 				</a>
-			</div>
+				@if(user.fName == "Guest"){
+					<!-- it does not display the add to the VL Btn if the user is not logged in -->
+
+				} else {
+					<div class=""></div>
+					<button class="wtrcontainer" type="submit">want to read Btn</button>
+					
+					@helper.form(action = routes.Books.addtoShelfAll("farsi",book.bookID), 'enctype -> "multipart/form-data"){
+								<button id="btn" type="submit" value="post" formmethod="post">افزودن به کتابخانه مجازی</button>
+							} 
+					 
+				}
+			</div><!-- bookCover -->
 			<div id="leftBlock">
 				<div id="bookTitleAuthor">
 					<ul> 
@@ -201,16 +213,29 @@
 }{
 
 		<!-- --------------------------پانل راست----------------------- -->
-		<div id="virtualshelf">
-		<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
-		<ul>
-			<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
-			<li><a href="#">همه</a></li>
-			<li><a href="#">خوانده شده</a></li>
-			<li><a href="#">در حال مطالعه</a></li>
-			<li><a href="#">خواهم خواند</a></li>
-		</ul>
-		</div>
+
+		<!-- This is the Virtual Library section which is activated for the logged users -->
+		@if(user.fName == "Guest"){
+				<div id="virtualshelf">
+					<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
+					<p>برای استفاده از امکانات کتابخانه مجازی، لطفا از <a href="@controllers.controllersFarsi.routes.ApplicationFa.index">اینجا</a> به فارسی ریدز وارد شوید</p>
+				</div>
+		} else {
+				<div id="virtualshelf">
+					<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
+					<ul>
+						<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
+						<li><a href="@routes.Books.showShelfAll("farsi")">همه</a></li>
+						<li><a href="#">خوانده شده</a></li>
+						<li><a href="#">در حال مطالعه</a></li>
+						<li><a href="#">خواهم خواند</a></li>
+					</ul>
+				</div>
+		
+		}
+		
+		
+		
 		<div id="aboutAuthor">
 			<h3 class="rightBoxHeader">درباره‌ نویسنده</h3>
 			<div id="aFotoDiv">

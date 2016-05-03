@@ -46,6 +46,8 @@ insert into topic values(0,"Theology","الهیات","Man is the Reasoning Anima
 insert into topic_book values(0,1,0);
 insert into event values(0,"Character and the persian Family","26 Feb - 28 Feb","Talstraße 12-14, 35394 Giessen","Rev. Tat Stewart","speaker1","speaker2","speaker3","hostedBy FeG Giessen","http://image","description","Adults 10€, Kids 5€","farsi");
 insert into event_guest values("info@1.com","far","01755555555",0,0,"the optional comment is to be here");
+
+insert into book_user values(0,1,"far@1.com",false,true,false);
 # --- !Downs
 
 delete from user;
@@ -59,3 +61,4 @@ delete from topic;
 delete from topic_book;
 delete from event;
 delete from event_guest;
+delete from book_user;

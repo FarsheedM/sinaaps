@@ -1,0 +1,132 @@
+@(user : User, allBooks : List[models.Book])
+
+@headfill = {	 
+		<!-- This meta tages is for G+ snippet rendering -->
+		
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiVL.css")">
+}
+		
+
+		
+		
+@FaMain("کتابخانه مجازی | همه کتابها")(headfill){
+<!-- -------------------farsi Edition----------------------- -->
+
+        		<div id="socialBar">
+        			<div id="socialBarRightFarsi">
+						<ul style="padding-left : 15px;">
+							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+						</ul>
+					</div><!-- socialBarLeft -->
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>مهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+									
+								}
+							</dl>
+						</header>
+        			</div><!-- headcontentRight (loggedIn) -->
+        		</div><!-- headContent -->
+        		
+}{
+<!--  left content for VL AllBooks -->
+
+
+	<table>
+		<thead>
+			<tr>
+				<th>جلد</th>
+				<th>عنوان</th>
+				<th>مولف</th>
+				<th>افزوده شده در تاریخ</th>
+				<th>Column 2 Heading</th>
+			</tr>
+		</thead>
+	<!-- This iterates through all the books of a logged user -->
+	@allBooks.map{ book => 
+		<!-- these statements are used to get the book detail and author detail -->
+		@defining( BookTranslation.getBookDetails(book.bookID,"farsi") ){bookTranslation => 
+		@defining(BookAuthor.getAuthorList(book.bookID).get(0)){author1 => 
+				@defining( AuthorTranslation.getAuthor(author1.authorID,"farsi") ) { author => 
+		
+
+		
+		<tbody>
+			<tr>
+				<td class="field cover">
+					<a href="#">
+						<img style="display: block;width: 50px;" id="" src="@book.photo" alt="@book.isbn">
+					</a>
+				</td>
+				<td class="field title">@bookTranslation.title</td>
+				<td class="field author">@author.fName  @author.lName</td>
+				<td>to implement</td>
+				<td>functions</td>
+			</tr>
+<!-- 			<tr>
+				<td>Row 2: Col 1</td>
+				<td>Row 2: Col 2</td>
+				<td>Row 2: Col 3</td>
+				<td>Row 2: Col 4</td>
+				<td>Row 2: Col 5</td>
+			</tr>
+			<tr>
+				<td>Row 3: Col 1</td>
+				<td>Row 3: Col 2</td>
+				<td>Row 3: Col 3</td>
+				<td>Row 3: Col 4</td>
+				<td>Row 3: Col 5</td>
+			</tr> -->
+		</tbody>
+
+	</table>
+	
+  	 	}}} 
+   }<!-- the  'allBooks.map' ends here -->
+
+}{
+<!-- --------------------------پانل راست----------------------- -->
+
+
+
+			@if(user.fName == "Guest"){
+				<script type="text/javascript">
+					/*This script is used to disable the virtualshelf DIV to  
+						disable the GUEST users to see Virtual Library
+						*/
+					var crp = document.getElementById("virtualshelf");
+					crp.style.display = "none";
+				</script>
+				<p>برای استفاده از امکانات کتابخانه مجازی، لطفا به فارسی ریدز وارد شوید</p>
+				<a href="@controllers.controllersFarsi.routes.ApplicationFa.index"><h3 style="padding-right:10px;">برای ورود، لطفا اینجا را کلیک کنید</h3></a>
+			
+			} else {
+				<div id="virtualshelf">
+					<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
+					<ul>
+						<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
+						<li><a href="#">همه</a></li>
+						<li><a href="#">خوانده شده</a></li>
+						<li><a href="#">در حال مطالعه</a></li>
+						<li><a href="#">خواهم خواند</a></li>
+					</ul>
+				</div>
+		
+			}
+
+
+}
