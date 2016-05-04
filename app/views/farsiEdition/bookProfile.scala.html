@@ -8,7 +8,7 @@
 		<!-- This is used to get only one Author in the case of multiple one -->
 		@author1 = @{BookAuthor.getAuthorList(book.bookID).get(0)}
 		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
-
+		@bookAlreadyInVL = @{BookUser.bookAlreadyExists(user.email, book.bookID)}
 
 @headfill = {	 
 		<!-- This meta tages is for G+ snippet rendering -->
@@ -80,18 +80,21 @@
 				<a href="#">
 					<img itemprop="image" id="coverImage" src="@book.photo" alt="">
 				</a>
-				@if(user.fName == "Guest"){
+			    @if(user.fName == "Guest"){
 					<!-- it does not display the add to the VL Btn if the user is not logged in -->
 
 				} else {
+					@if(bookAlreadyInVL){
+					<!-- book is already in BookUser DB in VL -->
+					} else {
 					<div class=""></div>
-					<button class="wtrcontainer" type="submit">want to read Btn</button>
-					
-					@helper.form(action = routes.Books.addtoShelfAll("farsi",book.bookID), 'enctype -> "multipart/form-data"){
-								<button id="btn" type="submit" value="post" formmethod="post">افزودن به کتابخانه مجازی</button>
-							} 
+						@helper.form(action = routes.Books.addtoShelfAll("farsi",book.bookID), 'enctype -> "multipart/form-data"){
+									<button id="btn" type="submit" value="post" formmethod="post">افزودن به کتابخانه مجازی</button>
+									} 
+						} 
 					 
-				}
+				}	
+		
 			</div><!-- bookCover -->
 			<div id="leftBlock">
 				<div id="bookTitleAuthor">
@@ -192,8 +195,8 @@
 						<section id="reviewForm">
 						
 							@helper.form(action = routes.Books.postReview("farsi",book.bookID), 'enctype -> "multipart/form-data"){
-								<textarea id="textArea" name="review" style="width:400px;" placeholder="نظر خود را راجع به این کتاب بنویسید" ></textarea>
-					        	<button id="btn" type="submit" value="post" formmethod="post">پست</button>
+								<textarea class="form" name="review" style="width:400px; height:50px" placeholder="نظر خود را راجع به این کتاب بنویسید" ></textarea>
+					        	<button class="subBtn" type="submit" value="post" formmethod="post">پست</button>
 							}
 							        
 					        @if(reviewForm.hasGlobalErrors){
@@ -226,9 +229,9 @@
 					<ul>
 						<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
 						<li><a href="@routes.Books.showShelfAll("farsi")">همه</a></li>
-						<li><a href="#">خوانده شده</a></li>
-						<li><a href="#">در حال مطالعه</a></li>
-						<li><a href="#">خواهم خواند</a></li>
+						<li><a href="@routes.Books.showShelfRead("farsi")">خوانده شده</a></li>
+						<li><a href="@routes.Books.showShelfReading("farsi")">در حال مطالعه</a></li>
+						<li><a href="@routes.Books.showShelfToRead("farsi")">خواهم خواند</a></li>
 					</ul>
 				</div>
 		

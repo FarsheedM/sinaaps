@@ -1,4 +1,4 @@
-@(user : User, readBookUser : List[models.BookUser])
+@(user : User, toreadBookUser : List[models.BookUser])
 
 @headfill = {	 
 		<!-- This meta tages is for G+ snippet rendering -->
@@ -10,7 +10,7 @@
 
 		
 		
-@FaMain("کتابخانه مجازی | کتابهای خوانده شده")(headfill){
+@FaMain("کتابخانه مجازی | کتابهایی که خواهم خواند")(headfill){
 <!-- -------------------farsi Edition----------------------- -->
 
         		<div id="socialBar">
@@ -59,7 +59,7 @@
 		
 		<tbody>
 			<!-- This iterates through all the books of a logged user -->
-			@readBookUser.map{ bookUser => 
+			@toreadBookUser.map{ bookUser => 
 			<!-- these statements are used to get the book detail and author detail -->
 			@defining( BookTranslation.getBookDetails(bookUser.book.bookID,"farsi") ){bookTranslation => 
 			@defining(BookAuthor.getAuthorList(bookUser.book.bookID).get(0)){author1 => 
@@ -85,8 +85,8 @@
 						@helper.form(routes.Books.moveToShelfReading(bookUser.id,"farsi")){
 							<li><input id="moveToReading" type="submit" value="در حال مطالعه" title="در حال مطالعه"></li>
 						}
-						@helper.form(routes.Books.moveToShelfToRead(bookUser.id,"farsi")){
-							<li><input id="moveToToRead" type="submit" value="خواهم خواند" title="خواهم خواند"></li>
+						@helper.form(routes.Books.moveToShelfRead(bookUser.id,"farsi")){
+							<li><input id="moveToRead" type="submit" value="خوانده شده" title="خوانده شده"></li>
 						}
 					
 					</ul>
@@ -122,9 +122,9 @@
 					<ul>
 						<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
 						<li><a href="@routes.Books.showShelfAll("farsi")">همه</a></li>
-						<li><a href="#">خوانده شده</a></li>
+						<li><a href="@routes.Books.showShelfRead("farsi")">خوانده شده</a></li>
 						<li><a href="@routes.Books.showShelfReading("farsi")">در حال مطالعه</a></li>
-						<li><a href="@routes.Books.showShelfToRead("farsi")">خواهم خواند</a></li>
+						<li><a href="#">خواهم خواند</a></li>
 					</ul>
 				</div>
 		

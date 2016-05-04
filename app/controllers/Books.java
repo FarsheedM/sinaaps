@@ -240,7 +240,7 @@ public class Books extends Controller{
 	public static Result showShelfAll(String lang){
 
 		User usr = User.find.byId(session().get("email"));
-		//getting all the books of a specific uses
+		//getting all the books of a specific user
 		List<BookUser> listOfUsersBooks = BookUser.find.where().eq("user",usr).findList();
 		
 		List<Book> bookList = new ArrayList<Book>();
@@ -252,14 +252,117 @@ public class Books extends Controller{
 		
 		if(lang.equals("english")){
 			if(session().containsKey("email"))
-				return ok(views.html.farsiEdition.shelfAll.render(usr,bookList));
+				return ok(views.html.farsiEdition.shelfAll.render(usr,listOfUsersBooks));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.farsiEdition.shelfAll.render(guest,bookList));
+				return ok(views.html.farsiEdition.shelfAll.render(guest,listOfUsersBooks));
 			}	
 		}else if(lang.equals("farsi")){
 			if(session().containsKey("email"))
-				return ok(views.html.farsiEdition.shelfAll.render(usr,bookList));
+				return ok(views.html.farsiEdition.shelfAll.render(usr,listOfUsersBooks));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+	}
+	
+	
+	public static Result showShelfRead(String lang){
+
+		User usr = User.find.byId(session().get("email"));
+		//getting all already 'read books' of a specific user
+		List<BookUser> listOfUsersBooks = BookUser.find.where().eq("user",usr).eq("finished", true).findList();
+		
+		List<Book> bookList = new ArrayList<Book>();
+		Book bk;
+		for( BookUser i : listOfUsersBooks){
+			bk = Book.find.byId(i.book.bookID);
+			bookList.add(bk);
+		}
+		
+		if(lang.equals("english")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfRead.render(usr,listOfUsersBooks));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfRead.render(usr,listOfUsersBooks));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+	}
+	
+	public static Result showShelfReading(String lang){
+
+		User usr = User.find.byId(session().get("email"));
+		//getting all 'reading books' of a specific user
+		List<BookUser> listOfUsersBooks = BookUser.find.where().eq("user",usr).eq("reading", true).findList();
+		
+		List<Book> bookList = new ArrayList<Book>();
+		Book bk;
+		for( BookUser i : listOfUsersBooks){
+			bk = Book.find.byId(i.book.bookID);
+			bookList.add(bk);
+		}
+		
+		if(lang.equals("english")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfReading.render(usr,listOfUsersBooks));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfReading.render(usr,listOfUsersBooks));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+	}
+	
+	public static Result showShelfToRead(String lang){
+
+		User usr = User.find.byId(session().get("email"));
+		//getting all  'to-read books' of a specific user
+		List<BookUser> listOfUsersBooks = BookUser.find.where().eq("user",usr).eq("toRead", true).findList();
+		
+		List<Book> bookList = new ArrayList<Book>();
+		Book bk;
+		for( BookUser i : listOfUsersBooks){
+			bk = Book.find.byId(i.book.bookID);
+			bookList.add(bk);
+		}
+		
+		if(lang.equals("english")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfToRead.render(usr,listOfUsersBooks));
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email"))
+				return ok(views.html.farsiEdition.shelfToRead.render(usr,listOfUsersBooks));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
 				return ok(views.html.farsiEdition.books.render(guest,bookList));
@@ -287,7 +390,8 @@ public class Books extends Controller{
 			} catch (PersistenceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return ok("ERROR: Book already exist in VL!");
+				//return ok("ERROR: Book already exist in VL!");
+				return ok(e.toString());
 			}
 			
 			
@@ -295,7 +399,8 @@ public class Books extends Controller{
 					return ok("book added");
 			}
 			else{
-				return ok("کتاب جدید به کتابخانه مجازی افزوده شد");
+				//return ok("کتاب جدید به کتابخانه مجازی افزوده شد");
+				return redirect(routes.Books.showBookProfile(lang,bookID));
 			}
 		}
 		else{
@@ -306,5 +411,64 @@ public class Books extends Controller{
 	  
     }
 	
+	
+	//This method deletes the selected book from the VL: ShelfAll
+	public static Result deleteFromShelfAll(Integer bookUserId, String lang){
+		
+		BookUser bkusr = BookUser.find.byId(bookUserId);
+		if(bkusr != null){
+			BookUser.find.ref(bookUserId).delete();
+			return redirect(routes.Books.showShelfAll("farsi"));
+		}
+		else{
+			return badRequest("ERROR : no such BookUserId!");
+		}
+		
+	}
+	
+	//This method move the selected book from the VL: ShelfAll to ShelfRead
+	public static Result moveToShelfRead(Integer bookUserId, String lang){
+		BookUser bkusr = BookUser.find.byId(bookUserId);
+		if(bkusr != null){
+			bkusr.finished = true;
+			bkusr.reading = false;
+			bkusr.toRead = false;
+			bkusr.save();
+			return redirect(routes.Books.showShelfAll("farsi"));
+		}
+		else{
+			return badRequest("ERROR : no such BookUserId!");
+		}
+	}
+	
+	//This method move the selected book from the VL: ShelfAll to ShelfReading
+	public static Result moveToShelfReading(Integer bookUserId, String lang){
+			BookUser bkusr = BookUser.find.byId(bookUserId);
+			if(bkusr != null){
+				bkusr.finished = false;
+				bkusr.reading = true;
+				bkusr.toRead = false;
+				bkusr.save();
+				return redirect(routes.Books.showShelfAll("farsi"));
+			}
+			else{
+				return badRequest("ERROR : no such BookUserId!");
+			}
+	}
+	//This method move the selected book from the VL: ShelfAll to ShelfToRead
+	public static Result moveToShelfToRead(Integer bookUserId, String lang){
+			BookUser bkusr = BookUser.find.byId(bookUserId);
+			if(bkusr != null){
+				bkusr.finished = false;
+				bkusr.reading = false;
+				bkusr.toRead = true;
+				
+				bkusr.save();
+				return redirect(routes.Books.showShelfAll("farsi"));
+			}
+			else{
+				return badRequest("ERROR : no such BookUserId!");
+			}
+	}
 	
 }

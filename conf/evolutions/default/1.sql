@@ -86,6 +86,7 @@ create table book_user(
 id int,
 book_id int,
 user_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci, 
+added_to_vl timestamp;
 finished boolean,
 reading boolean,
 to_read boolean,

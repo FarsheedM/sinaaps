@@ -11,6 +11,7 @@
 
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiVL.css")">
 </head>
 
         		<div id="clear"></div>
@@ -160,6 +161,29 @@
 }{
 
 	<!--  ---------------right content for book------------------- -->
+	
+	<!-- This is the Virtual Library section which is activated for the logged users -->
+	@if(user.fName == "Guest"){
+				<div id="virtualshelf">
+					<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
+					<p>برای استفاده از امکانات کتابخانه مجازی، لطفا از <a href="@controllers.controllersFarsi.routes.ApplicationFa.index">اینجا</a> به فارسی ریدز وارد شوید</p>
+				</div>
+	} else {
+				<div id="virtualshelf">
+					<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
+					<ul>
+						<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
+						<li><a href="@routes.Books.showShelfAll("farsi")">همه</a></li>
+						<li><a href="@routes.Books.showShelfRead("farsi")">خوانده شده</a></li>
+						<li><a href="@routes.Books.showShelfReading("farsi")">در حال مطالعه</a></li>
+						<li><a href="@routes.Books.showShelfToRead("farsi")">خواهم خواند</a></li>
+					</ul>
+				</div>
+		
+	}
+		
+	
+	
 	<div id="suggestBookAdd">
 		
 		<p> کتاب فارسی مسیحی‌ می‌شناسید که هنوز در بانک کتاب ما موجود نیست؟ لطفا آن را به ما معرفی‌ کنید:</p>

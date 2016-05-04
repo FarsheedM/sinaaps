@@ -1,4 +1,4 @@
-@(user : User, allBooks : List[models.Book])
+@(user : User, allBookUser : List[models.BookUser])
 
 @headfill = {	 
 		<!-- This meta tages is for G+ snippet rendering -->
@@ -53,50 +53,55 @@
 				<th>عنوان</th>
 				<th>مولف</th>
 				<th>افزوده شده در تاریخ</th>
-				<th>Column 2 Heading</th>
+				<th>ویرایش</th>
 			</tr>
 		</thead>
-	<!-- This iterates through all the books of a logged user -->
-	@allBooks.map{ book => 
-		<!-- these statements are used to get the book detail and author detail -->
-		@defining( BookTranslation.getBookDetails(book.bookID,"farsi") ){bookTranslation => 
-		@defining(BookAuthor.getAuthorList(book.bookID).get(0)){author1 => 
-				@defining( AuthorTranslation.getAuthor(author1.authorID,"farsi") ) { author => 
-		
-
 		
 		<tbody>
+			<!-- This iterates through all the books of a logged user -->
+			@allBookUser.map{ bookUser => 
+			<!-- these statements are used to get the book detail and author detail -->
+			@defining( BookTranslation.getBookDetails(bookUser.book.bookID,"farsi") ){bookTranslation => 
+			@defining(BookAuthor.getAuthorList(bookUser.book.bookID).get(0)){author1 => 
+					@defining( AuthorTranslation.getAuthor(author1.authorID,"farsi") ) { author => 
+		
 			<tr>
 				<td class="field cover">
 					<a href="#">
-						<img style="display: block;width: 50px;" id="" src="@book.photo" alt="@book.isbn">
+						<img style="display: block;width: 50px;" id="" src="@bookUser.book.photo" alt="@bookUser.book.isbn">
 					</a>
 				</td>
 				<td class="field title">@bookTranslation.title</td>
 				<td class="field author">@author.fName  @author.lName</td>
-				<td>to implement</td>
-				<td>functions</td>
+				<td>@bookUser.addedToVl.format("dd-MM-yyyy (hh:mm)") </td>
+				<td>
+					<!-- show the delete button  -->
+					@helper.form(routes.Books.deleteFromShelfAll(bookUser.id,"farsi")){
+						<input id="deleteBtn" type="submit" value="حذف کتاب" title="delete your post?">
+					}
+					
+					<!-- show the edit options  -->
+					<ul id="editOptions">
+						@helper.form(routes.Books.moveToShelfRead(bookUser.id,"farsi")){
+							<li><input id="moveToRead" type="submit" value="خوانده شده" title="خوانده شده"></li>
+						}
+						@helper.form(routes.Books.moveToShelfReading(bookUser.id,"farsi")){
+							<li><input id="moveToReading" type="submit" value="در حال مطالعه" title="در حال مطالعه"></li>
+						}
+						@helper.form(routes.Books.moveToShelfToRead(bookUser.id,"farsi")){
+							<li><input id="moveToToRead" type="submit" value="خواهم خواند" title="خواهم خواند"></li>
+						}
+					
+					</ul>
+				</td>
 			</tr>
-<!-- 			<tr>
-				<td>Row 2: Col 1</td>
-				<td>Row 2: Col 2</td>
-				<td>Row 2: Col 3</td>
-				<td>Row 2: Col 4</td>
-				<td>Row 2: Col 5</td>
-			</tr>
-			<tr>
-				<td>Row 3: Col 1</td>
-				<td>Row 3: Col 2</td>
-				<td>Row 3: Col 3</td>
-				<td>Row 3: Col 4</td>
-				<td>Row 3: Col 5</td>
-			</tr> -->
-		</tbody>
+		
+	
+  	 		}}} 
+  		 }<!-- the  'allBooks.map' ends here -->
+  	   </tbody>
 
 	</table>
-	
-  	 	}}} 
-   }<!-- the  'allBooks.map' ends here -->
 
 }{
 <!-- --------------------------پانل راست----------------------- -->
@@ -120,9 +125,9 @@
 					<ul>
 						<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
 						<li><a href="#">همه</a></li>
-						<li><a href="#">خوانده شده</a></li>
-						<li><a href="#">در حال مطالعه</a></li>
-						<li><a href="#">خواهم خواند</a></li>
+						<li><a href="@routes.Books.showShelfRead("farsi")">خوانده شده</a></li>
+						<li><a href="@routes.Books.showShelfReading("farsi")">در حال مطالعه</a></li>
+						<li><a href="@routes.Books.showShelfToRead("farsi")">خواهم خواند</a></li>
 					</ul>
 				</div>
 		
