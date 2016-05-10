@@ -50,5 +50,8 @@ GET     /farsi/getStatistics 		 controllers.controllersFarsi.ApplicationFa.getSt
 
 GET     /:lang/event                 controllers.Event.displayEvent(lang : String)
 POST    /farsi/event                 controllers.Event.register()
+#
+GET 	/:lang/userEmail=:userEmail			 controllers.Settings.showSettings(lang : String, userEmail : String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

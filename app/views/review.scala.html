@@ -4,11 +4,15 @@
 	
 	@if(review != null){
 		<div id="usr_photo">
-			@if(review.user.gender){
+		@if(review.user.photo == ""){
+				@if(review.user.gender){
 				<img class="usrPhoto" title="@review.user.fName" src="@routes.Assets.at("/images/woman.png")">
 				}else {
 				<img class="usrPhoto" title="@review.user.fName" src="@routes.Assets.at("/images/man.png")">
 				}
+		}else{
+			<img class="usrPhoto" title="@review.user.fName" src="@review.user.photo">
+		}
 		</div>
 		<div id="reviewRightBlock">
 			<div id="usr_name">

@@ -14,16 +14,29 @@
 <!-- -------------------farsi Edition----------------------- -->
 
         		<div id="socialBar">
-        			<div id="socialBarRightFarsi">
-						<ul style="padding-left : 15px;">
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
-						</ul>
-					</div><!-- socialBarLeft -->
+				   @if(user.fName == "Guest"){
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a><img src="@routes.Assets.at("images/icons/homeInactive.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/friendsInactive.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/messageInactive.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/notificationInactive.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/profileInactive.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/settingsInactive.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					} else {
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showSettings("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					}
 					
         			<div id="socialBarLeftFarsi">
 						<header id="socializingMenu">

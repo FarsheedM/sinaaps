@@ -1,0 +1,153 @@
+@(user : User)(books : List[models.Book])
+
+<!-- -----------------------------فارسی-------------------------- -->
+
+		@TESTreadingBook = @{books.head}
+
+		@bookTranslation = @{BookTranslation.getBookDetails(TESTreadingBook.bookID,"farsi")}
+		@authorList = @{BookAuthor.getAuthorList(TESTreadingBook.bookID)}
+		<!-- This is used to get only one Author in the case of multiple one -->
+		@author1 = @{BookAuthor.getAuthorList(TESTreadingBook.bookID).get(0)}
+		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
+
+
+@headfill = {	 
+		<!-- This meta tages is for G+ snippet rendering -->
+		
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiSettings.css")">
+}
+		
+@farsiEdition.FaMain("تنظیمات")(headfill){
+
+        		<div id="socialBar">
+
+					@if(user.fName == "Guest"){
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					} else {
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showSettings("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					}
+					
+										
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>مهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+								}
+							</dl>
+						</header>
+        			</div><!-- socialBarLeftFarsi (loggedIn) -->
+        		</div><!-- socialBar -->
+        		
+        		
+
+}{
+	<!-- Left Panel -->
+	<div id="profile">
+		<div id="rightAlignedImage">
+		
+		@if(user.photo == ""){
+			@if(user.gender){
+				<img class="usrPhoto" title="@user.fName" src="@routes.Assets.at("/images/woman.png")">
+			}else {
+				<img class="usrPhoto" title="@user.fName" src="@routes.Assets.at("/images/man.png")">
+			}
+		}else{
+			<a href="#"><img class="usrPhoto" title="@user.fName" src="@user.photo"></a>
+		}
+		<div id="reviews">تعداد نقدها : </div>
+		</div>
+		
+		
+		
+		<div id="userInfoBox">
+			<h3 class="userProfileName">@user.fName  @user.lName</h3>
+			<div class="infoBoxRowTitle">جزئیات</div>
+			<div class="infoBoxRowItem">تاریخ تولد : @user.month @user.day</div>
+			<div id="clear"></div>
+<!-- 			<div class="infoBoxRowTitle">فعالیت</div>
+			<div class="infoBoxRowItem"></div> -->
+		</div>
+	</div>
+	<div id="clear"></div>
+	
+	<div id="favoriteBooks">
+		<div class="title">کتابهای مورد علاقهِ "@user.fName"</div>
+		@books.take(12).map{ book =>
+			<a><img alt="" src="@book.photo"></a>
+		}
+	</div>
+	<div id="clear"></div>
+	
+	<div id="userBookShelf">
+		<div class="title">قفسه کتاب "@user.fName"</div>
+		<div class="shelfContainer"><a href="">خوانده شده</a></div>
+		<div class="shelfContainer"><a href="">در حال مطالعه</a></div>
+		<div class="shelfContainer"><a href="">خواهم خواند</a></div>
+	</div>
+	<div id="currentlyReading">
+		<div class="title">"@user.fName" در حال مطالعه این کتاب(ها) است</div>
+		<div id="currentlyReadingReviews">
+			<div class="firstcol">
+				<a href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)" title="bookTitle"><img alt="" src="@TESTreadingBook.photo"></a>
+			</div>
+			<div class="secondcol">
+				<div class="userReview">
+					<strong>"@user.fName" این کتاب را ارزیابی کرده است</strong>
+					<span class="staticStars">
+						<span class="staticStar p10" size="15x15" title="really liked it">really liked it</span>
+						<span class="staticStar p10" size="15x15" title="really liked it"></span>
+						<span class="staticStar p10" size="15x15" title="really liked it"></span>
+						<span class="staticStar p10" size="15x15" title="really liked it"></span>
+						<span class="staticStar p0" size="15x15" title="really liked it"></span>
+					</span>
+				</div>
+				<div id="bookTitle">
+					<a class="bookTitle" href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)">@bookTranslation.title</a>
+				</div>
+				<div>
+					<span class="by smallText">نوشته</span>
+					<a class="authorName" href="#">@authorDetail.fName @authorDetail.lName</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="clear"></div>
+		
+		
+	<div id="recentUpdates">"@user.fName" recent updates :</div>
+	<div id="friendComment">to be implemented</div>
+	
+
+}{
+	<!-- Right Panel -->
+	
+	<div id="friendList"></div>
+	<div id="friendsInCommon"></div>
+}

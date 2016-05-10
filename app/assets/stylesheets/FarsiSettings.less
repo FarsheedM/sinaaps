@@ -1,0 +1,123 @@
+/*---------------------------------------فارسی---------------------------------*/
+
+
+// ----------------------------- FONTS -----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   17px "NasimBreeze","Tahoma","Arial";
+
+@headerFont:               22px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+@OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+
+//------------------------------------------------------------------------
+#profile{
+	padding-bottom: 20px;
+	height : 230px;
+}
+#rightAlignedImage{
+	float : right;
+	width : 210px;
+}
+#reviews{
+	width : 200px;
+}
+#userInfoBox{
+	float :left;
+	width : 440px;
+}
+#rightAlignedImage img{
+	height : 200px;
+	width : 200px;
+}
+
+.title{
+    color: #84581e;
+    font: 20px "NasimBreeze","Tahoma","Arial";
+    padding-bottom: 5px;
+}
+.shelfContainer{
+    float: right;
+    margin-left: 5px;
+    max-height: 230px;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 145px;
+}
+#favoriteBooks{
+	padding-bottom: 20px;
+}
+#favoriteBooks a {
+    color: #00635d;
+    text-decoration: none;
+}
+
+#favoriteBooks img {
+    max-height: 75px;
+    overflow: hidden;
+    width: 50px;
+}
+#userBookShelf{
+    height: 60px;
+    padding-bottom: 20px;
+}
+
+#currentlyReading{
+	padding-bottom: 20px;
+	height : 140px;
+}
+
+.firstcol {
+    float: right;
+    width: 70px;
+}
+.secondcol {
+    float: left;
+    overflow: visible;
+    width: 545px;
+}
+.firstcol img {
+    margin-top: 5px;
+    width: 65px;
+}
+
+.bookTitle {
+    color: #333333;
+    font-family: "NasimBreeze","Georgia",serif;
+    font-size: 120%;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.staticStars{
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+    height: 15px;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 75px;
+}
+
+.staticStars .p10{
+    background-image: url('/assets/images/shinyStar.png');
+    background-size: 15px auto;
+}
+.staticStars .p0{
+    background-image: url('/assets/images/darkStar.png');
+    background-size: 15px auto;
+}
+.staticStar, .staticStar_flat, .staticStar_flat_orange {
+    background-repeat: no-repeat;
+    float: left;
+    font-size: 0;
+    height: 15px;
+    width: 15px;
+}
+#clear{
+	both: clear;
+}
