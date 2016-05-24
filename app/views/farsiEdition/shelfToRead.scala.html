@@ -33,7 +33,7 @@
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
-								<li><a href="@routes.Settings.showSettings("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 							</ul>
 						</div><!-- socialBarRightFarsi -->
 					}
@@ -134,7 +134,7 @@
 					<h3 class="rightBoxHeader">کتابخانه مجازی من<span> under construction </span></h3>
 					<ul>
 						<li style="border:1px solid #75bfb8;"><span style="font-weight:bold;">قفسه ها</span></li>
-						<li><a href="@routes.Books.showShelfAll("farsi")">همه</a></li>
+						<li><a href="@routes.Books.showShelfAll("farsi",user.email)">همه</a></li>
 						<li><a href="@routes.Books.showShelfRead("farsi")">خوانده شده</a></li>
 						<li><a href="@routes.Books.showShelfReading("farsi")">در حال مطالعه</a></li>
 						<li><a href="#">خواهم خواند</a></li>

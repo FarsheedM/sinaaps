@@ -30,7 +30,7 @@ GET     /:lang/book/bookid=:bookId            controllers.Books.showBookProfile(
 POST    /:lang/book/bookid=:bookId            controllers.Books.postReview(lang : String,bookId : Integer)
 POST 	/:lang/book/bookid=:bookId/delete	  controllers.Books.deleteReview(reviewId:Long,lang:String,bookId:Integer)
 GET     /:lang/book/topicid=:topicId          controllers.Books.showByTopic(lang : String, topicId : Integer)
-GET     /:lang/book/shelfAll  				  controllers.Books.showShelfAll(lang : String)
+GET     /:lang/book/shelfAll  				  controllers.Books.showShelfAll(lang : String, callerEmail : String)
 GET     /:lang/book/shelfRead  				  controllers.Books.showShelfRead(lang : String)
 GET     /:lang/book/shelfReading  				  controllers.Books.showShelfReading(lang : String)
 GET     /:lang/book/shelfToRead  				  controllers.Books.showShelfToRead(lang : String)
@@ -51,7 +51,7 @@ GET     /farsi/getStatistics 		 controllers.controllersFarsi.ApplicationFa.getSt
 GET     /:lang/event                 controllers.Event.displayEvent(lang : String)
 POST    /farsi/event                 controllers.Event.register()
 #
-GET 	/:lang/userEmail=:userEmail			 controllers.Settings.showSettings(lang : String, userEmail : String)
-
+GET 	/:lang/userEmail=:userEmail			 controllers.Settings.showProfile(lang : String, userEmail : String)
+GET     /alert/friendRequest				 controllers.Relationship.friendRequest(user1Email : String,user2Email : String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

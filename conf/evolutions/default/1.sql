@@ -95,7 +95,23 @@ foreign key (book_id) references  book (book_id),
 foreign key (user_email) references  user (email)
 );
 
-
+create table relationship(
+relationship_id int,
+user1_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+user2_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+/* Status Codes:
+* 	0 	Pending
+	1 	Accepted
+	2 	Declined
+	3 	Blocked
+* */
+status int,
+actionuser_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+primary key (relationship_id),
+foreign key (user1_email) references  user (email),
+foreign key (user2_email) references  user (email),
+foreign key (actionuser_email) references  user (email)
+);
 
 # --- !Downs
 
@@ -118,6 +134,7 @@ drop table if exists topic_book;
 drop table if exists event;
 drop table if exists event_guest;
 drop table if exists book_user;
+drop table if exists relationship;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 
 

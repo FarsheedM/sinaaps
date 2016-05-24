@@ -19,8 +19,8 @@ public class Global extends GlobalSettings {
     	User guest = new User("Guest","dummyEmail","dummyPassword");
         return Promise.<SimpleResult>pure(notFound(
             //views.html.alert.render
-            views.html.farsiEdition.alert.render(guest,"همچنین آدرسی در دایرکتوری فارسی ریدز موجود نمی‌‌باشد. شما URI اشتباه را وارد کرده اید. لطفا به صفحه اصلی‌ باز گردید.")
-        ));
+            views.html.farsiEdition.alert.render(guest,"همچنین آدرسی در دایرکتوری فارسی ریدز موجود نمی‌‌باشد. شما URI اشتباه را وارد کرده اید. لطفا به صفحه اصلی‌ باز گردید.")  
+        		));
     }
     
     public Promise<SimpleResult> onBadRequest(RequestHeader request, String error) {

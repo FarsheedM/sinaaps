@@ -1,4 +1,4 @@
-@(user : User)(books : List[models.Book])
+@(user : User)(called : User)(books : List[models.Book])
 
 <!-- -----------------------------فارسی-------------------------- -->
 
@@ -9,6 +9,10 @@
 		<!-- This is used to get only one Author in the case of multiple one -->
 		@author1 = @{BookAuthor.getAuthorList(TESTreadingBook.bookID).get(0)}
 		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
+
+		@areFriends = @{controllers.Relationship.checkFriendship(user,called)}
+		@friendsInCommon = @{controllers.Relationship.friendsInCommon(user,called)}
+		@FriendList = @{controllers.Relationship.friendList(called)}
 
 
 @headfill = {	 
@@ -41,7 +45,7 @@
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
-								<li><a href="@routes.Settings.showSettings("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 							</ul>
 						</div><!-- socialBarRightFarsi -->
 					}
@@ -71,14 +75,14 @@
 	<div id="profile">
 		<div id="rightAlignedImage">
 		
-		@if(user.photo == ""){
-			@if(user.gender){
-				<img class="usrPhoto" title="@user.fName" src="@routes.Assets.at("/images/woman.png")">
+		@if(called.photo == ""){
+			@if(called.gender){
+				<img class="usrPhoto" title="@called.fName" src="@routes.Assets.at("/images/woman.png")">
 			}else {
-				<img class="usrPhoto" title="@user.fName" src="@routes.Assets.at("/images/man.png")">
+				<img class="usrPhoto" title="@called.fName" src="@routes.Assets.at("/images/man.png")">
 			}
 		}else{
-			<a href="#"><img class="usrPhoto" title="@user.fName" src="@user.photo"></a>
+			<a href="#"><img class="usrPhoto" title="@called.fName" src="@called.photo"></a>
 		}
 		<div id="reviews">تعداد نقدها : </div>
 		</div>
@@ -86,18 +90,24 @@
 		
 		
 		<div id="userInfoBox">
-			<h3 class="userProfileName">@user.fName  @user.lName</h3>
+			<h3 class="userProfileName">@called.fName  @called.lName</h3>
 			<div class="infoBoxRowTitle">جزئیات</div>
-			<div class="infoBoxRowItem">تاریخ تولد : @user.month @user.day</div>
+			<div class="infoBoxRowItem">تاریخ تولد : @called.month @called.day</div>
 			<div id="clear"></div>
-<!-- 			<div class="infoBoxRowTitle">فعالیت</div>
-			<div class="infoBoxRowItem"></div> -->
+<!--  			<div class="infoBoxRowTitle">فعالیت</div>
+			<div class="infoBoxRowItem"></div> --> 
+			
+			@if(user.fName != "Guest" && user.fName != called.fName && !areFriends){
+				<div id="userActions">
+					<a href="@routes.Relationship.friendRequest(user.email,called.email)" class="fr-button">دوست شوید</a>
+				</div>
+			}
 		</div>
 	</div>
 	<div id="clear"></div>
 	
 	<div id="favoriteBooks">
-		<div class="title">کتابهای مورد علاقهِ "@user.fName"</div>
+		<div class="title">کتابهای مورد علاقهِ "@called.fName"</div>
 		@books.take(12).map{ book =>
 			<a><img alt="" src="@book.photo"></a>
 		}
@@ -105,20 +115,20 @@
 	<div id="clear"></div>
 	
 	<div id="userBookShelf">
-		<div class="title">قفسه کتاب "@user.fName"</div>
+		<div class="title">قفسه کتاب "@called.fName"</div>
 		<div class="shelfContainer"><a href="">خوانده شده</a></div>
 		<div class="shelfContainer"><a href="">در حال مطالعه</a></div>
 		<div class="shelfContainer"><a href="">خواهم خواند</a></div>
 	</div>
 	<div id="currentlyReading">
-		<div class="title">"@user.fName" در حال مطالعه این کتاب(ها) است</div>
+		<div class="title">"@called.fName" در حال مطالعه این کتاب(ها) است</div>
 		<div id="currentlyReadingReviews">
 			<div class="firstcol">
 				<a href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)" title="bookTitle"><img alt="" src="@TESTreadingBook.photo"></a>
 			</div>
 			<div class="secondcol">
 				<div class="userReview">
-					<strong>"@user.fName" این کتاب را ارزیابی کرده است</strong>
+					<strong>"@called.fName" این کتاب را ارزیابی کرده است</strong>
 					<span class="staticStars">
 						<span class="staticStar p10" size="15x15" title="really liked it">really liked it</span>
 						<span class="staticStar p10" size="15x15" title="really liked it"></span>
@@ -141,13 +151,43 @@
 	<div id="clear"></div>
 		
 		
-	<div id="recentUpdates">"@user.fName" recent updates :</div>
+	<div id="recentUpdates">"@called.fName" recent updates :</div>
 	<div id="friendComment">to be implemented</div>
 	
 
 }{
 	<!-- Right Panel -->
+	@if(user.email != called.email && !friendsInCommon.isEmpty){
+		<div id="friendsInCommon">
+			<h3>دوستان مشترک (@friendsInCommon.length)</h3>
+			
+			@friendsInCommon.take(6).map{ freindInCommon =>
+			
+			<div class="left" style="text-align:center;width:85px;overflow:hidden;">
+				<a href="#"><img src="@freindInCommon.photo"></a>
+				<br>
+				<a href="#">@freindInCommon.fName</a>
+			</div>
+			
+			}
+		</div>
+	}
+
+	<div id="friendList">
+		<h3> (@FriendList.length) دوستان @called.fName</h3>
+
+		@FriendList.take(7).map{ friend => 
+					<div>
+						<a class="rightAlignedImage" href="@routes.Settings.showProfile("farsi",friend.email)"><img src="@friend.photo" style="width:50px;height:66px;"></a>
+						<div class="right">
+							<div class="friendName">@friend.fName @friend.lName</div>
+								23 books
+								<span class="greyText">|</span>
+								74 friends 
+						</div>
+					</div>
+		}
+
+	</div>
 	
-	<div id="friendList"></div>
-	<div id="friendsInCommon"></div>
 }

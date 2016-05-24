@@ -1,4 +1,4 @@
-@(user : User, allBookUser : List[models.BookUser])
+@(user : User, allBookUser : List[models.BookUser], caller : User)
 
 @headfill = {	 
 		<!-- This meta tages is for G+ snippet rendering -->
@@ -33,7 +33,7 @@
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
-								<li><a href="@routes.Settings.showSettings("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 							</ul>
 						</div><!-- socialBarRightFarsi -->
 					}
@@ -58,7 +58,13 @@
 }{
 <!--  left content for VL AllBooks -->
 
-
+	<div id="leaderCol">
+		<div id="header">
+			<h3><a href="#">@caller.fName</a>
+			 > کتابها : همه</h3>
+		</div>
+	</div>
+	
 	<table>
 		<thead>
 			<tr>
@@ -94,6 +100,7 @@
 					}
 					
 					<!-- show the edit options  -->
+					@if(user == caller){
 					<ul id="editOptions">
 						@helper.form(routes.Books.moveToShelfRead(bookUser.id,"farsi")){
 							<li><input id="moveToRead" type="submit" value="خوانده شده" title="خوانده شده"></li>
@@ -106,6 +113,7 @@
 						}
 					
 					</ul>
+					}
 				</td>
 			</tr>
 		

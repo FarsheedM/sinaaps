@@ -237,7 +237,7 @@ public class Books extends Controller{
 	}
 	
 	
-	public static Result showShelfAll(String lang){
+	public static Result showShelfAll(String lang, String callerEmail){
 
 		User usr = User.find.byId(session().get("email"));
 		//getting all the books of a specific user
@@ -250,16 +250,20 @@ public class Books extends Controller{
 			bookList.add(bk);
 		}
 		
+		//caller is the user who invokes the showShelfAll(). It is used to en-/ disable 
+		//the edit functionality in shelfAll views. 
+		User caller = User.find.byId(callerEmail);
+		
 		if(lang.equals("english")){
 			if(session().containsKey("email"))
-				return ok(views.html.farsiEdition.shelfAll.render(usr,listOfUsersBooks));
+				return ok(views.html.farsiEdition.shelfAll.render(usr,listOfUsersBooks,caller));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.farsiEdition.shelfAll.render(guest,listOfUsersBooks));
+				return ok(views.html.farsiEdition.books.render(guest,bookList));
 			}	
 		}else if(lang.equals("farsi")){
 			if(session().containsKey("email"))
-				return ok(views.html.farsiEdition.shelfAll.render(usr,listOfUsersBooks));
+				return ok(views.html.farsiEdition.shelfAll.render(usr,listOfUsersBooks,caller));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
 				return ok(views.html.farsiEdition.books.render(guest,bookList));
@@ -415,10 +419,12 @@ public class Books extends Controller{
 	//This method deletes the selected book from the VL: ShelfAll
 	public static Result deleteFromShelfAll(Integer bookUserId, String lang){
 		
+		User usr = User.find.byId(session().get("email"));
+		
 		BookUser bkusr = BookUser.find.byId(bookUserId);
 		if(bkusr != null){
 			BookUser.find.ref(bookUserId).delete();
-			return redirect(routes.Books.showShelfAll("farsi"));
+			return redirect(routes.Books.showShelfAll("farsi",usr.email));
 		}
 		else{
 			return badRequest("ERROR : no such BookUserId!");
@@ -428,13 +434,15 @@ public class Books extends Controller{
 	
 	//This method move the selected book from the VL: ShelfAll to ShelfRead
 	public static Result moveToShelfRead(Integer bookUserId, String lang){
+		
+		User usr = User.find.byId(session().get("email"));
 		BookUser bkusr = BookUser.find.byId(bookUserId);
 		if(bkusr != null){
 			bkusr.finished = true;
 			bkusr.reading = false;
 			bkusr.toRead = false;
 			bkusr.save();
-			return redirect(routes.Books.showShelfAll("farsi"));
+			return redirect(routes.Books.showShelfAll("farsi",usr.email));
 		}
 		else{
 			return badRequest("ERROR : no such BookUserId!");
@@ -443,13 +451,15 @@ public class Books extends Controller{
 	
 	//This method move the selected book from the VL: ShelfAll to ShelfReading
 	public static Result moveToShelfReading(Integer bookUserId, String lang){
-			BookUser bkusr = BookUser.find.byId(bookUserId);
+			
+		User usr = User.find.byId(session().get("email"));
+		BookUser bkusr = BookUser.find.byId(bookUserId);
 			if(bkusr != null){
 				bkusr.finished = false;
 				bkusr.reading = true;
 				bkusr.toRead = false;
 				bkusr.save();
-				return redirect(routes.Books.showShelfAll("farsi"));
+				return redirect(routes.Books.showShelfAll("farsi",usr.email));
 			}
 			else{
 				return badRequest("ERROR : no such BookUserId!");
@@ -457,18 +467,21 @@ public class Books extends Controller{
 	}
 	//This method move the selected book from the VL: ShelfAll to ShelfToRead
 	public static Result moveToShelfToRead(Integer bookUserId, String lang){
-			BookUser bkusr = BookUser.find.byId(bookUserId);
+			
+		User usr = User.find.byId(session().get("email"));
+		BookUser bkusr = BookUser.find.byId(bookUserId);
 			if(bkusr != null){
 				bkusr.finished = false;
 				bkusr.reading = false;
 				bkusr.toRead = true;
 				
 				bkusr.save();
-				return redirect(routes.Books.showShelfAll("farsi"));
+				return redirect(routes.Books.showShelfAll("farsi",usr.email));
 			}
 			else{
 				return badRequest("ERROR : no such BookUserId!");
 			}
 	}
+
 	
 }

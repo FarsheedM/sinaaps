@@ -1,0 +1,18 @@
+@(user :User)(friends : List[models.User])
+
+@FriendList = @{controllers.Relationship.friendsPending(user)}
+
+@headfill = {	 
+		<!-- This meta tages is for G+ snippet rendering -->
+		
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFriends.css")">
+}
+
+@farsiEdition.FaMain("Friends")(headfill){
+<!-- header -->
+}{
+<!-- left panel -->
+}{
+<!-- right panel -->
+}
