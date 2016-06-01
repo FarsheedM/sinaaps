@@ -53,7 +53,119 @@ public class Relationship extends Controller{
 
 
 	}
-	//public static Result acceptFriend{}
+	/*The user has the choice to confirm or to decline the request by deleting it.
+	 *To confirm: the 'status' in the Relationship will be changed to 1.*/
+	public static Result acceptFriendRequest(String lang,String pendingUserEmail){
+		
+		User pendingUser = User.find.byId(pendingUserEmail);
+		if(lang.equals("english")){
+			//to be implemented
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				return redirect(routes.Settings.showFriends(lang,usr.email));
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"You should log in first in order to be able to add friends."));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				//Here is the actual code to change the 'status' to accepted friend
+				models.Relationship rel;
+				try{
+					rel = models.Relationship.find.where()
+							.disjunction()
+								.conjunction()
+									.eq("user1", usr)
+									.eq("user2", pendingUser)
+								.endJunction()
+								.conjunction()
+									.eq("user1", pendingUser)
+									.eq("user2", usr)
+								.endJunction()
+							.endJunction()
+							.eq("status", 0).not(Expr.eq("actionuser", usr)).findUnique();
+							
+				} catch(NullPointerException e) {
+					e.printStackTrace();
+					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در در افزودن به لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
+				}
+				if(rel == null)
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				else{
+					rel.status = 1;
+					rel.update();
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				}
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"برای افزودن به لیست دوستان خود، شما میبایست به سیستم وارد شوید."));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+		
+	}
+	
+	public static Result declineFriendRequest(String lang,String pendingUserEmail){
+		
+		User pendingUser = User.find.byId(pendingUserEmail);
+		if(lang.equals("english")){
+			//to be implemented
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				return redirect(routes.Settings.showFriends(lang,usr.email));
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"You should log in first in order to be able to add friends."));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				//Here is the actual code to change the 'status' to accepted friend
+				models.Relationship rel;
+				try{
+					rel = models.Relationship.find.where()
+							.disjunction()
+								.conjunction()
+									.eq("user1", usr)
+									.eq("user2", pendingUser)
+								.endJunction()
+								.conjunction()
+									.eq("user1", pendingUser)
+									.eq("user2", usr)
+								.endJunction()
+							.endJunction()
+							.eq("status", 0).not(Expr.eq("actionuser", usr)).findUnique();
+							
+				} catch(NullPointerException e) {
+					e.printStackTrace();
+					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در در افزودن به لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
+				}
+				if(rel == null)
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				else{
+					rel.status = 2;
+					rel.update();
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				}
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"برای افزودن به لیست دوستان خود، شما میبایست به سیستم وارد شوید."));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+	}
+	
 	
 	public static boolean checkFriendship(User user1,User user2){
 		
@@ -114,6 +226,7 @@ public class Relationship extends Controller{
 			return false;
 				
 	}
+	
 	public static List<User> friendList(User usr){
 		
 		List<models.Relationship> relList;
@@ -158,10 +271,10 @@ public class Relationship extends Controller{
 		try{
 			relList = models.Relationship.find.where()
 					.disjunction()
-						.conjunction()
+						
 							.eq("user1", usr)
 							.eq("user2", usr)
-						.endJunction()
+						
 					.endJunction()
 					.eq("status", 0).not(Expr.eq("actionuser", usr)).findList();
 					

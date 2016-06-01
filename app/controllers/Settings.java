@@ -31,20 +31,19 @@ public class Settings extends Controller{
 		return ok(views.html.farsiEdition.profile.render(user,called,bookList));
 	}
 
-	public static Result showFriends(){
+	public static Result showFriends(String lang,String userEmail){
 		
 		
 		//user is the person who is logged in
-		User user;
-		if(session().get("email") == null){
-				user = new User("Guest","dummyEmail","dummyPassword");
-				badRequest(veiws.alert.render(user,"You should not have been end up here!"))
+		User user = User.find.byId(userEmail);
+		if(user == null  || user.email == ""){
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return badRequest(views.html.farsiEdition.alert.render(guest,"You should not have been end up here!"));
 			}
 		else
 			{
-				user = User.find.byId(session().get("email"));
 				List<User> allFriends = Relationship.friendList(user);
-				return ok(views.farsiEdition.friends.render(user,allFriends));
+				return ok(views.html.farsiEdition.friends.render(user,allFriends));
 			}
 		
 	}

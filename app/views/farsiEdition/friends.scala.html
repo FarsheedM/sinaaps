@@ -1,6 +1,6 @@
 @(user :User)(friends : List[models.User])
 
-@FriendList = @{controllers.Relationship.friendsPending(user)}
+@friendsPendingList = @{controllers.Relationship.friendsPending(user)}
 
 @headfill = {	 
 		<!-- This meta tages is for G+ snippet rendering -->
@@ -11,8 +11,104 @@
 
 @farsiEdition.FaMain("Friends")(headfill){
 <!-- header -->
+
+        		<div id="socialBar">
+
+					@if(user.fName == "Guest"){
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					} else {
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					}
+					
+										
+					
+        			<div id="socialBarLeftFarsi">
+						<header id="socializingMenu">
+							<dl id="userFarsi">
+								
+								@if(user.fName != "Guest"){
+									<dt> @user.fName <span>@user.email</span></dt>
+									<dd><a href="@routes.Application.logout">خروج</a></dd>
+								} else {
+									<dt>وضعیت کاربر : <span>مهمان</span></dt>
+									<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+								}
+							</dl>
+						</header>
+        			</div><!-- socialBarLeftFarsi (loggedIn) -->
+        		</div><!-- socialBar -->
+        		
 }{
 <!-- left panel -->
+
+@if(friendsPendingList != null && friendsPendingList.length > 0){
+	<h3>pending Friends</h3>
+		@friendsPendingList.map{  pendingFriend => 
+		
+		<div class="elementList">
+			<a class="rightAlignedImage" href="" title=""><img src="@pendingFriend.photo" style="width:50px;height:66px;"></a>
+			<div class="friendInfo">
+				<a class="userLink" href="#">@pendingFriend.fName @pendingFriend.lName</a>
+				<br>
+				<a href="#">1 book</a>
+				|
+				<a href="#">2 friends</a>
+				<br>
+				<a href="#">add a story »</a>
+				<br>
+			</div>
+			<div class="statuses"><a href="@routes.Relationship.acceptFriendRequest("farsi",pendingFriend.email)">Confirm</a></div>
+			<div class="compareLink"><a href="@routes.Relationship.declineFriendRequest("farsi",pendingFriend.email)">decline</a></div>
+			<div class="clear"></div>
+		</div>
+		
+	}
+}
+
+
+@if(friends != null && friends.length > 0){
+	<h3>friends</h3>
+	
+	@friends.map{ friend =>
+		
+		<div class="elementList">
+			<a class="rightAlignedImage" href="" title=""><img src="@friend.photo" style="width:50px;height:66px;"></a>
+			<div class="friendInfo">
+				<a class="userLink" href="#">@friend.fName @friend.lName</a>
+				<br>
+				<a href="#">1 book</a>
+				|
+				<a href="#">2 friends</a>
+				<br>
+				<a href="#">add a story »</a>
+				<br>
+			</div>
+			<div class="statuses"></div>
+			<div class="compareLink"></div>
+			<div class="clear"></div>
+		</div>
+	}
+}
+
+
 }{
 <!-- right panel -->
 }
