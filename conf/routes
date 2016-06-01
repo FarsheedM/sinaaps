@@ -53,8 +53,10 @@ POST    /farsi/event                 controllers.Event.register()
 #
 GET 	/:lang/userEmail=:userEmail		  controllers.Settings.showProfile(lang : String, userEmail : String)
 GET     /alert/friendRequest			  controllers.Relationship.friendRequest(user1Email : String,user2Email : String)
-GET     /:lang/friend/user/:userEmail     controllers.Settings.showFriends(lang:String,userEmail:String)
+GET     /:lang/friend/user/:called     controllers.Settings.showFriends(lang:String,called:String)
 GET     /:lang/user/acc			      controllers.Relationship.acceptFriendRequest(lang:String,pendingUserEmail:String)
 GET     /:lang/user/dec		          controllers.Relationship.declineFriendRequest(lang:String,pendingUserEmail:String)
+GET 	/:lang/user/unf			  	  controllers.Relationship.unfriend(lang:String,userToBeUnfriended:String)
+GET 	/:lang/user/blo 			  controllers.Relationship.blockUser(lang:String,userToBeBlocked:String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

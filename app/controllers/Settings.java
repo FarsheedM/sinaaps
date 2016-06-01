@@ -22,28 +22,29 @@ public class Settings extends Controller{
 			user = User.find.byId(session().get("email"));
 		}
 		
-		//TO BE IMPLEMENTED: the books of the called user should be retrieved 
-		List<Book> bookList = Book.find.all();
-		
-		
 		//called is the person whose profile is to be seen
 		User called = User.find.byId(calledEmail);
+		
+		//the books of the called user will be retrieved 
+		List<Book> bookList = BookUser.userBookList(called);
+		
+
 		return ok(views.html.farsiEdition.profile.render(user,called,bookList));
 	}
 
-	public static Result showFriends(String lang,String userEmail){
+	public static Result showFriends(String lang,String calledUserEmail){
 		
-		
-		//user is the person who is logged in
-		User user = User.find.byId(userEmail);
-		if(user == null  || user.email == ""){
-				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return badRequest(views.html.farsiEdition.alert.render(guest,"You should not have been end up here!"));
+		//The logged user
+		User user = User.find.byId(session().get("email"));
+		//called is the person whose friends are called
+		User called = User.find.byId(calledUserEmail);
+		if(called == null  || called.email == ""){
+				return badRequest(views.html.farsiEdition.alert.render(user,"Problem by the friends of the called user!"));
 			}
 		else
 			{
-				List<User> allFriends = Relationship.friendList(user);
-				return ok(views.html.farsiEdition.friends.render(user,allFriends));
+				List<User> allFriends = Relationship.friendList(called);
+				return ok(views.html.farsiEdition.friends.render(user,allFriends,called));
 			}
 		
 	}

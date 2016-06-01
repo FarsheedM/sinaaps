@@ -31,7 +31,7 @@ public class Relationship extends Controller{
 			
 			if(isBlocked(user2,user1)){
 				//checks if user2 has already blocked user1 to prevent him from further friendRequest
-				return ok(views.html.farsiEdition.alert.render(user1, "متاسفانه "+ user2.fName + "شما را بلوکه کرده اند. شما نمیتوانید ایشان را به لیست دوستان خود بیفزایید . "));
+				return ok(views.html.farsiEdition.alert.render(user1, " متاسفانه "+ user2.fName + " شما را بلوکه کرده اند. شما نمیتوانید ایشان را به لیست دوستان خود بیفزایید . "));
 			}
 			else{
 				List<models.Relationship> relList = models.Relationship.find.all();
@@ -89,12 +89,13 @@ public class Relationship extends Controller{
 							
 				} catch(NullPointerException e) {
 					e.printStackTrace();
-					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در در افزودن به لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
+					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در افزودن به لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
 				}
 				if(rel == null)
 					return redirect(routes.Settings.showFriends(lang,usr.email));
 				else{
 					rel.status = 1;
+					rel.actionuser = usr;
 					rel.update();
 					return redirect(routes.Settings.showFriends(lang,usr.email));
 				}
@@ -145,12 +146,13 @@ public class Relationship extends Controller{
 							
 				} catch(NullPointerException e) {
 					e.printStackTrace();
-					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در در افزودن به لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
+					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در افزودن به لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
 				}
 				if(rel == null)
 					return redirect(routes.Settings.showFriends(lang,usr.email));
 				else{
 					rel.status = 2;
+					rel.actionuser = usr;
 					rel.update();
 					return redirect(routes.Settings.showFriends(lang,usr.email));
 				}
@@ -166,6 +168,118 @@ public class Relationship extends Controller{
 		}
 	}
 	
+	//unfriend
+	public static Result unfriend(String lang,String userToBeUnfriended){
+		
+		User unfriended = User.find.byId(userToBeUnfriended);
+		
+		if(lang.equals("english")){
+			//English version to be implemented
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				return redirect(routes.Settings.showFriends(lang,usr.email));
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"You should log in first in order to be able to add friends."));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				//Here is the actual code to change the 'status' to accepted friend
+				models.Relationship rel;
+				try{
+					rel = models.Relationship.find.where()
+							.disjunction()
+								.conjunction()
+									.eq("user1", usr)
+									.eq("user2", unfriended)
+								.endJunction()
+								.conjunction()
+									.eq("user1", unfriended)
+									.eq("user2", usr)
+								.endJunction()
+							.endJunction()
+							.eq("status", 1).findUnique();
+							
+				} catch(NullPointerException e) {
+					e.printStackTrace();
+					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
+				}
+				if(rel == null)
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				else{
+					rel.delete();
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				}
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"شما میبایست به سیستم وارد شوید."));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+		
+	}
+	//block the user
+	public static Result blockUser(String lang, String userToBeBlocked){
+		User blockedUser = User.find.byId(userToBeBlocked);
+		
+		if(lang.equals("english")){
+			//English version to be implemented
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				return redirect(routes.Settings.showFriends(lang,usr.email));
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"You should log in first in order to be able to block a friend."));
+			}	
+		}else if(lang.equals("farsi")){
+			if(session().containsKey("email")){
+				User usr = User.find.byId(session().get("email"));
+				//Here is the actual code to change the 'status' to accepted friend
+				models.Relationship rel;
+				try{
+					rel = models.Relationship.find.where()
+							.disjunction()
+								.conjunction()
+									.eq("user1", usr)
+									.eq("user2", blockedUser)
+								.endJunction()
+								.conjunction()
+									.eq("user1", blockedUser)
+									.eq("user2", usr)
+								.endJunction()
+							.endJunction()
+							.eq("status", 1).findUnique();
+							
+				} catch(NullPointerException e) {
+					e.printStackTrace();
+					return ok(views.html.farsiEdition.alert.render(usr,"ببخشید؛ مشکل فنی‌ در لیست دوستان شما وجود دارد. لطفا بعدا دوباره امتحان کنید."));
+				}
+				if(rel == null)
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				else{
+					rel.status = 3;
+					rel.actionuser = usr;
+					rel.update();
+					return redirect(routes.Settings.showFriends(lang,usr.email));
+				}
+			}
+			else{
+				User guest = new User("Guest","dummyEmail","dummyPassword");
+				return ok(views.html.farsiEdition.alert.render(guest,"شما میبایست به سیستم وارد شوید."));
+			}
+		}
+		else{
+			//if neither english nor farsi is selected
+			return badRequest("ERROR : The entered Language is not supported! PLease choose either Farsi or English");
+		}
+	}
 	
 	public static boolean checkFriendship(User user1,User user2){
 		

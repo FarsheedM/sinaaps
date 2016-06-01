@@ -2,14 +2,15 @@
 
 <!-- -----------------------------فارسی-------------------------- -->
 
+		<!--TODO: a method readingBook(usr) should be implemented for here -->
 		@TESTreadingBook = @{books.head}
-
 		@bookTranslation = @{BookTranslation.getBookDetails(TESTreadingBook.bookID,"farsi")}
 		@authorList = @{BookAuthor.getAuthorList(TESTreadingBook.bookID)}
+		
 		<!-- This is used to get only one Author in the case of multiple one -->
 		@author1 = @{BookAuthor.getAuthorList(TESTreadingBook.bookID).get(0)}
 		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
-
+		
 		@areFriends = @{controllers.Relationship.checkFriendship(user,called)}
 		@friendsInCommon = @{controllers.Relationship.friendsInCommon(user,called)}
 		@FriendList = @{controllers.Relationship.friendList(called)}
@@ -108,8 +109,10 @@
 	
 	<div id="favoriteBooks">
 		<div class="title">کتابهای مورد علاقهِ "@called.fName"</div>
-		@books.take(12).map{ book =>
-			<a><img alt="" src="@book.photo"></a>
+		@if(books.length != 0){
+			@books.take(12).map{ book =>
+				<a><img alt="" src="@book.photo"></a>
+			}
 		}
 	</div>
 	<div id="clear"></div>
@@ -120,34 +123,36 @@
 		<div class="shelfContainer"><a href="">در حال مطالعه</a></div>
 		<div class="shelfContainer"><a href="">خواهم خواند</a></div>
 	</div>
-	<div id="currentlyReading">
-		<div class="title">"@called.fName" در حال مطالعه این کتاب(ها) است</div>
-		<div id="currentlyReadingReviews">
-			<div class="firstcol">
-				<a href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)" title="bookTitle"><img alt="" src="@TESTreadingBook.photo"></a>
-			</div>
-			<div class="secondcol">
-				<div class="userReview">
-					<strong>"@called.fName" این کتاب را ارزیابی کرده است</strong>
-					<span class="staticStars">
-						<span class="staticStar p10" size="15x15" title="really liked it">really liked it</span>
-						<span class="staticStar p10" size="15x15" title="really liked it"></span>
-						<span class="staticStar p10" size="15x15" title="really liked it"></span>
-						<span class="staticStar p10" size="15x15" title="really liked it"></span>
-						<span class="staticStar p0" size="15x15" title="really liked it"></span>
-					</span>
+	
+	@if(books.length != 0){
+		<div id="currentlyReading">
+			<div class="title">"@called.fName" در حال مطالعه این کتاب است</div>
+			<div id="currentlyReadingReviews">
+				<div class="firstcol">
+					<a href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)" title="bookTitle"><img alt="" src="@TESTreadingBook.photo"></a>
 				</div>
-				<div id="bookTitle">
-					<a class="bookTitle" href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)">@bookTranslation.title</a>
-				</div>
-				<div>
-					<span class="by smallText">نوشته</span>
-					<a class="authorName" href="#">@authorDetail.fName @authorDetail.lName</a>
+				<div class="secondcol">
+					<div class="userReview">
+						<strong>"@called.fName" این کتاب را ارزیابی کرده است</strong>
+						<span class="staticStars">
+							<span class="staticStar p10" size="15x15" title="really liked it">really liked it</span>
+							<span class="staticStar p10" size="15x15" title="really liked it"></span>
+							<span class="staticStar p10" size="15x15" title="really liked it"></span>
+							<span class="staticStar p10" size="15x15" title="really liked it"></span>
+							<span class="staticStar p0" size="15x15" title="really liked it"></span>
+						</span>
+					</div>
+					<div id="bookTitle">
+						<a class="bookTitle" href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)">@bookTranslation.title</a>
+					</div>
+					<div>
+						<span class="by smallText">نوشته</span>
+						<a class="authorName" href="#">@authorDetail.fName @authorDetail.lName</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
+	}
 	<div id="clear"></div>
 		
 		
@@ -177,17 +182,22 @@
 		<h3> (@FriendList.length) دوستان @called.fName</h3>
 
 		@FriendList.take(7).map{ friend => 
+				@defining(controllers.Relationship.friendList(friend)) { friendList =>
+					@defining(BookUser.userBookList(friend)) { bookList =>
 					<div>
 						<a class="rightAlignedImage" href="@routes.Settings.showProfile("farsi",friend.email)"><img src="@friend.photo" style="width:50px;height:66px;"></a>
 						<div class="right">
 							<div class="friendName">@friend.fName @friend.lName</div>
-								23 books
+								@bookList.length کتاب
 								<span class="greyText">|</span>
-								74 friends 
+								@friendList.length دوست 
 						</div>
 					</div>
+					<div id="clear"></div>
+					}
+				}
 		}
-
+		<div><a href="@routes.Settings.showFriends("farsi",called.email)">show all</a></div>
 	</div>
 	
 }

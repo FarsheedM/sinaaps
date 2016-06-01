@@ -1,6 +1,7 @@
-@(user :User)(friends : List[models.User])
+@(user :User)(friends : List[models.User], called : User)
 
 @friendsPendingList = @{controllers.Relationship.friendsPending(user)}
+
 
 @headfill = {	 
 		<!-- This meta tages is for G+ snippet rendering -->
@@ -59,53 +60,65 @@
 }{
 <!-- left panel -->
 
-@if(friendsPendingList != null && friendsPendingList.length > 0){
-	<h3>pending Friends</h3>
-		@friendsPendingList.map{  pendingFriend => 
-		
-		<div class="elementList">
-			<a class="rightAlignedImage" href="" title=""><img src="@pendingFriend.photo" style="width:50px;height:66px;"></a>
-			<div class="friendInfo">
-				<a class="userLink" href="#">@pendingFriend.fName @pendingFriend.lName</a>
-				<br>
-				<a href="#">1 book</a>
-				|
-				<a href="#">2 friends</a>
-				<br>
-				<a href="#">add a story »</a>
-				<br>
+
+@if(user == called){
+	@if(friendsPendingList != null && friendsPendingList.length > 0){
+		<h3>pending Friends</h3>
+			@friendsPendingList.map{  pendingFriend => 
+				@defining(controllers.Relationship.friendList(pendingFriend)) { friendList =>
+					@defining(BookUser.userBookList(pendingFriend)) { bookList =>
+			<div class="elementList">
+				<a class="rightAlignedImage" href="@routes.Settings.showProfile("farsi",pendingFriend.email)" title=""><img src="@pendingFriend.photo" style="width:50px;height:66px;"></a>
+				<div class="friendInfo">
+					<a class="userLink" href="#">@pendingFriend.fName @pendingFriend.lName</a>
+					<br>
+					<a href="#">@bookList.length کتاب</a>
+					|
+					<a href="#">@friendList.length دوست</a>
+					<br>
+					<a href="#">add a story »</a>
+					<br>
+				</div>
+				<div class="statuses"><a href="@routes.Relationship.acceptFriendRequest("farsi",pendingFriend.email)">Confirm</a></div>
+				<div class="compareLink"><a href="@routes.Relationship.declineFriendRequest("farsi",pendingFriend.email)">decline</a></div>
+				<div class="clear"></div>
 			</div>
-			<div class="statuses"><a href="@routes.Relationship.acceptFriendRequest("farsi",pendingFriend.email)">Confirm</a></div>
-			<div class="compareLink"><a href="@routes.Relationship.declineFriendRequest("farsi",pendingFriend.email)">decline</a></div>
-			<div class="clear"></div>
-		</div>
-		
+				 }
+			  }
+		}
 	}
 }
 
-
 @if(friends != null && friends.length > 0){
-	<h3>friends</h3>
-	
+	<h3><a href="@routes.Settings.showProfile("farsi",called.email)">@called.fName</a>
+			 > دوستان</h3>
+			 
 	@friends.map{ friend =>
-		
+		@defining(controllers.Relationship.friendList(friend)) { friendList =>
+			@defining(BookUser.userBookList(friend)) { bookList =>
 		<div class="elementList">
-			<a class="rightAlignedImage" href="" title=""><img src="@friend.photo" style="width:50px;height:66px;"></a>
+			<a class="rightAlignedImage" href="@routes.Settings.showProfile("farsi",friend.email)" title=""><img src="@friend.photo" style="width:50px;height:66px;"></a>
 			<div class="friendInfo">
 				<a class="userLink" href="#">@friend.fName @friend.lName</a>
 				<br>
-				<a href="#">1 book</a>
+				<a href="#">@bookList.length کتاب</a>
 				|
-				<a href="#">2 friends</a>
+				<a href="#">@friendList.length دوست</a>
 				<br>
 				<a href="#">add a story »</a>
 				<br>
 			</div>
-			<div class="statuses"></div>
-			<div class="compareLink"></div>
+			}
+		}
+			@if(user == called){
+				<div class="statuses"><a href="@routes.Relationship.unfriend("farsi",friend.email)">unfriend</a></div>
+				<div class="compareLink"><a href="@routes.Relationship.blockUser("farsi",friend.email)">block</a></div>
+			}
 			<div class="clear"></div>
 		</div>
 	}
+}else{
+	<p>Unfortunately @called.fName has no friend yet.</p>
 }
 
 

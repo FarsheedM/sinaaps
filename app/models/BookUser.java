@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -74,4 +75,14 @@ public class BookUser extends Model{
 		else
 		    return false;
 	}
+	//The list of the books of the given user
+	public static List<Book> userBookList(User usr){
+		
+		List<BookUser> buList = BookUser.find.where().eq("user", usr).findList();
+		List<Book> bookLst = new ArrayList<Book>();
+		for(BookUser bu : buList){
+			bookLst.add(bu.book);
+		}
+		return bookLst;
+	} 
 }
