@@ -120,7 +120,7 @@ public class Books extends Controller{
 		reviewForm.get().book= Book.find.byId(bookId);
 		reviewForm.get().user= User.find.byId(session().get("email"));
 		reviewForm.get().published = DateTime.now().toDate();
-		//commentForm.get().likes = 0 ;
+		//reviewForm.get().rating = 0 ;
 		
 
 

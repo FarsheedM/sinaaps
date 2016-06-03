@@ -114,13 +114,6 @@
 					<ul> 
 						<li><h1 itemprop="name">@bookTranslation.title</h1></li>
 						<li class="metaInfo">
-							<!--  <span>نوشته: @@author.fName @@author.lName</span> -->
-							 
-							<!-- @@for(a <- authorList){
-								
-								val author = views.html.AuthorTranslation.getAuthor(a.authorID,"farsi");
-								<span>نوشته: author.fName author.lName</span> 
-							} -->
 							نوشته 
 							@authorList.map{ a => 
 								<!--  @@author = views.html.AuthorTranslation.getAuthor(a.authorID,"farsi");-->
@@ -208,6 +201,7 @@
 						<section id="reviewForm">
 						
 							@helper.form(action = routes.Books.postReview("farsi",book.bookID), 'enctype -> "multipart/form-data"){
+								<!-- TODO:rating functionality should be implemented here -->
 								<textarea class="form" name="review" style="width:400px; height:50px" placeholder="نظر خود را راجع به این کتاب بنویسید" ></textarea>
 					        	<button class="subBtn" type="submit" value="post" formmethod="post">پست</button>
 							}

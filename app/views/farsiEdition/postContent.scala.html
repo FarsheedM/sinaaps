@@ -1,5 +1,7 @@
 @(post : BlogPost, user : User, commentForm : Form[BlogComment],comments : List[BlogComment])
 
+		@alreadyRated = @{BlogComment.isRatedBy(user,post)}
+		@blogAverageRating = @{BlogComment.getPostRating(post)}
 <!-- ----------------Farsi Edition ------------------------ -->
 
 @headfill = {	 
@@ -90,6 +92,36 @@
 
 	<div id="post" style="padding : 10px 30px 5px 20px;">
 		<div id="pt" ><h2>@post.title</h2></div>
+		
+		<div id="postRating" class="starRating">
+				  <div>
+				    <div>
+				      <div>
+				        <div>
+				          <input id="rating1" type="radio" name="postRating" value="1">
+				          <label for="rating1"><span>1</span></label>
+				        </div>
+				        <input id="rating2" type="radio" name="postRating" value="2">
+				        <label for="rating2"><span>2</span></label>
+				      </div>
+				      <input id="rating3" type="radio" name="postRating" value="3">
+				      <label for="rating3"><span>3</span></label>
+				    </div>
+				    <input id="rating4" type="radio" name="postRating" value="4">
+				    <label for="rating4"><span>4</span></label>
+				  </div>
+				  <input id="rating5" type="radio" name="postRating" value="5">
+				  <label for="rating5"><span>5</span></label>
+		</div>
+		<script>
+		var rates = document.getElementsByName('postRating');
+		var avg =  @blogAverageRating;
+		rates[avg-1].checked =true;
+		var ratingBox = document.getElementsById('postRating');	
+		//TODO: make the ratingBox unclickables
+		//ratingBox.inactive = true;
+		</script>
+		<div id="clear"></div>
 				<div id="resourceMeta">
 					<ul> 
 						<li id="topic">موضوع: @post.topic</li>
@@ -109,7 +141,7 @@
 		<br>
 		
 		<!-- -------------------------rating section to be implemented--------------------- -->
-		<!-- <div id="horizonLine"></div>
+
 		<br>
 		@if(user.fName == "Guest"){
 			<script type="text/javascript">
@@ -120,9 +152,13 @@
 				crp.style.display = "none";
 			</script>
 		}else{
-			لطفا به این مطلب امتیاز دهید:
+		
+			@if(!alreadyRated){
+			لطفا به این مطلب امتیاز دهید: (jahat sabt emtiyaaz dehi, mokhtaseran dar bakhsh nazaraat darbareh in maghaale benevisid.)
 			<br>
-			<div class="starRating">
+
+		
+			<div class="starRating" id="starRating" onclick="rateIt();">
 				  <div>
 				    <div>
 				      <div>
@@ -142,19 +178,26 @@
 				  <input id="rating5" type="radio" name="rating" value="5">
 				  <label for="rating5"><span>5</span></label>
 			</div>
+			}
 		}
-		<script type="text/javascript">
+ 		
+ 		<script type="text/javascript">
 			function rateIt(){
 				var rates = document.getElementsByName('rating');
-				var rate_value;
+				var rate_value=0;
 				for(var i = 0; i < rates.length; i++){
 				    if(rates[i].checked){
 				        rate_value = rates[i].value;
 				    }
 				}
+				var rateInput = document.getElementById("rating");
+				rateInput.value = rate_value;
+				document.getElementById("textArea").value = "#ریتینگ: "; 
 				return rate_value;
 			}
-		</script> -->
+
+		</script>
+		
 		<!-- ------------------------------end of rating --------------------- -->
 		<div id="clear"></div>	
 		<br>
@@ -180,17 +223,6 @@
 		<!-- ----------------------COMMENTING SECTION--------------------- -->
 		<fieldset>
 			<legend><h3> بخش نظرات </h3></legend>
-			<section id="commentContent">
-				@if(comments.isEmpty){
-					<p>تاکنون کسی‌ نظر نداده است. نخستین باشید.</p>
-				}
-				<!-- to load the previous comments -->
-				<ul id="commentList">
-					@comments.map{ comment =>
-										 <li>@views.html.comment(comment,user)</li>
-					}
-				</ul>
-			</section>
 			
 			@if(user.fName == "Guest"){
 				<script type="text/javascript">
@@ -205,12 +237,17 @@
 
 			}else{
 			<section id="commentComments">
-			
+
 				@helper.form(routes.Blog.postComment(post.language,post.postID)){
-					<textarea id="textArea" name="comment" style="width:400px;" placeholder="نظر خود را بنویسید" ></textarea>
-		        	<button id="btn" type="submit" value="post" formmethod="post">پست</button>
+					<input id="rating" type="hidden" name="rating">
+					<textarea class="form" id="textArea" name="comment" placeholder="نظر خود را بنویسید" ></textarea>
+		        	<button class="subBtn" id="btn" type="submit" value="post" formmethod="post">پست</button>
 				}
-				        
+	        	<script>
+					//this is to initialize the Rating to the zero.
+					var rateInputInitial = document.getElementById("rating");
+					rateInputInitial.value = 0;
+	        	</script>
 		        @if(commentForm.hasGlobalErrors){
 		        	<p id="error"> @commentForm.globalError.message </p>
 		        }else{
@@ -218,8 +255,24 @@
 							//document.getElementById('commentComments').scrollIntoView();
 					</script>
 		        }
+		    }    
 			</section>
-			}
+			
+			<section id="commentContent">
+				@if(comments.isEmpty){
+					<p>تاکنون کسی‌ نظر نداده است. نخستین باشید.</p>
+				}
+				<!-- to load the previous comments -->
+				<ul id="commentList">
+					@comments.map{ comment =>
+										 <li>@views.html.comment(comment,user)</li>
+					}
+				</ul>
+			</section>
+			
+			
+			
+
 		</fieldset>
 		<!-- --------------------------end of Commenting-------------------- -->
 		

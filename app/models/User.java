@@ -9,6 +9,8 @@ import play.data.validation.Constraints.Required;
 
 import javax.persistence.*;
 
+import org.joda.time.DateTime;
+
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
@@ -33,6 +35,8 @@ public class User extends Model{
 	//false is male , and true female
 	@Required
 	public boolean gender;
+	@Formats.DateTime(pattern = "yyyy-mm-dd")
+	public Date registrationDate;
 	
 	public User(String fName,String lName,String email,
 			String password,int d,int m,int y,String address,String photo,boolean gender){
@@ -40,16 +44,16 @@ public class User extends Model{
 		this.lName= lName;
 		this.email= email;
 		this.password= password;
-		//this.birthdate= birthdate;
 		this.day=d;
 		this.month=m;
 		this.year=y;
 		this.address= address;
 		this.photo = photo;
 		this.gender=gender;
+		//registrationDate set to the current date of the machine.
+		this.registrationDate= DateTime.now().toDate();
 	}
-	//NOTE:this constructor set the address and lastname "unknown" and 
-	//birthdate set to the current date of the machine.
+	//NOTE:this constructor set the address and lastname "unknown" 
 	public User(String fName,String email,String password){
 		this.fName= fName;
 		this.lName= "unknown";

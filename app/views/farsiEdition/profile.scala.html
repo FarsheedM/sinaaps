@@ -30,12 +30,12 @@
 					@if(user.fName == "Guest"){
 					   <div id="socialBarRightFarsi">
 							<ul id="SNIcons" style="padding-left : 15px;">
-								<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
-								<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
-								<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
-								<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
-								<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
-								<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/homeInactive.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/friendsInactive.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/messageInactive.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/notificationInactive.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/profileInactive.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/settingsInactive.png")" alt="settings" width="20px" height="20px"></a></li>
 							</ul>
 						</div><!-- socialBarRightFarsi -->
 					} else {
@@ -92,8 +92,8 @@
 		
 		<div id="userInfoBox">
 			<h3 class="userProfileName">@called.fName  @called.lName</h3>
-			<div class="infoBoxRowTitle">جزئیات</div>
-			<div class="infoBoxRowItem">تاریخ تولد : @called.month @called.day</div>
+			<div class="infoBoxRowTitle">تاریخ عضویت در فارسی ریدز : @called.registrationDate.format("dd.MM.yyyy")</div>
+			<div class="infoBoxRowItem">تاریخ تولد : @called.day /@called.month /@called.year</div>
 			<div id="clear"></div>
 <!--  			<div class="infoBoxRowTitle">فعالیت</div>
 			<div class="infoBoxRowItem"></div> --> 
@@ -197,7 +197,9 @@
 					}
 				}
 		}
-		<div><a href="@routes.Settings.showFriends("farsi",called.email)">show all</a></div>
+		@if(user.fName != "Guest"){
+			<div><a href="@routes.Settings.showFriends("farsi",called.email)">نمایش همه دوستان</a></div>
+		}
 	</div>
 	
 }
