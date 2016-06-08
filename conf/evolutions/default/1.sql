@@ -99,6 +99,7 @@ added_to_vl timestamp;
 finished boolean,
 reading boolean,
 to_read boolean,
+book_rating int,
 primary key (id),
 foreign key (book_id) references  book (book_id),
 foreign key (user_email) references  user (email)

@@ -37,7 +37,6 @@ public class BookUser extends Model{
 		this.finished = b;
 		this.reading = c;
 		this.toRead = d;
-		
 	}
 
 
@@ -57,6 +56,8 @@ public class BookUser extends Model{
 	public boolean finished;
 	public boolean reading;
 	public boolean toRead;
+	//default value is 0, indicates the unrated
+	public int bookRating;
 	
 	
 	public static Finder<Integer,BookUser> find = new Finder<Integer,BookUser>
@@ -85,4 +86,5 @@ public class BookUser extends Model{
 		}
 		return bookLst;
 	} 
+
 }

@@ -482,6 +482,63 @@ public class Books extends Controller{
 				return badRequest("ERROR : no such BookUserId!");
 			}
 	}
-
+	
+	/*The following methods are to implement rating functionality*/
+	public static Result rateTheBook(String usrEmail, Integer bookId, Integer rating){
+		Book bk = Book.find.byId(bookId);
+		User usr = User.find.byId(usrEmail);
+		//the user can ONLY rate the books which have been already added to his shelf.
+		BookUser bu = BookUser.find.where().eq("user", usr).eq("book", bk).findUnique();
+		bu.bookRating = rating;
+		bu.update();
+		
+		//if a user rates a book, the 'userRating'in the Book, will be updated.
+		//the new average Rating should be placed in the 'userRating'
+		int ratingsTotal=0;
+		int userWhoHasRated = 0;
+		List<BookUser> listOfBookUserWithaGivenBook = BookUser.find.where().eq("book", bk).findList();
+		for(BookUser buRate : listOfBookUserWithaGivenBook){
+			ratingsTotal += buRate.bookRating;
+			//if the user did not rate the post, his is excluded in overall rating
+			if(buRate.bookRating != 0)
+				userWhoHasRated ++;
+		}
+		int avgRating = 0;
+		if(userWhoHasRated != 0)
+			avgRating = Math.round(ratingsTotal/userWhoHasRated);
+		
+		updateBooksUserRating(bookId, avgRating);
+		String jsonInfo = "{\"wasRated\":\""+"Thanks, you rated this book."+
+				"\", \"rating\":\""+rating.toString()+"\"} ";
+		return ok(jsonInfo);
+	}
+	public static void updateBooksUserRating(Integer bookId, int newRate){
+		Book bk = Book.find.byId(bookId);
+		bk.userRating = newRate;
+		bk.update();
+	}
+	public static Result getBooksUserRating(Integer bookId){
+		Book bk = Book.find.byId(bookId);
+		Integer rating = bk.userRating;
+		//following code to retrieve the BookUser model and return the 'bookRating' of given logged user
+		//It is used in the bookProfile view, the AJAX GET call.
+		User usr=null;
+		BookUser bu = null;
+		try {
+			usr = User.find.byId(session().get("email"));
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(usr != null){
+			bu = BookUser.find.where().eq("user", usr).eq("book",bk).findUnique();
+		}
+		Integer bookUserRating = 0;
+		if(bu != null){
+			bookUserRating = bu.bookRating;
+		} 
+		String jsonInfo = "{\"userRating\":\""+rating.toString()+"\",\"bookRating\":\""+bookUserRating.toString()+"\"} ";
+		return ok(jsonInfo);
+	}
 	
 }

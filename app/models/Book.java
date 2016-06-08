@@ -28,8 +28,5 @@ public class Book extends Model{
 	
 	public static Finder<Integer,Book> find = new Finder<Integer,Book>
 															(Integer.class,Book.class);
-	
-	
-
-	
+		
 }
