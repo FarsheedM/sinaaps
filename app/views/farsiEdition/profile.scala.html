@@ -2,16 +2,16 @@
 
 <!-- -----------------------------فارسی-------------------------- -->
 
-		<!--TODO: a method readingBook(usr) should be implemented for here -->
-
-		@TESTreadingBook = @{books.head}
-		@bookTranslation = @{BookTranslation.getBookDetails(TESTreadingBook.bookID,"farsi")}
-		@authorList = @{BookAuthor.getAuthorList(TESTreadingBook.bookID)}
+		
+		@readingBooks = @{Books.latestReadingBooksby(called)}
+		@latestReadingBook = @{readingBooks.head}
+		@bookTranslation = @{BookTranslation.getBookDetails(latestReadingBook.bookID,"farsi")}
+		@authorList = @{BookAuthor.getAuthorList(latestReadingBook.bookID)}
 		 
 
 		
 		<!-- This is used to get only one Author in the case of multiple one -->
-		@author1 = @{BookAuthor.getAuthorList(TESTreadingBook.bookID).get(0)}
+		@author1 = @{BookAuthor.getAuthorList(latestReadingBook.bookID).get(0)}
 		@authorDetail = @{AuthorTranslation.getAuthor(author1.authorID,"farsi")}
 		
 		@areFriends = @{controllers.Relationship.checkFriendship(user,called)}
@@ -26,14 +26,14 @@
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiSettings.css")">
 		<script src="@routes.Assets.at("javascripts/jquery-1.11.3.js")" type="text/javascript"></script>
 
-	@if(books.length != 0){
+	@if(readingBooks.length != 0){
 		<script type="text/javascript">			
 
 		$(document).ready(function() { 
 				      		     
 				$.ajax({
 				            type : 'GET',
-				            url : '@controllers.routes.Books.getBooksUserRating(TESTreadingBook.bookID)',
+				            url : '@controllers.routes.Books.getBooksUserRating(readingBooks(0).bookID,called.email)',
 				            dataType : "json",
 				            success : function(data) {	
 				                 //the average rating of the book, placed in the Book model.(Displayed on top)
@@ -57,7 +57,7 @@
 				  return false;  				        
 		});	
 		</script>
-	}
+	
 		<script type="text/javascript">
 	    	//this code is do disable the Bookrating stars
 	 	    $(document).ready(function() {
@@ -68,6 +68,8 @@
 		    	document.getElementById("rating5").disabled=true;
 		    }); 
    		</script>
+   	}<!-- end of if -->	
+   		
 }
 		
 @farsiEdition.FaMain("تنظیمات")(headfill){
@@ -166,17 +168,17 @@
 	
 	<div id="userBookShelf">
 		<div class="title">قفسه کتاب "@called.fName"</div>
-		<div class="shelfContainer"><a href="">خوانده شده</a></div>
-		<div class="shelfContainer"><a href="">در حال مطالعه</a></div>
-		<div class="shelfContainer"><a href="">خواهم خواند</a></div>
+		<div class="shelfContainer"><a href="@routes.Books.showShelfAll("farsi", called.email)">خوانده شده</a></div>
+		<div class="shelfContainer"><a href="@routes.Books.showShelfAll("farsi", called.email)">در حال مطالعه</a></div>
+		<div class="shelfContainer"><a href="@routes.Books.showShelfAll("farsi", called.email)">خواهم خواند</a></div>
 	</div>
 	
-	@if(books.length != 0){
+	@if(readingBooks.length != 0){
 		<div id="currentlyReading">
 			<div class="title">"@called.fName" در حال مطالعه این کتاب است</div>
 			<div id="currentlyReadingReviews">
 				<div class="firstcol">
-					<a href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)" title="bookTitle"><img alt="" src="@TESTreadingBook.photo"></a>
+					<a href="@routes.Books.showBookProfile("farsi",latestReadingBook.bookID)" title="bookTitle"><img alt="" src="@latestReadingBook.photo"></a>
 				</div>
 				<div class="secondcol">
 					<div class="userReview">
@@ -212,7 +214,7 @@
 						</span> -->
 					</div>
 					<div id="bookTitle">
-						<a class="bookTitle" href="@routes.Books.showBookProfile("farsi",TESTreadingBook.bookID)">@bookTranslation.title</a>
+						<a class="bookTitle" href="@routes.Books.showBookProfile("farsi",latestReadingBook.bookID)">@bookTranslation.title</a>
 					</div>
 					<div>
 						<span class="by smallText">نوشته</span>
@@ -237,12 +239,12 @@
 			
 			@friendsInCommon.take(6).map{ freindInCommon =>
 			
-			<div class="left" style="text-align:center;width:85px;overflow:hidden;">
-				<a href="#"><img src="@freindInCommon.photo"></a>
-				<br>
-				<a href="#">@freindInCommon.fName</a>
+			<div>
+				<a class="rightAlignedImage" href="@routes.Settings.showProfile("farsi",freindInCommon.email)"><img src="@freindInCommon.photo" style="width:50px;height:66px;"></a>
+				
+				<div class="friendName">@freindInCommon.fName @freindInCommon.lName</div>
 			</div>
-			
+			<div id="clear"></div>
 			}
 		</div>
 	}

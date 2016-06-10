@@ -39,7 +39,7 @@ POST 	/:lang/book/shelfAll/deleted=:bookUserId  controllers.Books.deleteFromShel
 POST 	/:lang/book/shelfAll/movedToRead	  controllers.Books.moveToShelfRead(bookUserId : Integer,lang : String)
 POST 	/:lang/book/shelfAll/movedToReading	  controllers.Books.moveToShelfReading(bookUserId : Integer,lang : String)
 POST 	/:lang/book/shelfAll/movedToToRead	  controllers.Books.moveToShelfToRead(bookUserId : Integer,lang : String)
-GET   	/farsi/getAverageOfUserRating		    	  controllers.Books.getBooksUserRating(bookId :Integer)
+GET   	/farsi/getAverageOfUserRating		    	  controllers.Books.getBooksUserRating(bookId :Integer,ratedByUser:String)
 POST    /farsi/rateTheBook  				  controllers.Books.rateTheBook(userEmail:String,bookID:Integer, rate:Integer)
 #
 POST	/:lang/services              controllers.Services.sendFeedBack(lang : String)

@@ -44,17 +44,19 @@
 				      		     
 				$.ajax({
 				            type : 'GET',
-				            url : '@controllers.routes.Books.getBooksUserRating(book.bookID)',
+				            url : '@controllers.routes.Books.getBooksUserRating(book.bookID,user.email)',
 				            dataType : "json",
 				            success : function(data) {	
-				                 //the average rating of the book, placed in the Book model.(Displayed on top)
+				                 //the average rating of the book, placed in the Book model; 'userRating'.(Displayed on top)
 				                 var rates = document.getElementsByName('postRating');
 				         		 var avg =  data.userRating;
 				         		 rates[avg-1].checked =true;
 				         		 //the rating of the logged user; it can be changed by the Books.rateTheBook()
 				         		 var user_rating = data.bookRating;
 				         		 var star_rating = document.getElementsByName('rating');
-				         		 star_rating[user_rating-1].checked =true;
+				         		 //TODO : to check the return value of getElementBy...
+				         		 if(star_rating != null)
+				         			 star_rating[user_rating-1].checked =true;
 				         		 
 				                return true;
 				            },
@@ -138,7 +140,7 @@
 					<!-- it does not display the add to the VL Btn if the user is not logged in -->
 
 				} else {
-					@if(bookAlreadyInVL || bookAlreadyInVL == null){
+					@if(bookAlreadyInVL){
 					<!-- book is already in BookUser DB in VL -->
 					} else {
 					<div class=""></div>
@@ -205,7 +207,7 @@
 			<div id="clear"></div>
 			<div id="rateBox">
 				<p>(you need to add this book to your personal library in order to be able to rate it)</p>
-			@if(bookAlreadyInVL && bookAlreadyInVL != null){
+			@if(bookAlreadyInVL){
 				<p>please rate this book:</p>
 				
 				<div class="starRating" id="starRating" onclick="rateIt();">
@@ -231,7 +233,7 @@
 			}	
 				
 			<script type="text/javascript">
-				//TODO:AJAX function
+				//AJAX function to update the user Rating of the book
 				function rateIt() { 	
 					var rates = document.getElementsByName('rating');
 					var rate_value=1;
@@ -342,7 +344,7 @@
 					        	<p id="error"> @reviewForm.globalError.message </p>
 					        }else{
 								<script type="text/javascript">
-										document.getElementById('reviewForm').scrollIntoView();
+										//document.getElementById('reviewForm').scrollIntoView();
 								</script>
 					        }
 						</section>

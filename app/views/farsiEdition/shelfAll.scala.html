@@ -60,7 +60,7 @@
 
 	<div id="leaderCol">
 		<div id="header">
-			<h3><a href="#">@caller.fName</a>
+			<h3><a href="@routes.Settings.showProfile("farsi",caller.email)">@caller.fName</a>
 			 > کتابها : همه</h3>
 		</div>
 	</div>
@@ -77,30 +77,35 @@
 		</thead>
 		
 		<tbody>
-			<!-- This iterates through all the books of a logged user -->
+			<!-- This iterates through all the books of a logged user, if any -->
+		@if(allBookUser.size() != 0)	{
+		
 			@allBookUser.map{ bookUser => 
 			<!-- these statements are used to get the book detail and author detail -->
 			@defining( BookTranslation.getBookDetails(bookUser.book.bookID,"farsi") ){bookTranslation => 
-			@defining(BookAuthor.getAuthorList(bookUser.book.bookID).get(0)){author1 => 
+				@defining(BookAuthor.getAuthorList(bookUser.book.bookID).get(0)){author1 => 
 					@defining( AuthorTranslation.getAuthor(author1.authorID,"farsi") ) { author => 
 		
 			<tr>
 				<td class="field cover">
-					<a href="#">
+					<a href="@routes.Books.showBookProfile("farsi", bookUser.book.bookID)">
 						<img style="display: block;width: 50px;" id="" src="@bookUser.book.photo" alt="@bookUser.book.isbn">
 					</a>
 				</td>
 				<td class="field title">@bookTranslation.title</td>
 				<td class="field author">@author.fName  @author.lName</td>
-				<td>@bookUser.addedToVl.format("dd-MM-yyyy (hh:mm)") </td>
+				<td>@bookUser.addedToVl.format("dd-MM-yyyy (hh:mm)") 
+					<br>
+					@BookUser.readingStatus(caller,bookUser.book)
+				</td>
 				<td>
+					@if(user == caller){
 					<!-- show the delete button  -->
-					@helper.form(routes.Books.deleteFromShelfAll(bookUser.id,"farsi")){
-						<input id="deleteBtn" type="submit" value="حذف کتاب" title="delete your post?">
-					}
+						@helper.form(routes.Books.deleteFromShelfAll(bookUser.id,"farsi")){
+							<input id="deleteBtn" type="submit" value="حذف کتاب" title="delete your post?">
+						}
 					
 					<!-- show the edit options  -->
-					@if(user == caller){
 					<ul id="editOptions">
 						@helper.form(routes.Books.moveToShelfRead(bookUser.id,"farsi")){
 							<li><input id="moveToRead" type="submit" value="خوانده شده" title="خوانده شده"></li>
@@ -120,6 +125,7 @@
 	
   	 		}}} 
   		 }<!-- the  'allBooks.map' ends here -->
+  		}<!-- if ends -->
   	   </tbody>
 
 	</table>

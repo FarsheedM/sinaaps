@@ -79,12 +79,46 @@ public class BookUser extends Model{
 	//The list of the books of the given user
 	public static List<Book> userBookList(User usr){
 		
-		List<BookUser> buList = BookUser.find.where().eq("user", usr).findList();
-		List<Book> bookLst = new ArrayList<Book>();
-		for(BookUser bu : buList){
-			bookLst.add(bu.book);
+		List<BookUser> buList;
+		try {
+			buList = BookUser.find.where().eq("user", usr).findList();
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			buList = null;
 		}
+		List<Book> bookLst = new ArrayList<Book>();
+		if(buList != null){	
+			for(BookUser bu : buList){
+				bookLst.add(bu.book);
+			}
+		}
+		
 		return bookLst;
 	} 
-
+	//to find out the status of the book if available
+	public static String readingStatus(User usr,Book bk){
+		String status = "";
+		BookUser bu;
+		try {
+			bu = BookUser.find.where().eq("user", usr).eq("book", bk).findUnique();
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			bu = null;
+		}
+		if(bu != null){
+			if(bu.finished){
+				status = "finished";
+			} else if(bu.reading){
+				status = "reading";
+			} else if(bu.toRead){
+				status = "toRead";
+			} else
+				status = "";
+		}
+		
+		return status;
+	}
+	
 }

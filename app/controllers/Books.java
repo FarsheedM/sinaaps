@@ -240,19 +240,22 @@ public class Books extends Controller{
 	public static Result showShelfAll(String lang, String callerEmail){
 
 		User usr = User.find.byId(session().get("email"));
+		//caller is the user whose info is interested. It is used to en-/ disable 
+		//the edit functionality in shelfAll views. 
+		User caller = User.find.byId(callerEmail);
+		
 		//getting all the books of a specific user
-		List<BookUser> listOfUsersBooks = BookUser.find.where().eq("user",usr).findList();
+		List<BookUser> listOfUsersBooks = BookUser.find.where().eq("user",caller).findList();
 		
 		List<Book> bookList = new ArrayList<Book>();
 		Book bk;
-		for( BookUser i : listOfUsersBooks){
-			bk = Book.find.byId(i.book.bookID);
-			bookList.add(bk);
+		if(listOfUsersBooks!= null){
+			for( BookUser i : listOfUsersBooks){
+				bk = Book.find.byId(i.book.bookID);
+				bookList.add(bk);
+			}
 		}
-		
-		//caller is the user who invokes the showShelfAll(). It is used to en-/ disable 
-		//the edit functionality in shelfAll views. 
-		User caller = User.find.byId(callerEmail);
+
 		
 		if(lang.equals("english")){
 			if(session().containsKey("email"))
@@ -482,6 +485,19 @@ public class Books extends Controller{
 				return badRequest("ERROR : no such BookUserId!");
 			}
 	}
+	//It returns the latest list of 'reading books' by the given user. It is invoked in profile view.
+	public static List<Book> latestReadingBooksby(User usr){
+		List<BookUser> ub = BookUser.find.where().eq("user", usr).
+								eq("reading", true).order().desc("addedToVl").findList();
+		List<Book> bkList = new ArrayList<Book>();
+		if(ub != null){
+			for(BookUser b : ub){
+				bkList.add(b.book);
+			}
+		}
+		return bkList;
+	}
+	
 	
 	/*The following methods are to implement rating functionality*/
 	public static Result rateTheBook(String usrEmail, Integer bookId, Integer rating){
@@ -517,18 +533,20 @@ public class Books extends Controller{
 		bk.userRating = newRate;
 		bk.update();
 	}
-	public static Result getBooksUserRating(Integer bookId){
+	public static Result getBooksUserRating(Integer bookId,String ratedByUser){
 		Book bk = Book.find.byId(bookId);
 		Integer rating = bk.userRating;
 		//following code to retrieve the BookUser model and return the 'bookRating' of given logged user
 		//It is used in the bookProfile view, the AJAX GET call.
-		User usr=null;
+		User usr;
 		BookUser bu = null;
 		try {
-			usr = User.find.byId(session().get("email"));
+			//usr = User.find.byId(session().get("email"));
+			usr=User.find.byId(ratedByUser);
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			usr = null;
 		}
 		if(usr != null){
 			bu = BookUser.find.where().eq("user", usr).eq("book",bk).findUnique();

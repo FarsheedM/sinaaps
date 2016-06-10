@@ -75,12 +75,12 @@
 			@readingBookUser.map{ bookUser => 
 			<!-- these statements are used to get the book detail and author detail -->
 			@defining( BookTranslation.getBookDetails(bookUser.book.bookID,"farsi") ){bookTranslation => 
-			@defining(BookAuthor.getAuthorList(bookUser.book.bookID).get(0)){author1 => 
+				@defining(BookAuthor.getAuthorList(bookUser.book.bookID).get(0)){author1 => 
 					@defining( AuthorTranslation.getAuthor(author1.authorID,"farsi") ) { author => 
 		
 			<tr>
 				<td class="field cover">
-					<a href="#">
+					<a href="@routes.Books.showBookProfile("farsi", bookUser.book.bookID)">
 						<img style="display: block;width: 50px;" id="" src="@bookUser.book.photo" alt="@bookUser.book.isbn">
 					</a>
 				</td>
