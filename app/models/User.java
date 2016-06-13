@@ -37,6 +37,8 @@ public class User extends Model{
 	public boolean gender;
 	@Formats.DateTime(pattern = "yyyy-mm-dd")
 	public Date registrationDate;
+	public String description;
+	
 	
 	public User(String fName,String lName,String email,
 			String password,int d,int m,int y,String address,String photo,boolean gender){
@@ -52,6 +54,7 @@ public class User extends Model{
 		this.gender=gender;
 		//registrationDate set to the current date of the machine.
 		this.registrationDate= DateTime.now().toDate();
+		this.description = "";
 	}
 	//NOTE:this constructor set the address and lastname "unknown" 
 	public User(String fName,String email,String password){

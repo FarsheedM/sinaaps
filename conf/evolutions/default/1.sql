@@ -29,6 +29,7 @@ address varchar(255),
 photo varchar(300),
 gender bool,
 registration_date timestamp ,
+description varchar(500),
 primary key (email));
 
 

@@ -1,0 +1,151 @@
+@(user : User)
+
+<!-- -----------------------------فارسی-------------------------- -->
+
+@headfill = {
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiSettings.css")">
+		<script src="@routes.Assets.at("javascripts/jquery-1.11.3.js")" type="text/javascript"></script>
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+}
+
+@farsiEdition.FaMain("تنظیمات")(headfill){
+
+    <div id="socialBar">
+
+		@if(user.fName == "Guest"){
+			<div id="socialBarRightFarsi">
+				<ul id="SNIcons" style="padding-left : 15px;">
+					<li><a><img src="@routes.Assets.at("images/icons/homeInactive.png")" alt="home" width="20px" height="20px"></a></li>
+					<li><a><img src="@routes.Assets.at("images/icons/friendsInactive.png")" alt="friends" width="20px" height="20px"></a></li>
+					<li><a><img src="@routes.Assets.at("images/icons/messageInactive.png")" alt="message" width="20px" height="20px"></a></li>
+					<li><a><img src="@routes.Assets.at("images/icons/notificationInactive.png")" alt="notification" width="20px" height="20px"></a></li>
+					<li><a><img src="@routes.Assets.at("images/icons/profileInactive.png")" alt="profile" width="20px" height="20px"></a></li>
+					<li><a><img src="@routes.Assets.at("images/icons/settingsInactive.png")" alt="settings" width="20px" height="20px"></a></li>
+				</ul>
+			</div><!-- socialBarRightFarsi -->
+		} else {
+			<div id="socialBarRightFarsi">
+				<ul id="SNIcons" style="padding-left : 15px;">
+					<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+					<li><a href="@routes.Settings.showFriends("farsi",user.email)"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+					<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+					<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+					<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+					<li><a href="#"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+				</ul>
+			</div><!-- socialBarRightFarsi -->
+		}
+														
+        	<div id="socialBarLeftFarsi">
+				<header id="socializingMenu">
+					<dl id="userFarsi">
+								
+						@if(user.fName != "Guest"){
+							<dt> @user.fName <span>@user.email</span></dt>
+							<dd><a href="@routes.Application.logout">خروج</a></dd>
+						} else {
+							<dt>وضعیت کاربر : <span>مهمان</span></dt>
+							<dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
+						}
+					</dl>
+				</header>
+        	</div><!-- socialBarLeftFarsi (loggedIn) -->
+     </div><!-- socialBar -->
+
+}{
+<!-- Left Panel -->
+	
+	<div id="birthdate">
+		<label for="user_first_name">
+		First Name
+		<span class="required">*</span>
+		</label>
+		<br>
+		<input id="user_fisr_name" type="text" name="user[first_name]" value="Far" size="30">
+		
+		<br>
+		<label for="user_last_name">
+		Last Name
+		<span class="required">*</span>
+		</label>
+		<br>
+		<input id="user_last_name" type="text" name="user[last_name]" value="Farian" size="30">
+		
+		<br>
+		<label for="user_address">
+		Address
+		</label>
+		<br>
+		<textarea class="form" name="address" 
+				rows="5" cols="60" placeholder="لطفا اینجا بنویسید"
+				style="height: 130px;">
+		</textarea>
+		
+		<br>
+		<label for="user_birthdate">
+		birth date
+		</label>
+		<br>
+		<input id="user_birthday" type="text" name="user[birthday]" value="" size="10">
+		<input id="user_birthmonth" type="text" name="user[birthdate]" value="" size="10">
+		<input id="user_birthyear" type="text" name="user[birthdate]" value="" size="10">
+		<br>
+		
+		<label for="Age Privacy">
+		Age Privacy
+		</label>
+		<br>
+		<select class="form" name="agePrivacy">
+			<option>Age Privacy</option>
+			<option>شهادت یا تشویق</option>
+			<option>وب سایت</option>
+			<option>گزارش توهین</option>
+			<option>اعلام همکاری</option>
+		</select>
+		
+		<br>
+		<label for="aboutme">
+		about me
+		</label>
+		<br>
+		<textarea class="form" name="description" 
+				rows="5" cols="60" placeholder="لطفا اینجا بنویسید"
+				style="height: 130px;">
+		</textarea>
+		
+		<div class="line"></div>
+		 
+		<label for="aboutme">
+		تنظیمات حساب کاربری
+		</label>
+		<br>
+		<input class="form" type="email" name="email" placeholder="ایمیل"><br>
+		<a href="">edit email address</a><br>
+		<a href="">edit password </a><br>
+		
+		<div class="line"></div>
+		<label for="aboutme">
+		who can view my profile
+		</label>
+		<br>	
+		<input type="radio" name="privacy" value="male"> anyone<br>
+  		<input type="radio" name="privacy" value="female"> all farsiReads members<br>
+ 		<input type="radio" name="privacy" value="other"> just my friends		
+		
+	</div>
+	<div id="notificationOptions"></div>
+	<div id="unregister"></div>
+
+
+}{
+<!-- Right Panel -->
+	<div id="personalPhoto">
+		<a href="#"><img src =""></a>
+		<br>
+		<input id="userPhotoUpload" type="file" name="">
+		<br>
+		<input type="submit" value="Upload Photo" name="commit">
+	</div>
+}
+
+
