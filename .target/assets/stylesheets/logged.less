@@ -100,9 +100,9 @@ a {
 
 #socialBar{
 	height: 40px;
-	background-color:  #ededed;   //@blueLight;
+	background-color:  #D6DEC1; //#ededed;   //@blueLight;
 	padding-top:65px;	
-	border-bottom: medium solid #75bfb8;
+	
 }
 #socialBarLeft{
 	float:left;
@@ -158,14 +158,17 @@ a {
 	margin-top : 30px;
 	//border-bottom : 1px solid @mainBackground;
 }
-#postBox h4{
+#postBox h3{
 	font : @defaultFont;
-	color : black;
+	//color : black;
+    color: #84581e;
+    font-weight: bold;
 }
+
 #photoBanner{
 	width : 550px;
 	height : 100px;
-	border-style : solid;
+	//border-style : solid;
 	//background-image : url('dropbox.com/s/hgobekqdne1uxcx/post1_550_100.jpg');
 }
 
@@ -173,7 +176,7 @@ a {
 	border-top : 1px solid @mainBackground;
 	border-bottom : 1px solid @mainBackground;
 	height : 30px;
-	color : @scarlet;
+	color : #347a74;	//@scarlet;
 	font : @alternativeFont;
 }
 #resourceMeta ul{
@@ -188,6 +191,7 @@ a {
 #time{
 	float: left;
 	margin-top: 6px;
+	font-size : 0.9em;
 }
 #topic{
 	border-left : 1px solid @mainBackground;
@@ -196,7 +200,7 @@ a {
 }
 #pt h2{
 	font : @defaultFont;
-	color : black;
+	color : #84581e;
 	font-size : 1.8em;
 }
 #blurb{
@@ -223,7 +227,7 @@ a {
 
 //-------------------- Book CSS -----------------------------------
 #SectionIntro{
-	background-color: white;
+	//background-color: white;
 	height : auto;
 	width : 96%;
 	margin-right : 8px;
@@ -231,16 +235,45 @@ a {
 	font : @defaultFont;
 }
 #SectionIntro p{
-	padding : 2px 15px 2px 10px;
+	padding : 0px 15px 2px 10px;
 	line-height : 1.5;
 }
 
 #searchBox{
 	margin : 10px 15px 5px 10px;
 }
+
+#___gcse_0{
+	margin-top : 0px;
+}
+/*Google Custom Search input box*/
+#gsc-iw-id1{
+	height : 30px;
+	width : 300px;
+	margin-right : -25px;
+}
+/*Google Custom Search bottom*/
+.gsc-search-button{
+	float : left;
+	margin-left : 190px;
+}
+.gsc-input{
+	float : right;
+}
+
+fieldset{
+	border : 1px dashed #9dbba9;
+	font : @defaultFont;
+}
 fieldset legend{
-	color: #75bfb8;
-    font: bold 20px "NasimBreeze","Tahoma","Arial";
+	color: #84581e;		//#75bfb8;
+    font: 22px "NasimBreeze","Tahoma","Arial";
+    padding-right : 7px;
+    padding-left : 7px;
+}
+fieldset input{
+	font : @defaultFont;
+	font-size : 16px;
 }
 #categoryBox{
 	/*margin-left : 10px;
@@ -255,24 +288,25 @@ fieldset legend{
 	padding-top : 5px;
 	width : 24%;
 	padding-bottom : 15px;
+	text-align: center;
 }
 .left a{
 	padding-top : 5px;
 	color : black;
-	font: 14px "tahoma","arial";
+	font: 16px "tahoma","arial";
 }
 #recommendationBox{
 	width : 615px;
 	height : 100%;
-	border : 2px solid #dddddd;
+	//border : 1px dashed #9dbba9;	//2px solid #dddddd;
 	margin-left : 10px;
 	margin-right : 20px;
-	background-color : #ededed ;
+	//background-color : #ededed ;
 	both : clear;
 }
 #recommendationBox h3{
-	font: bold 20px "NasimBreeze","Tahoma","Arial";
-	color: #75bfb8;
+    font: 22px "NasimBreeze","Tahoma","Arial";
+	color: #84581e;
 	padding-right : 10px;
 }
 #firstRow{
@@ -295,6 +329,9 @@ fieldset legend{
 	margin-left : 20px;
 	
 }
+#bookBox a{
+	color : #347a74;
+}
 .bookImg{
 	height : 133px;
 	width : 88px;
@@ -302,14 +339,20 @@ fieldset legend{
 }
 .titleText{
 	//border-style : solid;
+	color : #999999;		//black;
+	font-size : 0.9em;
 }
 
 #recommendedByFriendsBox{}
 
 #suggestBookAdd{
-	padding: 15px 4px 4px 15px;
+	padding: 3px 5px 7px 5px;
 	background-color : white;
 	font : @alternativeFont;
+}
+#suggestBookAdd p{
+	//padding : 0 5px 0 5px;
+	font-size : 15px; 
 }
 //--------------------online & Ad section -------------------------
 #onlineUsersBox{
@@ -322,6 +365,7 @@ fieldset legend{
 	padding : 6px;
 	margin-bottom : 5px;
 	font : @alternativeFont;
+	font-size : 15px;
 }
 #clear{
 	clear : both;
@@ -333,11 +377,12 @@ fieldset legend{
 #socialBarRightFarsi{
 	float:right;
 	height : 30px;
-	width : 270px;
+	width : 320px;
 	margin-top : 0px;
 }
 #socialBarRightFarsi ul {
 	list-style-type:none;
+	margin-top : 9px;
 }
 #socialBarRightFarsi ul li {
 	display: inline;
@@ -378,8 +423,17 @@ fieldset legend{
 	text-align : center;
 	font : @defaultFont;  //@headerFont;
 }
+#featuredBoxFarsi h2{
+	font-weight : normal;
+	margin-bottom : 2px;
+}
+#featuredBoxFarsi h4{
+	font-weight : normal;
+	margin-top : 2px;
+	opacity: 0.7;
+}
 #featuredBoxFarsi a{
-
+	color : #84581e;
 }
 #featuredBoxFarsi img{
 	display : Block;
@@ -404,6 +458,11 @@ fieldset legend{
 	margin-right : 10px;
 	padding-right : 20px;
 }
+/*-----------------------------alert---------------------------------*/
+.message{
+	font : @defaultFont;
+	padding-right : 5px;
+}
 /*-----------------------------loggedIn------------------------------*/
 #welcome{
 	margin-right : 10px;
@@ -412,7 +471,7 @@ fieldset legend{
 	line-height : 1.5;
 }
 #welcome span{
-	color:red;
+	color: #666600;
 	padding-right : 3px;
 	padding-left : 3px;
 	font : @defaultFont;
@@ -422,9 +481,13 @@ fieldset legend{
 	margin-left : 10px;
 	font : @defaultFont;
 }
+.youtubeIframe{
+	margin-right : 20px;
+	margin-bottom : 5px;
+}
 #introTour h3{
-    color: #75bfb8;
-    font: bold 17px "NasimBreeze","Tahoma","Arial";
+    color: #84581e;
+    font-weight: normal;
 }
 #phase{
 	margin-right : 10px;
@@ -432,15 +495,18 @@ fieldset legend{
 	font : @defaultFont;
 }
 #phase h3{
-    color: #75bfb8;
-    font: bold 17px "NasimBreeze","Tahoma","Arial";
+    color: #84581e;
+    font-weight: normal;
 }
 #phase span{
 	color: #9197a3;
     font-size: 0.7em;
     padding-right : 5px;
 }
-#return{
+#phase li p{
+	margin : 0;
+}
+/*#return{
 	border : 1px solid #dddddd;
 	font : @defaultFont;
 	color : #75bfb8;
@@ -451,10 +517,22 @@ fieldset legend{
 	background-color : #ededed;
 	margin-bottom : 5px;
 	margin-top : 30px;
+}*/
+#return{
+	margin-right : 500px;
+	font: 13px "NasimBreeze", "arial";
+	padding-bottom : 5px;
 }
+#return a{
+	color:#84581e;
+	text-decoration: none;
+}
+/*
 #adBox{
 	font : @alternativeFont;
+	font-size : 16px;
 }
+
 #contactLink{
 	border : 1px solid #dddddd;
 	font : @defaultFont;
@@ -466,9 +544,50 @@ fieldset legend{
 	background-color : #ededed;
 	//margin-bottom : 5px;
 }
+*/
+#contactLink {
+    background: #347a74 none repeat scroll 0 0;
+    color: white;
+    font: bold 13pt "tahoma","arial";
+    margin-top: 5px;
+    outline: medium none;
+    width: 90px;
+    text-align : center;
+}
+#contactLink a{
+	color : white;
+	text-decoration : none;
+}
+#followUs{
+	//background-image: url("data:image/png;");
+	//height: 18px;
+    //margin-right: 10px;
+    //width: 18px;
+    height : 0 auto;
+	padding : 2px 5px 15px 5px;
+	font : @alternativeFont;
+}
+#followUs ul{
+	list-style-type:none;
+	padding-right : 0;
+	margin-top : 5px;;
+}
+#followUs img{
+	height : 30px;
+	width : 30px;
+}
+#followUs ul li{
+	display: inline;
+}
 #horizonLine{
 	border-top:solid #75bfb8;				//#333333
 	width : 94%;
 	margin : 0 auto;
 	margin-bottom : -5px;
  }
+ 
+.line {
+    border-top: 1px dashed #9dbba9;
+    height: 2px;
+    width: auto;
+}

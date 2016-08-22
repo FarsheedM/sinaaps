@@ -54,6 +54,9 @@ POST    /farsi/event                 controllers.Event.register()
 #
 GET 	/:lang/profile/userEmail=:userEmail		  controllers.Settings.showProfile(lang : String, userEmail : String)
 GET	    /:lang/settings 						  controllers.Settings.showSettings(lang:String)
+POST	/:lang/settings  						  controllers.Settings.saveSettings(lang:String)
+POST    /:lang/settings/unregister 				  controllers.Settings.unregister(lang:String, userEmail : String)
+
 GET     /alert/friendRequest			  controllers.Relationship.friendRequest(user1Email : String,user2Email : String)
 GET     /:lang/friend/user/:called     controllers.Settings.showFriends(lang:String,called:String)
 GET     /:lang/user/acc			      controllers.Relationship.acceptFriendRequest(lang:String,pendingUserEmail:String)

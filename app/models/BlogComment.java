@@ -2,9 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Date;
-
-
-
 import java.util.List;
 
 import javax.persistence.*;
@@ -17,8 +14,11 @@ import scala.collection.generic.BitOperations.Int;
 import javax.persistence.JoinColumn;
 
 import com.avaje.ebean.Expr;
+
+
+
 @Entity
-public class BlogComment extends Model{
+public class BlogComment extends Model implements DeleteUserListener{
 	
 	@Id
 	//@SequenceGenerator(name="seq", sequenceName="seq")     
@@ -40,6 +40,21 @@ public class BlogComment extends Model{
 	
 	
 	public static Finder<Long, BlogComment> find = new Finder<Long, BlogComment>(Long.class, BlogComment.class);
+	/*implementation of the abstract interface 'DeleteUserListener' which is used as our Observer. Inheriting
+	 *from this Interface makes the 'BlogComment' an Object of the Observer Pattern and therefore this
+	 *object will be updated using 'deleteUser' method, every time a user deleted in the Settings.unregister().
+	 *It basically deletes the comments of the deleted user. 
+	 **/ 
+	public void deleteUser(User userToBeDeleted){
+
+		List<BlogComment> commentsToRemoved = BlogComment.find.where().eq("user", userToBeDeleted).findList();
+
+		for(BlogComment cmt : commentsToRemoved)
+			BlogComment.find.ref(cmt.commentID).delete();
+	}
+	
+	
+	
 	
 	//This method checks if the given user has already rated the blogPost. It is used in postContent.scala.html 
 	//to decide if the rating stars would be displayed or not.

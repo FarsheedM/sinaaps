@@ -23,7 +23,7 @@ public class User extends Model{
 	@Required
 	public String fName;
 	public String lName;
-	@Required
+	
 	public String password;
 	//@Formats.DateTime(pattern = "yyyy-mm-dd")
 	//public Date birthdate;

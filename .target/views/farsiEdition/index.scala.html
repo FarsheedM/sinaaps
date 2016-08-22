@@ -1,9 +1,14 @@
 @(message : String, form : Form[Application.Login], post : BlogPost , ga : List[String])
 
-@FaMain("به 'فارسی‌ ریدز' خوش آمدید"){
+
+@headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
+		<!-- This meta tages TESTING -->
+		}
+
+@FaMain("به 'فارسی‌ ریدز' خوش آمدید")(headfill){
 
 		<head>
-			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/FarsiIndex.css")">
+			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/FarsiIndexD.css")">
 			<script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
 			<script src="@routes.Assets.at("javascripts/jquery-1.11.3.js")" type="text/javascript"></script>
 			<script>
@@ -33,10 +38,8 @@
 			  placed in the ApplicationFa's "getImageUrls()".*/
 			
 				  $(document).ready(function() { 
-					  
 					  //--TEST: add line below for adding "clickfunction"
 					  //$('#saveAsDefaultButton').click(function() {
-						
 				        $.ajax({
 				            type : 'GET',
 				            url : '@controllers.controllersFarsi.routes.ApplicationFa.getImageUrls()',
@@ -60,7 +63,43 @@
 				                setError('Cloudinary call failed');
 				                window.alert("Cloudinary call failed");
 				            }
-				        });
+				        });/*end of first AJAX call*/
+				        
+				        
+				       /*This AJAX call is the second call in this document and will invoke the
+				        getStatistics() which is in turn return a JSON consisting 2 values of
+				        number of the blogPosts and number of the books in the Database. */
+				       
+						/*This piece of JS code is to convert the latin number to the persian*/
+						String.prototype.toIndiaDigits= function(){
+							 var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+							 return this.replace(/[0-9]/g, function(w){
+							  return id[+w]
+							 });
+							}
+				        /*----------------------------------------------------------------------*/
+				        $.ajax({
+				            type : 'GET',
+				            url : '@controllers.controllersFarsi.routes.ApplicationFa.getStatistics()',
+				            dataType : "json",
+				            success : function(data) {
+				                //var length = data.resources.length;
+				                /*--TEST: to do some JS check*/
+				                 console.log("this is the length of the statistics array "+length);
+
+				                 document.getElementById('blogPostsNo').innerHTML = data.blogPosts.toIndiaDigits().toString();	
+				                 document.getElementById('usersNo').innerHTML = data.users.toIndiaDigits().toString();
+				                
+				                return true;
+				            },
+				            error : function(data) {
+				                setError('GA call failed');
+				                window.alert("AG call failed");
+				            }
+				        }); /*end of second AJAX call*/
+				        
+				        
+				     
 				        return false;  
 				        
 				  //  });  --TEST: add This for adding "clickfunction"
@@ -71,16 +110,17 @@
 		
     	<div id="headContent">  
         		<div id="headContentLeft">
-        			<img alt="FarsiReads" src="@routes.Assets.at("images/Praesentation630_295.jpg")">
+        			<!-- <img alt="FarsiReads" src="@routes.Assets.at("images/Praesentation630_295.jpg")"> -->
         		</div>
         		<div id="headContentRight">
         				@helper.form(controllers.controllersFarsi.routes.ApplicationFa.authenticate){
-	        				<input type="text" name="lName" placeholder="نام" />
-	        				<input type="email" name="email" placeholder="ایمیل " />
-	        				<input type="password" name="password" placeholder="پسورد" />
+	        				<input class="form" type="text" name="lName" placeholder="نام" />
+	        				<input class="form" type="email" name="email" placeholder="ایمیل " />
+	        				<input class="form" type="password" name="password" placeholder="پسورد" />
 	        				<br/>
-	        				<button type="submit">ورود</button>
-	        				<p>هنوز عضو فارسی ریدز نیستید؟ <a href="/farsi/signUp" id="signUpLink">اینجا</a> ثبت نام کنید</p>
+	        				<button id="sendBtn" type="submit">ورود</button>
+	        				
+	        				<p style="font-size:0.9em;">هنوز عضو فارسی ریدز نیستید؟ <a href="/farsi/signUp" id="signUpLink">اینجا</a> ثبت نام کنید</p>
 	        				@if(form.hasGlobalErrors){
 	        					<p id="error">@form.globalError.message </p>
 	        				}
@@ -102,10 +142,12 @@
 			<p class="rightAlign">به <span>فارسی ریدز</span> خوش آمدید. فارسی ریدز پلت فرمی فارسی است که برای فراهم نمودن مطالب خوب و دست‌چین شده (از جمله کتاب، مقاله، بلاگ پست، شعر) در دسترس شما است. </p>
 		</div>
 	</div><!-- infoBox -->
-	<div id="clear"></div>
+	<div class="clear"></div>
+	
+	<div class="line"></div>
 	
 	<div id="bookBox">
-		<h3 style="padding-right:10px;">کتابها</h3>
+		<h2>کتابها</h2>
 		<p>در بخش کتاب ها، بانک اطلاعاتی‌ شامل کتابهای فارسی مسیحی‌(تالیف و ترجمه) آماده شده است. شما میتوانید عنوان کتاب مورد نظر را جستجو کنید و در صورت وجود، چکیده‌ای از کتاب به همراه اطلاعات جانبی(از جمله اطلاعاتی‌ مربوط به مولف، هدف نگارش، تاریخ نگارش و نحوه تهیه) در اختیار شما خواهد بود. همچنین شما قادر خواهید بود با استفاده از "فهرست موضوعی"، به مرور و گردش در کتاب‌ها بپردازید.
 				
 		در این قسمت، ماهیانه کتابهای انتخاب، تحلیل و برای مطالعه پیشنهاد میشود. علاوه بر این شما میتوانید از ترجمه و انتشار عنوان‌های جدید کتاب نیز خبردار شوید.
@@ -114,7 +156,7 @@
 		</p>
 		
 		<div id="categoryBox">
-			<h4>فهرست موضوعی</h4>
+			<h2>فهرست موضوعی</h2>
 				<div class="right">
 					<a href="@routes.Books.showByTopic("farsi",0)">الهیات</a><br>
 					<a href="@routes.Books.showByTopic("farsi",1)">باستان شناسی‌</a><br>
@@ -139,151 +181,283 @@
 				<div class="right">
 					<a href="@routes.Books.showByTopic("farsi",15)">کلاسیک</a><br>
 					<a href="@routes.Books.showByTopic("farsi",16)">کودکان</a><br>
+					<a href="@routes.Books.showByTopic("farsi",17)">موسیقی</a><br>
 				</div>
 				<br>
 		</div> <!-- categoryBox -->
 	</div><!-- bookBox -->
 	
+	
+	
 	<div id="blogBox">
-		<div id="latestPost"><h3>بلاگ</h3></div>
-		<div id="latestPostImg"><img src="@post.image" alt="@post.title" title="@post.title"></div>
+		<div id="latestPost">
+			<h2>بلاگ</h2>
+			<p>آخرین مطلب منتشر شده:</p>
+            <span>@post.title</span>
+		</div>
+		<div id="latestPostContainer">
+                <div id="latestPostSum">
+						<div id ="imgCont">
+							<img alt="Image" style="width: 253px; height: 168px;" src="@post.image">
+						</div>
+                        <p style="display:block;" id="@post.postID">@post.content</p>  
+                      	<script>clamping();</script> 
+                        
+                        <a style="float:left;" href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)">ادامه مقاله ...</a>
+                        <br>
+                        <a style="color:#84581e;text-decoration: none;" href="@routes.Blog.display(post.language)">مشاهده تمامی مطالب بلاگ فارسی ریدز >></a>
+                </div>
+         </div>
+            
+		<!-- 
+		<div id="latestPostImg"><img src="@@post.image" alt="@@post.title" title="@@post.title"></div>
 		<div id="latestPostSum">
 			آخرین مطلب منتشر شده:
-			<h4>@post.title</h4>
-			<!-- strip(document.getElementById("@post.postID").textContent) -->
-			<p id="@post.postID">@post.content</p>
+			<h4>@@Qpost.title</h4>
+			strip(document.getElementById("@@post.postID").textContent)
+			<p id="@@post.postID">@@post.content</p>
 			<script>clamping();</script>
 			
 			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)"><p>ادامه مقاله ...</p></a>
 		</div>
-		<div id="clear"></div>
-		<div id="latestPostLinks"><h4><a href="@routes.Blog.display(post.language)">مشاهده تمامی مطالب بلاگ<b> فارسی ریدز</b></a></h4></div>
+		<div class="clear"></div>
+		<div id="latestPostLinks"><h4><a href="@@routes.Blog.display(post.language)">مشاهده تمامی مطالب بلاگ<b> فارسی ریدز</b></a></h4></div>
+	 -->
+	
 	</div><!-- blogBox -->
 	
-	<div id="horizonLine"></div>
-
-	
+	<div class="line"></div>
+					
 	
 	<div id="activityBox">
-		<h3>فعالیت ها</h3>
-		<ul id="activityList">
+		<h2>فعالیت ها</h2>
+<!-- 	<ul id="activityList">
 			<li><div id="service"><img src="@routes.Assets.at("images/icons/Translate.gif")" alt="srvc"><p>ترجمه کتابها و مقالات ارزشمند</p></div></li>
 			<li><div id="service"><img src="@routes.Assets.at("images/icons/Seminar.gif")" alt="srvc"><p>برگزاری سمینار و ورکشاپ‌های کتابخوانی</p></div></li>		
 			<li><div id="service"><img src="@routes.Assets.at("images/icons/Help.gif")" alt="srvc"><p>کمک به تاسیس کتابخانه در کلیسای شما</p></div></li>
-		</ul>
-		<div id="clear"></div>
-		<div id="toServiceLink">
-			<a href="@routes.Services.display("farsi")">مشاهده جزئیات فعالیت‌ها و خدمات</a>
+			</ul> -->
+	
+	
+	
+	
+	
+	
+<!-- 		PREVIOUS VERSION WITH FIXED IMAGES
+		<div id="TransDiv">
+			<a href="#">
+				<div style="width: 210px; height: 134px;">
+					<img src="@routes.Assets.at("images/Translating.jpg")"
+						style="width: 210px; height: 134px;" alt="Translate" />
+				</div>
+			</a>
 		</div>
+		<div class="nextDiv">
+			<a href="#">
+				<div style="width: 210px; height: 134px;">
+					<img src="@routes.Assets.at("images/Seminars.jpg")" style="width: 210px; height: 134px;"
+						alt="Seminars" />
+				</div>
+			</a>
+		</div>
+		<div class="nextDiv">
+			<a href="#">
+				<div style="width: 210px; height: 134px;">
+					<img src="@routes.Assets.at("images/Library.jpg")" style="width: 210px; height: 134px;"
+						alt="FarsiLibrary" />
+				</div>
+			</a>
+		</div> -->
+		
+		
+			<!-- NEWER VERSION OF ACTIVITIES WITH CSS -->
+			<a class="TransDiv" href="@routes.Services.display("farsi")">
+				<div class="BannerText">
+					<span class="H">ترجمه</span> <br /> ترجمه کتابها و مقالات ارزشمند
+				</div>
+			</a>
+			<a class="nextDiv1" href="@routes.Services.display("farsi")">
+				<div class="BannerText">
+					<span class="H">سمینار و ورکشاپ‌</span> <br /> برگزاری سمینار و ورکشاپ‌های کتابخوانی
+				</div>
+			</a>
+			<a class="nextDiv2" href="@routes.Services.display("farsi")">
+				<div class="BannerText">
+					<span class="H">کتابخانه</span> <br /> کمک به تاسیس کتابخانه در کلیسای شما
+				</div>
+			</a>
+		
+		
+			<div id="toServiceLink">
+			<a style="color:#84581e;text-decoration: none;" href="@routes.Services.display("farsi")">مشاهده جزئیات فعالیت‌ها و خدمات >></a>
+		</div>
+		
 	</div> <!-- activityBox -->
-	
-	
-	<div id="quotationBox">
-		<h3 style="margin-top:4px;">بیان شیرین</h3>
-		<div style="display : inline;">
-			<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
-			<div id="quoteText">
-				"به مسیحیت ایمان دارم همانگونه که ایمان دارم آفتاب طلوع کرده؛ نه فقط به خاطر اینکه آن را میبینم، بلکه توسط آن قادرم همه چیز‌های دیگر را ببینم."
-				<br> -
-				<a href="#author's">سی‌.اس‌ لوئیس</a>
+						
+		
+		<div id="quotationBox">
+			<h2>بیان شیرین</h2>
+			<div>
+				<a href="#author">
+					<div id="quoteimg" style="width: 100px; height: 100px;">
+						<img src="@routes.Assets.at("images/CSlewis.png")" style="width: 100px; height: 100px;"
+							alt="author'sName" />
+					</div>
+				</a>
+				<div id="quoteText">
+					"به مسیحیت ایمان دارم همانگونه که ایمان دارم آفتاب طلوع کرده؛ نه فقط
+					به خاطر اینکه آن را میبینم، بلکه توسط آن قادرم همه چیز‌های دیگر را
+					ببینم." <br /> - <a
+						 href="#author's">سی‌.اس‌ لوئیس</a>
+				</div>
 			</div>
 		</div>
+		
+<!-- 		<div id="quotationBox">
+			<h3 style="margin-top: 4px;">بیان شیرین</h3>
+			<div style="display: inline;">
+				<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
+				<div id="quoteText">
+					"به مسیحیت ایمان دارم همانگونه که ایمان دارم آفتاب طلوع کرده؛ نه فقط
+					به خاطر اینکه آن را میبینم، بلکه توسط آن قادرم همه چیز‌های دیگر را
+					ببینم." <br> - <a href="#author's">سی‌.اس‌ لوئیس</a>
+				</div>
+			</div>
+		</div> -->
 		
 <!-- 		<div style="display : none;"> Quote 2</div>
 		<div style="display : none;"> Quote 3</div>
 		<div style="display : none;"> Quote 4</div> -->
-		
-	</div> <!-- quotationBox -->
-	<div id="clear"></div>
-	
-}{
-	<!--  <p>Right content for index محتوا اینجا</p> -->
 
-	<div id="userThumbnails" >
+	
+	<!-- quotationBox -->
+	
+
+	}{
+	<!--  <p>Right content for index محتوا اینجا</p> -->
+	
+	
+	<!-- Tat's Conference on Feb 2016 
+	<div id="upcomingEvent" style="height:215px;width: 300px; background-color : white; margin-top : 5px;">
+		<a href="@routes.Event.displayEvent("farsi")" ><img style="margin-right:10px;margin-top:7px;" src="http://cdn.desiringgod.org/website_uploads/images/events/feature_image/25/bethlehem-conference-for-pastors.png?1438870709" height=150px width=280px></a>
+		<div id="EventText" style="margin-top : -9px;">
+			<a href="@routes.Event.displayEvent("farsi")" style="text-decoration: none;"><h3 class="EventTitle" style="margin-top:0px;margin-bottom:-2px;font-weight:normal;padding-right:25px;color:#c6000e;">کنفرانس تعلیمی کشیش تت ستوآرت</h3></a>
+			<time class="time" style="display: inline;padding-right:25px;color:#3a3c3f;">۲۶ تا ۲۸ فوریه ۲۰۱۶</time>
+			<div id="location" style="display: inline;color:#3a3c3f;">,گیسن - آلمان</div>
+		</div>
+	</div>
+	-->
+	
+	
+	<div id="userThumbnails">
 		<p>کاربران فارسی ریدز</p>
-		<div class="userThumb" >
-			<a href="#">
-				<img id="userThumb1" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+		<div class="userThumb">
+			<a href="#"> <img id="userThumb1" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb2" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb2" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb3" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb3" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb4" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb4" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb5" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb5" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb6" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
-			</a>
-		</div>
- 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb7" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb6" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb8" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb7" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb9" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb8" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb10" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb9" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb11" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb10" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
 		</div>
 		<div class="userThumb">
-			<a href="#">
-				<img id="userThumb12" width="50" height="66" src="@routes.Assets.at("images/CSlewis.jpg")">
+			<a href="#"> <img id="userThumb11" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
 			</a>
-		</div> 
-		
-		
-	</div><!-- userThumbnails -->
+		</div>
+		<div class="userThumb">
+			<a href="#"> <img id="userThumb12" width="50" height="66"
+				src="@routes.Assets.at("images/CSlewis.jpg")">
+			</a>
+		</div>
+
+
+	</div>
+	<!-- userThumbnails -->
 	<div id="clear"></div>
 	<!-- -----------------------twitter---------------------- -->
-	<a class="twitter-timeline" href="https://twitter.com/FarsiReads" data-tweet-limit="1"
-		width="300px" data-chrome="nofooter"
-		data-widget-id="485401626165780481">Tweets by @@FarsiReads
-	</a>
+	<a class="twitter-timeline" href="https://twitter.com/FarsiReads"
+		data-tweet-limit="1" width="300px" data-chrome="nofooter"
+		data-widget-id="485401626165780481">Tweets by @@FarsiReads </a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
 		if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
 		fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 
-	
-	<div id="visitorCount">
-		@for(g <- ga){ 
-			<p> تعداد کاربران "فارسی ریدز" :  <span>@g</span> </p>
-			}
-	</div><!-- visitorCount -->
-	
-<!-- 	<div id="ajax" style="width:100px;height:50px;">test:</div>
-	<button id="saveAsDefaultButton">renewal</button> -->
-}
 
-	
+
+	<div id="visitorCount">
+		<p style="background-color:silver;color:black;font-weight:bold;height:20px;margin:0 -8px 0 0;padding: 5px 5px 3px 3px;">فارسی ریدز قد می‌‌کشد</p>
+		
+		<!-- The statistics about the newUsers, Number of blogposts and number of books
+			 in the Book DB will be called using AJAX call. See the Script in top. -->
+		@for(g <- ga){
+
+		<p>
+			تعداد کاربران در این هفته: <span id="GAspan"></span>
+				
+		<script>
+		/*This piece of JS code is to convert the latin number to the persian*/
+			String.prototype.toIndiaDigits= function(){
+				 var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+				 return this.replace(/[0-9]/g, function(w){
+				  return id[+w]
+				 });
+				}
+			var conv= "@g";
+			document.getElementById('GAspan').innerHTML = conv.toIndiaDigits();
+			console.log(conv.toIndiaDigits());
+		</script>
+		
+		</p>
+		}
+		<p> تعداد پست‌های بلاگ: <span id="blogPostsNo"></span></p>
+		<p>تعداد کتاب‌های بانک داده: <span id="usersNo"></span></p>
+		
+	</div>
+	<div style="background-image: url('/assets/images/metrics.png');background-size: cover;height:15px;width:300px;"></div>
+	<!-- visitorCount -->
+
+	<!-- 	<div id="ajax" style="width:100px;height:50px;">test:</div>
+	<button id="saveAsDefaultButton">renewal</button> -->
+	}

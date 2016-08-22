@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import play.db.ebean.Model.Finder;
 import javax.persistence.JoinColumn;
 
 @Entity
-public class BookReview extends Model{
+public class BookReview extends Model implements DeleteUserListener{
 	
 	@Id
 	@GeneratedValue
@@ -32,4 +33,17 @@ public class BookReview extends Model{
 	
 	
 	public static Finder<Long, BookReview> find = new Finder<Long, BookReview>(Long.class, BookReview.class);
+	/*implementation of the abstract interface 'DeleteUserListener' which is used as our Observer. Inheriting
+	 *from this Interface makes the 'BookReview' an Object of the Observer Pattern and therefore this
+	 *object will be updated using 'deleteUser' method, every time a user deleted in the Settings.unregister().
+	 *It basically deletes the book reviews of the deleted user. 
+	 **/ 
+	public void deleteUser(User userToBeDeleted){
+
+		List<BookReview> reviewsToRemoved = BookReview.find.where().eq("user", userToBeDeleted).findList();
+
+		for(BookReview cmt : reviewsToRemoved)
+			BookReview.find.ref(cmt.reviewID).delete();
+	}
+	
 }

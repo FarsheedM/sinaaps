@@ -7,28 +7,46 @@
 @author =  @{AuthorTranslation.getAuthor(posts.head.author.authorID,"farsi")}
 
 
-@FaMain("بلاگ"){
+@headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
+		<!-- This meta tages TESTING -->
+		<!-- This meta tages is for FB snippet rendering -->
+		}
+
+@FaMain("بلاگ")(headfill){
 
 <!-- -------------------farsi Edition----------------------- -->
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/commentFarsi.css")">
-     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>
+     <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>     
 </head>
 
         		<div id="clear"></div>
         		
         		<div id="socialBar">
-        			<div id="socialBarRightFarsi">
-						<ul style="padding-left : 15px;">
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
-						</ul>
-					</div><!-- socialBarLeft -->
+				   @if(user.fName == "Guest"){
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a><img src="@routes.Assets.at("images/icons/homeInactive.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/friendsInactive.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/messageInactive.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/notificationInactive.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/profileInactive.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/settingsInactive.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					} else {
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarRightFarsi -->
+					}
 					
         			<div id="socialBarLeftFarsi">
 						<header id="socializingMenu">
@@ -48,7 +66,6 @@
         		</div><!-- headContent -->
         		<div id="clear"></div>
         		
-        		<!--  <div id="horizonLine"></div>  -->
 
 }{
 	<!--  left content for Blog -->
@@ -63,15 +80,16 @@
 		<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">   
 		
 			<img src="@posts.head.image" rel="@posts.head.title">
+		
+			<hgroup>
+				<h2>@posts.head.title</h2>
+				
+				<h4>@author.fName @author.lName</h4>
+			</hgroup>
 		</a>
-		<hgroup>
-			<h2>@posts.head.title</h2>
-			
-			<h4>@author.fName @author.lName</h4>
-		</hgroup>
 	</div>
 	
-	<div id="horizonLine"></div>
+	<div class="line"></div>
 	
 	<section id="postList">
 			<!-- The scala tail func returns all elements of the list posts, except the first one(head) -->
@@ -85,7 +103,7 @@
 	
 	<!--  Content Right comes here -->
 	<div id="adBox">
-		قسمت بلاگ بطور پیوسته آپدیت میشود. شما میتوانید در نظردهی به پست‌ها سهیم شوید.
+		قسمت بلاگ بطور پیوسته آپدیت میشود. خوانندهٔ‌ تاملی فرح بخش و تازه بر کلام خدا، زندگی‌ مسیحی‌ و محیطی‌ که در آن زندگی‌ می‌کنیم باشید. شما میتوانید در نظردهی به پست‌ها سهیم شوید.
 		<br>
 	</div>
 	

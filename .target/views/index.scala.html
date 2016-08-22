@@ -17,7 +17,7 @@
 		</head>
 		
     	<div id="headContent">  
-        		<div id="headContentLeft">Headlines</div>
+        		<div id="headContentLeft"></div>
         		<div id="headContentRight">
         				@helper.form(routes.Application.authenticate){
 	        				<input class="form" type="text" name="lName" placeholder="Name" />
@@ -25,7 +25,7 @@
 	        				<input class="form" type="password" name="password" placeholder="Password" />
 	        				<br/>
 	        				<button type="submit" id="signinBtn">Sign In</button>
-	        				<p>New to FarsiReads? Sign Up <a href="/english/signUp" id="signUpLink">Here</a></p>
+	        				<p style="padding-left:5px;">New to FarsiReads? Sign up <a href="/english/signUp" id="signUpLink">Here</a></p>
 	        				@if(form.hasGlobalErrors){
 	        					<p id="error">Error: @form.globalError.message </p>
 	        				}
@@ -99,6 +99,7 @@
             <div class="right">
                 <a href="#">Classics</a><br>
                 <a href="#">Children</a><br>
+                <a href="#">music</a><br>
             </div>
             <br>
             <!-- categoryBox -->
@@ -116,15 +117,15 @@
             </div>
             <div id="latestPostContainer">
                 <div id="latestPostSum">
-                    
-                        <img src="@post.image" alt="Image" />
-                        <span style="display:block;" id="@post.postID">@post.content</span>  
+						<div id ="imgCont">
+							<img alt="Image" style="width: 253px; height: 168px;" src="@post.image">
+						</div>
+                        <p style="display:block;" id="@post.postID">@post.content</p>  
                       	<script>clamping();</script> 
                         <br>
                         <a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)">Read more ...</a>
                         <br>
                         <a style="color:#f26100;" href="@routes.Blog.display(post.language)">Go to the<b> FarsiReads</b> Blog</a>
-                   
                 </div>
 
             </div>
@@ -145,32 +146,78 @@
 	
 		<br>
 -->
-        <div id="TransDiv"><a href="#"><img src="@routes.Assets.at("images/Translating.jpg")" alt="Translate"/> </a></div>
+
+
+<!--         THE OLDER IMAGE VERSION OF THE ACTIVITIES
+		<div id="TransDiv"><a href="#"><img src="@routes.Assets.at("images/Translating.jpg")" alt="Translate"/> </a></div>
         <div class="nextDiv"><a href="#"><img src="@routes.Assets.at("images/Seminars.jpg")" alt="Seminars"/></a></div>
         <div class="nextDiv"><a href="#"><img src="@routes.Assets.at("images/Library.jpg")" alt="FarsiLibrary"/></a></div>
+ -->
 
-		<a href="@routes.Services.display("english")">Go to the Service section to see all activities</a>
+
+
+			<!-- NEWER VERSION OF THE ACTIVITIES WITH CSS -->
+			<a class="TransDiv" href="#">
+				<div class="BannerText">
+					<span class="H">Translating</span> <br /> Translating useful books
+					and articles
+				</div>
+			</a>
+			<a class="nextDiv1" href="#">
+				<div class="BannerText">
+					<span class="H">Seminars & Workshops</span> <br /> Holding Seminars
+					and Workshops to promote reading
+				</div>
+			</a>
+			<a class="nextDiv2" href="#">
+				<div class="BannerText">
+					<span class="H">Farsi library</span> <br /> Helping to establish a
+					farsi library in the local church
+				</div>
+			</a><a href="#">Go to the Service section to see all activities</a> <a href="@routes.Services.display("english")">Go to the Service section to see all activities</a>
+	
 	</div> <!-- activityBox -->
 
-<div class="clear"></div>
-<div class="line"></div>
+	<div class="clear"></div>
 
-	<div id="quotationBox">
-		<h2 style="margin-top:4px;">Quotation</h2>
-		<div style="display : inline;">
+
+		<div id="quotationBox">
+			<h2>Quotation</h2>
+			<div>
+				<a href="#author">
+					<div id="quoteimg" style="width: 100px; height: 100px;">
+						<img src="@routes.Assets.at("images/CSlewis.png")" style="width: 100px; height: 100px;"
+							alt="author'sName" />
+					</div>
+				</a>
+				<div id="quoteText">
+					"I believe in Christianity as I believe in sun; not only because I
+					see it but through it I see everything." <br /> - <a href="#author's">C.S.Lewis</a>
+				</div>
+			</div>
+			<!-- 		<div style="display : none;"> Quote 2</div>
+				<div style="display : none;"> Quote 3</div>
+				<div style="display : none;"> Quote 4</div> -->
+		</div>		
+		
+		
+		
+		<!--OLD quotationBox -->
+
+<!-- 		<div id="quotationBox">
+			<h2 style="margin-top:4px;">Quotation</h2>
+			<div style="display : inline;">
 			<a href="#author"><img src="@routes.Assets.at("images/CSlewis.jpg")" alt="author'sName"></a>
 			<div id="quoteText">
 				"I believe in Christianity as I believe in sun; not only because I see it but through it I see everything."
 				<br> -
 				<a href="#author's">C.S.Lewis</a>
 			</div>
-		</div>
-		
-<!-- 		<div style="display : none;"> Quote 2</div>
-		<div style="display : none;"> Quote 3</div>
-		<div style="display : none;"> Quote 4</div> -->
-		
-	</div> <!-- quotationBox -->
+		</div> 
+		</div> 
+-->
+
+	
 	<div id="clear"></div>
 	
 	}{
@@ -179,7 +226,9 @@
 	<div id="clear"></div>
 		<div id="visitorCount">
 		@for(g <- ga){ 
-			<p> FarsiReads Visitors :  <span>@g</span> </p>}
+<!-- 			<p> FarsiReads Visitors :  <span>@g</span> </p> -->
+				<p style="font-weight:bold; color:red;text-align: center;">This page is currently under construction!</p>
+			}
 		
 		
 	</div><!-- visitorCount -->

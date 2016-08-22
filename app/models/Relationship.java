@@ -1,6 +1,8 @@
 package models;
 
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import play.data.validation.Constraints.Required;
@@ -8,7 +10,8 @@ import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
 @Entity
-public class Relationship extends Model{
+public class Relationship extends Model implements DeleteUserListener{
+
 
 	public Relationship(User usr1,User usr2,int status,User actUsr){
 		this.user1 = usr1;
@@ -17,6 +20,10 @@ public class Relationship extends Model{
 		this.actionuser = actUsr;
 	}
 	
+	public Relationship() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer relationshipId;
@@ -46,5 +53,25 @@ public class Relationship extends Model{
 			Integer.class, Relationship.class
 	    );
 	
+	/*implementation of the abstract interface 'DeleteUserListener' which is used as our Observer. Inheriting
+	 *from this Interface makes the 'Relationship' an Object of the Observer Pattern and therefore this
+	 *object will be updated using 'deleteUser' method, every time a user deleted in the Settings.unregister().
+	 *It basically deletes the book reviews of the deleted user. 
+	 **/ 
+	public void deleteUser(User userToBeDeleted){
 
+		List<Relationship> friendsToRemoved = //Relationship.find.where().eq("user1", userToBeDeleted).findList();
+											models.Relationship.find.where()
+											.disjunction()
+												.conjunction()
+													.eq("user1", userToBeDeleted)
+												.endJunction()
+												.conjunction()
+													.eq("user2", userToBeDeleted)
+												.endJunction()
+											.endJunction().findList();
+		
+		for(Relationship cmt : friendsToRemoved)
+			Relationship.find.ref(cmt.relationshipId).delete();
+	}
 }

@@ -10,7 +10,14 @@
 
 @(user : User)
 
-@farsiEdition.FaMain("خوش آمدید"){
+
+
+@headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
+		<!-- This meta tages TESTING -->
+		}
+
+
+@farsiEdition.FaMain("خوش آمدید")(headfill){
 
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
@@ -19,16 +26,33 @@
         		<div id="clear"></div>
         		
         		<div id="socialBar">
-        			<div id="socialBarRightFarsi">
-						<ul style="padding-left : 15px;">
-							<li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="14px" height="14px"></a></li>
-							<li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="14px" height="14px"></a></li>
-						</ul>
-					</div><!-- socialBarLeft -->
+        		        		
+        		   @if(user.fName == "Guest"){
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a><img src="@routes.Assets.at("images/icons/homeInactive.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/friendsInactive.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/messageInactive.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/notificationInactive.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/profileInactive.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a><img src="@routes.Assets.at("images/icons/settingsInactive.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarLeft -->
+					} else {
+					   <div id="socialBarRightFarsi">
+							<ul id="SNIcons" style="padding-left : 15px;">
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showSettings("farsi")"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+							</ul>
+						</div><!-- socialBarLeft -->
+					}
+        		
+        		
+        		
         			<div id="socialBarLeftFarsi">
 						<header id="socializingMenu">
 							<dl id="userFarsi">
@@ -44,20 +68,31 @@
 	<!--  left content for LOGGEDIN -->
 	<br>
 	<div id="welcome">
-		<p>دوست عزیز،<span>@user.fName   @user.lName  </span>; از ورود شما به سایت فارسی ریدز خرسندیم</p>
+		<p>دوست عزیز،<span>@user.fName   @user.lName  </span>; از ورود شما به سایت فارسی ریدز خرسندیم!</p>
 		
-		<p>فارسی ریدز پلت فرمی فارسی است که برای فراهم نمودن مطالب خوب و دست‌چین شده (از جمله کتاب، مقاله، بلاگ پست، شعر) در دسترس شما است</p>
+		<p>فارسی ریدز پلت فرمی فارسی است که برای فراهم نمودن مطالب خوب و دست‌چین شده (از جمله کتاب، مقاله، بلاگ پست، شعر) در دسترس شما است.</p>
 	</div><!-- welcome -->
+	
+	<div class="line"></div>
 	
 	<div id="introTour">
 		<h3>با روش استفاده و امکانات "فارسی ریدز" آشنا شوید</h3>
 		<p>ویدئو یا مراحل استفاده اینجا</p>
+		<iframe class="youtubeIframe" width="560" height="315" 
+			src="https://www.youtube.com/embed/5Hefua6r4Kc?rel=0&amp;showinfo=0" 
+			frameborder="0" allowfullscreen>
+		</iframe>
+		<br>
+		<br>
+		<div id="return"><a href="@controllers.controllersFarsi.routes.ApplicationFa.index()">بازگشت به صفحه اصلی >> </a>‌</div>
+		
 	</div><!-- introTour -->
 	
+	<div class="line"></div>
 	
 	<div id="phase">
 		<h3>توسعه خدمات و امکانات</h3>
-		<p>فاز اول "فارسی ریدز" کامل شده است<span>در تاریخ 21.05.2015</span></p>
+		<p>فاز ۱<span>تکمیل شده در تاریخ 21.05.2015</span></p>
 		<ul>
 			<li>
 				<p>شما میتوانید از  <a href="@routes.Blog.display("farsi")">بلاگ </a> فارسی ریدز دیدن فرمائید. همچنین میتوانید به مطالب نمره دهید و نظر خود رو به اشتراک بگذارید.</p>
@@ -66,15 +101,57 @@
 				<p>شما میتوانید در سایت ثبت‌نام کنید و  <a href="@routes.About.display("farsi")"> با ما </a>و  <a href="@routes.Services.display("farsi")"> خدمات </a>فارسی ریدز آشنا شوید </p>
 			</li>
 		</ul>
+		
+		<p>فاز ۲<span>تکمیل شده در تاریخ 01.05.2016</span></p>
+		<ul>
+			<li>
+				<p>تکمیل کردن و توسعه بانک داده کتاب ها</p>
+			</li>
+			<li>
+				<p>بهبود جزئیات ارایه شده مربوط به کتاب ها</p>
+			</li>
+		</ul>
+		
+		<p>فاز ۳<span>در حال اجرا‌</span></p>
+		<ul>
+			<li>
+				<p>کتابخانه مجازی</p>
+			</li>
+				<li><p>تعامل اعضا و تنظیمات شخصی‌</p>
+			</li>
+			<li>
+				<p>بازتاب فعالیت‌های اعضا روی صفحه خوش آمدگویی</p>
+			</li>
+		</ul>
+		
+				<p>فاز ۴<span>در حال بررسی‌</span></p>
+		<ul>
+			<li>
+				<p>آماده سازی و تهیه پکیج‌های تشویقی برای شروع و یا ادامه کتاب خوانی</p>
+			</li>
+		</ul>	
+				<p>فاز ۵<span>تاریخ نامعلوم</span></p>
+		<ul>
+			<li>
+				<p>تسهیل دسترسی‌ به کتاب ها</p>
+			</li>
+			<li>
+				<p>اجرای بخش بوک شاپ (از جمله آدرس دهی‌ به دیگر کتابفروشی ها) و نشر کتاب. </p>
+			</li>
+		</ul>
+		
 	</div><!-- phase -->
 	
-	<div id="return"><a href="@controllers.controllersFarsi.routes.ApplicationFa.index()">بازگشت به صفحه اصلی</a>‌</div>
+	<div id="return"><a href="@controllers.controllersFarsi.routes.ApplicationFa.index()">بازگشت به صفحه اصلی >> </a>‌</div>
+
+
 }{
 	<!--  right content for LOGGEDIN -->
 	
 	<div id="adBox">
-		در صورتی که در ورود به سیستم دچار مشکل شده اید، به ما اطلاع دهید
-		<br>
+		<p style="background-color:silver;color:black;font-weight:bold;height:20px;margin:-3px -3px 0 -3px;padding: 5px 5px 3px 3px;">گزارش مشکل فنی‌</p>
+		<p>	در صورتی که در ورود به سیستم دچار مشکل شده اید، به ما اطلاع دهید</p>
+		
 		<div id="contactLink"><a href="@routes.About.display("farsi")">تماس با ما</a></div>
 	</div>
 	

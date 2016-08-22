@@ -1,11 +1,11 @@
-@(user : User)
-
+@(user : User, registerform : Form[models.User])
+@import helper._
 <!-- -----------------------------فارسی-------------------------- -->
 
 @headfill = {
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiSettings.css")">
-		<script src="@routes.Assets.at("javascripts/jquery-1.11.3.js")" type="text/javascript"></script>
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+
 }
 
 @farsiEdition.FaMain("تنظیمات")(headfill){
@@ -53,98 +53,296 @@
      </div><!-- socialBar -->
 
 }{
-<!-- Left Panel -->
+
+	<!-- -------------------------- پانل چپ ------------------------- -->
 	
-	<div id="birthdate">
+	@helper.form(action = controllers.routes.Settings.saveSettings("farsi"), 'enctype -> "multipart/form-data"){	
+	<div id="personalInfo">
 		<label for="user_first_name">
-		First Name
+		نام
 		<span class="required">*</span>
 		</label>
 		<br>
-		<input id="user_fisr_name" type="text" name="user[first_name]" value="Far" size="30">
+		<input id="user_fisr_name" type="text" name="fName" value="@user.fName" size="30">
 		
 		<br>
 		<label for="user_last_name">
-		Last Name
-		<span class="required">*</span>
+		فامیلی
 		</label>
 		<br>
-		<input id="user_last_name" type="text" name="user[last_name]" value="Farian" size="30">
+		<input id="user_last_name" type="text" name="lName" value="@user.lName" size="30">
 		
 		<br>
 		<label for="user_address">
-		Address
+		آدرس
 		</label>
 		<br>
-		<textarea class="form" name="address" 
-				rows="5" cols="60" placeholder="لطفا اینجا بنویسید"
-				style="height: 130px;">
+		<textarea class="form" name="address" rows="5" cols="60" style="height: 130px;">
+			@user.address
 		</textarea>
 		
-		<br>
+		<br><br>
 		<label for="user_birthdate">
-		birth date
+		زاد روز
 		</label>
 		<br>
-		<input id="user_birthday" type="text" name="user[birthday]" value="" size="10">
-		<input id="user_birthmonth" type="text" name="user[birthdate]" value="" size="10">
-		<input id="user_birthyear" type="text" name="user[birthdate]" value="" size="10">
-		<br>
 		
-		<label for="Age Privacy">
-		Age Privacy
-		</label>
-		<br>
-		<select class="form" name="agePrivacy">
-			<option>Age Privacy</option>
-			<option>شهادت یا تشویق</option>
-			<option>وب سایت</option>
-			<option>گزارش توهین</option>
-			<option>اعلام همکاری</option>
-		</select>
 		
-		<br>
+		@select(registerform("day"), options("1"->"1", "2"->"2", "3"->"3", "4"->"4", "5"->"5", "6"->"6",
+					 "7"->"7", "8"->"8", "9"->"9", "10"->"10", "11"->"11", "12"->"12", "13"->"13", "14"->"14",
+						 "15"->"15", "16"->"16", "17"->"17", "18"->"18", "19"->"19", "20"->"20", "21"->"21", "22"->"22",
+							 "23"->"23", "24"->"24", "25"->"25", "26"->"26", "27"->"27", "28"->"28", "29"->"29", "30"->"30", 
+								 "31"->"31"),'_label -> "روز")
+								 
+			@select(registerform("month"), options("1"->"January", "2"->"February", "3"->"March", "4"->"April", "5"->"May",
+					"6"->"June", "7"->"July", "8"->"August", "9"->"September", "10"->"October", 
+						"11"->"November", "12"->"December"),'_label -> "ماه")
+					
+			@select(registerform("year"), options("1954"->"1954","1955"->"1955","1956"->"1956","1957"->"1957","1958"->"1958",
+				"1959"->"1959","1960"->"1960","1961"->"1961","1962"->"1962","1963"->"1963","1964"->"1964",
+				"1965"->"1965","1966"->"1966","1967"->"1967","1968"->"1968","1969"->"1969","1970"->"1970",
+				"1971"->"1971","1972"->"1972","1973"->"1973","1974"->"1974","1975"->"1975","1976"->"1976",
+				"1977"->"1977","1978"->"1978","1979"->"1979","1980"->"1980", "1981"->"1981", "1982"->"1982", 
+				"1983"->"1983", "1984"->"1984","1985"->"1985", "1986"->"1986", "1987"->"1987", "1988"->"1988",
+					"1989"->"1989", "1990"->"1990", "1991"->"1991", "1992"->"1992", "1993"->"1993", "1994"->"1994",	
+						"1995"->"1995", "1996"->"1996", "1997"->"1997", "1998"->"1998", "1999"->"1999", "2000"->"2000",	
+							"2001"->"2001", "2002"->"2002", "2003"->"2003", "2004"->"2004", "2005"->"2005", "2006"->"2006",
+								"2007"->"2007", "2008"->"2008", "2009"->"2009"),'_label -> "سال")
+		
+		
+		
+
+		
+		<br><br><br>
+		<p style="font-size:0.9em;margin-top:2px;margin-right:16px;color:gray;">شما میتوانید با خالی‌ گذاشتن تاریخ تولدتان، مانع نمایش آن در پروفایلتان شوید.</p>
 		<label for="aboutme">
-		about me
-		</label>
+		درباره من
+
 		<br>
-		<textarea class="form" name="description" 
-				rows="5" cols="60" placeholder="لطفا اینجا بنویسید"
-				style="height: 130px;">
+		<textarea class="form" name="description" rows="5" cols="60" style="height: 130px;">
+			@user.description
 		</textarea>
-		
+		<br><br>
 		<div class="line"></div>
 		 
-		<label for="aboutme">
+		<label for="settings">
 		تنظیمات حساب کاربری
 		</label>
 		<br>
-		<input class="form" type="email" name="email" placeholder="ایمیل"><br>
-		<a href="">edit email address</a><br>
-		<a href="">edit password </a><br>
+		<p>ایمیل شما : @user.email</p>
+		<a id ="editPassword" href="#">ویرایش پسورد</a><br>
+		<script>
+			$('#editPassword').click(function () { /* perform action here */ 
+				var x = document.getElementById("pass");
+				x.style.display = 'block';
+				$('#pass').scrollView();
+			});
+		
+			/*This aux func scroll the page to the password section*/
+			$.fn.scrollView = function () {
+			    return this.each(function () {
+			        $('html, body').animate({
+			            scrollTop: $(this).offset().top
+			        }, 1000);
+			    });
+			}	
+		</script>
+		<div id="pass" style="display:none;">
+			<input type="hidden" name="email" value=@user.email>
+			<input class="form" type="password" onchange="oldPassTest(this)" autocomplete="off" placeholder="پسورد قبلی خود ‌را وارد کنید">
+			<span style="color:gray;" id="passwordCheckLabel"></span><br>
+			<input id="pwd1" class="form" type="password" name="password" autocomplete="off" placeholder="پسورد جدید را وارد کنید" ><br>
+			<input id="pwd2" class="form" type="password" onchange="pwdValidation()" autocomplete="off" placeholder="پسورد جدید را دوباره وارد کنید">
+			<span style="color:gray;" id="passwordRepeatLabel"></span>
+			<br>
+		</div>
+		
+		<script>
+			/*this function is called by the selection of the first input 'inut old password' and
+		  	 *tests that the user is genuin and knows his own current password.*/
+			function oldPassTest(input){
+				var oldPassword = "@user.password";
+				var givenPass = input.value;
+				if(oldPassword == givenPass){
+					//alert("password match!");
+					document.getElementById("passwordCheckLabel").innerHTML = "OK";
+					document.getElementById("pwd1").style.display = 'inline';
+					document.getElementById("pwd2").style.display = 'inline';
+					document.getElementById("pwd1").focus();
+					return true;				
+				} else {
+					//alert("password NOT match!");
+					document.getElementById("passwordCheckLabel").innerHTML = "False Password. Please try again";
+					document.getElementById("pwd1").style.display = 'none';
+					document.getElementById("pwd2").style.display = 'none';
+					return false;
+				}
+	
+			}
+		
+		
+			/*This function is called by the selection of the repeat new password input and 
+			 * and checks that the user entered the new password.*/
+			function pwdValidation(){
+				var pwd1 = document.getElementById("pwd1").value;
+				var pwd2 = document.getElementById("pwd2").value;
+				if(pwd1 == pwd2){
+					//alert("password matched!");
+					document.getElementById("passwordRepeatLabel").innerHTML = "OK";
+				} else {
+					//alert("password NOT matched!");
+					document.getElementById("passwordRepeatLabel").innerHTML = "passwords not matched! please try again";
+					document.getElementById("pwd1").value = "";
+					document.getElementById("pwd2").value = "";
+					document.getElementById("pwd1").focus();
+				}
+			}
+			
+		</script>
+<!-- 		
+		<br>
 		
 		<div class="line"></div>
-		<label for="aboutme">
-		who can view my profile
+		<label for="privacy">
+		چه کسی‌ میتواند پروفایل من را ببیند
 		</label>
 		<br>	
-		<input type="radio" name="privacy" value="male"> anyone<br>
-  		<input type="radio" name="privacy" value="female"> all farsiReads members<br>
- 		<input type="radio" name="privacy" value="other"> just my friends		
-		
+		<input type="radio" name="privacy" value="all"> همه<br>
+  		<input type="radio" name="privacy" value="allFR">تمام کاربران فارسی ریدز<br>
+ 		<input type="radio" name="privacy" value="myFriends"> تنها دوستان خودم		
+-->
+		 
+		 
 	</div>
-	<div id="notificationOptions"></div>
-	<div id="unregister"></div>
+	<br>
+	
+	<div class="line"></div>
+			
+	<div id="notificationOptions">notificationOptions
+	
+	<input id="emailNotification" type="checkbox" autocomplete="on" value="subscribe for email notification" onclick='handleClick(this);'>
+	</div>
+	
+	<br>
+	
+	<input name="photo" type="hidden" id="photoInput" value="@user.photo">
+	
+	<input type="submit" value="save changes" id="submitBtn">
 
+	}	
+	@if(registerform.hasErrors){
+        	<p id="error"> @registerform.errors </p>
+        }
+
+	<br>
+	<div class="line"></div>
+		
+		
+	@helper.form(action = controllers.routes.Settings.unregister("farsi",user.email)){		
+		<input type="submit" value="unregister" id="submitBtn">
+		
+	}
 
 }{
-<!-- Right Panel -->
+
+	<!-- ------------------- پانل راست -------------------- -->
+	
 	<div id="personalPhoto">
-		<a href="#"><img src =""></a>
+	@if(user.photo != ""){
+			<a href="#"><img style="width:111px;height:148px;" src ="@user.photo"></a>
+			<br>
+			<input name="photo" id="photoCheckBox" type="checkbox" autocomplete="off" value="deleteProfilePhoto" onclick='handleClick(this);'>
+			حذف عکس پروفایل 
+		
+		} else {
+				@if(user.gender){
+				<a href="#"><img class="usrPhoto" style="width:50px;height:50px;" src="@routes.Assets.at("/images/woman.png")"></a>
+				}else {
+				<a href="#"><img class="usrPhoto" style="width:50px;height:50px;" src="@routes.Assets.at("/images/man.png")"></a>
+				}
+			
+		}
+
+		
+		<script>
+		function handleClick(cb){
+			var x = document.getElementById("t");
+			if(cb.checked){
+				//alert("checked");
+				x.style.display = 'none';
+				//This line actually sets the photo field in DB to ""; illustrating the photo deletion
+				//document.getElementById("photo_input").value = "";
+				document.getElementById("photoInput").value = "";
+			}
+			else{
+				x.style.display = 'block';
+			}
+		}
+		</script>
 		<br>
-		<input id="userPhotoUpload" type="file" name="">
 		<br>
-		<input type="submit" value="Upload Photo" name="commit">
+		<div id="t"><a href="#" id="upload_widget_opener">Upload image</a></div>
+		
+			
+
+			 
+			 <script type="text/javascript">  
+ 				//Using the cloudinary's upload widget to directly upload to the cloud
+ 				//using this code, the url of the uploaded imaged retrieved from 'result'
+ 						
+ 					
+ 				/*'public_id' could be set to the name of the user and it should be unique.
+ 				   using the upload settings in the cloudinary, Unsigned uploading is enabled;
+ 				   That means that the public_id will be automaticalley incremeneted. */
+				$('#upload_widget_opener').cloudinary_upload_widget(
+						{ 
+							  cloud_name: 'cloudinary-sinaaps', upload_preset: 'zi2dsbt2', 
+						      cropping: 'server', gravity : 'custom', 'folder': 'user_photos', 
+						      multiple : 'false',//public_id : '1234',
+						      client_allowed_formats : ["png","gif", "jpeg","jpg"],
+						      button_class : 'myUploadClass',
+						      button_caption : "آپلود عکس جدید",
+						      sources : ['local', 'camera'],
+						      text : {
+						    	  "sources.local.title" : "فایل‌های من", 
+						    	  "sources.local.drop_file": "فایل عکس را اینجا بیاندازید",
+						    	  "sources.local.drop_or": "یا ",
+						    	  "sources.local.select_file": "انتخاب فایل",
+						    	  "sources.camera.title": "دوربین",
+						    	  "sources.camera.note": "لطفا مطمئن شوید که مرورگر شما اجازه گرفتن عکس را میدهد؛ در موقعیت مناسب قرار گیرید و دکمه 'عکاسی' رو فشار دهید:",
+						    	  "sources.camera.capture": "عکاسی",
+						    	  "sources.url.upload": "آپلود کنید",
+						    	  "progress.uploading": "در حال آپلود شدن ...",
+						    	  "progress.upload_cropped": "آپلود",
+						    	  "progress.processing": "در حال آپلود شدن...",
+						    	  "progress.retry_upload": "دوباره امتحان کنید",
+						    	  "progress.use_succeeded": "اوکی"}
+						 },
+						 function(error, result) { 
+							//--(Testing purposes) console.log(error, result);
+						   					
+							//This piece of nagging code gets the 'result' which contains(1 ele array)
+							//the JSON rep of the uploaded image. It should be first stringify
+							// then would be parsed to an object and ready to get retrieved
+							var json = JSON.stringify(result[0]);
+							var obj = JSON.parse(json);
+							//window.alert(obj.url);
+							//document.getElementById("photo_input").value = obj.url;
+							document.getElementById("photoInput").value = obj.url;
+							/*This peice of code is to disable a user to upload many photos.
+							  It disables the cloudinary upload button after the upload was successful.*/
+							$(document).on('cloudinarywidgetsuccess', function(e, data) {
+								$(".myUploadClass").prop('disabled', true);
+								$(".myUploadClass").hide();
+								$("<span style='margin-right:15px;margin-top:0px;'>'آپلود عکس با موفقیت انجام شد'</span>").insertBefore("#hint");
+								$("#hint").hide();
+								});
+								
+						  }); 				
+			 </script>
+
+			<p id ="hint" style="font-size:0.9em;margin-top:2px;margin-right:16px;color:gray;"> آپلود عکس الزامی نیست. برای عکس پروفایلتان تنها یک عکس میتوانید انتخاب کنید</p>
+        
 	</div>
 }
 
