@@ -7,9 +7,9 @@
 		<!-- if the user didn't pick a photo -->
 		@if(comment.user.photo == ""){
 				@if(comment.user.gender){
-				<img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/woman.png")">
+				<a href="@routes.Settings.showProfile("farsi",comment.user.email)"><img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/woman.png")"></a>
 				}else {
-				<img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/man.png")">
+				<a href="@routes.Settings.showProfile("farsi",comment.user.email)"><img class="usrPhoto" title="@comment.user.fName" src="@routes.Assets.at("/images/man.png")"></a>
 				}
 		}else{
 			<a href="@routes.Settings.showProfile("farsi",comment.user.email)"><img class="usrPhoto" title="@comment.user.fName" src="@comment.user.photo"></a>

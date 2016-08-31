@@ -90,7 +90,7 @@
 					} else {
 					   <div id="socialBarRightFarsi">
 							<ul id="SNIcons" style="padding-left : 15px;">
-								<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Application.loggedIn"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
 								<li><a href="@routes.Settings.showFriends("farsi",user.email)"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
@@ -234,6 +234,7 @@
 	
 
 }{
+
 	<!-- Right Panel -->
 	@if(user.email != called.email && !friendsInCommon.isEmpty){
 		<div id="friendsInCommon">
@@ -242,8 +243,17 @@
 			@friendsInCommon.take(6).map{ freindInCommon =>
 			
 			<div>
-				<a class="rightAlignedImage" href="@routes.Settings.showProfile("farsi",freindInCommon.email)"><img src="@freindInCommon.photo" style="width:50px;height:66px;"></a>
-				
+				<!-- if the friend didn't pick a photo -->
+				@if(freindInCommon.photo == ""){
+					@if(freindInCommon.gender){
+						<a href="@routes.Settings.showProfile("farsi",freindInCommon.email)"><img style="width:50px;height:66px;" title="@freindInCommon.fName" src="@routes.Assets.at("/images/woman.png")"></a>
+						}else {
+						<a href="@routes.Settings.showProfile("farsi",freindInCommon.email)"><img style="width:50px;height:66px;" title="@freindInCommon.fName" src="@routes.Assets.at("/images/man.png")"></a>
+					}
+				}else{
+					<a href="@routes.Settings.showProfile("farsi",freindInCommon.email)"><img style="width:50px;height:66px;" title="@freindInCommon.fName" src="@freindInCommon.photo"></a>
+				}
+			
 				<div class="friendName">@freindInCommon.fName @freindInCommon.lName</div>
 			</div>
 			<div id="clear"></div>
@@ -258,7 +268,19 @@
 				@defining(controllers.Relationship.friendList(friend)) { friendList =>
 					@defining(BookUser.userBookList(friend)) { bookList =>
 					<div>
-						<a class="rightAlignedImage" href="@routes.Settings.showProfile("farsi",friend.email)"><img src="@friend.photo" style="width:50px;height:66px;"></a>
+ 						<!--  if the friend didn't pick a photo -->
+						@if(friend.photo == ""){
+								@if(friend.gender){
+								<a href="@routes.Settings.showProfile("farsi",friend.email)" style="float:right;"><img style="width:50px;height:66px;" title="@friend.fName" src="@routes.Assets.at("/images/woman.png")"></a>
+								}else {
+								<a href="@routes.Settings.showProfile("farsi",friend.email)" style="float:right;"><img style="width:50px;height:66px;" title="@friend.fName" src="@routes.Assets.at("/images/man.png")"></a>
+								}
+						}else{
+							<a href="@routes.Settings.showProfile("farsi",friend.email)" style="float:right;"><img style="width:50px;height:66px;" title="@friend.fName" src="@friend.photo"></a>
+						} 
+						<!--
+						<a href="@routes.Settings.showProfile("farsi",friend.email)" style="float:right;"><img style="width:50px;height:66px;" title="@friend.fName" src="@friend.photo"></a>
+						-->
 						<div class="right">
 							<div class="friendName">@friend.fName @friend.lName</div>
 								@bookList.length کتاب

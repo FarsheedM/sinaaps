@@ -125,6 +125,8 @@ public class Settings extends Controller{
 	public static Result unregister(String lang, String usrEmail){
 		
 		User userToDeleted = User.find.byId(usrEmail);
+		/*the list of listeners in the Observer pattern. by unregister, the user's comments, reviews
+		 *and friends will be deleted. these objects should be listed as listeners.*/
 		Vector<DeleteUserListener> listeners = new Vector<DeleteUserListener>();
 		listeners.addElement(new BlogComment());
 		listeners.addElement(new BookReview());

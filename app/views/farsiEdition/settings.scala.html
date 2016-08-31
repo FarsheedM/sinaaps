@@ -26,7 +26,7 @@
 		} else {
 			<div id="socialBarRightFarsi">
 				<ul id="SNIcons" style="padding-left : 15px;">
-					<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+					<li><a href="@routes.Application.loggedIn"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
 					<li><a href="@routes.Settings.showFriends("farsi",user.email)"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
 					<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 					<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
@@ -214,20 +214,15 @@
 		 
 		 
 	</div>
+
 	<br>
-	
-	<div class="line"></div>
-			
-	<div id="notificationOptions">notificationOptions
-	
-	<input id="emailNotification" type="checkbox" autocomplete="on" value="subscribe for email notification" onclick='handleClick(this);'>
-	</div>
-	
+	<br>	
+	<br>
 	<br>
 	
 	<input name="photo" type="hidden" id="photoInput" value="@user.photo">
 	
-	<input type="submit" value="save changes" id="submitBtn">
+	<input type="submit" value="ذخیره سازی تغییرات" id="submitBtn">
 
 	}	
 	@if(registerform.hasErrors){
@@ -334,7 +329,7 @@
 							$(document).on('cloudinarywidgetsuccess', function(e, data) {
 								$(".myUploadClass").prop('disabled', true);
 								$(".myUploadClass").hide();
-								$("<span style='margin-right:15px;margin-top:0px;'>'آپلود عکس با موفقیت انجام شد'</span>").insertBefore("#hint");
+								$("<span style='margin-right:15px;margin-top:0px;'>'آپلود عکس با موفقیت انجام شد,برای اتمام کار، لطفا در پایین این صفحه، دکمه ذخیره سازی تغییرات را کلیک کنید'</span>").insertBefore("#hint");
 								$("#hint").hide();
 								});
 								

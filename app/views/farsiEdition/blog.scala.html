@@ -38,12 +38,12 @@
 					} else {
 					   <div id="socialBarRightFarsi">
 							<ul id="SNIcons" style="padding-left : 15px;">
-								<li><a href="#"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
-								<li><a href="#"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Application.loggedIn"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showFriends("farsi",user.email)"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
-								<li><a href="#"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
-								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Settings.showSettings("farsi")"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
 							</ul>
 						</div><!-- socialBarRightFarsi -->
 					}
@@ -78,15 +78,15 @@
 			 but a function in the Blog.java should be written like setFeaturedPost(title)
 			 in order to be called from a CMS, which in turn also should be written soon.-->
 		<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">   
-		
 			<img src="@posts.head.image" rel="@posts.head.title">
-		
+		</a>
 			<hgroup>
-				<h2>@posts.head.title</h2>
-				
+			    <h2>
+			    	<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">@posts.head.title</a>
+			    </h2>
 				<h4>@author.fName @author.lName</h4>
 			</hgroup>
-		</a>
+		
 	</div>
 	
 	<div class="line"></div>
