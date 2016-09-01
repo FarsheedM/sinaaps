@@ -124,6 +124,19 @@ foreign key (user2_email) references  user (email),
 foreign key (actionuser_email) references  user (email)
 );
 
+create table Activity(
+	id Long,
+	user_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci, 
+	verb String,
+	objectType String,
+	objectUrl String,
+	sourceType String,
+	sourceUrl String,
+	published timestamp,
+	primary key (id),
+	foreign key (user_email) references  user (email)
+);
+
 # --- !Downs
 
 #--- !SET FOREIGN_KEY_CHECKS=0;

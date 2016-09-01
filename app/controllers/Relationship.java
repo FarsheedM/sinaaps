@@ -49,10 +49,9 @@ public class Relationship extends Controller{
 			}
 			
 		}
-		//List<models.Relationship> relList = models.Relationship.find.all();
-
 
 	}
+	
 	/*The user has the choice to confirm or to decline the request by deleting it.
 	 *To confirm: the 'status' in the Relationship will be changed to 1.*/
 	public static Result acceptFriendRequest(String lang,String pendingUserEmail){
@@ -341,6 +340,7 @@ public class Relationship extends Controller{
 				
 	}
 	
+	//list of all the friends of the given user
 	public static List<User> friendList(User usr){
 		
 		List<models.Relationship> relList;
@@ -372,6 +372,7 @@ public class Relationship extends Controller{
 			
 		return userList;
 	}
+	
 	//List of Friends in Common
 	public static List<User> friendsInCommon(User usr1,User usr2){
 		List<User> user1Friends = friendList(usr1);
@@ -379,6 +380,7 @@ public class Relationship extends Controller{
 		List<User> commonFriends = intersection(user1Friends,user2Friends);
 		return commonFriends;
 	}
+	
 	//List of pending friend Requests (the logged User could decide to confirm or reject them)
 	public static List<User> friendsPending(User usr){
 		List<models.Relationship> relList;

@@ -83,14 +83,11 @@ public class Blog extends Controller{
 			}
 	}
 	
-	//this method is called when the user post the new comment(in postContent view)
-	//It adds the comment to the BlogComment model/Table
+	/*this method is called when the user post the new comment(in postContent view)
+	**It adds the comment to the BlogComment model/Table. */
 	public static Result postComment(String language,int postId){
 		
 		Form<BlogComment> commentForm = Form.form(BlogComment.class).bindFromRequest();
-		//JPA.em().find(BlogComment.class, postId);
-
-		/*//commentForm.get().commentID = 5L;*/
 
 		if(commentForm.hasErrors()){
 			return badRequest("error in commentForm !!");
@@ -99,13 +96,19 @@ public class Blog extends Controller{
 		commentForm.get().post= BlogPost.find.byId(postId);
 		commentForm.get().user= User.find.byId(session().get("email"));
 		commentForm.get().published = DateTime.now().toDate();
-		//commentForm.get().likes = 0 ;
-		
 
 
 		//reload the page just for now.
 		// the AJAX call should be used here to add the new comment
 		commentForm.get().save();
+		
+		/*after the comment successfully posted, this activity should be registered to be
+		 *used in the activity stream list(NewsFeed). */
+		controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "post", "comment", 
+				"routes.Blog.showBlogPostFullContent(language, postId)",
+				"blog", "routes.Blog.showBlogPostFullContent(language, postId)");
+				
+				
 		return redirect(routes.Blog.showBlogPostFullContent(language, postId));
 		
 	}

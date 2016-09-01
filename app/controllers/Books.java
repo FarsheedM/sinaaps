@@ -278,7 +278,6 @@ public class Books extends Controller{
 		}
 	}
 	
-	
 	public static Result showShelfRead(String lang){
 
 		User usr = User.find.byId(session().get("email"));
@@ -381,6 +380,7 @@ public class Books extends Controller{
 		}
 	}
 	
+	
 	/*This method used to add a book to the VL in allBooks shelf*/
 	public static Result addtoShelfAll(String lang,int bookID){
 		
@@ -435,6 +435,7 @@ public class Books extends Controller{
 		
 	}
 	
+	
 	//This method move the selected book from the VL: ShelfAll to ShelfRead
 	public static Result moveToShelfRead(Integer bookUserId, String lang){
 		
@@ -451,6 +452,7 @@ public class Books extends Controller{
 			return badRequest("ERROR : no such BookUserId!");
 		}
 	}
+	
 	
 	//This method move the selected book from the VL: ShelfAll to ShelfReading
 	public static Result moveToShelfReading(Integer bookUserId, String lang){
