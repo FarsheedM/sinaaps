@@ -28,8 +28,8 @@ public class BookUser extends Model{
 	  the primary key ID should be built out of the two foreign keys.*/
 	public BookUser(Book bk, User usr, boolean b, boolean c, boolean d) {
 		
-		String uniqueId = Integer.toString((usr.email).hashCode()/1000).concat(bk.bookID.toString());
-		this.id = Integer.valueOf(uniqueId); 
+		String uniqueId = Long.toString((usr.email).hashCode()/1000).concat(bk.bookID.toString());
+		this.id = Long.valueOf(uniqueId); 
 		this.book = bk;   
 		this.user = usr;
 		//set to the current date of the machine
@@ -42,7 +42,7 @@ public class BookUser extends Model{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer id;
+	public Long id;
 	
 	@OneToOne
 	@JoinColumn(name="book_id", referencedColumnName="book_id")
@@ -60,8 +60,8 @@ public class BookUser extends Model{
 	public int bookRating;
 	
 	
-	public static Finder<Integer,BookUser> find = new Finder<Integer,BookUser>
-														(Integer.class,BookUser.class);
+	public static Finder<Long,BookUser> find = new Finder<Long,BookUser>
+														(Long.class,BookUser.class);
 	
 	
 	//This method checks the availability of a book given by its ID

@@ -74,7 +74,7 @@ public class BlogComment extends Model implements DeleteUserListener{
 		List<User> uniqueUserList = new ArrayList<User>();
 		for(BlogComment bc : bcList){
 			ratingsTotal += bc.rating;
-			//if the user did not rate the post, his is excluded in overall rating
+			//if the user did not rate the post, he is excluded in overall rating
 			if(!uniqueUserList.contains(bc.user) && isRatedBy(bc.user, post))
 					uniqueUserList.add(bc.user);
 		}

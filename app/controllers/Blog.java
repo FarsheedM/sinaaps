@@ -92,7 +92,8 @@ public class Blog extends Controller{
 		if(commentForm.hasErrors()){
 			return badRequest("error in commentForm !!");
 		}
-		
+		/*NOTE: that rating of the blog is placed in BlogComment and by default it is 0.
+		 *The users can rate a blog only once.*/
 		commentForm.get().post= BlogPost.find.byId(postId);
 		commentForm.get().user= User.find.byId(session().get("email"));
 		commentForm.get().published = DateTime.now().toDate();
@@ -104,9 +105,14 @@ public class Blog extends Controller{
 		
 		/*after the comment successfully posted, this activity should be registered to be
 		 *used in the activity stream list(NewsFeed). */
+		if(commentForm.get().comment.startsWith("#ریتینگ")){
+			controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "placed", "rating", 
+					commentForm.get().commentID,"routes.Blog.showBlogPostFullContent(\"farsi\"," + postId +")",
+					"blog", "routes.Blog.showBlogPostFullContent(\"farsi\"," + postId +")");
+		}
 		controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "post", "comment", 
-				"routes.Blog.showBlogPostFullContent(language, postId)",
-				"blog", "routes.Blog.showBlogPostFullContent(language, postId)");
+				commentForm.get().commentID,"routes.Blog.showBlogPostFullContent(\"farsi\"," + postId +")",
+				"blog", "routes.Blog.showBlogPostFullContent(\"farsi\"," + postId +")");
 				
 				
 		return redirect(routes.Blog.showBlogPostFullContent(language, postId));
@@ -116,6 +122,13 @@ public class Blog extends Controller{
 	public static Result deletePost(Long commentId,String language,Integer postId){
 		
 		BlogComment.find.ref(commentId).delete();
+		
+		/*after the comment successfully deleted, this activity should be registered to be
+		 *used in the activity stream list(NewsFeed). */
+		controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "delete", "comment", 
+				commentId,"routes.Blog.showBlogPostFullContent(\"farsi\"," + postId +")",
+				"blog", "routes.Blog.showBlogPostFullContent(\"farsi\"," + postId +")");
+		
 		return redirect(routes.Blog.showBlogPostFullContent(language, postId));
 	}
 	

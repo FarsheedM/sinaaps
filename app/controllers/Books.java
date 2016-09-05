@@ -127,11 +127,25 @@ public class Books extends Controller{
 		//reload the page just for now.
 		// the AJAX call should be used here to add the new comment
 		reviewForm.get().save();
+		
+		/*after the review successfully posted, this activity should be registered to be
+		 *used in the activity stream list(NewsFeed). */
+		controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "post", "review", 
+				reviewForm.get().reviewID,"routes.Books.showBookProfile(\"farsi\"," + bookId +")",
+				"book", "routes.Books.showBookProfile(\"farsi\"," + bookId +")");
+
 		return redirect(routes.Books.showBookProfile(language,bookId));
 	}
 	
 	public static Result deleteReview(long reviewID,String lang, int bookId){
 		BookReview.find.ref(reviewID).delete();
+		
+		/*after the review successfully deleted, this activity should be registered to be
+		 *used in the activity stream list(NewsFeed). */
+		controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "delete", "review", 
+				reviewID,"routes.Books.showBookProfile(\"farsi\"," + bookId +")",
+				"book", "routes.Books.showBookProfile(\"farsi\"," + bookId +")");
+		
 		return redirect(routes.Books.showBookProfile(lang,bookId));
 	}
 
@@ -420,7 +434,7 @@ public class Books extends Controller{
 	
 	
 	//This method deletes the selected book from the VL: ShelfAll
-	public static Result deleteFromShelfAll(Integer bookUserId, String lang){
+	public static Result deleteFromShelfAll(Long bookUserId, String lang){
 		
 		User usr = User.find.byId(session().get("email"));
 		
@@ -437,7 +451,7 @@ public class Books extends Controller{
 	
 	
 	//This method move the selected book from the VL: ShelfAll to ShelfRead
-	public static Result moveToShelfRead(Integer bookUserId, String lang){
+	public static Result moveToShelfRead(Long bookUserId, String lang){
 		
 		User usr = User.find.byId(session().get("email"));
 		BookUser bkusr = BookUser.find.byId(bookUserId);
@@ -455,7 +469,7 @@ public class Books extends Controller{
 	
 	
 	//This method move the selected book from the VL: ShelfAll to ShelfReading
-	public static Result moveToShelfReading(Integer bookUserId, String lang){
+	public static Result moveToShelfReading(Long bookUserId, String lang){
 			
 		User usr = User.find.byId(session().get("email"));
 		BookUser bkusr = BookUser.find.byId(bookUserId);
@@ -471,7 +485,7 @@ public class Books extends Controller{
 			}
 	}
 	//This method move the selected book from the VL: ShelfAll to ShelfToRead
-	public static Result moveToShelfToRead(Integer bookUserId, String lang){
+	public static Result moveToShelfToRead(Long bookUserId, String lang){
 			
 		User usr = User.find.byId(session().get("email"));
 		BookUser bkusr = BookUser.find.byId(bookUserId);
@@ -528,6 +542,16 @@ public class Books extends Controller{
 		updateBooksUserRating(bookId, avgRating);
 		String jsonInfo = "{\"wasRated\":\""+"Thanks, you rated this book."+
 				"\", \"rating\":\""+rating.toString()+"\"} ";
+		
+		/*after the rating successfully placed, this activity should be registered to be
+		 *used in the activity stream list(NewsFeed).
+		 *Note: that the objectId is the Id of the BookUser.
+		 *Note: that every placement of the new rating will be recorded in the Activities with the same objId.
+		 *		It means that the latest rating of the user on the given book should be shown on the NewFeed.*/
+		controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "placed", "rating", 
+				bu.id,"routes.Books.showBookProfile(\"farsi\"," + bookId +")",
+				"book", "routes.Books.showBookProfile(\"farsi\"," + bookId +")");
+		
 		return ok(jsonInfo);
 	}
 	public static void updateBooksUserRating(Integer bookId, int newRate){

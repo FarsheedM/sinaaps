@@ -124,17 +124,26 @@ foreign key (user2_email) references  user (email),
 foreign key (actionuser_email) references  user (email)
 );
 
-create table Activity(
-	id Long,
+create table activity(
+	id bigint NOT NULL AUTO_INCREMENT,
 	user_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci, 
-	verb String,
-	objectType String,
-	objectUrl String,
-	sourceType String,
-	sourceUrl String,
+	verb varchar(255),
+	object_type varchar(255),
+	object_id bigint,
+	object_url varchar(255),
+	source_type varchar(255),
+	source_url varchar(255),
 	published timestamp,
 	primary key (id),
 	foreign key (user_email) references  user (email)
+);
+create table activity_stream_list(
+	id int NOT NULL AUTO_INCREMENT,
+	user_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci, 
+	activity_id bigint, 
+	primary key (id),
+	foreign key (user_email) references  user (email),
+	foreign key (activity_id) references  activity (id)
 );
 
 # --- !Downs
@@ -159,6 +168,8 @@ drop table if exists event;
 drop table if exists event_guest;
 drop table if exists book_user;
 drop table if exists relationship;
+drop table if exists activity;
+drop table if exists activity_stream_list;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 
 

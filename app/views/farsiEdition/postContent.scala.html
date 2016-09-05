@@ -116,10 +116,13 @@
 		<script>
 		var rates = document.getElementsByName('postRating');
 		var avg =  @blogAverageRating;
-		rates[avg-1].checked =true;
-		var ratingBox = document.getElementsById('postRating');	
-		//TODO: make the ratingBox unclickables
-		//ratingBox.inactive = true;
+		if(avg > 0){
+			rates[avg-1].checked =true;
+			var ratingBox = document.getElementsByName('postRating');	
+			//TODO: make the ratingBox unclickables
+			//ratingBox.inactive = true;
+		}
+
 		</script>
 		<div id="clear"></div>
 				<div id="resourceMeta">

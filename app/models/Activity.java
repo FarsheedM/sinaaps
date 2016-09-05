@@ -13,7 +13,6 @@ public class Activity extends Model{
 	/*This class serves as the bulk of all the activities that all users perform*/
 	
 	@Id
-	@Required
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long id;
 	@OneToOne
@@ -23,6 +22,7 @@ public class Activity extends Model{
 	public String verb;
 	// e.g. blog ,book, comment, review, image, note, process, task, video, audio, person, role
 	public String objectType;
+	public Long objectId;
 	public String objectUrl;
 	//OPTIONAL: It indicates the context in which the object placed, e.g. blog, bookprofile.
 	public String sourceType;

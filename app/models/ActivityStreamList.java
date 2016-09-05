@@ -16,13 +16,12 @@ public class ActivityStreamList extends Model{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Required
 	public Integer id;
 	@OneToOne
 	@JoinColumn(name="user_email", referencedColumnName="email")
 	public User user;
 	@OneToOne
-	@JoinColumn(name="id", referencedColumnName="id")
+	@JoinColumn(name="activity_id", referencedColumnName="id")
 	public Activity activity;
 	
 	
