@@ -1,0 +1,4 @@
+@(news : models.Activity)
+@friend = @{User.find.byId(news.sourceUrl)} 
+
+<p>"@news.actor.fName" به لیست دوستان خود "@friend.fName" را افزود</p>

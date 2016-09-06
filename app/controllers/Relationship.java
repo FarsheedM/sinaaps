@@ -96,6 +96,18 @@ public class Relationship extends Controller{
 					rel.status = 1;
 					rel.actionuser = usr;
 					rel.update();
+					
+					/*after the new friend is accepted, this activity should be registered to be
+					 *used in the activity stream list(NewsFeed). 
+					 *Note1: the sourceId is useless in this case as we have the 'email' as the user's Id.
+					 *		below, the email just converted to the Long type which won't be retrieved back
+					 *		to the actual email in future use.
+					 *Note2: the sourceType and sourceId are used to accommodate the user's email to be 
+					 *referenced in future use. */
+					controllers.ActivityStream.addNewActivity(User.find.byId(session().get("email")), "befriends with", "friend", 
+							-1l,"routes.Settings.showProfile(\"farsi\"," + pendingUser.email+")",
+							"user",pendingUserEmail);
+					
 					return redirect(routes.Settings.showFriends(lang,usr.email));
 				}
 			}

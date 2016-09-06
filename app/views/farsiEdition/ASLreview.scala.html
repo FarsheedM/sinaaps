@@ -1,0 +1,4 @@
+@(news : models.Activity)
+@book =  @{BookReview.find.byId(news.objectId)}
+
+<p>"@news.actor.fName" درباره کتاب "@book.book.isbn" نظر داده است</p>

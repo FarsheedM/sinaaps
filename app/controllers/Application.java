@@ -66,7 +66,10 @@ public class Application extends Controller {
 	
     @Security.Authenticated(Secured.class)
 	public static Result loggedIn(){
-		return ok(loggedIn.render(User.find.byId(request().username())));
+    	User usr = User.find.byId(request().username());
+    	List<ActivityStreamList> actStreamLst = ActivityStreamList.find.where().eq("user", usr).findList();
+    			
+		return ok(loggedIn.render(usr,actStreamLst));
 	}
     
     public static Result logout(){

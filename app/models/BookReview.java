@@ -17,7 +17,7 @@ public class BookReview extends Model implements DeleteUserListener{
 	
 	@Id
 	@GeneratedValue
-	public long reviewID;
+	public Long reviewID;
 	@OneToOne
 	@JoinColumn(name="book_id", referencedColumnName="book_id")
 	public Book book;

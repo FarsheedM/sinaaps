@@ -1,0 +1,4 @@
+@(news : models.Activity)
+@bookuser =  @{BookUser.find.byId(news.objectId)}
+
+<p>"@news.actor.fName" این کتاب "@bookuser.book.isbn" را امتیازدهی کرد : "@bookuser.bookRating"</p>

@@ -8,7 +8,7 @@
 ** community review.
 ************************************@
 
-@(user : User)
+@(user : User, newsFeed : List[models.ActivityStreamList])
 
 
 
@@ -87,6 +87,38 @@
 		<div id="return"><a href="@controllers.controllersFarsi.routes.ApplicationFa.index()">بازگشت به صفحه اصلی >> </a>‌</div>
 		
 	</div><!-- introTour -->
+	
+	<div class="line"></div>
+	
+	<div id="NewsFeed">
+		@newsFeed.map{ news => 
+						@news.activity.verb match {
+								case "post" 		  => {
+									@if(news.activity.objectType == "comment"){
+											@views.html.farsiEdition.ASLcomment(news.activity)
+										}else{
+											@views.html.farsiEdition.ASLreview(news.activity)
+										}
+								}
+								case "befriends with" => {
+									@views.html.farsiEdition.ASLfriendship(news.activity)
+								}
+								case "placed"         => {
+									@if(news.activity.sourceType == "blog"){
+											@views.html.farsiEdition.ASLrateBlog(news.activity)
+										}else{
+											@views.html.farsiEdition.ASLrateBook(news.activity)
+										}
+								}
+								case _                => {
+									@views.html.farsiEdition.alert(user,"متاسفانه پوشش خبری شما دچار مشکل فنی‌ است. لطفا بعدا مراجعه نمائید و یا با بخش فنی‌ تماس حاصل فرمائید.")
+								}
+								
+						}
+		}
+	</div><!-- end of NewsFeed 
+	
+	-->
 	
 	<div class="line"></div>
 	
