@@ -5,10 +5,13 @@ import java.util.List;
 
 
 
+
 //import org.apache.openjpa.persistence.jdbc.*;
 import javax.persistence.*;
 
 import org.joda.time.DateTime;
+
+import com.avaje.ebean.Page;
 
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
@@ -53,5 +56,28 @@ public class BlogPost extends Model{
 		this.aux_img2 = aux_img2;
 	}
 
+	
+	
+    
+    /**
+     * Return a page of Blogs
+     *
+     * @param page Page to display
+     * @param pageSize Number of computers per page
+     * @param sortBy Computer property used for sorting
+     * @param order Sort order (either or asc or desc)
+     * @param filter Filter applied on the name column
+     */
+    public static Page<BlogPost> page(int page, int pageSize, String sortBy, String order, String filter,String lang) {
+        return 
+            find.where()
+                .ilike("title", "%" + filter + "%")
+                .eq("language", lang)
+                .orderBy(sortBy + " " + order)
+                .findPagingList(pageSize)
+                .setFetchAhead(false)
+                .getPage(page);
+    }
+    
 
 }

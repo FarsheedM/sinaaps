@@ -21,22 +21,26 @@ public class Blog extends Controller{
 	//shows the view. it calls the getBlogPostByLang(lang : String) which
 	//queries the BlogPost model(DB) to select only the posts in the 
 	//specified language.
-	public static Result display(String lang){
+	public static Result display(String lang,int page){
 		
 		if(lang.equals("english")){
 			if(session().containsKey("email"))
-				return ok(views.html.blog.render(User.find.byId(session().get("email")),getBlogPostByLang(lang)));
+				return ok(views.html.blog.render(User.find.byId(session().get("email")),
+						BlogPost.page(page, 5, "published", "asc", "","english")));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.blog.render(guest,getBlogPostByLang(lang)));
+				return ok(views.html.blog.render(guest,
+						BlogPost.page(page, 5, "published", "asc", "","ensglish")));
 			}
 		}
 		else if(lang.equals("farsi")){
 			if(session().containsKey("email"))
-				return ok(views.html.farsiEdition.blog.render(User.find.byId(session().get("email")),getBlogPostByLang(lang)));
+				return ok(views.html.farsiEdition.blog.render(User.find.byId(session().get("email")),
+						BlogPost.page(page, 3, "published", "asc", "","farsi")));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
-				return ok(views.html.farsiEdition.blog.render(guest,getBlogPostByLang(lang)));
+				return ok(views.html.farsiEdition.blog.render(guest,
+						BlogPost.page(page, 3, "published", "asc", "","farsi")));
 			}
 		}
 		else{
@@ -46,7 +50,8 @@ public class Blog extends Controller{
 		
 	}
 	
-	//this method gets the list of all BlogPost in specified language 
+	/*this method gets the list of all BlogPost in specified language. please note that
+	 *this method is not used due to implementation of pagination. */
 	public static List<BlogPost> getBlogPostByLang(String lang){
 		return BlogPost.find.where().eq("language", lang).order().desc("published").findList();
 	}

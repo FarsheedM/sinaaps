@@ -51,7 +51,8 @@
 				                 var rates = document.getElementsByName('postRating');
 				         		 var avg =  data.userRating;
 				         		 rates[avg-1].checked =true;
-				         		 //the rating of the logged user; it can be changed by the Books.rateTheBook()
+				         		 /*the rating of the logged user saved in BookUser model; it can be 
+				         		  *changed by the Books.rateTheBook()*/
 				         		 var user_rating = data.bookRating;
 				         		 var star_rating = document.getElementsByName('rating');
 				         		 //TODO : to check the return value of getElementBy...
@@ -161,7 +162,6 @@
 							@authorList.map{ a => 
 								@defining( AuthorTranslation.getAuthor(a.authorID,"farsi") ) { author => 
 							<span>@author.fName @author.lName </span>-  }}
-							
 							
 							<span></span>
 						</li>

@@ -1,0 +1,80 @@
+//--------------------- FarsiFeedBookRate CSS -------------------------
+
+
+// ----------------------------- FONTS -----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   17px "NasimBreeze","Tahoma","Arial";
+
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+@OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+
+//--------------------------------------------------------------------------
+
+.nfRater{
+	float : right;
+}
+.nfRater img{
+	width : 50px;
+}
+.nfRatingConnector{
+	float : right;
+	margin-left : 10px;
+	margin-right : 10px;
+}
+.nfRatedBook{
+	float : right;
+}
+
+//-------------------------star Rating-------------------------
+.starRating{
+  display        : inline-block;
+  position       : relative;
+  height         : 24px;
+  background     : url("/assets/images/stars.png") repeat-x 0 0;
+  vertical-align : bottom;
+}
+
+.starRating div{
+  float    : left;
+  position : relative;
+  height   : 24px;
+}
+
+.starRating input{
+  position : relative;
+  z-index  : 1;
+  width    : 24px;
+  height   : 24px;
+  margin   : 0;
+  padding  : 0;
+  opacity  : 0;
+}
+
+.starRating label{
+  position : absolute;
+  top      : 0;
+  left     : 0;
+  width    : 100%;
+  height   : 24px;
+}
+
+.starRating span{
+  display : none;
+}
+
+.starRating       input:checked       + label,
+.starRating:hover input:checked:hover + label{
+  background : url("/assets/images/stars.png") repeat-x 0 -24px;
+}
+
+.starRating:hover input:checked + label{
+  background : transparent;
+}
+
+.starRating:hover input:hover + label{
+  background : url("/assets/images/stars.png") repeat-x 0 -48px;
+}

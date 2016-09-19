@@ -1,10 +1,15 @@
 
 
-@(user : User, posts : List[models.BlogPost])
+@(user : User, currentPage: com.avaje.ebean.Page[BlogPost])
 
 @*The following declares a local variable "author" and by calling a static function
-  from AuthorTranslation class, it assigns the author of latest post in it.*@
-@author =  @{AuthorTranslation.getAuthor(posts.head.author.authorID,"farsi")}
+  from AuthorTranslation class, it assigns the author of latest post(currentPage.getList.head) in it.*@
+@author =  @{AuthorTranslation.getAuthor(currentPage.getList.head.author.authorID,"farsi")}
+
+@link(newPage:Int) = @{
+    // Generate the link
+    routes.Blog.display("farsi",newPage)
+}
 
 
 @headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
@@ -18,6 +23,7 @@
 <head>
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
      <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/commentFarsi.css")">
+     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/pagination.css")">
      <script src="@routes.Assets.at("javascripts/clamp.min.js")" type="text/javascript"></script>     
 </head>
 
@@ -77,28 +83,76 @@
 		<!-- for now, the first version, featured Box displays the latest post,
 			 but a function in the Blog.java should be written like setFeaturedPost(title)
 			 in order to be called from a CMS, which in turn also should be written soon.-->
-		<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">   
-			<img src="@posts.head.image" rel="@posts.head.title">
+		<a href="@routes.Blog.showBlogPostFullContent((currentPage.getList.head).language,(currentPage.getList.head).postID)">   
+			<img src="@currentPage.getList.head.image" rel="@currentPage.getList.head.title">
 		</a>
 			<hgroup>
 			    <h2>
-			    	<a href="@routes.Blog.showBlogPostFullContent((posts.head).language,(posts.head).postID)">@posts.head.title</a>
+			    	<a href="@routes.Blog.showBlogPostFullContent((currentPage.getList.head).language,(currentPage.getList.head).postID)">@currentPage.getList.head.title</a>
 			    </h2>
 				<h4>@author.fName @author.lName</h4>
 			</hgroup>
 		
 	</div>
 	
-	<div class="line"></div>
+	<div id="featureBoxLine" class="line"></div>
 	
 	<section id="postList">
-			<!-- The scala tail func returns all elements of the list posts, except the first one(head) -->
-					@posts.tail.map{ post => 
-							@views.html.farsiEdition.blogPost(post)
-					}
-			
+		
+			<!-- 'currentPage.getList' is the list of all the posts and by apply the 'tail' function
+				 the list includes the post except the most recent one which is already placed in the
+				 featuredBox.  -->
+		@if(!currentPage.hasPrev){
+			<!--  //First page -->
+			@for(post <- currentPage.getList.tail) {
+				@views.html.farsiEdition.blogPost(post)
+			}
+		} else {
+			<!-- //not the first page -->
+			@for(post <- currentPage.getList) {
+				@views.html.farsiEdition.blogPost(post)
+			}
+			<script type="text/javascript">
+					/*This script is used to disable the featuredBoxFarsi DIV in the following
+					  pages. in other words the featuredBox only displayed on the first page of the blog.*/
+					var crp = document.getElementById("featuredBoxFarsi");
+					crp.style.display = "none";
+					var crp = document.getElementById("featureBoxLine");
+					crp.style.display = "none";
+			</script>
+		}
+
+					
+					
+					
+<!-- OLD Implementation without pagination -->
+<!-- The scala tail func returns all elements of the list posts, except the first one(head) -->
+<!-- 	@@posts.tail.map{ post => 
+			@@views.html.farsiEdition.blogPost(post)
+} -->			
 	</section>
 	
+	<!-- here is the pagination bar -->
+	<div id="pagination" class="pagination">
+		<ul>
+			@if(currentPage.hasPrev) {
+			<li class="prev">
+				<a href="@link(currentPage.getPageIndex - 1)">&larr; صفحه قبلی‌</a>
+			</li> } else {
+			<li class="prev disabled"><a>&larr; صفحه قبلی‌</a></li> 
+			}
+			<li class="current"><a>نمایش پستهای
+					@currentPage.getDisplayXtoYofZ(" تا "," از ")</a></li>
+			@if(currentPage.hasNext) {
+			<li class="next"><a
+				href="@link(currentPage.getPageIndex + 1)">صفحه بعدی &rarr;</a></li> 
+			} else {
+				<li class="next disabled"><a>صفحه بعدی &rarr;</a></li> 
+			}
+		</ul>
+		
+	</div>
+
 }{
 	
 	<!--  Content Right comes here -->

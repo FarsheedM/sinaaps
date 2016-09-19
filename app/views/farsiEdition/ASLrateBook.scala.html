@@ -1,4 +1,69 @@
 @(news : models.Activity)
 @bookuser =  @{BookUser.find.byId(news.objectId)}
 
-<p>"@news.actor.fName" این کتاب "@bookuser.book.isbn" را امتیازدهی کرد : "@bookuser.bookRating"</p>
+
+
+
+
+<div id="nfContainer">
+	<div id="nfHeader">
+		<p>"@news.actor.fName" این کتاب "@bookuser.book.isbn" را امتیازدهی کرد : "@bookuser.bookRating"</p>
+	</div>
+	<div id="nfTimeStamp">@news.published.format("dd.MM.yyyy")</div>
+	<div id="nfMediaBox">
+		<div class="nfRater"><a href="@routes.Settings.showProfile("farsi",news.actor.email)">
+			<img alt="@news.actor.fName" src="@news.actor.photo"></a></div>
+		<div class=nfRatingConnector>
+
+			<div id="@bookuser.id" class="starRating">
+				<div>
+					<div>
+						<div>
+							<div>
+								<input id="rating1" type="radio" name="postRating" value="1">
+								<label for="rating1"><span>1</span></label>
+							</div>
+							<input id="rating2" type="radio" name="postRating" value="2">
+							<label for="rating2"><span>2</span></label>
+						</div>
+						<input id="rating3" type="radio" name="postRating" value="3">
+						<label for="rating3"><span>3</span></label>
+					</div>
+					<input id="rating4" type="radio" name="postRating" value="4">
+					<label for="rating4"><span>4</span></label>
+				</div>
+				<input id="rating5" type="radio" name="postRating" value="5">
+				<label for="rating5"><span>5</span></label>
+			</div>
+
+		</div>
+		<div class="nfRatedBook"><a href="@routes.Books.showBookProfile("farsi", bookuser.book.bookID)">
+			<img alt="@bookuser.book.isbn" src="@bookuser.book.photo"></a></div>
+		<div id="clear"></div>
+		
+		<script type="text/javascript">
+		/*It shows the star rating*/
+				//var rates = document.getElementsByName('postRating');
+				var t = @bookuser.id;
+				console.log("before: "+t);
+				console.log(t);
+				/*the objects should't be retrieved from the whole documents but from the same div in which
+				  the JS resides.*/
+				t = $(t).getElementsByName('postRating');
+				var avg =  @bookuser.bookRating;
+				console.log("after: "+t);
+				console.log(t);
+				
+				t[avg-1].checked =true;
+		
+		    	//this code is do disable the Bookrating stars
+		 	    $(document).ready(function() {
+			    	document.getElementById("rating1").disabled=true;
+			    	document.getElementById("rating2").disabled=true;
+			    	document.getElementById("rating3").disabled=true;
+			    	document.getElementById("rating4").disabled=true;
+			    	document.getElementById("rating5").disabled=true;
+			    }); 
+		</script>
+	</div><!-- end of nfMediaBox -->
+</div>

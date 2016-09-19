@@ -1,0 +1,85 @@
+/*
+--------------------- FarsiFeedComment CSS -------------------------
+
+*/
+// ----------------------------- FONTS -----------------------------------
+@font-face {
+	font-family : NasimBreeze;
+	src : url('/assets/fonts/NasimBreeze.ttf');
+}
+@defaultFont: 			   17px "NasimBreeze","Tahoma","Arial";
+
+@headerFont:               20px "NasimBreeze","Tahoma","Arial";
+@alternativeFont:          14px "tahoma","arial";
+@OldDefaultFont:           13px "Lucida Grande","Helvetica Neue", sans-serif;
+
+//-------------------------------COLORS----------------------------------------
+@mainBackground:        #c7d1d8;
+@mainColor:             #2a3a48;
+
+@links:                 #4794c4;
+@linksHover:            #2a5e88;
+
+@headerLight:           #445868;
+@headerDark:            @mainColor;
+@titleColor:            #556b7b;
+@buttonColor:           @mainBackground;
+@buttonHover:           #fff;
+@activeColor:           #5daad5;
+//---------------------------------------------------------------------------
+
+
+#nfContainer{
+	text-align : right;
+	padding-left : 40px;
+	padding-right : 30px;
+	padding-bottom : 5px;
+	margin-top : 10px;
+	border : 1px solid @mainBackground;
+	background-color : white;
+}
+#nfHeader p{
+	margin-bottom : 0px;
+}
+#nfTimeStamp{}
+#nfMediaBox{
+	//background : rgba(255,255,255,0.1);
+}
+
+#nfMediaBox h3{
+	font : @defaultFont;
+    color: rgba(0,0,0,0.5);//#84581e;
+    font-weight: bold;
+}
+#photoBanner{
+	width : 550px;
+	height : 100px;
+	opacity: 0.8;
+}
+
+#nfWriter{
+	height : 30px;
+	color : rgba(0,0,0,0.5);	//#347a74;
+	font : @alternativeFont;
+}
+#nfWriter ul{
+	float : right;
+	list-style-type : none;
+	margin-top : 5px;
+}
+#nfWriter ul li{
+	display : inline;
+}
+#nfTime{
+	float: right;
+	margin-top: 6px;
+	font-size : 0.9em;
+	margin-right : 10px;
+}
+#nfComment{
+	font-size : 1.2em;
+	font-color : black;
+	border : 1px solid @mainBackground;
+	padding-right : 3px;
+	//margin-bottom : 5px;
+}

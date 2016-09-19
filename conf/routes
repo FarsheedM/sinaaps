@@ -11,7 +11,7 @@ GET     /english/signUp             controllers.Signup.register()
 POST    /english/signUp             controllers.Signup.authenticate()
 
 GET     /loggedout                  controllers.Application.logout()
-GET     /:lang/blog/                controllers.Blog.display(lang : String)
+GET     /:lang/blog/                controllers.Blog.display(lang : String,page : Integer)
 GET     /:lang/blog/postid=:postId            controllers.Blog.showBlogPostFullContent(lang : String,postId : Integer)
 POST    /:lang/blog/postid=:postId            controllers.Blog.postComment(lang : String,postId : Integer)
 POST 	/:lang/blog/postid=:postId/delete	  controllers.Blog.deletePost(commentId:Long,lang:String,postId:Integer)

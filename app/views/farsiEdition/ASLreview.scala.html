@@ -1,4 +1,32 @@
 @(news : models.Activity)
-@book =  @{BookReview.find.byId(news.objectId)}
+@bookr =  @{BookReview.find.byId(news.objectId)}
+@bookDetail = @{BookTranslation.getBookDetails(bookr.book.bookID,"farsi")}
 
-<p>"@news.actor.fName" درباره کتاب "@book.book.isbn" نظر داده است</p>
+
+<div id="nfContainer">
+	<div id="nfHeader">
+		<p>"@news.actor.fName" درباره کتاب "@bookr.book.isbn" نظر داده است</p>
+	</div>
+	<div id="nfTimeStamp">@news.published.format("dd.MM.yyyy")</div>
+	<div id="nfMediaBox">
+		<div id="nfBookThumbnail">
+			<a href="#">
+				<img itemprop="image" src="@bookr.book.photo" alt="">
+			</a>
+		</div><!-- end of "nfBookThumbnail" -->
+		<h3 style="text-align: right; padding-right: 20px;">@bookDetail.title</h3>
+		<!-- this line just assign the desired author in the variable '@@author' to be used in the resourceMeta -->
+		@authorList = @{BookAuthor.getAuthorList(bookr.book.bookID)}
+		<div id="nfAuthor">
+			نوشته 
+			@authorList.map{ a => 
+					@defining( AuthorTranslation.getAuthor(a.authorID,"farsi") ) { author => 
+							<span>@author.fName @author.lName </span>-  }
+			}
+			<!-- <div id="time">تاریخ انتشار : @bookr.book.published.format("dd.MM.yyyy")</div> -->
+		</div>
+		<br>
+		<div id="clear"></div>
+	</div><!-- end of nfMediaBox -->
+	<div id="nfReview">@bookr.review</div>
+</div><!-- end of nfContainer -->

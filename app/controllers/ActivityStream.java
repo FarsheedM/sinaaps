@@ -9,7 +9,8 @@ import play.mvc.Controller;
 
 public class ActivityStream extends Controller{
 
-	/*It retrieves all the activities of the given user/actor */
+	/*It retrieves all the activities of the given user/actor, which includes his own activities
+	 *plus the activities of his friends.*/
 	public static List<Activity> getActivityStreamList(User usr){
 		
 		List<ActivityStreamList> streamList = ActivityStreamList.find.where().eq("user", usr).findList();
@@ -20,6 +21,14 @@ public class ActivityStream extends Controller{
 			activityList.add(act);
 		}
 		return activityList;
+	}
+	/*This method retrieve just the activities done by the given user not his activityStreamList,
+	 *in other words, in contrary to the getActivityStreamList(), it queries the Activity DB to fetch
+	 *the activities performed by the specified user which excludes his friends activities.*/
+	public static List<Activity> getActivitiesOf(User user){
+		List<Activity> actList = Activity.find.where().eq("actor", user).findList();
+		
+		return actList;
 	}
 	
 	/*add a new activity to the Activity DB. This method is overloaded. The second method skips the 

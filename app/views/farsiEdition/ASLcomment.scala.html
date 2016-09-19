@@ -1,2 +1,31 @@
 @(news : models.Activity)
-<p>@news.actor.fName درباره بلاگ شماره "@news.objectId" نظر داده است </p>
+
+@comment = @{BlogComment.find.byId(news.objectId)}
+@post = @{comment.post}
+<div id="nfContainer">
+	<div id="nfHeader">
+		<p>@news.actor.fName درباره کامنت شماره "@news.objectId" نظر داده است </p>
+	</div>
+	<div id="nfTimeStamp">@news.published.format("dd.MM.yyyy")</div>
+	<div id="nfMediaBox">
+	
+		<h3 style="text-align: right; padding-right: 20px;">@post.title</h3>
+		<div id="photoBanner">
+			<!-- "dl.dropboxusercontent." should be used in order to access DropBox docs with a static link -->
+			<a href="@routes.Blog.showBlogPostFullContent(post.language,post.postID)">
+				<img src="@post.aux_img1" alt="@post.aux_img1">
+			</a>
+		</div><!-- end of "photoBanner" -->
+		<br>
+		<!-- this line just assign the desired author in the variable '@author' to be used in the resourceMeta -->
+		@author = @{AuthorTranslation.getAuthor(post.author.authorID,"farsi")}
+		<div id="nfWriter">
+			<ul> 
+				<li>نوشته :  @author.fName @author.lName |</li>
+			</ul>
+			<div id="nfTime">تاریخ نگارش : @post.published.format("dd.MM.yyyy")</div>
+		</div>
+		<div id="clear"></div>
+	</div><!-- end of nfMediaBox -->
+	<div id="nfComment">@comment.comment</div>
+</div><!-- end of nfContainer -->

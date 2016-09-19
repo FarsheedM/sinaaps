@@ -94,8 +94,8 @@ public class Settings extends Controller{
 		//the books of the called user will be retrieved 
 		List<Book> bookList = BookUser.userBookList(called);
 		
-
-		return ok(views.html.farsiEdition.profile.render(user,called,bookList));
+		List<Activity> userNewsFeed = ActivityStream.getActivitiesOf(called);
+		return ok(views.html.farsiEdition.profile.render(user,called,bookList,userNewsFeed));
 	}
 
 	public static Result showFriends(String lang,String calledUserEmail){

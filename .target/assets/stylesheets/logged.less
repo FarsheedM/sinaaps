@@ -489,6 +489,9 @@ fieldset input{
     color: #84581e;
     font-weight: normal;
 }
+#NewsFeed{
+	margin-bottom : 15px;
+}
 #phase{
 	margin-right : 10px;
 	margin-left : 10px;
@@ -520,6 +523,7 @@ fieldset input{
 }*/
 #return{
 	margin-right : 500px;
+	margin-top : 10px;
 	font: 13px "NasimBreeze", "arial";
 	padding-bottom : 5px;
 }
@@ -591,3 +595,48 @@ fieldset input{
     height: 2px;
     width: auto;
 }
+/*----------------------------- Accordion --------------------------------*/
+.accordion, .accordion * {
+	-webkit-box-sizing:border-box; 
+	-moz-box-sizing:border-box; 
+	box-sizing:border-box;
+}
+
+.accordion {
+	overflow : hidden;
+	box-shadow : 0px 1px 3px rgba(0,0,0,0.25);
+	border-radius : 3px;
+	background : #f7f7f7;
+}
+
+/*----- Section Titles -----*/
+.accordion-section-title {
+	width:100%;
+	padding : 10px;
+	display:inline-block;
+	border-bottom:1px solid #cecaca;	//#1a1a1a;
+	background : #e7e4e4; 	//#333;
+	transition: all linear 0.15s;
+	/* Type */
+	font-size: 1.1em;
+	//text-shadow: 0px 1px 0px #1a1a1a;
+	color : #575756;	//#fff;
+}
+
+.accordion-section-title.active, .accordion-section-title:hover {
+	background: #d6dec1;	//#4c4c4c;
+	/* Type */
+	text-decoration:none;
+	color : #84581e;
+}
+
+.accordion-section:last-child .accordion-section-title {
+	border-bottom:none;
+}
+
+/*----- Section Content -----*/
+.accordion-section-content {
+	padding:15px;
+	display:none;
+}
+/*--------------------------------------------------------------------------------------*/

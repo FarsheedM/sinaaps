@@ -1,4 +1,4 @@
-@(user : User)(called : User)(books : List[models.Book])
+@(user : User)(called : User)(books : List[models.Book], userNewsFeed : List[models.Activity])
 
 <!-- -----------------------------فارسی-------------------------- -->
 
@@ -24,6 +24,10 @@
 		
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiSettings.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedComment.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedReview.css")">	
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedFriendship.css")">	
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedBookRate.css")">
 		<script src="@routes.Assets.at("javascripts/jquery-1.11.3.js")" type="text/javascript"></script>
 
 	@if(readingBooks.length != 0){
@@ -206,14 +210,6 @@
 									  <label for="rating5"><span>5</span></label>
 							</div>
 						
-						
-<!-- 						<span class="staticStars">
-							<span name="rating" class="staticStar p10" size="15x15" title="really liked it">really liked it</span>
-							<span class="staticStar p10" size="15x15" title="really liked it"></span>
-							<span class="staticStar p10" size="15x15" title="really liked it"></span>
-							<span class="staticStar p10" size="15x15" title="really liked it"></span>
-							<span class="staticStar p0" size="15x15" title="really liked it"></span>
-						</span> -->
 					</div>
 					<div id="bookTitle">
 						<a class="bookTitle" href="@routes.Books.showBookProfile("farsi",latestReadingBook.bookID)">@bookTranslation.title</a>
@@ -228,9 +224,44 @@
 	}
 	<div id="clear"></div>
 		
+	<div class="line"></div>
 		
 	<div id="recentUpdates">"@called.fName" recent updates :</div>
-	<div id="friendComment">to be implemented</div>
+	
+	<!-- NOTE: This is the 10 latest user activities fetched from the Activity List -->
+ 	<div id="NewsFeed">
+ 		@if(userNewsFeed.length == 0 || userNewsFeed == null){
+ 			<p>This is no recent activity by @called.fName</p>
+ 		} else {
+ 			<!--  /*if the NewsFeed is not empty*/ -->
+ 		
+			@userNewsFeed.takeRight(10).map{ news => 
+							@news.verb match {
+								case "post" 		  => {
+									@if(news.objectType == "comment"){
+											@views.html.farsiEdition.ASLcomment(news)
+										}else{
+											@views.html.farsiEdition.ASLreview(news)
+										}
+								}
+								case "befriends with" => {
+									@views.html.farsiEdition.ASLfriendship(news)
+								}
+								case "placed"         => {
+									@if(news.sourceType == "blog"){
+											@views.html.farsiEdition.ASLrateBlog(news)
+										}else{
+											@views.html.farsiEdition.ASLrateBook(news)
+										}
+								}
+								case _                => {
+									@views.html.farsiEdition.alert(user,"متاسفانه پوشش خبری شما دچار مشکل فنی‌ است. لطفا بعدا مراجعه نمائید و یا با بخش فنی‌ تماس حاصل فرمائید.")
+								}
+								
+							}
+			}
+		}<!-- end of else -->
+	</div><!--  end of NewsFeed -->
 	
 
 }{

@@ -1,4 +1,17 @@
 @(news : models.Activity)
 @friend = @{User.find.byId(news.sourceUrl)} 
 
-<p>"@news.actor.fName" به لیست دوستان خود "@friend.fName" را افزود</p>
+
+
+<div id="nfContainer">
+	<div id="nfHeader">
+		<p>"@friend.fName" به لیست دوستان خود "@news.actor.fName" را افزود</p>
+	</div>
+	<div id="nfTimeStamp">@news.published.format("dd.MM.yyyy")</div>
+	<div id="nfMediaBox">
+		<div class="nfActor"><a href="@routes.Settings.showProfile("farsi",friend.email)"><img alt="@friend.fName" src="@friend.photo"></a></div>
+		<div class="nfConnector">-----------------------------</div>
+		<div class="nfFriend"><a href="@routes.Settings.showProfile("farsi",news.actor.email)"><img alt="@news.actor.fName" src="@news.actor.photo"></a></div>
+		<div id="clear"></div>
+	</div>
+</div>
