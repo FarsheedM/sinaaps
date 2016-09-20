@@ -65,7 +65,7 @@ public class ApplicationFa extends Controller{
     		//if the form has no error, it redirects to the index while "a session" is created
     		session().clear();
     		session("email", loginForm.get().email);
-    		return redirect(routes.Application.loggedIn());
+    		return redirect(routes.Application.loggedIn(0));
     	}
     }
     //using the ga (Google Analytics API) to get the visitors count

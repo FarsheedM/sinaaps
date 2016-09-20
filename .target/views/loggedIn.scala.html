@@ -8,8 +8,12 @@
 ** community review.
 ************************************@
 
-@(user : User, newsFeed : List[models.ActivityStreamList])
-
+@(user : User, currentPage : com.avaje.ebean.Page[ActivityStreamList])
+@newsFeed = @{currentPage.getList}
+@link(newPage:Int) = @{
+    // Generate the link
+    routes.Application.loggedIn(newPage)
+}
 
 
 @headfill = {	 
@@ -19,7 +23,8 @@
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedComment.css")">
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedReview.css")">	
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedFriendship.css")">	
-		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedBookRate.css")">		
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/FarsiFeedBookRate.css")">
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/pagination.css")">		
 		<!-- This meta tages TESTING -->
 		}
 
@@ -47,7 +52,7 @@
 					} else {
 					   <div id="socialBarRightFarsi">
 							<ul id="SNIcons" style="padding-left : 15px;">
-								<li><a href="@routes.Application.loggedIn"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Application.loggedIn(0)"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
 								<li><a href="@routes.Settings.showFriends("farsi",user.email)"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
@@ -122,9 +127,28 @@
 								
 						}
 		}
-	</div><!-- end of NewsFeed 
+	</div><!-- end of NewsFeed -->
 	
-	-->
+	<!-- here is the pagination bar -->
+	<div id="pagination" class="pagination">
+		<ul>
+			@if(currentPage.hasPrev) {
+			<li class="prev">
+				<a href="@link(currentPage.getPageIndex - 1)">&larr; صفحه قبلی‌</a>
+			</li> } else {
+			<li class="prev disabled"><a>&larr; صفحه قبلی‌</a></li> 
+			}
+			<li class="current"><a>نمایش خبرهای
+					@currentPage.getDisplayXtoYofZ(" تا "," از ")</a></li>
+			@if(currentPage.hasNext) {
+			<li class="next"><a
+				href="@link(currentPage.getPageIndex + 1)">صفحه بعدی &rarr;</a></li> 
+			} else {
+				<li class="next disabled"><a>صفحه بعدی &rarr;</a></li> 
+			}
+		</ul>
+		
+	</div>
 	
 	<div class="line"></div>
 	

@@ -114,7 +114,7 @@
         		</div>
         		<div id="headContentRight">
         				@helper.form(controllers.controllersFarsi.routes.ApplicationFa.authenticate){
-	        				<input class="form" type="text" name="lName" placeholder="نام" />
+	        				<!--  <input class="form" type="text" name="lName" placeholder="نام" /> -->
 	        				<input class="form" type="email" name="email" placeholder="ایمیل " />
 	        				<input class="form" type="password" name="password" placeholder="پسورد" />
 	        				<br/>
@@ -125,6 +125,13 @@
 	        					<p id="error">@form.globalError.message </p>
 	        				}
         				}
+        			<div id="followUs">
+						<ul>
+							<li><a href="http://facebook.com/farsireads"><img src="@routes.Assets.at("images/facebook.png")"></a></li>
+							<li><a href="http://twitter.com/farsireads"><img src="@routes.Assets.at("images/twitter.png")"></a></li>
+							<li><a href="http://linkedid.com/farsireads"><img src="@routes.Assets.at("images/linkedIn.png")"></a></li>
+						</ul>
+					</div>
         		</div><!--headcontentRight (SignIn)-->
         </div><!--headContent-->
 	

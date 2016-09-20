@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.avaje.ebean.Page;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -25,9 +26,10 @@ import play.data.validation.Constraints.Required;
 import play.mvc.*;
 import play.mvc.Http.Context;
 import views.html.*;
-import views.html.farsiEdition.*;
+//import views.html.farsiEdition.*;
 
 import javax.persistence.*;
+
 /*NOTE: if new external packages should be added:
  *      it should be added first to the "Java build Path" of the project
  *      after that, it should be imported to the java class where it is to used
@@ -65,10 +67,10 @@ public class Application extends Controller {
     }
 	
     @Security.Authenticated(Secured.class)
-	public static Result loggedIn(){
+	public static Result loggedIn(int page){
     	User usr = User.find.byId(request().username());
-    	List<ActivityStreamList> actStreamLst = ActivityStreamList.find.where().eq("user", usr).findList();
-    			
+    	//List<ActivityStreamList> actStreamLst = ActivityStreamList.find.where().eq("user", usr).findList();
+    	Page<ActivityStreamList> actStreamLst = ActivityStreamList.page(page, 5, "activity.published", "desc", "",usr);		
 		return ok(loggedIn.render(usr,actStreamLst));
 	}
     
@@ -105,7 +107,7 @@ public class Application extends Controller {
     		//if the form has no error, it redirects to the index while "a session" is created
     		session().clear();
     		session("email", loginForm.get().email);
-    		return redirect(routes.Application.loggedIn());
+    		return redirect(routes.Application.loggedIn(0));
     	}
     }
     

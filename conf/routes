@@ -6,7 +6,7 @@
 GET     /english                    controllers.Application.index()
 POST    /english                    controllers.Application.authenticate()
 POST    /farsi                      controllers.controllersFarsi.ApplicationFa.authenticate()
-GET     /loggedIn                   controllers.Application.loggedIn()
+GET     /loggedIn                   controllers.Application.loggedIn(page : Integer)
 GET     /english/signUp             controllers.Signup.register()
 POST    /english/signUp             controllers.Signup.authenticate()
 

@@ -9,9 +9,33 @@
 	</div>
 	<div id="nfTimeStamp">@news.published.format("dd.MM.yyyy")</div>
 	<div id="nfMediaBox">
-		<div class="nfActor"><a href="@routes.Settings.showProfile("farsi",friend.email)"><img alt="@friend.fName" src="@friend.photo"></a></div>
+		<div class="nfActor">
+			<a href="@routes.Settings.showProfile("farsi",friend.email)">
+				@if(friend.photo == ""){
+					@if(friend.gender){
+					<img alt="@friend.fName" title="@friend.fName" src="@routes.Assets.at("/images/woman.png")">
+					}else{
+					<img alt="@friend.fName" title="@friend.fName" src="@routes.Assets.at("/images/man.png")">
+					}
+				}else{
+				<img alt="@friend.fName" src="@friend.photo">
+				}
+			</a>
+		</div>
 		<div class="nfConnector">-----------------------------</div>
-		<div class="nfFriend"><a href="@routes.Settings.showProfile("farsi",news.actor.email)"><img alt="@news.actor.fName" src="@news.actor.photo"></a></div>
+		<div class="nfFriend">
+			<a href="@routes.Settings.showProfile("farsi",news.actor.email)">
+				@if(news.actor.photo == ""){
+					@if(news.actor.gender){
+					<img alt="@news.actor.fName" title="@news.actor.fName" src="@routes.Assets.at("/images/woman.png")">
+					}else{
+					<img alt="@news.actor.fName" title="@news.actor.fName" src="@routes.Assets.at("/images/man.png")">
+					}
+				}else{
+				<img alt="@news.actor.fName" src="@news.actor.photo">
+				}
+			</a>
+		</div>
 		<div id="clear"></div>
 	</div>
 </div>

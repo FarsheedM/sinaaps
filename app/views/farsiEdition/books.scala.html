@@ -1,5 +1,6 @@
 @(user : User, books : List[models.Book])
 
+
 @headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
 		<!-- This meta tages TESTING -->
 		}
@@ -31,7 +32,7 @@
 					} else {
 					   <div id="socialBarRightFarsi">
 							<ul id="SNIcons" style="padding-left : 15px;">
-								<li><a href="@routes.Application.loggedIn"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+								<li><a href="@routes.Application.loggedIn(0)"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
 								<li><a href="@routes.Settings.showFriends("farsi",user.email)"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
 								<li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
@@ -144,22 +145,26 @@
 			
 					<!-- we take the 6 latest books with the help of scala list function  -->
 					@books.take(3).map{ book =>
+						@defining( BookTranslation.getBookDetails(book.bookID,"farsi") ) { bookDetail => 
 					<div id="bookBox">
 						<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-							<img class="bookImg" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
+							<img class="bookImg" src="@book.photo" title="@bookDetail.title"><br># شابک <span class="titleText">@book.isbn</span>
 						</a>
 					</div>
+						}
 					}			
 			</div>
 			<div id="clear"></div>
 			<div id="secondRow">
 				<!--  takeRight(n), Selects last n elements. -->
 				@books.takeRight(3).map{ book =>
+					@defining( BookTranslation.getBookDetails(book.bookID,"farsi") ) { bookDetail =>
 				<div id="bookBox">
 					<a href="@routes.Books.showBookProfile("farsi", book.bookID)">
-						<img class="bookImg" src="@book.photo" ><br># شابک <span class="titleText">@book.isbn</span>
+						<img class="bookImg" src="@book.photo" title="@bookDetail.title"><br># شابک <span class="titleText">@book.isbn</span>
 					</a>
 				</div>
+					}
 				}
 			</div>
 	</div> <!-- recommendationBox -->
