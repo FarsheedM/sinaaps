@@ -206,9 +206,10 @@
 			</div><!-- leftBlock -->
 			<div id="clear"></div>
 			<div id="rateBox">
-				<p>(you need to add this book to your personal library in order to be able to rate it)</p>
-			@if(bookAlreadyInVL){
-				<p>please rate this book:</p>
+			@if(!bookAlreadyInVL){
+				<p>(برای امتیازدهی به این کتاب، می‌‌بایست نخست آن را به کتابخانه مجازی خود اضافه کنید)</p>
+			} else {
+				<p>شما میتوانید این کتاب را امتیاز دهید:</p>
 				
 				<div class="starRating" id="starRating" onclick="rateIt();">
 					  <div>

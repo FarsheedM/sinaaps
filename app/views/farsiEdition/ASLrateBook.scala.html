@@ -1,6 +1,6 @@
 @(news : models.Activity)
 @bookuser =  @{BookUser.find.byId(news.objectId)}
-
+@bookTranslation = @{BookTranslation.getBookDetails(bookuser.book.bookID,"farsi")}
 
 
 
@@ -12,7 +12,7 @@
 	<div id="nfTimeStamp">@news.published.format("dd.MM.yyyy")</div>
 	<div id="nfMediaBox">
 		<div class="nfRater"><a href="@routes.Settings.showProfile("farsi",news.actor.email)">
-			<img alt="@news.actor.fName" src="@news.actor.photo"></a></div>
+			<img alt="@news.actor.fName" title="@news.actor.fName" src="@news.actor.photo"></a></div>
 		<div class=nfRatingConnector>
 
 			<div id="@bookuser.id" class="starRating">
@@ -41,7 +41,7 @@
 
 		
 		<div class="nfRatedBook"><a href="@routes.Books.showBookProfile("farsi", bookuser.book.bookID)">
-			<img alt="@bookuser.book.isbn" src="@bookuser.book.photo"></a></div>
+			<img alt="@bookuser.book.isbn" title="@bookTranslation.title" src="@bookuser.book.photo"></a></div>
 		<div id="clear"></div>
 		
 		<script type="text/javascript">

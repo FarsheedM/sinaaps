@@ -1,5 +1,8 @@
 @(user : User)(called : User)(books : List[models.Book], userNewsFeed : List[models.Activity])
 
+@*This is to get the number of the reviews written by this user: *@
+@numOfReviews = @{Activity.find.where().eq("actor",user).eq("objectType","review").findList().size()}
+
 <!-- -----------------------------فارسی-------------------------- -->
 
 		
@@ -138,7 +141,7 @@
 		}else{
 			<a href="#"><img class="usrPhoto" title="@called.fName" src="@called.photo"></a>
 		}
-		<div id="reviews">تعداد نقدها : </div>
+		<div id="reviews">تعداد نقدها : @numOfReviews</div>
 		</div>
 		
 		
@@ -149,7 +152,7 @@
 			<div class="infoBoxRowItem">تاریخ تولد : @called.day /@called.month /@called.year</div>
 			<div id="clear"></div>
 			@if(called.description != ""){
-	  			<div class="infoBoxRowTitle">فعالیت?</div>
+	  			<div class="infoBoxRowTitle">فعالیت</div>
 				<div class="infoBoxRowItem">@called.description</div>  
 			}
 			

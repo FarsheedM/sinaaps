@@ -146,6 +146,40 @@ create table activity_stream_list(
 	foreign key (activity_id) references  activity (id)
 );
 
+
+create table library(	
+    library_id int NOT NULL AUTO_INCREMENT,
+	name varchar(255),
+	established timestamp,
+	Address varchar(255),
+	church_name varchar(255),
+	primary key (library_id)
+);
+
+create table local_library_admin(
+	admin_id int NOT NULL AUTO_INCREMENT,
+	admin_email varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+	library_id int,
+	foreign key (admin_email) references  user (email),
+	foreign key (library_id) references  library (library_id),
+	primary key (admin_id)
+);
+
+create table book_entry(
+	book_tage varchar(255) not null,
+	book_id int not null,
+	borrowed_by varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+	borrowed_on timestamp,
+	cellphone varchar(255),
+	address varchar(255),
+	deposit boolean,
+	foreign key (book_id) references  book (book_id),
+	foreign key (borrowed_by) references  user (email),
+	primary key (book_tage)
+);
+
+
+
 # --- !Downs
 
 #--- !SET FOREIGN_KEY_CHECKS=0;
@@ -170,6 +204,10 @@ drop table if exists book_user;
 drop table if exists relationship;
 drop table if exists activity;
 drop table if exists activity_stream_list;
+drop table if exists library;
+drop table if exists local_library_admin;
+drop table if exists book_entry;
+#---drop table if exists library_book_entry;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 
 

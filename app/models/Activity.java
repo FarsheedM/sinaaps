@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.persistence.*;
 
 import play.data.format.Formats;
-import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
 @Entity
@@ -32,7 +31,7 @@ public class Activity extends Model{
 
 	
 	
-	public static Finder<Long,Activity> find = new Finder<Long,Activity>
-	(Long.class,Activity.class);
+	public static play.db.ebean.Model.Finder<Long, Activity> find = new Finder<Long, Activity>(Long.class, Activity.class);
+																		
 	
 }

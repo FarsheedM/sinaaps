@@ -1,0 +1,40 @@
+@(user : User , bookEntries : List[models.BookEntry])
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link type=""> 
+	</head>
+	
+	<body>
+@if(bookEntries.length != 0){
+ 	@bookEntries.map{ bookEntry =>
+						<div>
+							<ul>
+								<li>@bookEntry.bookTage</li>
+								<li>@bookEntry.book.isbn</li> 
+								<li>@bookEntry.borrowedBy.fName  @bookEntry.borrowedBy.lName</li>
+								<li>@bookEntry.borrowedOn</li>
+								<li>@bookEntry.cellphone</li>
+								<li>@bookEntry.address</li>
+								<li>@bookEntry.deposit</li>
+
+							</ul>
+						</div>
+	
+	}
+}else{
+	<p>bookEntries is empty</p>
+}	 
+	
+	
+	@if(user == "guest"){
+	
+	} else {
+		<!-- The user is the Admin; the update functions are available -->
+		
+	}
+	</body>
+</html>

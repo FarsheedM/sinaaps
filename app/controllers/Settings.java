@@ -121,7 +121,7 @@ public class Settings extends Controller{
 	 * Using the Observer Pattern, all the user's comments, reviews, friends and Ratings are to be deleted
 	 * from its proper DBs.
 	 * this method serves as a subject in our Observer Pattern. the Observer(abstract interface) is called
-	 *'' and objects or views are '','' and ''.   */
+	 *'DeleteUserListener' and objects or views are 'BlogComment','BookReview' and 'Relationship'.   */
 	public static Result unregister(String lang, String usrEmail){
 		
 		User userToDeleted = User.find.byId(usrEmail);

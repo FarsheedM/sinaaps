@@ -63,5 +63,7 @@ GET     /:lang/user/acc			      controllers.Relationship.acceptFriendRequest(lan
 GET     /:lang/user/dec		          controllers.Relationship.declineFriendRequest(lang:String,pendingUserEmail:String)
 GET 	/:lang/user/unf			  	  controllers.Relationship.unfriend(lang:String,userToBeUnfriended:String)
 GET 	/:lang/user/blo 			  controllers.Relationship.blockUser(lang:String,userToBeBlocked:String)
+
+GET     /library/:LibraryId            controllers.LocalLibrary.display(LibraryId : Integer)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

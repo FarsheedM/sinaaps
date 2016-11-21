@@ -2,11 +2,10 @@
 package controllers.controllersFarsi;
 
 import models.User;
-import controllers.routes;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.signUp;
+
 
 public class Signup extends Controller{
 	
