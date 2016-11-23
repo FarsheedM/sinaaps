@@ -1,6 +1,12 @@
 @(message : String, form : Form[Application.Login])
 
-@FaMain("به 'فارسی‌ ریدز' خوش آمدید"){
+
+@headfill = {	 <link rel="canonical" href="http://www.farsireads.com">
+		<!-- This meta tages TESTING -->
+		}
+		
+		
+@FaMain("test")(headfill){
 
 		<head>
 			<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/index.css")">
@@ -10,12 +16,12 @@
         		<div id="headContentLeft">Headlines</div>
         		<div id="headContentRight">
         				@helper.form(routes.Application.authenticate){
-	        				<input type="text" name="lName" placeholder="نام" />
-	        				<input type="email" name="email" placeholder="ایمیل " />
-	        				<input type="password" name="password" placeholder="پسورد" />
+	        				<input type="text" name="lName" placeholder="Ù†Ø§Ù…" />
+	        				<input type="email" name="email" placeholder="Ø§ÛŒÙ…ÛŒÙ„ " />
+	        				<input type="password" name="password" placeholder="Ù¾Ø³ÙˆØ±Ø¯" />
 	        				<br/>
-	        				<button type="submit">ورود</button>
-	        				<h4>هنوز عضو فارسی ریدز نیستید؟ <a href="/signUp" id="signUpLink">اینجا</a> ثبت نام کنید</h4>
+	        				<button type="submit">ÙˆØ±ÙˆØ¯</button>
+	        				<h4>Ù‡Ù†ÙˆØ² Ø¹Ø¶Ùˆ Ù�Ø§Ø±Ø³ÛŒ Ø±ÛŒØ¯Ø² Ù†ÛŒØ³ØªÛŒØ¯ØŸ <a href="/signUp" id="signUpLink">Ø§ÛŒÙ†Ø¬Ø§</a> Ø«Ø¨Øª Ù†Ø§Ù… Ú©Ù†ÛŒØ¯</h4>
 	        				@if(form.hasGlobalErrors){
 	        					<p id="error">Error: @form.globalError.message </p>
 	        				}
@@ -24,9 +30,9 @@
         </div><!--headContent-->
 	
 }{
-	<p>left content for index محتوا اینجا</p>
+	<p>left content for index inja</p>
 }{
-	<p>Right content for index محتوا اینجا</p>
+	<p>Right content for index inja</p>
 }
 
 	

@@ -7,6 +7,11 @@ libraryDependencies ++= Seq(
   javaEbean,
   cache,
   javaJpa,
+  //"com.typesafe.play" % "play-cache_2.10" % "2.4.0-M2",
+  //"com.typesafe.play" % "play-java-jpa_2.10" % "2.4.0-M1",
+  "com.typesafe" % "play-plugins-mailer_2.9.1" % "2.0.4",
+  //"com.typesafe.play" % "play-java-ebean_2.10" % "2.3.4",
+  //"com.typesafe.play" % "play-java-jdbc_2.10" % "2.4.1",
   "mysql" % "mysql-connector-java" % "5.1.29",
   "org.hibernate" % "hibernate-entitymanager" % "4.3.5.Final",
   "com.cloudinary" % "cloudinary" % "1.0.8",
@@ -16,13 +21,7 @@ libraryDependencies ++= Seq(
   "com.google.api-client" % "google-api-client" % "1.18.0-rc",
   "com.google.http-client" % "google-http-client" % "1.17.0-rc",
   "com.cloudinary" % "cloudinary-http42" % "1.2.1",
-  "org.json" % "json" % "20150729",
-  /***"com.typesafe.play" % "play-java-ebean_2.10" % "2.2.1",*/
-  "com.typesafe.play" % "play-cache_2.10" % "2.4.0-M2",
-  "com.typesafe.play" % "play-java-jpa_2.10" % "2.4.0-M1",
-  "com.typesafe" % "play-plugins-mailer_2.9.1" % "2.0.4",
-    "com.typesafe.play" % "play-java-ebean_2.10" % "2.3.4",
-  "com.typesafe.play" % "play-java-jdbc_2.10" % "2.4.1"
+  "org.json" % "json" % "20150729"
 )     
 
-resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
+play.Project.playJavaSettings
