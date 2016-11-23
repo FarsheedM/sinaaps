@@ -15,10 +15,14 @@ libraryDependencies ++= Seq(
   "com.google.oauth-client" % "google-oauth-client-jetty" % "1.17.0-rc",
   "com.google.api-client" % "google-api-client" % "1.18.0-rc",
   "com.google.http-client" % "google-http-client" % "1.17.0-rc",
-  "com.typesafe" %% "play-plugins-mailer" % "2.1.0",
   "com.cloudinary" % "cloudinary-http42" % "1.2.1",
-  "org.json" % "json" % "20150729"
+  "org.json" % "json" % "20150729",
+  /***"com.typesafe.play" % "play-java-ebean_2.10" % "2.2.1",*/
+  "com.typesafe.play" % "play-cache_2.10" % "2.4.0-M2",
+  "com.typesafe.play" % "play-java-jpa_2.10" % "2.4.0-M1",
+  "com.typesafe" % "play-plugins-mailer_2.9.1" % "2.0.4",
+    "com.typesafe.play" % "play-java-ebean_2.10" % "2.3.4",
+  "com.typesafe.play" % "play-java-jdbc_2.10" % "2.4.1"
 )     
 
-play.Project.playJavaSettings
-
+resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
