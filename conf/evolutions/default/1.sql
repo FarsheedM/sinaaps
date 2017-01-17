@@ -173,12 +173,18 @@ create table book_entry(
 	cellphone varchar(255),
 	address varchar(255),
 	deposit boolean,
+	library_id int default null,
 	foreign key (book_id) references  book (book_id),
 	foreign key (borrowed_by) references  user (email),
+	foreign key (library_id) references  library (library_id),
 	primary key (book_tage)
 );
 
-
+create table LIB_BOOKENTRY(
+    library_id int NOT NULL,
+	book_tage varchar(255) not null,
+	primary key (library_id,book_tage)
+);
 
 # --- !Downs
 
@@ -207,6 +213,7 @@ drop table if exists activity_stream_list;
 drop table if exists library;
 drop table if exists local_library_admin;
 drop table if exists book_entry;
+drop table if exists LIB_BOOKENTRY;
 #---drop table if exists library_book_entry;
 #--- !SET REFERENTIAL_INTEGRITY TRUE;
 

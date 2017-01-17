@@ -16,24 +16,15 @@ public class LocalLibrary extends Controller{
 	 */
 	public static Result display(Integer libraryId){
 		User usr = User.find.byId(session().get("email"));
-		Library lib = Library.find.byId(libraryId);
-		//getAllBookEntriesIn(lib);
-		List<BookEntry> test = new ArrayList<BookEntry>();
-		BookEntry b =new BookEntry();
+		Library lib;
+
 		try {
-			b = BookEntry.find.byId("ss4");
+			lib = Library.find.byId(libraryId);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return badRequest(views.html.farsiEdition.alert.render(usr,"error in line 22"));
+			return badRequest(views.html.farsiEdition.alert.render(usr,"error in finding Libraries"));
 		}
-		test.add(b);
-		//return ok(views.html.farsiEdition.localLibrary.render(usr,test));
-		return ok(views.html.farsiEdition.localLibrary.render(usr,getAllBookEntriesIn(lib)));
-	}
-	
-	public static List<BookEntry> getAllBookEntriesIn(Library lib){
-		return lib.bookEntries;
+
+		return ok(views.html.farsiEdition.localLibrary.render(usr,lib));
 	}
 	
 	/*It adds a new book entry in the specified library, in other words adds a new book in the lib.*/

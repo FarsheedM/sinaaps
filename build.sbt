@@ -2,6 +2,7 @@ name := "sinaaps"
 
 version := "1.0-SNAPSHOT"
 
+
 libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
@@ -25,3 +26,4 @@ libraryDependencies ++= Seq(
 )     
 
 play.Project.playJavaSettings
+

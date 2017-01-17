@@ -1,0 +1,14 @@
+/*This snippet is used to automatically increment the number of the rows by putting 'counter'.*/
+.table-bordered {
+    counter-reset: tableCount;
+}
+.counterCell:before {
+    content: counter(tableCount);
+    counter-increment: tableCount;
+}
+.table-bordered>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    padding: 8px;
+    line-height: 1.42857143;
+}

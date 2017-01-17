@@ -10,7 +10,7 @@ import play.db.ebean.Model;
 
 @Entity
 public class Library extends Model{
-	
+
 	@Id
 	public Integer libraryId;
 	public String name;
@@ -18,12 +18,13 @@ public class Library extends Model{
 	public Date established;
 	public String Address;
 	public String churchName;
-	@ManyToMany(cascade = CascadeType.ALL)
+
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "library_id")
 	public List<BookEntry> bookEntries;
 	
 	
 	
 	public static Finder<Integer,Library> find = new Finder<Integer,Library>(Integer.class,Library.class);
-																	
 
 }

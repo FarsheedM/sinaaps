@@ -21,7 +21,10 @@ public class BookEntry extends Model{
 	public String cellphone;
 	public String address;
 	public Boolean deposit;
-	
+	@ManyToOne
+	@JoinColumn(name="library_id",referencedColumnName="library_id")
+	public Library library_id;
+
 
 	
 	public static Finder<String,BookEntry> find= new Finder<String,BookEntry>
