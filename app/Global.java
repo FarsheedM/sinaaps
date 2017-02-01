@@ -9,22 +9,22 @@ import static play.mvc.Results.*;
 
 public class Global extends GlobalSettings {
 
-    public Promise<SimpleResult> onError(RequestHeader request, Throwable t) {
-        return Promise.<SimpleResult>pure(internalServerError(
+    public Promise<Result> onError(RequestHeader request, Throwable t) {
+        return Promise.<Result>pure(internalServerError(
             views.html.errorPage.render(t)
         ));
     }
     
-    public Promise<SimpleResult> onHandlerNotFound(RequestHeader request) {
+    public Promise<Result> onHandlerNotFound(RequestHeader request) {
     	User guest = new User("Guest","dummyEmail","dummyPassword");
-        return Promise.<SimpleResult>pure(notFound(
+        return Promise.<Result>pure(notFound(
             //views.html.alert.render
             views.html.farsiEdition.alert.render(guest,"همچنین آدرسی در دایرکتوری فارسی ریدز موجود نمی‌‌باشد. شما URI اشتباه را وارد کرده اید. لطفا به صفحه اصلی‌ باز گردید.")  
         		));
     }
     
-    public Promise<SimpleResult> onBadRequest(RequestHeader request, String error) {
-        return Promise.<SimpleResult>pure(badRequest("BadRequest!"));
+    public Promise<Result> onBadRequest(RequestHeader request, String error) {
+        return Promise.<Result>pure(badRequest("BadRequest!"));
     }
 
 

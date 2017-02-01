@@ -61,9 +61,9 @@
                             });
                         }
                         return el.currentStyle && el.currentStyle[prop] ? el.currentStyle[prop] : null;
-                    }
+                    };
                     return this;
-                }
+                };
             }
 
             return win.getComputedStyle(elem, null).getPropertyValue(prop);
@@ -118,7 +118,7 @@
                 return getLastChild(Array.prototype.slice.call(elem.children).pop());
             }
             //This is the absolute last child, a text node, but something's wrong with it. Remove it and keep trying
-            else if (!elem.lastChild || !elem.lastChild.nodeValue || elem.lastChild.nodeValue == '' || elem.lastChild.nodeValue == opt.truncationChar) {
+            else if (!elem.lastChild || !elem.lastChild.nodeValue || elem.lastChild.nodeValue === '' || elem.lastChild.nodeValue == opt.truncationChar) {
                 elem.lastChild.parentNode.removeChild(elem.lastChild);
                 return getLastChild(element);
             }
@@ -185,7 +185,7 @@
                 //It fits
                 if (element.clientHeight <= maxHeight) {
                     //There's still more characters to try splitting on, not quite done yet
-                    if (splitOnChars.length >= 0 && splitChar != '') {
+                    if (splitOnChars.length >= 0 && splitChar !== '') {
                         applyEllipsis(target, chunks.join(splitChar) + splitChar + lastChunk);
                         chunks = null;
                     }
@@ -199,7 +199,7 @@
             else {
                 //No valid chunks even when splitting by letter, time to move
                 //on to the next node
-                if (splitChar == '') {
+                if (splitChar === '') {
                     applyEllipsis(target, '');
                     target = getLastChild(element);
                     
@@ -254,8 +254,9 @@
         return {
             'original': originalText,
             'clamped': clampedText
+        };
         }
-    }
+
 
     window.$clamp = clamp;
 })();
