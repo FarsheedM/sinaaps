@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 import play.data.validation.Constraints.Email;
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class EventGuest extends Model{
@@ -20,8 +20,6 @@ public class EventGuest extends Model{
 	public String comment;
 
 	
-	public static Finder<String,EventGuest> find = new Finder<String,EventGuest>(
-	        String.class, EventGuest.class
-	    );
+	public static Finder<String,EventGuest> find = new Finder<>(EventGuest.class);
 	
 }

@@ -14,7 +14,7 @@ public class LocalLibraryAdmin extends Model{
 	public Library library;
 	
 	
-	public static Finder<Integer,LocalLibraryAdmin> find = new Finder<Integer,LocalLibraryAdmin>
-																	(Integer.class,LocalLibraryAdmin.class);
+	public static Finder<Integer,LocalLibraryAdmin> find = new Finder<>
+																	(LocalLibraryAdmin.class);
 
 }

@@ -27,8 +27,7 @@ public class BookEntry extends Model{
 
 
 	
-	public static Finder<String,BookEntry> find= new Finder<String,BookEntry>
-																	(String.class,BookEntry.class);
+	public static Finder<String,BookEntry> find= new Finder<>(BookEntry.class);
 	
 	
 }

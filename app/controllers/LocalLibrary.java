@@ -30,7 +30,7 @@ public class LocalLibrary extends Controller{
 	/*It adds a new book entry in the specified library, in other words adds a new book in the lib.*/
 	public static void addNewBookEntry(Library lib,BookEntry newEntry){
 		lib.bookEntries.add(newEntry);
-		lib.saveManyToManyAssociations("bookEntries");
+		//lib.saveManyToManyAssociations("bookEntries");
 		lib.update();
 	}
 	

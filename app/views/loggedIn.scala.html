@@ -8,7 +8,7 @@
 ** community review.
 ************************************@
 
-@(user : User, currentPage : com.avaje.ebean.Page[ActivityStreamList])
+@(user : User, currentPage : com.avaje.ebean.PagedList[ActivityStreamList])
 @newsFeed = @{currentPage.getList}
 @link(newPage:Int) = @{
     // Generate the link

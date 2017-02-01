@@ -11,8 +11,8 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class User extends Model{
@@ -70,9 +70,7 @@ public class User extends Model{
 		this.photo = "noPhoto"; 
 	}
 	
-	public static Finder<String,User> find = new Finder<String,User>(
-	        String.class, User.class
-	    );
+	public static Finder<String,User> find = new Finder<>(User.class);
 	
 	public static User authenticate(String email, String password) {
         return find.where().eq("email", email)

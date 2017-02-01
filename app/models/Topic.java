@@ -4,8 +4,8 @@ package models;
 import javax.persistence.*;
 
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class Topic extends Model{
@@ -19,7 +19,7 @@ public class Topic extends Model{
 	public String faDescription;
 	
 	
-	public static Finder<Integer,Topic> find = new Finder<Integer,Topic>(Integer.class,Topic.class);
+	public static Finder<Integer,Topic> find = new Finder<>(Topic.class);
 	
 	public Topic(Integer topicId, String enName, String faName,  String enDescription, String faDescription){
 		this.topicID = topicId;

@@ -14,8 +14,8 @@ import javax.persistence.OneToOne;
 
 import org.joda.time.DateTime;
 
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 import play.data.format.*;
 
 
@@ -60,8 +60,8 @@ public class BookUser extends Model{
 	public int bookRating;
 	
 	
-	public static Finder<Long,BookUser> find = new Finder<Long,BookUser>
-														(Long.class,BookUser.class);
+	public static Finder<Long,BookUser> find = new Finder<>
+														(BookUser.class);
 	
 	
 	//This method checks the availability of a book given by its ID

@@ -2,8 +2,8 @@ package models;
 
 import javax.persistence.*;
 
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class BookTranslation extends Model{
@@ -23,8 +23,8 @@ public class BookTranslation extends Model{
 	public String format;
 	
 
-	public static Finder<Integer,BookTranslation> find = new Finder<Integer,BookTranslation>
-												(Integer.class,BookTranslation.class);
+	public static Finder<Integer,BookTranslation> find = new Finder<>
+												(BookTranslation.class);
 	
 	
 	public BookTranslation(Integer id, Book book, String language, String title, 

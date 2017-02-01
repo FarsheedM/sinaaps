@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.avaje.ebean.Page;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -70,7 +70,7 @@ public class Application extends Controller {
 	public static Result loggedIn(int page){
     	User usr = User.find.byId(request().username());
     	//List<ActivityStreamList> actStreamLst = ActivityStreamList.find.where().eq("user", usr).findList();
-    	Page<ActivityStreamList> actStreamLst = ActivityStreamList.page(page, 5, "activity.published", "desc", "",usr);		
+		com.avaje.ebean.PagedList<ActivityStreamList> actStreamLst = ActivityStreamList.page(page, 5, "activity.published", "desc", "",usr);
 		return ok(loggedIn.render(usr,actStreamLst));
 	}
     

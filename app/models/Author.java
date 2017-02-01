@@ -3,8 +3,8 @@ package models;
 import javax.persistence.*;
 
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class Author extends Model{
@@ -16,8 +16,8 @@ public class Author extends Model{
 	public String photo;
 
 	
-	public static Finder<Integer, Author> find = new Finder<Integer,Author>(
-			Integer.class, Author.class
+	public static Finder<Integer, Author> find = new Finder<>(
+			Author.class
 	    );
 	
 	public Author(int authorID, String email){

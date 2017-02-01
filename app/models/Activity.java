@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import play.data.format.Formats;
-import play.db.ebean.Model;
+import com.avaje.ebean.Model;
 
 @Entity
 public class Activity extends Model{
@@ -31,7 +31,7 @@ public class Activity extends Model{
 
 	
 	
-	public static play.db.ebean.Model.Finder<Long, Activity> find = new Finder<Long, Activity>(Long.class, Activity.class);
+	public static com.avaje.ebean.Model.Finder<Long, Activity> find = new Finder<>(Activity.class);
 																		
 	
 }

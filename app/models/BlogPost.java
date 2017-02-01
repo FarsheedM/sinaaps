@@ -9,13 +9,12 @@ import java.util.List;
 //import org.apache.openjpa.persistence.jdbc.*;
 import javax.persistence.*;
 
+import com.avaje.ebean.PagedList;
 import org.joda.time.DateTime;
 
-import com.avaje.ebean.Page;
-
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 import play.data.format.*;
 
 @SuppressWarnings("serial")
@@ -39,7 +38,7 @@ public class BlogPost extends Model{
 	public String aux_img1;
 	public String aux_img2;
 	
-	public static Finder<Integer,BlogPost> find = new Finder<Integer,BlogPost>(Integer.class,BlogPost.class);
+	public static Finder<Integer,BlogPost> find = new Finder<>(BlogPost.class);
 	
 	public BlogPost(int postID,String title,String content,String image, 
 						Author author,String topic,String language,String aux_img1,String aux_img2){
@@ -68,7 +67,7 @@ public class BlogPost extends Model{
      * @param order Sort order (either or asc or desc)
      * @param filter Filter applied on the name column
      */
-    public static Page<BlogPost> page(int page, int pageSize, String sortBy, String order, String filter,String lang) {
+/*    public static com.avaje.ebean.PagedList<BlogPost> page(int page, int pageSize, String sortBy, String order, String filter,String lang) {
         return 
             find.where()
                 .ilike("title", "%" + filter + "%")
@@ -77,7 +76,17 @@ public class BlogPost extends Model{
                 .findPagingList(pageSize)
                 .setFetchAhead(false)
                 .getPage(page);
-    }
+    }*/
+
+	public static PagedList<BlogPost> page(int page, int pageSize, String sortBy, String order, String filter, User user) {
+		return
+				find.where()
+						.eq("user", user)
+						.orderBy(sortBy + " " + order)
+						.fetch("published")
+						.findPagedList(page, pageSize);
+	}
+
     
 
 }

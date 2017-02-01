@@ -8,9 +8,9 @@ import javax.persistence.*;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
+import com.avaje.ebean.Model;
 import scala.collection.generic.BitOperations.Int;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model.Finder;
 
 import javax.persistence.JoinColumn;
 
@@ -40,7 +40,7 @@ public class BlogComment extends Model implements DeleteUserListener{
 	
 	
 	
-	public static Finder<Long, BlogComment> find = new Finder<Long, BlogComment>(Long.class, BlogComment.class);
+	public static Finder<Long, BlogComment> find = new Finder<>(BlogComment.class);
 	/*implementation of the abstract interface 'DeleteUserListener' which is used as our Observer. Inheriting
 	 *from this Interface makes the 'BlogComment' an Object of the Observer Pattern and therefore this
 	 *object will be updated using 'deleteUser' method, every time a user deleted in the Settings.unregister().

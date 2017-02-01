@@ -4,7 +4,7 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.10.4"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava)
+lazy val root = (project in file(".")).enablePlugins(PlayJava,PlayEbean)
 
 includeFilter in (Assets, LessKeys.less) := "*.less"
 
@@ -12,9 +12,9 @@ excludeFilter in (Assets, LessKeys.less) := "_*.less"
 
 libraryDependencies ++= Seq(
   javaJdbc,
-  javaEbean,
   cache,
   javaJpa,
+  evolutions,
   "com.typesafe" % "play-plugins-mailer_2.9.1" % "2.0.4",
   "mysql" % "mysql-connector-java" % "5.1.29",
   "org.hibernate" % "hibernate-entitymanager" % "4.3.5.Final",
@@ -32,4 +32,6 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.6"
 )
 
-
+//This will cause no conf directory to be created in the distribution.
+//It is needed to set to false in order to deploy the application
+PlayKeys.externalizeResources := false

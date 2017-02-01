@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.persistence.*;
 
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class Event extends Model{
@@ -29,6 +29,5 @@ public class Event extends Model{
 	@Required
 	public String language;
 
-	public static Finder<Integer,Event> find = new Finder<Integer,Event>
-	(Integer.class,Event.class);
+	public static Finder<Integer,Event> find = new Finder<>(Event.class);
 }

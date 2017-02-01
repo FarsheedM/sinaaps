@@ -2,10 +2,10 @@ package models;
 
 import javax.persistence.*;
 
-import com.avaje.ebean.Page;
 
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.*;
 
 
 @Entity
@@ -27,8 +27,8 @@ public class ActivityStreamList extends Model{
 	public Activity activity;
 	
 	
-	public static Finder<Integer,ActivityStreamList> find = new Finder<Integer,ActivityStreamList>
-																	(Integer.class,ActivityStreamList.class);
+	public static Finder<Integer,ActivityStreamList> find = new Finder<>
+																	(ActivityStreamList.class);
 	
 	
     
@@ -41,7 +41,7 @@ public class ActivityStreamList extends Model{
      * @param order Sort order (either or asc or desc)
      * @param filter Filter applied on the name column
      */
-	public static Page<ActivityStreamList> page(int page, int pageSize, String sortBy, 
+/*	public static com.avaje.ebean.PagedList<ActivityStreamList> page(int page, int pageSize, String sortBy,
 													String order, String filter,User user){
 		return 
 				find.where()
@@ -50,6 +50,18 @@ public class ActivityStreamList extends Model{
                 .findPagingList(pageSize)
                 .setFetchAhead(false)
                 .getPage(page);
+	}*/
+
+
+	public static PagedList<ActivityStreamList> page(int page, int pageSize, String sortBy, String order, String filter,User user) {
+		return
+				find.where()
+						.eq("user", user)
+						.orderBy(sortBy + " " + order)
+						.fetch("activity")
+						.findPagedList(page, pageSize);
 	}
-	
+
+
+
 }

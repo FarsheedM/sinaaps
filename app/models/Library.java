@@ -5,7 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 import play.data.format.Formats;
-import play.db.ebean.Model;
+import com.avaje.ebean.Model;
 
 
 @Entity
@@ -25,6 +25,6 @@ public class Library extends Model{
 	
 	
 	
-	public static Finder<Integer,Library> find = new Finder<Integer,Library>(Integer.class,Library.class);
+	public static Finder<Integer,Library> find = new Finder<>(Library.class);
 
 }

@@ -26,21 +26,25 @@ public class Blog extends Controller{
 		if(lang.equals("english")){
 			if(session().containsKey("email"))
 				return ok(views.html.blog.render(User.find.byId(session().get("email")),
-						BlogPost.page(page, 5, "published", "asc", "","english")));
+						BlogPost.page(page, 5, "published", "asc", "",
+								User.find.byId(session().get("email")))));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
 				return ok(views.html.blog.render(guest,
-						BlogPost.page(page, 5, "published", "asc", "","ensglish")));
+						BlogPost.page(page, 5, "published", "asc", "",
+								User.find.byId(session().get("email")))));
 			}
 		}
 		else if(lang.equals("farsi")){
 			if(session().containsKey("email"))
 				return ok(views.html.farsiEdition.blog.render(User.find.byId(session().get("email")),
-						BlogPost.page(page, 3, "published", "asc", "","farsi")));
+						BlogPost.page(page, 3, "published", "asc", "",
+								User.find.byId(session().get("email")))));
 			else{
 				User guest = new User("Guest","dummyEmail","dummyPassword");
 				return ok(views.html.farsiEdition.blog.render(guest,
-						BlogPost.page(page, 3, "published", "asc", "","farsi")));
+						BlogPost.page(page, 3, "published", "asc", "",
+								User.find.byId(session().get("email")))));
 			}
 		}
 		else{

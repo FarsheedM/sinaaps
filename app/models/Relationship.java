@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class Relationship extends Model implements DeleteUserListener{
@@ -49,9 +49,7 @@ public class Relationship extends Model implements DeleteUserListener{
 	public User actionuser;
 	
 	
-	public static Finder<Integer,Relationship> find = new Finder<Integer,Relationship>(
-			Integer.class, Relationship.class
-	    );
+	public static Finder<Integer,Relationship> find = new Finder<>(Relationship.class);
 	
 	/*implementation of the abstract interface 'DeleteUserListener' which is used as our Observer. Inheriting
 	 *from this Interface makes the 'Relationship' an Object of the Observer Pattern and therefore this

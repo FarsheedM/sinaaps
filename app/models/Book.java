@@ -7,8 +7,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 @Entity
 public class Book extends Model{
@@ -26,7 +26,7 @@ public class Book extends Model{
 	//this option could be used to mark the suggested books from us
 	public int farsireadsRating; 
 	
-	public static Finder<Integer,Book> find = new Finder<Integer,Book>
-															(Integer.class,Book.class);
+	public static Finder<Integer,Book> find = new Finder<>
+															(Book.class);
 		
 }

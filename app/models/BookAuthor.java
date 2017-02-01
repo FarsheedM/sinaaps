@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import models.*;
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Finder;
 
 //This Class is used to implement the many to many relationship 
 //for the Book and Author classes.
@@ -25,8 +25,8 @@ public class BookAuthor extends Model{
 	@JoinColumn(name="author_id", referencedColumnName="author_id")
 	public Author author;
 	
-	public static Finder<Integer,BookAuthor> find = new Finder<Integer,BookAuthor>
-														(Integer.class,BookAuthor.class);
+	public static Finder<Integer,BookAuthor> find = new Finder<>
+														(BookAuthor.class);
 	
 	public BookAuthor(Integer id,Book book, Author author){
 		this.id = id;

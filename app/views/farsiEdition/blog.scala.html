@@ -1,6 +1,6 @@
 
 
-@(user : User, currentPage: com.avaje.ebean.Page[BlogPost])
+@(user : User, currentPage: com.avaje.ebean.PagedList[BlogPost])
 
 @*The following declares a local variable "author" and by calling a static function
   from AuthorTranslation class, it assigns the author of latest post(currentPage.getList.head) in it.*@
