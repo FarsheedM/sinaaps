@@ -14,7 +14,7 @@ public class Library extends Model{
 	@Id
 	public Integer libraryId;
 	public String name;
-	@Formats.DateTime(pattern = "dd.mm-yyyy")
+	@Formats.DateTime(pattern = "dd-mm-yyyy")
 	public Date established;
 	public String Address;
 	public String churchName;

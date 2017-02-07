@@ -64,6 +64,9 @@ GET     /:lang/user/dec		          controllers.Relationship.declineFriendRequest
 GET 	/:lang/user/unf			  	  controllers.Relationship.unfriend(lang:String,userToBeUnfriended:String)
 GET 	/:lang/user/blo 			  controllers.Relationship.blockUser(lang:String,userToBeBlocked:String)
 
-GET     /library/:LibraryId            controllers.LocalLibrary.display(LibraryId : Integer)
+POST    /library/:libraryId            controllers.LocalLibrary.addNewBookEntry(libraryId : Integer)
+GET     /library/:libraryId            controllers.LocalLibrary.display(libraryId : Integer)
+GET     /library/:libraryId/:bookTag   controllers.LocalLibrary.displayEntryEdit(libraryId : Integer, bookTag : String)
+POST    /library/libraryId/bookTag     controllers.LocalLibrary.updateBookEntry()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,61 +1,145 @@
-@(user : User , library : Library)
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>@library.name</title>
-        <link rel="stylesheet" tape="text/css" href='@routes.Assets.at("bootstrap/css/bootstrap.css")' >
-        <link rel="stylesheet" tape="text/css" href='@routes.Assets.at("stylesheets/localLibrary.css")' >
+@(user : User , library : Library, entryForm : Form[models.BookEntry])
+@import helper._
 
-    </head>
+@isAdmin = @{LocalLibraryAdmin.isAdmin(user)}
 
-    <body>
+@headfill = {
+
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/logged.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/localLibrary.css")">
+}
+
+@farsiEdition.FaMain(library.name)(headfill){
 
 
-        <table class="table-bordered table-responsive table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th> Book Tag </th>
-              <th>isbn</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Cellphone</th>
-              <th>Address</th>
-              <th>Deposit</th>
-              <th>Borrowed On</th>
-            </tr>
-          </thead>
 
-             @if(library.bookEntries.length != 0){
-                @library.bookEntries.map{ bookEntry =>
-                <tr>
-                    <th class="counterCell"></th>
-                    <th>@bookEntry.bookTage</th>
-                    <th>@bookEntry.book.isbn</th>
-                    <th>@bookEntry.borrowedBy.fName </th>
-                    <th>@bookEntry.borrowedBy.lName</th>
-                    <th>@bookEntry.cellphone</th>
-                    <th>@bookEntry.address</th>
-                    <th>@bookEntry.deposit</th>
-                    <th>@bookEntry.borrowedOn</th>
+<div id="socialBar1">
 
-                </tr>
+    @if(user.fName == "Guest"){
+    <div id="socialBarRightFarsi">
+        <ul id="SNIcons">
+            <li><a><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+            <li><a><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+            <li><a><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+            <li><a><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+            <li><a><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+            <li><a><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+        </ul>
+    </div><!-- socialBarRightFarsi -->
+    } else {
+    <div id="socialBarRightFarsi">
+        <ul id="SNIcons">
+            <li><a href="@routes.Application.loggedIn(0)"><img src="@routes.Assets.at("images/icons/home.png")" alt="home" width="20px" height="20px"></a></li>
+            <li><a href="@routes.Settings.showFriends("farsi",user.email)"><img src="@routes.Assets.at("images/icons/friends.png")" alt="friends" width="20px" height="20px"></a></li>
+            <li><a href="#"><img src="@routes.Assets.at("images/icons/message.png")" alt="message" width="20px" height="20px"></a></li>
+            <li><a href="#"><img src="@routes.Assets.at("images/icons/notification.png")" alt="notification" width="20px" height="20px"></a></li>
+            <li><a href="@routes.Settings.showProfile("farsi", user.email)"><img src="@routes.Assets.at("images/icons/profile.png")" alt="profile" width="20px" height="20px"></a></li>
+            <li><a href="@routes.Settings.showSettings("farsi")"><img src="@routes.Assets.at("images/icons/settings.png")" alt="settings" width="20px" height="20px"></a></li>
+        </ul>
+    </div><!-- socialBarRightFarsi -->
+    }
+
+
+
+    <div id="socialBarLeftFarsi">
+        <header id="socializingMenu">
+            <dl id="userFarsi">
+
+                @if(user.fName != "Guest"){
+                <dt> @user.fName <span>@user.email</span></dt>
+                <dd><a href="@routes.Application.logout">خروج</a></dd>
+                } else {
+                <dt>وضعیت کاربر : <span>مهمان</span></dt>
+                <dd><a href="@controllers.controllersFarsi.routes.ApplicationFa.index"> ورود </a></dd>
                 }
+            </dl>
+        </header>
+    </div><!-- socialBarLeftFarsi (loggedIn) -->
+</div><!-- socialBar -->
 
-        </table>
+}{
+<!-- The Left Panel -->
 
-       }else{
-            <p>bookEntries is empty</p>
-        }
+<table align="left" class="table-bordered table-hover">
+    <thead>
+    <tr>
 
-        @if(user == "guest"){
+        <th>تاریخ دریافت</th>
+        <th>بیعانه</th>
+        <th>آدرس</th>
+        <th>شماره تماس</th>
+        <th>فامیلی</th>
+        <th>نام </th>
+        <th>شابک</th>
+        <th> تگ </th>
+        <th>#</th>
 
+    </tr>
+    </thead>
+
+    @if(library.bookEntries.length != 0){
+    @library.bookEntries.map{ bookEntry =>
+
+    <tr>
+        <td><a href="@routes.LocalLibrary.displayEntryEdit(library.libraryId , bookEntry.bookTage)">@bookEntry.borrowedOn.format("yyyy-MM-dd")</a></td>
+        <td><a href="#">@bookEntry.deposit</a></td>
+        <td><a href="#">@bookEntry.address</a></td>
+        <td><a href="#">@bookEntry.cellphone</a></td>
+        @if(bookEntry.borrowedBy != null){
+        <!-- the client of the book is known -->
+        <td><a href="#">@bookEntry.borrowedBy.lName</a></td>
+        <td><a href="#">@bookEntry.borrowedBy.fName </a></td>
         } else {
-            <!-- The user is the Admin; the update functions are available -->
+        <!-- book is in the library, free to be borrowed -->
+        <td><a href="#"></a></td>
+        <td><a href="#"></a></td>
         }
+        <td><a href="#">@bookEntry.book.isbn</a></td>
+        <td><a href="#">@bookEntry.bookTage</a></td>
+        <td class="counterCell"><a href="#"></a></td>
+    </tr>
+
+    }
+
+</table>
+
+}else{
+<p>bookEntries is empty</p>
+}
 
 
-    </body>
-</html>
+
+}{
+    <!-- The Right Panel -->
+
+    @if(user.fName == "Guest"){
+        <p>You are a guest</p>
+    } else {
+            @if(isAdmin){
+            <p>This is an Admin logged in</p>
+                @form(action = controllers.routes.LocalLibrary.addNewBookEntry(library.libraryId), 'enctype -> "multipart/form-data"){
+
+                <input type="text" name="bookTage" id="bookTage" placeholder="bookTage" size="30">
+                <input type="number" name="bk" id="book" placeholder="book" size="30">
+                <input type="email" name="borrowed_by" id="borrowedBy" placeholder="enter the email of borrower" size="30">
+                <input type="date" name="borrowedOn" id="borrowedOn" placeholder="borrowedOn" size="30">
+                <input type="tel" name="cellphone" id="cellphone" placeholder="cellphone" size="30">
+                <input type="text" name="address" id="address" placeholder="address" size="30"><br>
+                <input type="checkbox" name="deposit" id="deposit" size="30"> deposite <br>
+
+                <input type="submit" value="add book entry" id="submitBtn">
+
+                }
+                @if(entryForm.hasErrors){
+                <p id="error"> @entryForm.errors </p>
+                }
+            } else {
+            <!-- user is a logged user and not an Admin -->
+            <p>This is an ordinary user</p>
+            }
+    }
+
+
+
+}
