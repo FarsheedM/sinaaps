@@ -1,9 +1,10 @@
 sinaaps
 =======
 
-Sinaaps project By FarMo 
+Sinaaps project By Farsheed Madihi.
 
-This Project has renamed to "Farsireads".
-On 22nd of April 2014 the domain has been purchased by Mo.
+This Project hosted temporarily at Heroku: 
+https://sinaaps.herokuapp.com/
 
+The actual domain (not live now):
 www.FarsiReads.com
